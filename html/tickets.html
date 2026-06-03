@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="stylesheet" href="/styles/tickets.css">
     <title>Iniciar Sesión</title>
     <script src="/script/script.js" defer></script>
-    <script src="/script/login.js" defer></script>
+    <script src="/script/script.js" defer></script>
 </head>
 
 <body>
@@ -19,34 +19,23 @@
         </a>
         <img src="/img/menu.png" alt="burguer" id="burguer">
 
-        <h1 id="titulo">Iniciar Sesión</h1>
+        <h1 id="titulo">Tickets</h1>
         <nav>
         <a href="index.html">Inicio</a>
         <a href="/html/tickets.html">Tickets</a>
-        <a href="/html/login.html">Inicio Sesion</a>
+        <a href="/html/login.html">Inicio de Sesion</a>
       </nav>
     </header>
 
     <main>
         <section id="newsletter">
             <form id="formularioNewsletter">
-                <h1>Datos personales</h1>
+                <p id="paragraph"><strong>¿Que quiere registrar?</strong></p>
 
                 <div id="campo-documento">
-                    <label for="cedula">Cedula</label>
-                    <input type="text" id="cedula" name="cedula" placeholder="Ingresá tu cedula" required>
-                    <p id="mensaje" class="mensaje-error"></p>
-                </div>
-                
+                <button id="Incidencia">Incidencia</button>
+                <button id="regSalon">Reserva de salon</button>
 
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Ingresá una contraseña" required>
-                <p id="seguridad" class="mensaje-error"></p>
-
-                <button type="submit" id="crear">Crear cuenta</button>
-                <div id="campo-boton">
-                <button id="extranjero">Si sos extranjero clickea aca</button>
-                </div>
             </form>
         </section>
     </main>

@@ -51,17 +51,23 @@ header {
     padding: 10px 30px;
 }
 header h1 {
-    font-size: 40px;
+    font-size: 30px;
     color: #30364F;
     font-weight: bold;
     margin-left: 0.5em;
 }
 header nav {
+    
     display: flex;
     gap: 20px;
     justify-self: end;
 }
 header nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    white-space: nowrap;
     color: #F0F0DB;
     font-weight: bold;
     background-color: #30364F;
@@ -104,39 +110,52 @@ footer{
 
 @media (max-width: 768px) {
     header {
-        padding: 10px 15px;
+        padding: 10px 20px;
     }
     header h1 {
-        font-size: 26px;
+        font-size: 20px;
     }
     header nav {
         gap: 10px;
-        margin-left: 1em;
+    }
+    header nav a {
+        min-width: 80px;
+        padding: 0.55em 1em;
+        font-size: 13px;
     }
     #logo {
-        height: 70px;
+        height: 60px;
+    }
+    #burguer {
+        height: 24px;
     }
 }
 
 @media (max-width: 480px) {
     header {
-        grid-template-columns: 1fr;
-        justify-items: center;
+        grid-template-columns: auto auto 1fr;
+        padding: 8px 14px;
         gap: 10px;
-        padding: 10px;
-        display: grid;
     }
-
     header h1 {
-        font-size: 35px;
+        display: none;
     }
     header nav {
-        justify-self: center;
+        justify-self: end;
+        gap: 6px;
         margin-left: 0;
-        justify-content: center;
+    }
+    header nav a {
+        min-width: 0;
+        padding: 0.45em 0.85em;
+        font-size: 12px;
+        border-radius: 30px;
     }
     #logo {
-        height: 30px;
+        height: 48px;
+    }
+    #burguer {
+        height: 22px;
     }
     .footer-bottom {
         flex-direction: column;
