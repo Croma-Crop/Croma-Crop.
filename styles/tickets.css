@@ -9,6 +9,48 @@
     height: auto;
 
 }
+#Incidencia{
+    align-self: center;
+    border: #bdbdbd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F0F0DB;
+    font-weight: bold;
+    background-color: #020513d8;
+    font-size: 18px;
+    padding: 0.4em 1.0em;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+    width: 300px;
+}
+#Incidencia:hover{
+    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
+    transform: translateY(-2px);
+    background-color: #020513c9;
+}
+#regSalon{
+    align-self: center;
+    border: #bdbdbd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F0F0DB;
+    font-weight: bold;
+    background-color: #020513d8;
+    font-size: 18px;
+    padding: 0.4em 1.0em;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+    width: 300px;
+}
+#regSalon:hover{
+    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
+    transform: translateY(-2px);
+    background-color: #020513c9;
+
+}
+
 
 #newsletter form {
     width: 100%;
