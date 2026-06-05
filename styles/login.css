@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 #newsletter {
     flex: 1;
     display: flex;
