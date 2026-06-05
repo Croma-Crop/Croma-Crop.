@@ -9,7 +9,10 @@
     height: auto;
 
 }
-#Incidencia{
+.mostrar{
+    display: none !important;
+}
+#incidencia{
     align-self: center;
     border: #bdbdbd;
     display: flex;
@@ -24,12 +27,12 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
     width: 300px;
 }
-#Incidencia:hover{
+#incidencia:hover{
     box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
     transform: translateY(-2px);
     background-color: #020513c9;
 }
-#regSalon{
+#regSolicitud{
     align-self: center;
     border: #bdbdbd;
     display: flex;
@@ -44,7 +47,7 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
     width: 300px;
 }
-#regSalon:hover{
+#regSolicitud:hover{
     box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
     transform: translateY(-2px);
     background-color: #020513c9;
@@ -91,65 +94,3 @@ form label {
     gap: 10px;
 }
 
-form input[id="cedula"],
-form input[id="pasaporte"],
-form input[id="password"] {
-    padding: 15px;
-    border: 1px solid #bdbdbd;
-    border-radius: 10px;
-    background-color: #faf8f8;
-    font-size: 14px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-#newsletter input:hover {
-    background-color: #f5f5f5;
-    border-color: #30364F;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-#crear {
-    padding: 10px;
-    background-color: #30364F;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 80%;
-    align-self: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
-}
-#crear:hover {
-    background-color: #3d4460;
-    box-shadow: 0 6px 18px rgba(48, 54, 79, 0.4);
-    transform: translateY(-2px);
-    letter-spacing: 0.5px;
-}
-
-#extranjero, #btnCedula {
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 10px 0;
-    font-size: 14px;
-    outline: none;
-    background-color: transparent;
-    align-self: flex-end;
-    cursor: pointer;
-    color: #000;
-    font-weight: 500;
-    letter-spacing: 0px;
-    transition: 0.3s;
-}
-#btnCedula:hover{
-    border-bottom: 2px solid #30364F;
-    color: #30364F;
-    letter-spacing: 0.5px;
-    transform: translateY(-2px);
-}
-#extranjero:hover {
-    border-bottom: 2px solid #30364F;
-    color: #30364F;
-    letter-spacing: 0.5px;
-    transform: translateY(-2px);
-}
