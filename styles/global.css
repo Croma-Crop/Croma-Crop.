@@ -17,7 +17,12 @@ body {
     min-height: 100vh;
     background-color: #f0f0f0;
 }
-
+header nav a.pagSelec {
+    background-color: #1a1e30; 
+    box-shadow: 0 2px 6px rgba(0, 0, 1, 0.4);
+    pointer-events:none;
+    transform: translateY(-3px);
+}
 main {
     flex: 1;
     display: flex;
@@ -26,8 +31,9 @@ main {
 }
 
 #logo{
-    height: 100px;
+    height: 50px;
     width: auto;
+    margin-right: 10px;
 }
 #burguer{
     height: 30px;

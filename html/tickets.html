@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/tickets.css">
-    <title>Iniciar Sesión</title>
+    <title>Tickets</title>
     <script src="/script/tickets.js" defer></script>
+    <script src="/script/script.js" defer></script>
 </head>
 
 <body>
@@ -32,12 +33,47 @@
                 <p id="paragraph"><strong>¿Que quiere registrar?</strong></p>
 
                 <div id="campo-documento">
-                    <button id="incidencia">Incidencia</button>
-                    <button id="regSolicitud">Solicitudes</button>
+                    <button type="button" id="incidencia">Incidencia</button>
+                    <button type="button" id="regSolicitud">Solicitudes</button>
                 </div>
             </form>
         </section>
-        <section id="contenedor"></section>
+        <section class="contenedor">
+        <form id="incforms">
+            <h3>Incidencias</h3>
+
+            <label for="fecha">Fecha</label>
+            <input id="fecha" type="date" name="fecha">
+
+            <label for="salon">Salon:</label>
+            <input id="salon" type="text" name="salon" placeholder="Ej:L3">
+
+            <p>Turno:</p>
+            <section class="radio-grupo">
+            <input type="radio" id="matutino" name="turno" value="Matutino">
+            <label for="matutino">Matutino</label>
+
+            <input type="radio" id="vespertino" name="turno" value="Vespertino">
+            <label for="vespertino">Vespertino</label>
+
+            <input type="radio" id="nocturno" name="turno" value="Nocturno">
+            <label for="nocturno">Nocturno</label>
+            </section>
+
+            <p>Tipo de incidencia</p>
+            <select id="tipo" name="tipo" required>
+                <option value="">---Seleccionar---</option>
+                <option value="">Computadora</option>
+                <option value="">Televisor</option>
+                <option value="">Periferico</option>
+                <option value="">Otro</option>
+            </select>
+            <p>¿Cual es la incidencia?</p>
+            <input id="descripcioninc" name="incInput">
+            <button id="enviarinc">Enviar Incidencia</button>
+            
+        </form>
+        </section>
     </main>
 
     <footer>

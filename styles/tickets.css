@@ -1,4 +1,5 @@
-#newsletter {
+#newsletter,
+.contenedor {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -22,10 +23,11 @@
     font-weight: bold;
     background-color: #020513d8;
     font-size: 18px;
-    padding: 0.4em 1.0em;
+    padding: 0.5em 1.0em;
     border-radius: 15px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
     width: 300px;
+    margin: 10px;
 }
 #incidencia:hover{
     box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
@@ -42,7 +44,7 @@
     font-weight: bold;
     background-color: #020513d8;
     font-size: 18px;
-    padding: 0.4em 1.0em;
+    padding: 0.5em 1.0em;
     border-radius: 15px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
     width: 300px;
@@ -54,8 +56,8 @@
 
 }
 
-
-#newsletter form {
+#newsletter form,
+.contenedor form {
     width: 100%;
     max-width: 500px;
     display: flex;
@@ -68,25 +70,35 @@
     padding: 30px;
     transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
-#newsletter form:hover {
+#newsletter form:hover,
+.contenedor form:hover {
     box-shadow: 0px 10px 24px rgba(48, 54, 79, 0.18);
     transform: translateY(-3px);
     transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
-#newsletter h1 {
+#newsletter p,
+.contenedor p {
     font-size: 20px;
     letter-spacing: 1px;
-    font-weight: 600;
     color: #000;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    margin-bottom: 2px;
 }
-
 form label {
     font-size: 16px;
     color: #000;
     font-weight: 400;
     margin-top: 10px;
+}
+form input[id="salon"],
+form input[id="descripcioninc"],
+form input[id="fecha"],
+form select[id="tipo"] {
+    padding: 15px;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    background-color: #faf8f8;
+    font-size: 14px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #campo-documento, #campo-boton {
     display: flex;
@@ -94,3 +106,25 @@ form label {
     gap: 10px;
 }
 
+.radio-grupo {
+  display: flex;
+  gap: 16px;
+}
+
+.radio-grupo input[type="radio"] {
+  accent-color: #4f46e5;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.radio-grupo label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  margin-top: 0;
+}
