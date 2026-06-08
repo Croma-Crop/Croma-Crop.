@@ -1,6 +1,7 @@
 const img = document.querySelector("#logo");
 const cedula = document.getElementById("cedula");
 const extranjero = document.querySelector("#extranjero");
+const formulario = document.querySelector("#formularioNewsletter")
 img.addEventListener("click", function(e) {
     e.preventDefault();
 })
@@ -37,3 +38,14 @@ extranjero.addEventListener("click", function(e){
         extranjero.disabled = false;
     });
 })
+
+formulario.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const cedula = document.getElementById("cedula")?.value ?? "";
+        const passport = document.getElementById("pasaporte")?.value ?? "";
+    const password = document.getElementById("password").value;
+    const usuario = [[cedula],[passport],[password]];
+
+    alert("Usuario creado\nDatos: " + usuario);
+});

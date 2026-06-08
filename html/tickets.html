@@ -65,15 +65,29 @@
             <p>Tipo de incidencia</p>
             <select id="tipo" name="tipo" required>
                 <option value="">---Seleccionar---</option>
-                <option value="">Computadora</option>
-                <option value="">Televisor</option>
-                <option value="">Periferico</option>
-                <option value="">Otro</option>
+                <option value="Computadora">Computadora</option>
+                <option value="Televisor">Televisor</option>
+                <option value="Periferico">Periferico</option>
+                <option value="Otro">Otro</option>
             </select>
             <p>¿Cual es la incidencia?</p>
             <input id="descripcioninc" name="incInput">
             <button id="enviarinc">Enviar Incidencia</button>
             
+        </form>
+        </section>
+        <section class="contenedorSol">
+        <form id="solforms">
+        <h3>Solicitudes</h3>
+        <p for="tipoSol">¿Tipo de solicitud?</p>
+        <select id="tipoSol" name="tipo" required>
+            <option value="">---Seleccionar---</option>
+            <option value="Instalacion de Software">Instalacion de Software</option>
+            <option value="Reserva de Salon">Reserva de Salon</option>
+        </select>
+        <p>Descripcion de la Solicitud:</p>
+        <input type="text" id="descripcionSol">
+        <button id="enviarSol" type="button">Enviar Solicitud</button>
         </form>
         </section>
     </main>
