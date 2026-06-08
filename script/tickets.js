@@ -45,3 +45,18 @@ enviarSol.addEventListener("click", function(e){
     alert("Tipo de solicitud: " + tipoSol + "\nDescripcion: " + descripcionSol);
 
 })
+
+const btnVolverInc = document.querySelector("#volverInc");
+const btnVolverSol = document.querySelector("#volverSol");
+
+btnVolverInc.addEventListener("click", function (e) {
+    e.preventDefault();
+    contenedor.classList.add("mostrar");
+    rectangulo.classList.remove("mostrar");
+})
+
+btnVolverSol.addEventListener("click", function (e) {
+    e.preventDefault();
+    contenedorSol.classList.add("mostrar");
+    rectangulo.classList.remove("mostrar");
+})

@@ -110,7 +110,29 @@ form input[id="descripcionSol"]{
     flex-direction: column;
     gap: 10px;
 }
-
+#volverInc,
+#volverSol{
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-top: 10px;
+    padding: 3px;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+    align-self: flex-end;
+    cursor: pointer;
+    color: #000;
+    font-weight: 500;
+    letter-spacing: 0px;
+    transition: 0.3s;
+}
+#volverInc:hover,
+#volverSol:hover{
+    border-bottom: 2px solid #30364F;
+    color: #30364F;
+    letter-spacing: 0.5px;
+    transform: translateY(-2px);
+}
 #enviarinc,
 #enviarSol {
     padding: 10px;

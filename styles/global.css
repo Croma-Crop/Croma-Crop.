@@ -79,7 +79,7 @@ header nav a {
     background-color: #30364F;
     padding: 0.7em 1.2em;
     border-radius: 49px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+    transition: 0.5s;
 }
 header nav a:hover {
     background-color: #3d4460;
@@ -96,6 +96,7 @@ footer{
     background-color: #30364F;
     color: #F0F0DB;
     padding: 10px 30px 25px;
+    font-weight: bold;
     font-family: 'Arial', sans-serif;
     border-top: 2px solid #b9b9b9;
     box-shadow: 0px -4px -3px rgba(0, 0, 0, 0.1);
