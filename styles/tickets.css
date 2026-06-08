@@ -98,7 +98,7 @@ form input[id="fecha"],
 form select,
 form input[id="descripcionSol"],
 form input[id="nombreProf"],
-form input [id="nombreProfSol"]{
+#nombreProfSol{
     padding: 15px;
     border: 1px solid #bdbdbd;
     border-radius: 10px;
@@ -183,4 +183,18 @@ form select:hover {
   color: #000;
   font-weight: 400;
   margin-top: 0;
+}
+
+#dialogSol {
+    border: 1px solid #a09f9f53;
+    border-radius: 10px;
+    padding: 30px;
+    min-width: 300px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#dialogSol p {
+    font-size: 16px;
+    color: #30364F;
+    margin-bottom: 10px;
 }
