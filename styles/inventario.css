@@ -1,0 +1,82 @@
+
+.titulo-seccion {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tarjeta-producto {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.tarjeta-producto:hover {
+    box-shadow: .125rem .125rem #333;
+}
+
+.tarjeta-nombre {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.tarjeta-precio {
+    color: #27ae60;
+    margin-top: 5px;
+}
+
+
+.boton-modificar {
+    background-color: #e67e22;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.boton-modificar:hover {
+    background-color: #d35400;
+}
+
+#contenido{
+    background-color: #e8ecef;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.158);
+    display: flex;
+    gap: 100px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input,
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.311);
+}
+.tarjeta-producto:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+    list-style: none;
+}

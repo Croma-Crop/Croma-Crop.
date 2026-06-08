@@ -44,10 +44,9 @@ enviarSol.addEventListener("click", function(e){
     const tipoSol = document.getElementById("tipoSol").value;
     const descripcionSol = document.getElementById("descripcionSol").value;
 
-    alert("Nombre Profesor: " + nombreprof + "\nTipo de solicitud: " + tipoSol + "\nDescripcion: " + descripcionSol);
     const form = document.querySelector("#solforms");
     form.reset();
-
+    alert("Nombre del profesor: " + nombreprof + "\nTipo de solicitud: " + tipoSol + "\nDescripcion de Solicitud: ");
 })
 
 const btnVolverInc = document.querySelector("#volverInc");
