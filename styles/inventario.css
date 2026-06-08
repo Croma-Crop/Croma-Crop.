@@ -46,9 +46,14 @@
     margin-top: 20px;
     border: 1px solid rgba(0, 0, 0, 0.158);
     display: flex;
-    gap: 100px;
+    gap: 2em;
+    margin: 3em;
 }
-
+#listado{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}   
 form {
     display: flex;
     flex-direction: column;
