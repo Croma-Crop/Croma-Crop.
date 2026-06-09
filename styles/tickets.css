@@ -94,10 +94,11 @@ form label {
 }
 form input[id="salon"],
 form input[id="descripcioninc"],
-form input[id="fecha"],
+form input[id="fecha_inicio"],
 form select,
 form input[id="descripcionSol"],
 form input[id="nombreProf"],
+form input[id="fecha_limite"],
 #nombreProfSol{
     padding: 15px;
     border: 1px solid #bdbdbd;

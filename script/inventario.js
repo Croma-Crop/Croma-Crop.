@@ -1,14 +1,14 @@
 let inventario = [
-    { nombre: "Computadora", marca: "Lenovo", serie: 134934344, especif: "V45" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, especif: "W23" },
-    { nombre: "Monitor", marca: "Acer", serie: 46743, especif: "W34" },
+    { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto" },
 ];
 
 const formulario = document.querySelector("#formulario-producto");
 const inptNombre = document.querySelector("#nombre");
 const inptMarca = document.querySelector("#marca");
 const inptSerie = document.querySelector("#numSerie");
-const inptEspecif = document.querySelector("#especif");
+const inptEstado = document.querySelector("#estado");
 const tituloFormulario = document.querySelector("#seccion-formulario h3");
 
 let indiceModificando = null;
@@ -18,9 +18,8 @@ formulario.addEventListener("submit", function (e) {
     const nombre = inptNombre.value;
     const marca = inptMarca.value;
     const serie = Number(inptSerie.value);
-    const especif = inptEspecif.value;
-
-    const producto = { nombre, marca, serie, especif };
+    const estado = inptEstado.value;
+    const producto = { nombre, marca, serie, estado };
 
     if (indiceModificando !== null) {
         inventario[indiceModificando] = producto;
@@ -43,7 +42,7 @@ function renderizarInventario() {
         htmlGenerado += "<p class='tarjeta-nombre'>" + articulo.nombre + "</p>";
         htmlGenerado += "<p class='tarjeta-marca'>Marca: " + articulo.marca + "</p>";
         htmlGenerado += "<p class='tarjeta-serie'>Serie: " + articulo.serie + "</p>";
-        htmlGenerado += "<p class='tarjeta-especif'>Especificaciones: " + articulo.especif + "</p>";
+        htmlGenerado += "<p class='tarjeta-estado'>Estado: " + articulo.estado + "</p>";
         htmlGenerado += "<button class='boton-modificar' data-indice='" + i + "'>Modificar</button>";
         htmlGenerado += "</li>";
     });
@@ -57,7 +56,7 @@ function renderizarInventario() {
             inptNombre.value = articulo.nombre;
             inptMarca.value = articulo.marca;
             inptSerie.value = articulo.serie;
-            inptEspecif.value = articulo.especif;
+            inptEstado.value = articulo.estado;
             indiceModificando = i;
             tituloFormulario.textContent = "Modificar Artículo";
         });

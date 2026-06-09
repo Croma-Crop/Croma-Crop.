@@ -25,13 +25,14 @@ const btnEnviar = document.querySelector("#enviarinc")
 btnEnviar.addEventListener("click", function(e){
      e.preventDefault();
     const nombreprof = document.getElementById("nombreProf").value;
-    const fecha = document.getElementById("fecha").value;
+    const fechainicio = document.getElementById("fecha_inicio").value;
+    const fechalimite = document.getElementById("fecha_limite").value;    
     const salon = document.getElementById("salon").value;
     const turno = document.querySelector('input[name="turno"]:checked')?.value;
     const tipo = document.getElementById("tipo").value;
     const tipoincidencia = document.getElementById("descripcioninc").value;
 
-    alert("Nombre Profesor: " + nombreprof + "\nFecha: " + fecha + "\nSalon: " + salon + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia);
+    alert("Nombre Profesor: " + nombreprof + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia);
     const form = document.querySelector("#incforms");
     form.reset();
 })
