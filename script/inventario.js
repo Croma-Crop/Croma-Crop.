@@ -33,11 +33,12 @@ formulario.addEventListener("submit", function (e) {
     formulario.reset();
 });
 
-function renderizarInventario() {
+function renderizarInventario(lista) {
+    if (lista === undefined) lista = inventario;
     let contenedor = document.getElementById("listado");
     let htmlGenerado = "";
 
-    inventario.forEach(function (articulo, i) {
+    lista.forEach(function (articulo, i) {
         htmlGenerado += "<li class='tarjeta-producto' data-indice='" + i + "'>";
         htmlGenerado += "<p class='tarjeta-nombre'>" + articulo.nombre + "</p>";
         htmlGenerado += "<p class='tarjeta-marca'>Marca: " + articulo.marca + "</p>";
@@ -65,3 +66,18 @@ function renderizarInventario() {
 }
 
 renderizarInventario();
+
+const ulContainer = document.querySelector("#listado");
+const cuadroDeBusqueda = document.querySelector("#inptbusqueda");
+
+cuadroDeBusqueda.addEventListener("keyup", function(e){
+    let texto = cuadroDeBusqueda.value.toLowerCase();
+    if(texto === ''){
+        renderizarInventario();
+        return;
+    }
+    let filtrados = inventario.filter(function(articulo){
+        return articulo.nombre.toLowerCase().includes(texto) || articulo.serie.value == texto;
+    });
+    renderizarInventario(filtrados);
+});

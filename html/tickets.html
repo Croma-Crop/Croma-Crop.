@@ -21,14 +21,15 @@
 
         <h1 id="titulo">Incidencias y Solicitudes</h1>
         <nav>
-        <a href="index.html">Inicio</a>
-        <a href="/html/tickets.html">Tickets</a>
-        <a href="/html/login.html">Ingresa</a>
-        <a href="incidenciascreadas.html">Incidencias</a>
-        <a href="inventario.html">Inventario</a>
+            <a href="index.html">Inicio</a>
+            <a href="/html/tickets.html">Tickets</a>
+            <a href="/html/login.html">Ingresa</a>
+            <a href="incidenciascreadas.html">Incidencias</a>
+            <a href="inventario.html">Inventario</a>
+            <a href="administrador.html">Administrador</a>
 
 
-    </nav>
+        </nav>
     </header>
 
     <main>
@@ -43,62 +44,62 @@
             </form>
         </section>
         <section class="contenedor">
-        <form id="incforms">
-            <p>Nombre del Profesor:</p>
-            <input id="nombreProf" type="text">
-            <h3>Incidencias</h3>
+            <form id="incforms">
+                <p>Nombre del Profesor:</p>
+                <input id="nombreProf" type="text">
+                <h3>Incidencias</h3>
 
-            <label for="fecha">Fecha</label>
-            <input id="fecha_inicio" type="date" name="fecha">
-            <label for="fecha_limite">Fecha Limite</label>
-            <input type="date" id="fecha_limite" name="fecha">
-            <label for="salon">Salon:</label>
-            <input id="salon" type="text" name="salon" placeholder="Ej:L3">
+                <label for="fecha">Fecha</label>
+                <input id="fecha_inicio" type="date" name="fecha">
+                <label for="fecha_limite">Fecha Limite</label>
+                <input type="date" id="fecha_limite" name="fecha">
+                <label for="salon">Salon:</label>
+                <input id="salon" type="text" name="salon" placeholder="Ej:L3">
 
-            <p>Turno:</p>
-            <section class="radio-grupo">
-            <input type="radio" id="matutino" name="turno" value="Matutino">
-            <label for="matutino">Matutino</label>
+                <p>Turno:</p>
+                <section class="radio-grupo">
+                    <input type="radio" id="matutino" name="turno" value="Matutino">
+                    <label for="matutino">Matutino</label>
 
-            <input type="radio" id="vespertino" name="turno" value="Vespertino">
-            <label for="vespertino">Vespertino</label>
+                    <input type="radio" id="vespertino" name="turno" value="Vespertino">
+                    <label for="vespertino">Vespertino</label>
 
-            <input type="radio" id="nocturno" name="turno" value="Nocturno">
-            <label for="nocturno">Nocturno</label>
-            </section>
+                    <input type="radio" id="nocturno" name="turno" value="Nocturno">
+                    <label for="nocturno">Nocturno</label>
+                </section>
 
-            <p>Tipo de incidencia</p>
-            <select id="tipo" name="tipo" required>
-                <option value="">---Seleccionar---</option>
-                <option value="Computadora">Computadora</option>
-                <option value="Televisor">Televisor</option>
-                <option value="Periferico">Periferico</option>
-                <option value="Otro">Otro</option>
-            </select>
-            <p>¿Cual es la incidencia?</p>
-            <input id="descripcioninc" name="incInput">
-            <button id="enviarinc">Enviar Incidencia</button>
-            <button type="button" id="volverInc">Volver</button>
-        </form>
+                <p>Tipo de incidencia</p>
+                <select id="tipo" name="tipo" required>
+                    <option value="">---Seleccionar---</option>
+                    <option value="Computadora">Computadora</option>
+                    <option value="Televisor">Televisor</option>
+                    <option value="Periferico">Periferico</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <p>¿Cual es la incidencia?</p>
+                <input id="descripcioninc" name="incInput">
+                <button id="enviarinc">Enviar Incidencia</button>
+                <button type="button" id="volverInc">Volver</button>
+            </form>
         </section>
 
         <section class="contenedorSol">
             <form id="solforms">
-            <p>Nombre del Profesor:</p>
-            <input id="nombreProfSol" type="text">
-            <h3>Solicitudes</h3>
-            <p for="tipoSol">¿Tipo de solicitud?</p>
-            <select id="tipoSol" name="tipo" required>
-                <option value="">---Seleccionar---</option>
-                <option value="Instalacion de Software">Instalacion de Software</option>
-                <option value="Reserva de Salon">Reserva de Salon</option>
-            </select>
-            <p>Descripcion de la Solicitud:</p>
-            <input type="text" id="descripcionSol">
-            <button id="enviarSol" type="button">Enviar Solicitud</button>
-            <button type="button" id="volverSol">Volver</button>
+                <p>Nombre del Profesor:</p>
+                <input id="nombreProfSol" type="text">
+                <h3>Solicitudes</h3>
+                <p for="tipoSol">¿Tipo de solicitud?</p>
+                <select id="tipoSol" name="tipo" required>
+                    <option value="">---Seleccionar---</option>
+                    <option value="Instalacion de Software">Instalacion de Software</option>
+                    <option value="Reserva de Salon">Reserva de Salon</option>
+                </select>
+                <p>Descripcion de la Solicitud:</p>
+                <input type="text" id="descripcionSol">
+                <button id="enviarSol" type="button">Enviar Solicitud</button>
+                <button type="button" id="volverSol">Volver</button>
             </form>
-            </section>
+        </section>
     </main>
 
     <footer>
