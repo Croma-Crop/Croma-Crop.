@@ -9,14 +9,14 @@ contenedorSol.classList.add("mostrar");
 
 btnIncidencia.addEventListener("click", function (e) {
     e.preventDefault();
-    rectangulo.classList.add("mostrar");
-    contenedor.classList.remove("mostrar");
+    rectangulo.classList.toggle("mostrar");
+    contenedor.classList.toggle("mostrar");
 })
 
 btnSolicitud.addEventListener("click", function (e) {
     e.preventDefault();
-    rectangulo.classList.add("mostrar");
-    contenedorSol.classList.remove("mostrar");
+    rectangulo.classList.toggle("mostrar");
+    contenedorSol.classList.toggle("mostrar");
 })
 
    

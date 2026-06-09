@@ -36,10 +36,13 @@
     padding-top: 10px;
     width: 100%;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .boton-modificar:hover {
-    background-color: #d35400;
+    background-color: #f9893e;
+    transform: translateY(-2px);
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.244);
 }
 
 #contenido{

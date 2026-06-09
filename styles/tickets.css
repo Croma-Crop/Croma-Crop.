@@ -10,6 +10,10 @@
     height: auto;
 
 }
+main{
+        align-items: center;
+
+}
 .mostrar{
     display: none !important;
 }

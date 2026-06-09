@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
   <link rel="stylesheet" href="/styles/global.css">
-    <script src="/script.js" defer></script>
+  <link rel="stylesheet" href="/styles/admin.css">
+    <script src="/script/script.js" defer></script>
     <script src="/script/admin.js" defer></script>
    
 </head>
@@ -16,20 +17,40 @@
         </a>
         <img src="/img/menu.png" alt="burguer" id="burguer">
 
-        <h1 id="titulo">Inicio</h1>
+        <h1 id="titulo">Administrador</h1>
         <nav>
         <a href="index.html">Inicio</a>
         <a href="/html/tickets.html">Tickets</a>
         <a href="/html/login.html">Ingresa</a>
         <a href="incidenciascreadas.html">Incidencias</a>
         <a href="inventario.html">Inventario</a>
+        <a href="administrador.html">Administrador</a>
 
 
     </nav>
     </header>
-    <article class="contenedor">
-    </article>
     <main>
+         <section class="seccionTablaEmpleados">
+            <header class="cajaEncabezado">
+                <h2>Datos de empleados</h2>
+                <button type="button" class="btnOperacion" id="btnAltaEmpleado">Alta Empleado</button>
+            </header>
+            
+            <table>
+                <caption>Listado de empleados registrados</caption>
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cargo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaEmpleados">
+                </tbody>
+            </table>
+        </section>
     </main>
     <footer>
         <section class="footer-bottom">

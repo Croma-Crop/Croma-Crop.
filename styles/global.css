@@ -28,7 +28,6 @@ main {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 #logo{
@@ -86,7 +85,6 @@ header nav a:hover {
     background-color: #3d4460;
     box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
     transform: translateY(-2px);
-    letter-spacing: 0.4px;
 }
 
 footer{
@@ -116,61 +114,6 @@ footer{
     justify-content: space-between;
 }
 
-@media (max-width: 768px) {
-    header {
-        padding: 10px 20px;
-    }
-    header h1 {
-        font-size: 20px;
-    }
-    header nav {
-        gap: 10px;
-    }
-    header nav a {
-        min-width: 80px;
-        padding: 0.55em 1em;
-        font-size: 13px;
-    }
-    #logo {
-        height: 60px;
-    }
-    #burguer {
-        height: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        grid-template-columns: auto auto 1fr;
-        padding: 8px 14px;
-        gap: 10px;
-    }
-    header h1 {
-        display: none;
-    }
-    header nav {
-        justify-self: end;
-        gap: 6px;
-        margin-left: 0;
-    }
-    header nav a {
-        min-width: 0;
-        padding: 0.45em 0.85em;
-        font-size: 12px;
-        border-radius: 30px;
-    }
-    #logo {
-        height: 48px;
-    }
-    #burguer {
-        height: 22px;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 5px;
-    }
-}
 body{
     opacity: 1;
     transition: opacity 0.5s ease;
