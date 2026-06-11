@@ -1,98 +1,156 @@
-let inventario = [
-    { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto" },
-    ,
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" }
+//aca primero creamos el inventario inicial
+const inventarioInicial = [
+    { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto", historial: [] },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo", historial: [] },
+    { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto", historial: [
+        { fecha: "10/06/2026", descripcion: "Pantalla rots", tecnico: "Ejemplo", solucion: "Se reemplazo el panel" }
+    ] },
+    { nombre: "Proyector", marca: "HP", serie: 778812, estado: "Nuevo", historial: [] }
 ];
+//aca guardamos inventario en el localstorage para poder acceder a el desde otros modulos
+let inventario = JSON.parse(localStorage.getItem("inventario")) || inventarioInicial;
 
+function guardarInventario() {
+    localStorage.setItem("inventario", JSON.stringify(inventario));
+}
+if (!localStorage.getItem("inventario")) {
+    guardarInventario();
+}
+//aca instanciamos los elementos que seleccionamos del html
 const formulario = document.querySelector("#formulario-producto");
 const inptNombre = document.querySelector("#nombre");
 const inptMarca = document.querySelector("#marca");
 const inptSerie = document.querySelector("#numSerie");
 const inptEstado = document.querySelector("#estado");
 const tituloFormulario = document.querySelector("#seccion-formulario h3");
+const dialogHistorial = document.querySelector("#dialogHistorial");
+const tituloHistorial = document.querySelector("#tituloHistorial");
+const listaHistorial = document.querySelector("#listaHistorial");
+const cerrarHistorial = document.querySelector("#cerrarHistorial");
 
 let indiceModificando = null;
-
+//aca esta parte del codigo se encarga de guardar los datos del elemento que quiero añadir o modificar
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
     const nombre = inptNombre.value;
     const marca = inptMarca.value;
     const serie = Number(inptSerie.value);
     const estado = inptEstado.value;
-    const producto = { nombre, marca, serie, estado };
 
     if (indiceModificando !== null) {
-        inventario[indiceModificando] = producto;
+        const historial = inventario[indiceModificando].historial || [];
+        inventario[indiceModificando] = { nombre, marca, serie, estado, historial };
         indiceModificando = null;
         tituloFormulario.textContent = "Ingresar Nuevo Artículo";
     } else {
-        inventario.push(producto);
+        inventario.push({ nombre, marca, serie, estado, historial: [] });
     }
 
+    guardarInventario();
     renderizarInventario();
     formulario.reset();
 });
-
+//aca como dice la funcion esta parte del codigo se encarga del funcionamiento para crear las tarjetas
 function renderizarInventario(lista) {
     if (lista === undefined) lista = inventario;
     let contenedor = document.getElementById("listado");
     let htmlGenerado = "";
 
     lista.forEach(function (articulo, i) {
+        const cantidad = (articulo.historial || []).length;
         htmlGenerado += "<li class='tarjeta-producto' data-indice='" + i + "'>";
         htmlGenerado += "<p class='tarjeta-nombre'>" + articulo.nombre + "</p>";
         htmlGenerado += "<p class='tarjeta-marca'>Marca: " + articulo.marca + "</p>";
         htmlGenerado += "<p class='tarjeta-serie'>Serie: " + articulo.serie + "</p>";
         htmlGenerado += "<p class='tarjeta-estado'>Estado: " + articulo.estado + "</p>";
+        htmlGenerado += "<p class='tarjeta-intervenciones'>Intervenciones: " + cantidad + "</p>";
+        htmlGenerado += "<div class='tarjeta-acciones'>";
+        htmlGenerado += "<button class='boton-historial' data-indice='" + i + "'>Ver historial</button>";
         htmlGenerado += "<button class='boton-modificar' data-indice='" + i + "'>Modificar</button>";
+        htmlGenerado += "<button class='boton-eliminar' data-indice='" + i + "'>Eliminar</button>";
+        htmlGenerado += "</div>";
         htmlGenerado += "</li>";
     });
     contenedor.innerHTML = htmlGenerado;
-
+//aca se crea el funcionamiento del boton modificar
     document.querySelectorAll(".boton-modificar").forEach(function (boton) {
         boton.addEventListener("click", function (e) {
             e.stopPropagation();
             const i = Number(boton.dataset.indice);
-            const articulo = inventario[i];
+            const articulo = lista[i];
             inptNombre.value = articulo.nombre;
             inptMarca.value = articulo.marca;
             inptSerie.value = articulo.serie;
             inptEstado.value = articulo.estado;
-            indiceModificando = i;
+            indiceModificando = inventario.indexOf(articulo);
             tituloFormulario.textContent = "Modificar Artículo";
         });
     });
+//aca se crea el funcionamiento del boton eliminar
+    document.querySelectorAll(".boton-eliminar").forEach(function (boton) {
+        boton.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const i = Number(boton.dataset.indice);
+            const articulo = lista[i];
 
+            if (confirm("¿Seguro que quiere eliminar este articulo?")) {
+                inventario.splice(inventario.indexOf(articulo), 1);
+                guardarInventario();
+                renderizarInventario();
+            }
+        });
+    });
+//aca se crea el funcionamiento del boton ver historial
+    document.querySelectorAll(".boton-historial").forEach(function (boton) {
+        boton.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const i = Number(boton.dataset.indice);
+            abrirHistorial(lista[i]);
+        });
+    });
 }
+//se crea la funcion
+function abrirHistorial(articulo) {
+    tituloHistorial.textContent = "Historial de " + articulo.nombre + " (Serie: " + articulo.serie + ")";
+    const historial = articulo.historial || [];
+
+    if (historial.length === 0) {
+        listaHistorial.innerHTML = "<li>Este equipo todavía no tuvo intervenciones.</li>";
+    } else {
+        let html = "";
+        historial.forEach(function (h) {
+            html += "<li class='item-historial'>";
+            html += "<p><strong>" + h.fecha + "</strong> — " + h.descripcion + "</p>";
+            html += "<p>Técnico: " + (h.tecnico || "-") + "</p>";
+            html += "<p>Solución: " + (h.solucion ? h.solucion : "Pendiente") + "</p>";
+            html += "</li>";
+        });
+        listaHistorial.innerHTML = html;
+    }
+
+    dialogHistorial.showModal();
+}
+
+cerrarHistorial.addEventListener("click", function () {
+    dialogHistorial.close();
+});
 
 renderizarInventario();
 
 const ulContainer = document.querySelector("#listado");
 const cuadroDeBusqueda = document.querySelector("#inptbusqueda");
 
-cuadroDeBusqueda.addEventListener("keyup", function(e){
+cuadroDeBusqueda.addEventListener("keyup", function (e) {
     let texto = cuadroDeBusqueda.value.toLowerCase();
-    if(texto === ''){
+    if (texto === '') {
         renderizarInventario();
         return;
     }
-    let filtrados = inventario.filter(function(articulo){
+    let filtrados = inventario.filter(function (articulo) {
         return articulo.nombre.toLowerCase().includes(texto) ||
-               articulo.marca.toLowerCase().includes(texto) ||
-               articulo.serie.toString().includes(texto) ||
-               articulo.estado.toLowerCase().includes(texto);
+            articulo.marca.toLowerCase().includes(texto) ||
+            articulo.serie.toString().includes(texto) ||
+            articulo.estado.toLowerCase().includes(texto);
     });
     renderizarInventario(filtrados);
 });
