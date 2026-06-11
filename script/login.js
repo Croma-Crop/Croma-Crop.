@@ -16,7 +16,7 @@ extranjero.addEventListener("click", function(e){
     const contenedor = document.getElementById("campo-documento");
     contenedor.innerHTML = `
         <label for="pasaporte">Pasaporte</label>
-        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" required>
+        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" maxlength="8" required>
         <p id="mensaje" class="mensaje-error"></p>
     `;
 
@@ -42,10 +42,30 @@ extranjero.addEventListener("click", function(e){
 formulario.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const cedula = document.getElementById("cedula")?.value ?? "";
-        const passport = document.getElementById("pasaporte")?.value ?? "";
-    const password = document.getElementById("password").value;
-    const usuario = [[cedula],[passport],[password]];
+    const cedulaInput = document.getElementById("cedula");
+    const pasaporteInput = document.getElementById("pasaporte");
+    const passwordIngresada = document.getElementById("password").value;
+    const mensaje = document.getElementById("mensaje");
 
-    alert("Usuario creado\nDatos: " + usuario);
+    const empleados = JSON.parse(localStorage.getItem("empleados")) || [];
+    let empleado;
+
+    if (pasaporteInput) {
+        const pasaporteIngresado = pasaporteInput.value.trim();
+        empleado = empleados.find(e => e.pasaporte === pasaporteIngresado && e.contrasena === passwordIngresada);
+        if (!empleado) {
+            mensaje.textContent = "Pasaporte o contraseña incorrectos.";
+            return;
+        }
+    } else {
+        const cedulaIngresada = cedulaInput?.value.trim() ?? "";
+        empleado = empleados.find(e => e.cedula === cedulaIngresada && e.contrasena === passwordIngresada);
+        if (!empleado) {
+            mensaje.textContent = "Cédula o contraseña incorrectos.";
+            return;
+        }
+    }
+
+    mensaje.textContent = "";
+    alert("Bienvenido, " + empleado.nombre + " " + empleado.apellido + ".");
 });

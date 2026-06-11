@@ -2,6 +2,18 @@ let inventario = [
     { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto" },
     { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
     { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto" },
+    ,
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo" }
 ];
 
 const formulario = document.querySelector("#formulario-producto");
@@ -77,7 +89,10 @@ cuadroDeBusqueda.addEventListener("keyup", function(e){
         return;
     }
     let filtrados = inventario.filter(function(articulo){
-        return articulo.nombre.toLowerCase().includes(texto) || articulo.serie.value == texto;
+        return articulo.nombre.toLowerCase().includes(texto) ||
+               articulo.marca.toLowerCase().includes(texto) ||
+               articulo.serie.toString().includes(texto) ||
+               articulo.estado.toLowerCase().includes(texto);
     });
     renderizarInventario(filtrados);
 });
