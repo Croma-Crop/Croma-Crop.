@@ -17,6 +17,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f0f0f0;
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 header nav a.pagSelec {
     background-color: #1a1e30; 
@@ -112,11 +114,6 @@ footer{
     font-size: 14px;
     padding-top: 15px;
     justify-content: space-between;
-}
-
-body{
-    opacity: 1;
-    transition: opacity 0.5s ease;
 }
 
 body.fade-out{
