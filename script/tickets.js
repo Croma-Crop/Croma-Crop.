@@ -22,17 +22,43 @@ btnSolicitud.addEventListener("click", function (e) {
    
 const btnEnviar = document.querySelector("#enviarinc")
 
+function registrarIntervencion(serie, intervencion) {
+    const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
+    const equipo = inventario.find(function (e) {
+        return e && e.serie === Number(serie);
+    });
+
+    if (!equipo) return false;
+
+    if (!equipo.historial) equipo.historial = [];
+    equipo.historial.push(intervencion);
+    localStorage.setItem("inventario", JSON.stringify(inventario));
+    return true;
+}
+
 btnEnviar.addEventListener("click", function(e){
      e.preventDefault();
     const nombreprof = document.getElementById("nombreProf").value;
     const fechainicio = document.getElementById("fecha_inicio").value;
-    const fechalimite = document.getElementById("fecha_limite").value;    
+    const fechalimite = document.getElementById("fecha_limite").value;
     const salon = document.getElementById("salon").value;
+    const serie = document.getElementById("serie").value;
     const turno = document.querySelector('input[name="turno"]:checked')?.value;
     const tipo = document.getElementById("tipo").value;
     const tipoincidencia = document.getElementById("descripcioninc").value;
 
-    alert("Nombre Profesor: " + nombreprof + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia);
+    const registrado = registrarIntervencion(serie, {
+        fecha: fechainicio || new Date().toLocaleDateString(),
+        descripcion: tipoincidencia,
+        tecnico: nombreprof,
+        solucion: "" 
+    });
+
+    const avisoEquipo = registrado
+        ? "\nIntervención registrada en el equipo con serie " + serie + "."
+        : "\nNo se encontró un equipo con esa serie en el inventario.";
+
+    alert("Nombre Profesor: " + nombreprof + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
     const form = document.querySelector("#incforms");
     form.reset();
 })

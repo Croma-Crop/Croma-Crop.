@@ -30,19 +30,88 @@
 }
 
 
-.boton-modificar {
-    background-color: #e67e22;
+.tarjeta-acciones {
+    display: flex;
+    gap: 8px;
     margin-top: auto;
-    padding-top: 10px;
-    width: 100%;
-    font-weight: bold;
-    margin-top: 10px;
+    padding-top: 12px;
 }
 
+.boton-historial,
+.boton-modificar,
+.boton-eliminar {
+    flex: 1;
+    padding: 9px 0;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.25s ease;
+    color: #F0F0DB;
+}
+
+.boton-historial,
+.boton-modificar {
+    background-color: #30364F;
+}
+
+.boton-historial:hover,
 .boton-modificar:hover {
-    background-color: #f9893e;
+    background-color: #3d4460;
     transform: translateY(-2px);
-    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.244);
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+}
+
+.boton-eliminar {
+    background-color: #e74c3c;
+}
+
+.boton-eliminar:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+}
+
+.tarjeta-intervenciones {
+    color: #ee1313;
+    font-size: 15px;
+    margin-top: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#dialogHistorial {
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 90vw;
+    box-shadow: 0 2px 6px rgba(0, 0, 1, 0.4);
+}
+
+#dialogHistorial::backdrop {
+    background-color: rgba(48, 54, 79, 0.45);
+}
+
+#tituloHistorial {
+    color: #30364F;
+    margin-bottom: 15px;
+}
+
+#cerrarHistorial {
+    float: right;
+    background-color: #e74c3c;
+    color: #F0F0DB;
+}
+
+#listaHistorial {
+    list-style: none;
+    padding: 0;
+}
+
+.item-historial {
+    border-left: 3px solid #30364F;
+    padding: 8px 12px;
+    margin-bottom: 8px;
 }
 
 #contenido{
@@ -103,16 +172,16 @@ button {
 }
 
 button, #submit {
-    background-color: #2c3e50;
-    color: white;
+    background-color: #30364F;
+    color: #F0F0DB;
     border: none;
     cursor: pointer;
     transition: 0.5s;
     font-weight: bold;
 }
 #submit:hover{
-    background-color: #45607c;
-    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.164);
+    background-color: #3d4460;
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
 }
 
 ul {
