@@ -22,6 +22,12 @@ btnSolicitud.addEventListener("click", function (e) {
    
 const btnEnviar = document.querySelector("#enviarinc")
 
+function guardarEnLista(clave, objeto) {
+    const lista = JSON.parse(localStorage.getItem(clave)) || [];
+    lista.push(objeto);
+    localStorage.setItem(clave, JSON.stringify(lista));
+}
+
 function registrarIntervencion(serie, intervencion) {
     const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
     const equipo = inventario.find(function (e) {
@@ -47,11 +53,22 @@ btnEnviar.addEventListener("click", function(e){
     const tipo = document.getElementById("tipo").value;
     const tipoincidencia = document.getElementById("descripcioninc").value;
 
+    guardarEnLista("incidencias", {
+        nombreProf: nombreprof,
+        fechaInicio: fechainicio,
+        fechaLimite: fechalimite,
+        salon: salon,
+        serie: serie,
+        turno: turno,
+        tipo: tipo,
+        descripcion: tipoincidencia
+    });
+
     const registrado = registrarIntervencion(serie, {
         fecha: fechainicio || new Date().toLocaleDateString(),
         descripcion: tipoincidencia,
         tecnico: nombreprof,
-        solucion: "" 
+        solucion: ""
     });
 
     const avisoEquipo = registrado
@@ -71,9 +88,15 @@ enviarSol.addEventListener("click", function(e){
     const tipoSol = document.getElementById("tipoSol").value;
     const descripcionSol = document.getElementById("descripcionSol").value;
 
+    guardarEnLista("solicitudes", {
+        nombreProf: nombreprof,
+        tipo: tipoSol,
+        descripcion: descripcionSol
+    });
+
     const form = document.querySelector("#solforms");
     form.reset();
-    alert("Nombre del profesor: " + nombreprof + "\nTipo de solicitud: " + tipoSol + "\nDescripcion de Solicitud: ");
+    alert("Nombre del profesor: " + nombreprof + "\nTipo de solicitud: " + tipoSol + "\nDescripcion de Solicitud: " + descripcionSol);
 })
 
 const btnVolverInc = document.querySelector("#volverInc");
