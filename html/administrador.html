@@ -24,7 +24,7 @@
         <a href="/html/login.html">Ingresa</a>
         <a href="incidenciascreadas.html">Incidencias</a>
         <a href="inventario.html">Inventario</a>
-        <a href="administrador.html">Administrador</a>
+        <a class="pagSelec" href="administrador.html">Administrador</a>
 
 
     </nav>
@@ -40,10 +40,11 @@
                 <caption>Listado de empleados registrados</caption>
                 <thead>
                     <tr>
-                        <th>Cédula</th>
+                        <th>Documento</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Cargo</th>
+                        <th>Rol</th>
+                        <th>Contraseña</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -51,6 +52,62 @@
                 </tbody>
             </table>
         </section>
+               <dialog id="dialog" class="dialogGestionarEmpleado seccionFormulario">
+            <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">
+                <img src="/img/x.svg" alt="Cerrar Menú" class="iconoMenu">
+            </button>
+            <form action="administrador.html" method="post" id="formularioGestionarEmpleado">
+                <fieldset id="fieldset">
+                    <legend>Gestión de empleado</legend>
+
+                    <fieldset>
+                        <legend>Datos del empleado</legend>
+
+                        <div id="contenedor-documento-admin">
+                            <div class="cajaEntradaDeDatos">
+                                <label for="cedula">Cédula</label>
+                                <input type="text" id="cedula" name="cedula" placeholder="Ingrese la cédula"
+                                    autocomplete="off" pattern="[1-9][0-9]{7}"
+                                    title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric"
+                                    maxlength="8" required>
+                            </div>
+                        </div>
+                        <div id="campo-boton-admin">
+                            <button type="button" id="btnExtranjeroAdmin">Empleado extranjero</button>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre"
+                                autocomplete="given-name" required>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" placeholder="Ingrese el apellido"
+                                autocomplete="family-name" required>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="rol">Rol</label>
+                            <select name="rol" id="rol" required>
+                                <option value="" disabled selected>Seleccione un rol</option>
+                                <option value="direccion">Dirección</option>
+                                <option value="docente">Docente</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="contrasena">Contraseña</label>
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese una contraseña" required>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit">Guardar empleado</button>
+                </fieldset>
+            </form>
+        </dialog>
     </main>
     <footer>
         <section class="footer-bottom">
