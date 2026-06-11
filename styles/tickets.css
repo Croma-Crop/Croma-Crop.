@@ -17,7 +17,8 @@ main{
 .mostrar{
     display: none !important;
 }
-#incidencia{
+#incidencia,
+#regSolicitud {
     align-self: center;
     border: #bdbdbd;
     display: flex;
@@ -31,33 +32,15 @@ main{
     border-radius: 15px;
     transition: 0.5s;
     width: 300px;
+}
+#incidencia {
     margin: 10px;
 }
-#incidencia:hover{
+#incidencia:hover,
+#regSolicitud:hover {
     box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
     transform: translateY(-2px);
     background-color: #020513c9;
-}
-#regSolicitud{
-    align-self: center;
-    border: #bdbdbd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ebebe2;
-    font-weight: bold;
-    background-color: #020513d8;
-    font-size: 18px;
-    padding: 0.5em 1.0em;
-    border-radius: 15px;
-    transition: 0.5s;
-    width: 300px;
-}
-#regSolicitud:hover{
-    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.219);
-    transform: translateY(-2px);
-    background-color: #020513c9;
-
 }
 
 #newsletter form,
