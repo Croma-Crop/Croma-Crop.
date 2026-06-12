@@ -34,7 +34,8 @@ extranjero.addEventListener("click", function(e){
     const contenedor = document.getElementById("campo-documento");
     contenedor.innerHTML = `
         <label for="pasaporte">Pasaporte</label>
-        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" pattern="[A-Za-z][0-9]{7}" title="Una letra seguida de 7 números, ej: A1234567" maxlength="8" required>
+        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" pattern="[A-Za-z][0-9]{7}"
+         title="Una letra seguida de 7 números, ej: A1234567" maxlength="8" required>
         <p id="mensaje" class="mensaje-error"></p>
     `;
 

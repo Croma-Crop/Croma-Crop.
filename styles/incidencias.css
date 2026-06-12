@@ -1,0 +1,129 @@
+.titulo-seccion {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#seccion-listado {
+    background-color: #e8ecef;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 3em;
+    width: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.158);
+    transition: 0.5s;
+}
+
+#seccion-listado:hover {
+    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
+    transform: translateY(-2px);
+}
+
+#controles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 20px;
+}
+
+#inptbusqueda {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+#inptbusqueda:hover {
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.137);
+    border: 1px solid rgba(0, 0, 0, 0.877);
+}
+
+#filtros {
+    display: flex;
+    gap: 8px;
+}
+
+.filtro-clase {
+    padding: 9px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: white;
+    color: #30364F;
+    border: 1px solid #30364F;
+}
+
+.filtro-clase:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(48, 54, 79, 0.45);
+}
+
+.filtro-clase.activo {
+    background-color: #30364F;
+    color: #ffffff;
+}
+
+#listado-tickets {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}
+
+.tarjeta-ticket {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    transition: 0.3s ;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta:hover {
+    box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
+    border: 1px rgba(0, 0, 0, 0.795);
+}
+
+.tarjeta-clase {
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.tarjeta-incidencia {
+    color: #ee1313;
+}
+
+.tarjeta-solicitud {
+    color: #30364F;
+}
+
+.tarjeta-nombre {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.tarjeta-tipo {
+    color: #27ae60;
+    margin-top: 5px;
+}
+
+.tarjeta-descripcion {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+.sin-resultados {
+    color: #777;
+    font-style: italic;
+}
