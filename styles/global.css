@@ -36,14 +36,22 @@ main {
     margin-right: 10px;
 }
 #burguer{
-    height: 30px;
+    height: 40px;
     transition: 0.5s;
+    padding-bottom: 10px;
 }
-#burguer:hover{
-    color: #30364F;
-    letter-spacing: 0.5px;
-    transform: translateY(-2px);
-}
+.dropdown .dropdown-menu {
+    display: block; 
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); 
+    transition: 0.3s ; 
+  }
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 #titulo{
     text-align: left;
 }
@@ -82,6 +90,27 @@ header nav a {
     transition: 0.5s;
 }
 header nav a:hover {
+    background-color: #3d4460;
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    transform: translateY(-2px);
+}
+
+.usuario-chip {
+    justify-self: end;
+}
+.btn-usuario {
+    min-width: 100px;
+    white-space: nowrap;
+    color: #F0F0DB;
+    font-weight: bold;
+    background-color: #30364F;
+    padding: 0.7em 1.2em;
+    border: none;
+    border-radius: 49px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn-usuario:hover {
     background-color: #3d4460;
     box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
     transform: translateY(-2px);
