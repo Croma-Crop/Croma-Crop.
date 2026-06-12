@@ -79,6 +79,7 @@ form label {
     font-weight: 400;
     margin-top: 10px;
 }
+form input[id="serie"],
 form input[id="salon"],
 form input[id="descripcioninc"],
 form input[id="fecha_inicio"],

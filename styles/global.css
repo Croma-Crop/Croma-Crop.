@@ -17,8 +17,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f0f0f0;
-    opacity: 1;
-    transition: opacity 0.5s ease;
 }
 header nav a.pagSelec {
     background-color: #1a1e30; 
@@ -100,7 +98,7 @@ footer{
     font-weight: bold;
     font-family: 'Arial', sans-serif;
     border-top: 2px solid #b9b9b9;
-    box-shadow: 0px -4px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px -4px 3px rgba(0, 0, 0, 0.1);
 }
 
 .footer-logo h2 {
@@ -114,8 +112,4 @@ footer{
     font-size: 14px;
     padding-top: 15px;
     justify-content: space-between;
-}
-
-body.fade-out{
-    opacity: 0;
 }

@@ -1,0 +1,70 @@
+        .inicio {
+    width: 90%;
+    max-width: 1000px;
+    margin: 3em;
+}
+
+.bienvenida {
+    background-color: #e8ecef;
+    border: 1px solid rgba(0, 0, 0, 0.158);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.bienvenida h2 {
+    font-size: 22px;
+    color: #30364F;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bienvenida p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.titulo-modulos {
+    font-size: 18px;
+    color: #30364F;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.modulos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+.tarjeta-modulo {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.tarjeta-modulo h4 {
+    font-size: 16px;
+    color: #30364F;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.tarjeta-modulo p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.tarjeta-modulo a {
+    color: #30364F;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tarjeta-modulo a:hover {
+    text-decoration: underline;
+}
