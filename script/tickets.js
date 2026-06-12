@@ -1,115 +1,130 @@
-const btnIncidencia = document.querySelector("#incidencia")
-const btnSolicitud = document.querySelector("#regSolicitud")
-const rectangulo = document.querySelector("#newsletter");
-const contenedor  = document.querySelector(".contenedor");
-const contenedorSol = document.querySelector(".contenedorSol")
 
-contenedor.classList.add("mostrar");
-contenedorSol.classList.add("mostrar");
+const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
 
-btnIncidencia.addEventListener("click", function (e) {
-    e.preventDefault();
-    rectangulo.classList.toggle("mostrar");
-    contenedor.classList.toggle("mostrar");
-})
-
-btnSolicitud.addEventListener("click", function (e) {
-    e.preventDefault();
-    rectangulo.classList.toggle("mostrar");
-    contenedorSol.classList.toggle("mostrar");
-})
-
-   
-const btnEnviar = document.querySelector("#enviarinc")
-
-function guardarEnLista(clave, objeto) {
-    const lista = JSON.parse(localStorage.getItem(clave)) || [];
-    lista.push(objeto);
-    localStorage.setItem(clave, JSON.stringify(lista));
+if (!usuarioActivo) {
+    window.location.replace("/html/global/login.html");
+} else {
+    iniciarPagina();
 }
 
-function registrarIntervencion(serie, intervencion) {
-    const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
-    const equipo = inventario.find(function (e) {
-        return e && e.serie === Number(serie);
-    });
+function iniciarPagina() {
+    const btnIncidencia = document.querySelector("#incidencia");
+    const btnSolicitud = document.querySelector("#regSolicitud");
+    const rectangulo = document.querySelector("#newsletter");
+    const contenedor = document.querySelector(".contenedor");
+    const contenedorSol = document.querySelector(".contenedorSol");
 
-    if (!equipo) return false;
+    const nombreCompleto = usuarioActivo.nombre + " " + usuarioActivo.apellido;
 
-    if (!equipo.historial) equipo.historial = [];
-    equipo.historial.push(intervencion);
-    localStorage.setItem("inventario", JSON.stringify(inventario));
-    return true;
-}
-
-btnEnviar.addEventListener("click", function(e){
-     e.preventDefault();
-    const nombreprof = document.getElementById("nombreProf").value;
-    const fechainicio = document.getElementById("fecha_inicio").value;
-    const fechalimite = document.getElementById("fecha_limite").value;
-    const salon = document.getElementById("salon").value;
-    const serie = document.getElementById("serie").value;
-    const turno = document.querySelector('input[name="turno"]:checked')?.value;
-    const tipo = document.getElementById("tipo").value;
-    const tipoincidencia = document.getElementById("descripcioninc").value;
-
-    guardarEnLista("incidencias", {
-        nombreProf: nombreprof,
-        fechaInicio: fechainicio,
-        fechaLimite: fechalimite,
-        salon: salon,
-        serie: serie,
-        turno: turno,
-        tipo: tipo,
-        descripcion: tipoincidencia
-    });
-
-    const registrado = registrarIntervencion(serie, {
-        fecha: fechainicio || new Date().toLocaleDateString(),
-        descripcion: tipoincidencia,
-        tecnico: nombreprof,
-        solucion: ""
-    });
-
-    const avisoEquipo = registrado
-        ? "\nIntervención registrada en el equipo con serie " + serie + "."
-        : "\nNo se encontró un equipo con esa serie en el inventario.";
-
-    alert("Nombre Profesor: " + nombreprof + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
-    const form = document.querySelector("#incforms");
-    form.reset();
-})
-const enviarSol = document.querySelector("#enviarSol")
-
-enviarSol.addEventListener("click", function(e){
-     e.preventDefault();
-
-    const nombreprof = document.getElementById("nombreProfSol").value;
-    const tipoSol = document.getElementById("tipoSol").value;
-    const descripcionSol = document.getElementById("descripcionSol").value;
-
-    guardarEnLista("solicitudes", {
-        nombreProf: nombreprof,
-        tipo: tipoSol,
-        descripcion: descripcionSol
-    });
-
-    const form = document.querySelector("#solforms");
-    form.reset();
-    alert("Nombre del profesor: " + nombreprof + "\nTipo de solicitud: " + tipoSol + "\nDescripcion de Solicitud: " + descripcionSol);
-})
-
-const btnVolverInc = document.querySelector("#volverInc");
-const btnVolverSol = document.querySelector("#volverSol");
-
-btnVolverInc.addEventListener("click", function (e) {
-    e.preventDefault();
     contenedor.classList.add("mostrar");
-    rectangulo.classList.remove("mostrar");
-})
-
-btnVolverSol.addEventListener("click", function (e) {
-    e.preventDefault();
     contenedorSol.classList.add("mostrar");
-    rectangulo.classList.remove("mostrar");
-})
+
+    btnIncidencia.addEventListener("click", function (e) {
+        e.preventDefault();
+        rectangulo.classList.toggle("mostrar");
+        contenedor.classList.toggle("mostrar");
+    });
+
+    btnSolicitud.addEventListener("click", function (e) {
+        e.preventDefault();
+        rectangulo.classList.toggle("mostrar");
+        contenedorSol.classList.toggle("mostrar");
+    });
+
+    function guardarIncidencia(incidencia) {
+        const incidencias = JSON.parse(localStorage.getItem("incidencias")) || [];
+        incidencias.push(incidencia);
+        localStorage.setItem("incidencias", JSON.stringify(incidencias));
+    }
+
+    function guardarSolicitud(solicitud) {
+        const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
+        solicitudes.push(solicitud);
+        localStorage.setItem("solicitudes", JSON.stringify(solicitudes));
+    }
+
+    const btnEnviar = document.querySelector("#enviarinc");
+
+    btnEnviar.addEventListener("click", function (e) {
+        e.preventDefault();
+        const fechainicio = document.getElementById("fecha_inicio").value;
+        const fechalimite = document.getElementById("fecha_limite").value;
+        const salon = document.getElementById("salon").value;
+        const serie = document.getElementById("serie").value;
+        const turno = document.querySelector('input[name="turno"]:checked')?.value;
+        const tipo = document.getElementById("tipo").value;
+        const tipoincidencia = document.getElementById("descripcioninc").value;
+
+        guardarIncidencia({
+            nombreProf: nombreCompleto,
+            fechaInicio: fechainicio,
+            fechaLimite: fechalimite,
+            salon: salon,
+            serie: serie,
+            turno: turno,
+            tipo: tipo,
+            descripcion: tipoincidencia
+        });
+
+        let fecha = fechainicio;
+        if (!fecha) {
+            fecha = new Date().toLocaleDateString();
+        }
+         const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
+        let avisoEquipo = "\nNo se encontro un equipo con esa serie en el inventario";
+
+        inventario.forEach(function (equipo) {
+            if (equipo.serie === Number(serie)) {
+                if (!equipo.historial) {
+                    equipo.historial = [];
+                }
+                equipo.historial.push({
+                    fecha: fecha,
+                    descripcion: tipoincidencia,
+                    tecnico: nombreCompleto,
+                    solucion: ""
+                });
+                localStorage.setItem("inventario", JSON.stringify(inventario));
+                avisoEquipo = "\nIncidencia registrada en el equipo con serie " + serie + ".";
+            }
+        });
+
+        alert("Nombre Profesor: " + nombreCompleto + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
+        const form = document.querySelector("#incforms");
+        form.reset();
+    });
+
+    const enviarSol = document.querySelector("#enviarSol");
+
+    enviarSol.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const tipoSol = document.getElementById("tipoSol").value;
+        const descripcionSol = document.getElementById("descripcionSol").value;
+
+        guardarSolicitud({
+            nombreProf: nombreCompleto,
+            tipo: tipoSol,
+            descripcion: descripcionSol
+        });
+
+        const form = document.querySelector("#solforms");
+        form.reset();
+        alert("Nombre del profesor: " + nombreCompleto + "\nTipo de solicitud: " + tipoSol + "\nDescripcion de Solicitud: " + descripcionSol);
+    });
+
+    const btnVolverInc = document.querySelector("#volverInc");
+    const btnVolverSol = document.querySelector("#volverSol");
+
+    btnVolverInc.addEventListener("click", function (e) {
+        e.preventDefault();
+        contenedor.classList.add("mostrar");
+        rectangulo.classList.remove("mostrar");
+    });
+
+    btnVolverSol.addEventListener("click", function (e) {
+        e.preventDefault();
+        contenedorSol.classList.add("mostrar");
+        rectangulo.classList.remove("mostrar");
+    });
+}

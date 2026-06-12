@@ -1,3 +1,21 @@
+const empleadosGuardados = JSON.parse(localStorage.getItem("empleados")) || [];
+
+let hayAdmin = false;
+empleadosGuardados.forEach(function (empleado) {
+    if (empleado.rol === "admin") {
+        hayAdmin = true;
+    }
+});
+
+if (!hayAdmin) {
+    empleadosGuardados.push(
+        { cedula: "11111111", nombre: "Admin", apellido: "Prueba", rol: "admin", contrasena: "fafealmo" },
+        { cedula: "22222222", nombre: "Tecnico", apellido: "Prueba", rol: "tecnico", contrasena: "fafealmo" },
+        { cedula: "33333333", nombre: "Usuario", apellido: "Prueba", rol: "solicitante", contrasena: "fafealmo" }
+    );
+    localStorage.setItem("empleados", JSON.stringify(empleadosGuardados));
+}
+
 const img = document.querySelector("#logo");
 const cedula = document.getElementById("cedula");
 const extranjero = document.querySelector("#extranjero");
@@ -16,7 +34,7 @@ extranjero.addEventListener("click", function(e){
     const contenedor = document.getElementById("campo-documento");
     contenedor.innerHTML = `
         <label for="pasaporte">Pasaporte</label>
-        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" maxlength="8" required>
+        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" pattern="[A-Za-z][0-9]{7}" title="Una letra seguida de 7 números, ej: A1234567" maxlength="8" required>
         <p id="mensaje" class="mensaje-error"></p>
     `;
 
@@ -52,14 +70,21 @@ formulario.addEventListener("submit", function(e) {
 
     if (pasaporteInput) {
         const pasaporteIngresado = pasaporteInput.value.trim();
-        empleado = empleados.find(e => e.pasaporte === pasaporteIngresado && e.contrasena === passwordIngresada);
+        empleado = empleados.find(function (emp) {
+            return emp.pasaporte === pasaporteIngresado && emp.contrasena === passwordIngresada;
+        });
         if (!empleado) {
             mensaje.textContent = "Pasaporte o contraseña incorrectos.";
             return;
         }
     } else {
-        const cedulaIngresada = cedulaInput?.value.trim() ?? "";
-        empleado = empleados.find(e => e.cedula === cedulaIngresada && e.contrasena === passwordIngresada);
+        let cedulaIngresada = "";
+        if (cedulaInput) {
+            cedulaIngresada = cedulaInput.value.trim();
+        }
+        empleado = empleados.find(function (emp) {
+            return emp.cedula === cedulaIngresada && emp.contrasena === passwordIngresada;
+        });
         if (!empleado) {
             mensaje.textContent = "Cédula o contraseña incorrectos.";
             return;
@@ -67,5 +92,13 @@ formulario.addEventListener("submit", function(e) {
     }
 
     mensaje.textContent = "";
-    alert("Bienvenido, " + empleado.nombre + " " + empleado.apellido + ".");
+    sessionStorage.setItem("usuarioActivo", JSON.stringify({
+        nombre: empleado.nombre, apellido: empleado.apellido, rol: empleado.rol}));
+
+   
+    if (empleado.rol === "admin" || empleado.rol === "tecnico") {
+        window.location.href = "../../html/admin/index_admin.html";
+    } else {
+        window.location.href = "../../html/user/index_user.html";
+    }
 });

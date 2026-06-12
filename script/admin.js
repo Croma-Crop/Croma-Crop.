@@ -17,22 +17,35 @@ function guardarEmpleados(empleados) {
 
 function agregarFila(empleado) {
     const fila = document.createElement("tr");
-    const documento = empleado.pasaporte ? empleado.pasaporte : empleado.cedula;
+
+    let documento = empleado.cedula;
+    if (empleado.pasaporte) {
+        documento = empleado.pasaporte;
+    }
 
     fila.innerHTML =
         "<td>" + documento + "</td>" +
         "<td>" + empleado.nombre + "</td>" +
         "<td>" + empleado.apellido + "</td>" +
         "<td>" + empleado.rol + "</td>" +
-        "<td>" + "•".repeat((empleado.contrasena || "").length) + "</td>" +
+        "<td>••••••</td>" +
         "<td><button class='btnEliminarEmpleado' type='button'>Eliminar</button></td>";
 
     fila.querySelector(".btnEliminarEmpleado").addEventListener("click", function () {
-        const empleados = obtenerEmpleados().filter(function(e) {
-            if (empleado.pasaporte) return e.pasaporte !== empleado.pasaporte;
-            return e.cedula !== empleado.cedula;
+        const empleadosActuales = obtenerEmpleados();
+        const empleadosFiltrados = [];
+
+        empleadosActuales.forEach(function (emp) {
+            let doc = emp.cedula;
+            if (emp.pasaporte) {
+                doc = emp.pasaporte;
+            }
+            if (doc !== documento) {
+                empleadosFiltrados.push(emp);
+            }
         });
-        guardarEmpleados(empleados);
+
+        guardarEmpleados(empleadosFiltrados);
         fila.remove();
     });
 
@@ -52,7 +65,8 @@ btnExtranjeroAdmin.addEventListener("click", function () {
     contenedorDocAdmin.innerHTML = `
         <div class="cajaEntradaDeDatos">
             <label for="pasaporte">Pasaporte</label>
-            <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingrese el pasaporte" autocomplete="off" required>
+            <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingrese el pasaporte" pattern="[A-Za-z][0-9]{7}"
+            title="Una letra seguida de 7 números, ej: A1234567" autocomplete="off" required>
         </div>
     `;
     btnExtranjeroAdmin.disabled = true;
@@ -101,4 +115,7 @@ formulario.addEventListener("submit", function (e) {
     formulario.reset();
 });
 
-obtenerEmpleados().forEach(agregarFila);
+const empleadosIniciales = obtenerEmpleados();
+empleadosIniciales.forEach(function (empleado) {
+    agregarFila(empleado);
+});

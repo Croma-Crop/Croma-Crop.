@@ -95,6 +95,10 @@ dialog.dialogGestionarEmpleado {
     min-width: 420px;
     box-shadow: 0px 10px 24px rgba(48, 54, 79, 0.3);
     margin: auto;
+    width: 30%;
+}
+fieldset{
+    width: 100%;
 }
 
 dialog.dialogGestionarEmpleado::backdrop {

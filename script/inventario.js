@@ -1,14 +1,18 @@
-//aca primero creamos el inventario inicial
 const inventarioInicial = [
     { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto", historial: [] },
     { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo", historial: [] },
     { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto", historial: [
-        { fecha: "10/06/2026", descripcion: "Pantalla rots", tecnico: "Ejemplo", solucion: "Se reemplazo el panel" }
+        { fecha: "10/06/2026", descripcion: "Pantalla rota", tecnico: "Ejemplo", solucion: "Se reemplazo el panel" }
     ] },
     { nombre: "Proyector", marca: "HP", serie: 778812, estado: "Nuevo", historial: [] }
 ];
-//aca guardamos inventario en el localstorage para poder acceder a el desde otros modulos
 let inventario = JSON.parse(localStorage.getItem("inventario")) || inventarioInicial;
+
+inventario.forEach(function (articulo) {
+    if (!articulo.historial) {
+        articulo.historial = [];
+    }
+});
 
 function guardarInventario() {
     localStorage.setItem("inventario", JSON.stringify(inventario));
@@ -16,7 +20,6 @@ function guardarInventario() {
 if (!localStorage.getItem("inventario")) {
     guardarInventario();
 }
-//aca instanciamos los elementos que seleccionamos del html
 const formulario = document.querySelector("#formulario-producto");
 const inptNombre = document.querySelector("#nombre");
 const inptMarca = document.querySelector("#marca");
@@ -29,7 +32,6 @@ const listaHistorial = document.querySelector("#listaHistorial");
 const cerrarHistorial = document.querySelector("#cerrarHistorial");
 
 let indiceModificando = null;
-//aca esta parte del codigo se encarga de guardar los datos del elemento que quiero añadir o modificar
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
     const nombre = inptNombre.value;
@@ -38,7 +40,8 @@ formulario.addEventListener("submit", function (e) {
     const estado = inptEstado.value;
 
     if (indiceModificando !== null) {
-        const historial = inventario[indiceModificando].historial || [];
+
+        const historial = inventario[indiceModificando].historial;
         inventario[indiceModificando] = { nombre, marca, serie, estado, historial };
         indiceModificando = null;
         tituloFormulario.textContent = "Ingresar Nuevo Artículo";
@@ -47,82 +50,86 @@ formulario.addEventListener("submit", function (e) {
     }
 
     guardarInventario();
-    renderizarInventario();
+    renderizarInventario(inventario);
     formulario.reset();
 });
-//aca como dice la funcion esta parte del codigo se encarga del funcionamiento para crear las tarjetas
+
 function renderizarInventario(lista) {
-    if (lista === undefined) lista = inventario;
     let contenedor = document.getElementById("listado");
     let htmlGenerado = "";
 
-    lista.forEach(function (articulo, i) {
-        const cantidad = (articulo.historial || []).length;
-        htmlGenerado += "<li class='tarjeta-producto' data-indice='" + i + "'>";
+    lista.forEach(function (articulo) {
+        const indiceReal = inventario.indexOf(articulo);
+        const cantidad = articulo.historial.length;
+        htmlGenerado += "<li class='tarjeta-producto' data-indice='" + indiceReal + "'>";
         htmlGenerado += "<p class='tarjeta-nombre'>" + articulo.nombre + "</p>";
         htmlGenerado += "<p class='tarjeta-marca'>Marca: " + articulo.marca + "</p>";
         htmlGenerado += "<p class='tarjeta-serie'>Serie: " + articulo.serie + "</p>";
         htmlGenerado += "<p class='tarjeta-estado'>Estado: " + articulo.estado + "</p>";
         htmlGenerado += "<p class='tarjeta-intervenciones'>Intervenciones: " + cantidad + "</p>";
         htmlGenerado += "<div class='tarjeta-acciones'>";
-        htmlGenerado += "<button class='boton-historial' data-indice='" + i + "'>Ver historial</button>";
-        htmlGenerado += "<button class='boton-modificar' data-indice='" + i + "'>Modificar</button>";
-        htmlGenerado += "<button class='boton-eliminar' data-indice='" + i + "'>Eliminar</button>";
+        htmlGenerado += "<button class='boton-historial' data-indice='" + indiceReal + "'>Ver historial</button>";
+        htmlGenerado += "<button class='boton-modificar' data-indice='" + indiceReal + "'>Modificar</button>";
+        htmlGenerado += "<button class='boton-eliminar' data-indice='" + indiceReal + "'>Eliminar</button>";
         htmlGenerado += "</div>";
         htmlGenerado += "</li>";
     });
     contenedor.innerHTML = htmlGenerado;
-//aca se crea el funcionamiento del boton modificar
     document.querySelectorAll(".boton-modificar").forEach(function (boton) {
         boton.addEventListener("click", function (e) {
             e.stopPropagation();
             const i = Number(boton.dataset.indice);
-            const articulo = lista[i];
+            const articulo = inventario[i];
             inptNombre.value = articulo.nombre;
             inptMarca.value = articulo.marca;
             inptSerie.value = articulo.serie;
             inptEstado.value = articulo.estado;
-            indiceModificando = inventario.indexOf(articulo);
+            indiceModificando = i;
             tituloFormulario.textContent = "Modificar Artículo";
         });
     });
-//aca se crea el funcionamiento del boton eliminar
     document.querySelectorAll(".boton-eliminar").forEach(function (boton) {
         boton.addEventListener("click", function (e) {
             e.stopPropagation();
             const i = Number(boton.dataset.indice);
-            const articulo = lista[i];
 
             if (confirm("¿Seguro que quiere eliminar este articulo?")) {
-                inventario.splice(inventario.indexOf(articulo), 1);
+                inventario.splice(i, 1);
                 guardarInventario();
-                renderizarInventario();
+                renderizarInventario(inventario);
             }
         });
     });
-//aca se crea el funcionamiento del boton ver historial
+
     document.querySelectorAll(".boton-historial").forEach(function (boton) {
         boton.addEventListener("click", function (e) {
             e.stopPropagation();
             const i = Number(boton.dataset.indice);
-            abrirHistorial(lista[i]);
+            abrirHistorial(inventario[i]);
         });
     });
 }
-//se crea la funcion
 function abrirHistorial(articulo) {
     tituloHistorial.textContent = "Historial de " + articulo.nombre + " (Serie: " + articulo.serie + ")";
-    const historial = articulo.historial || [];
+    const historial = articulo.historial;
 
     if (historial.length === 0) {
         listaHistorial.innerHTML = "<li>Este equipo todavía no tuvo intervenciones.</li>";
     } else {
         let html = "";
         historial.forEach(function (h) {
+            let tecnico = "-";
+            if (h.tecnico) {
+                tecnico = h.tecnico;
+            }
+            let solucion = "Pendiente";
+            if (h.solucion) {
+                solucion = h.solucion;
+            }
             html += "<li class='item-historial'>";
             html += "<p><strong>" + h.fecha + "</strong> — " + h.descripcion + "</p>";
-            html += "<p>Técnico: " + (h.tecnico || "-") + "</p>";
-            html += "<p>Solución: " + (h.solucion ? h.solucion : "Pendiente") + "</p>";
+            html += "<p>Técnico: " + tecnico + "</p>";
+            html += "<p>Solución: " + solucion + "</p>";
             html += "</li>";
         });
         listaHistorial.innerHTML = html;
@@ -135,15 +142,14 @@ cerrarHistorial.addEventListener("click", function () {
     dialogHistorial.close();
 });
 
-renderizarInventario();
+renderizarInventario(inventario);
 
-const ulContainer = document.querySelector("#listado");
 const cuadroDeBusqueda = document.querySelector("#inptbusqueda");
 
 cuadroDeBusqueda.addEventListener("keyup", function (e) {
     let texto = cuadroDeBusqueda.value.toLowerCase();
     if (texto === '') {
-        renderizarInventario();
+        renderizarInventario(inventario);
         return;
     }
     let filtrados = inventario.filter(function (articulo) {
