@@ -22,11 +22,10 @@
                 <li><a class="dropdown-item" href="/html/admin/index_admin.html">Inicio</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/html/tickets.html">Tickets</a></li>
-                <li><a class="dropdown-item" href="/html/incidenciascreadas.html">Incidencias Creadas</a></li>
                 <li><a class="dropdown-item" href="/html/inventario.html">Inventario</a></li>
                 <li><a class="dropdown-item" href="/html/admin/administrador.html">Administrador</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/html/global/login.html">Iniciar Sesión</a></li>
+                <li><a class="dropdown-item" href="/html/incidenciascreadas.html">Incidencias Creadas</a></li>
             </ul>
         </div>
 
@@ -36,6 +35,14 @@
     <main>
         <section id="seccion-listado">
             <h3 class="titulo-seccion">Incidencias Registradas</h3>
+            <div id="controles">
+                <input id="inptbusqueda" name="inptbusqueda" placeholder="Buscar por profesor, tipo, salón, serie...">
+                <div id="filtros">
+                    <button type="button" class="filtro-clase activo" data-clase="Todos">Todos</button>
+                    <button type="button" class="filtro-clase" data-clase="Incidencia">Incidencias</button>
+                    <button type="button" class="filtro-clase" data-clase="Solicitud">Solicitudes</button>
+                </div>
+            </div>
             <ul id="listado-tickets"></ul>
         </section>
     </main>
