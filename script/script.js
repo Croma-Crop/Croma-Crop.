@@ -14,6 +14,17 @@ if (usuario) {
         rol = "Solicitante";
     }
 
+    let destinoInicio = "/html/admin/index_admin.html";
+    if (usuario.rol === "solicitante") {
+        destinoInicio = "/html/user/index_user.html";
+    }
+    const itemsMenu = document.querySelectorAll(".dropdown-menu .dropdown-item");
+    itemsMenu.forEach(function (item) {
+        if (item.textContent.trim() === "Inicio") {
+            item.href = destinoInicio;
+        }
+    });
+
     const chip = document.createElement("div");
     chip.className = "dropdown usuario-chip";
     chip.innerHTML = `
