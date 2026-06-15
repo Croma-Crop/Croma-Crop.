@@ -41,6 +41,10 @@ function renderizarTickets(lista) {
             html += "<p>Turno: " + ticket.turno + "</p>";
         }
 
+        if (ticket.clase === "Solicitud" && ticket.salon) {
+            html += "<p>Salón: " + ticket.salon + "</p>";
+        }
+
         html += "<p class='tarjeta-descripcion'>" + ticket.descripcion + "</p>";
         html += "</li>";
     });

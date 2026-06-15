@@ -25,6 +25,7 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/html/incidenciascreadas.html">Incidencias Creadas</a></li>
                 <li><a class="dropdown-item" href="/html/inventario.html">Inventario</a></li>
+                <li><a class="dropdown-item" href="/html/salones.html">Salones</a></li>
                 <li><a class="dropdown-item" href="/html/admin/administrador.html">Administrador</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/html/tickets.html">Tickets</a></li>
@@ -55,9 +56,13 @@
                 <label for="fecha_limite">Fecha Limite</label>
                 <input type="date" id="fecha_limite" name="fecha">
                 <label for="salon">Salon:</label>
-                <input id="salon" type="text" name="salon" placeholder="Ej:L3">
-                <label for="serie">N° de Serie del equipo:</label>
-                <input id="serie" type="text" name="serie" placeholder="Ej: 1338344">
+                <select id="salon" name="salon" required>
+                    <option value="">--- Seleccionar salón ---</option>
+                </select>
+                <label for="serie">Equipo del salón:</label>
+                <select id="serie" name="serie" required>
+                    <option value="">--- Seleccione un salón primero ---</option>
+                </select>
 
                 <p>Turno:</p>
                 <section class="radio-grupo">
@@ -94,6 +99,10 @@
                     <option value="">---Seleccionar---</option>
                     <option value="Instalacion de Software">Instalacion de Software</option>
                     <option value="Reserva de Salon">Reserva de Salon</option>
+                </select>
+                <p for="salonSol">Salón:</p>
+                <select id="salonSol" name="salonSol" required>
+                    <option value="">--- Seleccionar salón ---</option>
                 </select>
                 <p>Descripcion de la Solicitud:</p>
                 <input type="text" id="descripcionSol">

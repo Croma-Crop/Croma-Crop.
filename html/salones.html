@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Salones</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="stylesheet" href="/styles/inventario.css">
-    <script src="/script/inventario.js" defer></script>
+    <script src="/script/salones.js" defer></script>
     <script src="/script/script.js" defer></script>
-   
+
 </head>
 <body>
     <header>
-        <a href="inventario.html">
+        <a href="/html/salones.html">
             <img src="/img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
         </a>
         <div class="dropdown">
@@ -23,14 +23,14 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/html/tickets.html">Tickets</a></li>
                 <li><a class="dropdown-item" href="/html/incidenciascreadas.html">Incidencias Creadas</a></li>
+                <li><a class="dropdown-item" href="/html/inventario.html">Inventario</a></li>
                 <li><a class="dropdown-item" href="/html/admin/administrador.html">Administrador</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/html/inventario.html">Inventario</a></li>
                 <li><a class="dropdown-item" href="/html/salones.html">Salones</a></li>
             </ul>
         </div>
 
-        <h1 id="titulo">Inventario</h1>
+        <h1 id="titulo">Salones</h1>
 
     </header>
     <article class="contenedor">
@@ -41,31 +41,19 @@
                 <input id="inptbusqueda" name="inptbusqueda" placeholder="Buscar">
             </section>
             <article id="seccion-listado">
-                <h3 class="titulo-seccion">Inventario de equipos:</h3>
+                <h3 class="titulo-seccion">Salones registrados:</h3>
                 <ul id="listado">
                 </ul>
             </article>
 
             <article id="seccion-formulario">
-                <h3 class="titulo-seccion">Ingresar Nuevo Equipo</h3>
-                <form id="formulario-producto">
-                    <input name="nombre" type="text" id="nombre" placeholder="Nombre del artículo" required>
-                    <input name="marca" type="text" id="marca" placeholder="Marca del articulo" required>
-                    <input name="numSerie" type="text" id="numSerie" placeholder="Numero de Serie" required >
-                    <input name="estado" type="text" id="estado" placeholder="Ingrese Estado" required>
-                    <select name="salon" id="salonInventario" required>
-                        <option value="">--- Asignar a un salón ---</option>
-                    </select>
-                    <button id="submit" type="submit">Guardar Artículo</button>
+                <h3 class="titulo-seccion">Ingresar Nuevo Salón</h3>
+                <form id="formulario-salon">
+                    <input name="nombre" type="text" id="nombreSalon" placeholder="Código del salón (Ej: L3)" required>
+                    <button id="submit" type="submit">Guardar Salón</button>
                 </form>
             </article>
         </section>
-
-        <dialog id="dialogHistorial">
-            <button id="cerrarHistorial" type="button">Cerrar</button>
-            <h3 id="tituloHistorial">Historial de intervenciones</h3>
-            <ul id="listaHistorial"></ul>
-        </dialog>
     </main>
     <footer>
         <section class="footer-bottom">
