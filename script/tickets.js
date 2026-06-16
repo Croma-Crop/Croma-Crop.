@@ -88,7 +88,6 @@ function iniciarPagina() {
     btnEnviar.addEventListener("click", function (e) {
         e.preventDefault();
         const fechainicio = document.getElementById("fecha_inicio").value;
-        const fechalimite = document.getElementById("fecha_limite").value;
         const salon = document.getElementById("salon").value;
         const serie = document.getElementById("serie").value;
         const turno = document.querySelector('input[name="turno"]:checked')?.value;
@@ -107,7 +106,6 @@ function iniciarPagina() {
         guardarIncidencia({
             nombreProf: nombreCompleto,
             fechaInicio: fechainicio,
-            fechaLimite: fechalimite,
             salon: salon,
             serie: serie,
             turno: turno,
@@ -138,7 +136,7 @@ function iniciarPagina() {
             }
         });
 
-        alert("Nombre Profesor: " + nombreCompleto + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
+        alert("Nombre Profesor: " + nombreCompleto + "\nFecha Inicio: " + fechainicio + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
         const form = document.querySelector("#incforms");
         form.reset();
     });

@@ -73,7 +73,7 @@
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1em;
 }
 
@@ -87,9 +87,8 @@
     flex-direction: column;
 }
 
-.tarjeta:hover {
+.tarjeta-ticket:hover {
     box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
-    border: 1px rgba(0, 0, 0, 0.795);
 }
 
 .tarjeta-clase {
@@ -126,6 +125,25 @@
 .sin-resultados {
     color: #777;
     font-style: italic;
+}
+
+.boton-eliminar-ticket {
+    margin-top: auto;
+    width: 100%;
+    padding: 9px 0;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.25s ease;
+    color: #F0F0DB;
+    background-color: #e74c3c;
+}
+
+.boton-eliminar-ticket:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
 }
 
 @media (max-width: 768px){
