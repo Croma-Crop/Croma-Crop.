@@ -264,3 +264,65 @@ dialog.dialogGestionarEmpleado::backdrop {
     letter-spacing: 0.5px;
     transform: translateY(-2px);
 }
+
+@media (max-width: 768px){
+
+    .seccionTablaEmpleados{
+        width: 95%;
+        margin: 2em auto;
+        padding: 20px;
+    }
+
+    .cajaEncabezado{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    dialog.dialogGestionarEmpleado{
+        width: 70%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 576px){
+
+    .seccionTablaEmpleados{
+        width: 95%;
+        margin: 1em auto;
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .cajaEncabezado{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .btnOperacion{
+        width: 100%;
+    }
+
+    table{
+        min-width: 600px;
+    }
+
+    dialog.dialogGestionarEmpleado{
+        width: 95%;
+        min-width: auto;
+    }
+
+    .seccionFormulario form{
+        padding: 20px;
+    }
+
+    .cajaEntradaDeDatos input,
+    .cajaEntradaDeDatos select{
+        padding: 12px;
+    }
+
+    .seccionFormulario fieldset > button[type="submit"]{
+        width: 100%;
+    }
+}

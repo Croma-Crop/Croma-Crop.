@@ -127,3 +127,52 @@
     color: #777;
     font-style: italic;
 }
+
+@media (max-width: 768px){
+
+    #seccion-listado{
+        width: 95%;
+        margin: 2em auto;
+    }
+
+    #listado-tickets{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #controles{
+        gap: 0.8em;
+    }
+}
+
+@media (max-width: 576px){
+
+    #seccion-listado{
+        width: 95%;
+        margin: 1em auto;
+        padding: 18px;
+    }
+
+    #controles{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #inptbusqueda{
+        min-width: auto;
+        width: 100%;
+    }
+
+    #filtros{
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filtro-clase{
+        flex: 1;
+    }
+
+    #listado-tickets{
+        grid-template-columns: 1fr;
+    }
+}
