@@ -3,15 +3,18 @@ const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
 
 let tickets = [];
 
-incidencias.forEach(function (incidencia) {
-    incidencia.clase = "Incidencia";
-    tickets.push(incidencia);
-});
-
-solicitudes.forEach(function (solicitud) {
-    solicitud.clase = "Solicitud";
-    tickets.push(solicitud);
-});
+function construirTickets() {
+    tickets = [];
+    incidencias.forEach(function (incidencia) {
+        incidencia.clase = "Incidencia";
+        tickets.push(incidencia);
+    });
+    solicitudes.forEach(function (solicitud) {
+        solicitud.clase = "Solicitud";
+        tickets.push(solicitud);
+    });
+}
+construirTickets();
 
 const contenedor = document.getElementById("listado-tickets");
 const cuadroDeBusqueda = document.querySelector("#inptbusqueda");
@@ -28,6 +31,11 @@ function renderizarTickets(lista) {
     }
 
     lista.forEach(function (ticket) {
+        let indiceReal = incidencias.indexOf(ticket);
+        if (ticket.clase === "Solicitud") {
+            indiceReal = solicitudes.indexOf(ticket);
+        }
+
         html += "<li class='tarjeta-ticket'>";
         html += "<p class='tarjeta-clase tarjeta-" + ticket.clase.toLowerCase() + "'>" + ticket.clase + "</p>";
         html += "<p class='tarjeta-nombre'>" + ticket.nombreProf + "</p>";
@@ -35,10 +43,15 @@ function renderizarTickets(lista) {
 
         if (ticket.clase === "Incidencia") {
             html += "<p>Fecha inicio: " + ticket.fechaInicio + "</p>";
-            html += "<p>Fecha límite: " + ticket.fechaLimite + "</p>";
             html += "<p>Salón: " + ticket.salon + "</p>";
             html += "<p>Serie: " + ticket.serie + "</p>";
             html += "<p>Turno: " + ticket.turno + "</p>";
+            if (ticket.horaEntrada) {
+                html += "<p>Hora entrada: " + ticket.horaEntrada + "</p>";
+            }
+            if (ticket.horaSalida) {
+                html += "<p>Hora salida: " + ticket.horaSalida + "</p>";
+            }
         }
 
         if (ticket.clase === "Solicitud" && ticket.salon) {
@@ -46,10 +59,30 @@ function renderizarTickets(lista) {
         }
 
         html += "<p class='tarjeta-descripcion'>" + ticket.descripcion + "</p>";
+        html += "<button class='boton-eliminar-ticket' data-clase='" + ticket.clase + "' data-indice='" + indiceReal + "'>Eliminar</button>";
         html += "</li>";
     });
 
     contenedor.innerHTML = html;
+
+    document.querySelectorAll(".boton-eliminar-ticket").forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            const clase = boton.dataset.clase;
+            const i = Number(boton.dataset.indice);
+
+            if (confirm("¿Seguro que quiere eliminar este ticket?")) {
+                if (clase === "Incidencia") {
+                    incidencias.splice(i, 1);
+                    localStorage.setItem("incidencias", JSON.stringify(incidencias));
+                } else {
+                    solicitudes.splice(i, 1);
+                    localStorage.setItem("solicitudes", JSON.stringify(solicitudes));
+                }
+                construirTickets();
+                filtrarTickets();
+            }
+        });
+    });
 }
 
 function filtrarTickets() {
