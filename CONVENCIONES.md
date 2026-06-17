@@ -44,18 +44,3 @@ Las ramas se nombran en **minúsculas, en español y con guion bajo** (`snake_ca
 La excepción contemplada es nombrar una rama por un **momento** en vez de por una feature, como `antes_bootstrap`, cuando su propósito es servir de punto de referencia del historial.
 
 Reglas de prolijidad: ortografía consistente (los nombres pueden ir sin tildes, pero siempre del mismo modo) y nombres autoexplicativos, sin abreviar al punto de volverse ambiguos.
-
-
-
-                <p>Tipo de incidencia</p>
-                <select id="tipo" name="tipo" required>
-                    <option value="">---Seleccionar---</option>
-                    <option value="Computadora">Computadora</option>
-                    <option value="Televisor">Televisor</option>
-                    <option value="Periferico">Periferico</option>
-                    <option value="Otro">Otro</option>
-                </select>
-                <p>¿Cual es la incidencia?</p>
-                <input id="descripcioninc" name="incInput">
-                <button id="enviarinc">Enviar Incidencia</button>
-                <button type="button" id="volverInc">Volver</button>
