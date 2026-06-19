@@ -1,5 +1,6 @@
 const incidencias = JSON.parse(localStorage.getItem("incidencias")) || [];
 const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
+const puedeEliminar = puedeHacer("eliminarTickets", usuario?.rol);
 
 let tickets = [];
 
@@ -59,7 +60,9 @@ function renderizarTickets(lista) {
         }
 
         html += "<p class='tarjeta-descripcion'>" + ticket.descripcion + "</p>";
-        html += "<button class='boton-eliminar-ticket' data-clase='" + ticket.clase + "' data-indice='" + indiceReal + "'>Eliminar</button>";
+        if (puedeEliminar) {
+            html += "<button class='boton-eliminar-ticket' data-clase='" + ticket.clase + "' data-indice='" + indiceReal + "'>Eliminar</button>";
+        }
         html += "</li>";
     });
 
