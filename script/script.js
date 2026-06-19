@@ -1,29 +1,38 @@
 const usuario = JSON.parse(sessionStorage.getItem("usuarioActivo"));
+const moduloActual = document.body.dataset.modulo;
 
-if (usuario) {
-    const header = document.querySelector("header");
+if (moduloActual) {
+    if (!usuario) {
+        window.location.replace("/html/global/login.html");
+    } else if (!tienePermiso(usuario.rol, moduloActual)) {
+        window.location.replace(inicioPorRol[usuario.rol]);
+    } else {
+        construirMenu(usuario.rol);
+        construirChip(usuario);
+    }
+}
 
-    let rol = usuario.rol;
-    if (usuario.rol === "admin") {
-        rol = "Admin";
-    }
-    if (usuario.rol === "tecnico") {
-        rol = "Técnico";
-    }
-    if (usuario.rol === "solicitante") {
-        rol = "Solicitante";
-    }
+function construirMenu(rol) {
+    const menu = document.querySelector(".dropdown-menu");
+    const logo = document.querySelector("header > a");
+    logo.href = inicioPorRol[rol];
 
-    let destinoInicio = "/html/admin/index_admin.html";
-    if (usuario.rol === "solicitante") {
-        destinoInicio = "/html/user/index_user.html";
-    }
-    const itemsMenu = document.querySelectorAll(".dropdown-menu .dropdown-item");
-    itemsMenu.forEach(function (item) {
-        if (item.textContent.trim() === "Inicio") {
-            item.href = destinoInicio;
+    let html = "<li><a class='dropdown-item' href='" + inicioPorRol[rol] + "'>Inicio</a></li>";
+    html += "<li><hr class='dropdown-divider'></li>";
+
+    permisos[rol].forEach(function (clave) {
+        const modulo = modulos[clave];
+        if (modulo) {
+            html += "<li><a class='dropdown-item' href='" + modulo.ruta + "'>" + modulo.etiqueta + "</a></li>";
         }
     });
+
+    menu.innerHTML = html;
+}
+
+function construirChip(usuario) {
+    const header = document.querySelector("header");
+    const rol = etiquetasRol[usuario.rol];
 
     const chip = document.createElement("div");
     chip.className = "dropdown usuario-chip";
