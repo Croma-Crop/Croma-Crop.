@@ -9,8 +9,12 @@ const modulos = {
 
 const permisos = {
     admin: ["inicio-admin", "inventario", "salones", "tickets", "incidencias", "ficha", "administrador"],
-    tecnico: ["inicio-admin", "inventario", "salones", "tickets", "incidencias", "ficha"],
-    solicitante: ["inicio-user", "tickets", "ficha"]
+    tecnico: ["inicio-admin", "inventario", "salones", "tickets", "incidencias"],
+    solicitante: ["inicio-user", "tickets", "incidencias", "ficha"]
+};
+
+const acciones = {
+    eliminarTickets: ["admin", "tecnico"]
 };
 
 const inicioPorRol = {
@@ -19,13 +23,12 @@ const inicioPorRol = {
     solicitante: "/html/user/index_user.html"
 };
 
-const etiquetasRol = {
-    admin: "Admin",
-    tecnico: "Técnico",
-    solicitante: "Solicitante"
-};
-
 function tienePermiso(rol, modulo) {
     const permitidos = permisos[rol] || [];
     return permitidos.includes(modulo);
+}
+
+function puedeHacer(accion, rol) {
+    const permitidos = acciones[accion] || [];
+    return permitidos.includes(rol);
 }

@@ -14,7 +14,7 @@ if (moduloActual) {
 
 function construirMenu(rol) {
     const menu = document.querySelector(".dropdown-menu");
-    const logo = document.querySelector("header > a");
+    const logo = document.querySelector("header a");
     logo.href = inicioPorRol[rol];
 
     let html = "<li><a class='dropdown-item' href='" + inicioPorRol[rol] + "'>Inicio</a></li>";
@@ -32,7 +32,17 @@ function construirMenu(rol) {
 
 function construirChip(usuario) {
     const header = document.querySelector("header");
-    const rol = etiquetasRol[usuario.rol];
+
+    let rol = usuario.rol;
+    if (usuario.rol === "admin") {
+        rol = "Admin";
+    }
+    if (usuario.rol === "tecnico") {
+        rol = "Técnico";
+    }
+    if (usuario.rol === "solicitante") {
+        rol = "Solicitante";
+    }
 
     const chip = document.createElement("div");
     chip.className = "dropdown usuario-chip";
@@ -46,7 +56,6 @@ function construirChip(usuario) {
             <li><a class="dropdown-item" href="#" id="btnCerrarSesion">Cerrar sesión</a></li>
         </ul>
     `;
-
     header.appendChild(chip);
 
     document.getElementById("btnCerrarSesion").addEventListener("click", function (e) {
