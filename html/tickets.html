@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/tickets.css">
     <title>Tickets</title>
-    <script src="/script/tickets.js" defer></script>
+    <script src="/script/permisos.js" defer></script>
     <script src="/script/script.js" defer></script>
+    <script src="/script/tickets.js" defer></script>
 </head>
 
-<body>
+<body data-modulo="tickets">
 
     <header>
         <a href="login.html">
@@ -20,17 +21,7 @@
         </a>
         <div class="dropdown">
             <img src="/img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/html/admin/index_admin.html">Inicio</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/html/incidenciascreadas.html">Incidencias Creadas</a></li>
-                <li><a class="dropdown-item" href="/html/inventario.html">Inventario</a></li>
-                <li><a class="dropdown-item" href="/html/salones.html">Salones</a></li>
-                <li><a class="dropdown-item" href="/html/user/ficha.html">Ficha</a></li>
-                <li><a class="dropdown-item" href="/html/admin/administrador.html">Administrador</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/html/tickets.html">Tickets</a></li>
-            </ul>
+            <ul class="dropdown-menu"></ul>
         </div>
 
         <h1 id="titulo">Incidencias y Solicitudes</h1>

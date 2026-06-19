@@ -142,7 +142,7 @@ function abrirHistorial(articulo) {
             }
             html += "<li class='item-historial'>";
             html += "<p><strong>" + h.fecha + "</strong> — " + h.descripcion + "</p>";
-            html += "<p>Técnico: " + tecnico + "</p>";
+            html += "<p>Solicitante: " + tecnico + "</p>";
             html += "<p>Solución: " + solucion + "</p>";
             html += "</li>";
         });
