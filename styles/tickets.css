@@ -194,3 +194,65 @@ form select:hover {
     color: #30364F;
     margin-bottom: 10px;
 }
+
+@media (max-width: 768px){
+
+    #newsletter,
+    .contenedor,
+    .contenedorSol{
+        width: 80%;
+        padding: 30px 15px;
+    }
+
+    #solforms{
+        width: 100%;
+    }
+
+    #incidencia,
+    #regSolicitud{
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px){
+
+    #newsletter,
+    .contenedor,
+    .contenedorSol{
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    #newsletter form,
+    .contenedor form,
+    .contenedorSol form{
+        padding: 18px;
+    }
+
+    #solforms{
+        width: 100%;
+    }
+
+    #incidencia,
+    #regSolicitud{
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .radio-grupo{
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #enviarinc,
+    #enviarSol{
+        width: 100%;
+    }
+
+    #dialogSol{
+        min-width: auto;
+        width: 90%;
+        padding: 20px;
+    }
+}

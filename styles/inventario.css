@@ -164,6 +164,7 @@ form {
 }
 
 input,
+select,
 button {
     padding: 10px;
     font-size: 16px;
@@ -186,4 +187,75 @@ button, #submit {
 
 ul {
     list-style: none;
+}
+
+@media (max-width: 768px){
+
+    #contenido{
+        flex-wrap: wrap;
+        margin: 2em;
+        gap: 1.5em;
+        padding: 20px;
+    }
+
+    #busqueda{
+        width: 100%;
+    }
+
+    #busqueda input{
+        width: 100%;
+    }
+
+    #listado{
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 576px){
+
+    #contenido{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 1em 0;
+        padding: 16px;
+        gap: 1em;
+    }
+
+    #busqueda{
+        order: 1;
+        width: 100%;
+        min-width: 0;
+    }
+
+    #seccion-formulario{
+        order: 2;
+        position: static;
+        min-width: 0;
+        width: 100%;
+    }
+
+    #seccion-listado{
+        order: 3;
+        width: 100%;
+        min-width: 0;
+        max-height: none;
+        padding-right: 0;
+    }
+
+    #listado{
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta-acciones{
+        flex-wrap: wrap;
+    }
+
+    .boton-historial,
+    .boton-modificar,
+    .boton-eliminar{
+        min-width: 0;
+    }
 }

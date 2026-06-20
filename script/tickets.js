@@ -19,6 +19,46 @@ function iniciarPagina() {
     contenedor.classList.add("mostrar");
     contenedorSol.classList.add("mostrar");
 
+    const selectSalon = document.getElementById("salon");
+    const selectSerie = document.getElementById("serie");
+    const selectSalonSol = document.getElementById("salonSol");
+
+    const salones = JSON.parse(localStorage.getItem("salones")) || [];
+
+    let opcionesSalon = "<option value=''>--- Seleccionar salón ---</option>";
+    salones.forEach(function (salon) {
+        opcionesSalon += "<option value='" + salon.nombre + "'>" + salon.nombre + "</option>";
+    });
+    selectSalon.innerHTML = opcionesSalon;
+    selectSalonSol.innerHTML = opcionesSalon;
+
+    function cargarEquiposDelSalon(salon) {
+        if (!salon) {
+            selectSerie.innerHTML = "<option value=''>--- Seleccione un salón primero ---</option>";
+            return;
+        }
+
+        const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
+        const equipos = inventario.filter(function (equipo) {
+            return equipo.salon === salon;
+        });
+
+        if (equipos.length === 0) {
+            selectSerie.innerHTML = "<option value=''>No hay equipos en este salón</option>";
+            return;
+        }
+
+        let html = "<option value=''>--- Seleccionar equipo ---</option>";
+        equipos.forEach(function (equipo) {
+            html += "<option value='" + equipo.serie + "'>" + equipo.nombre + " (Serie: " + equipo.serie + ")</option>";
+        });
+        selectSerie.innerHTML = html;
+    }
+
+    selectSalon.addEventListener("change", function () {
+        cargarEquiposDelSalon(selectSalon.value);
+    });
+
     btnIncidencia.addEventListener("click", function (e) {
         e.preventDefault();
         rectangulo.classList.toggle("mostrar");
@@ -48,17 +88,24 @@ function iniciarPagina() {
     btnEnviar.addEventListener("click", function (e) {
         e.preventDefault();
         const fechainicio = document.getElementById("fecha_inicio").value;
-        const fechalimite = document.getElementById("fecha_limite").value;
         const salon = document.getElementById("salon").value;
         const serie = document.getElementById("serie").value;
         const turno = document.querySelector('input[name="turno"]:checked')?.value;
         const tipo = document.getElementById("tipo").value;
         const tipoincidencia = document.getElementById("descripcioninc").value;
 
+        if (!salon) {
+            alert("Seleccione un salón.");
+            return;
+        }
+        if (!serie) {
+            alert("Seleccione un equipo del salón.");
+            return;
+        }
+
         guardarIncidencia({
             nombreProf: nombreCompleto,
             fechaInicio: fechainicio,
-            fechaLimite: fechalimite,
             salon: salon,
             serie: serie,
             turno: turno,
@@ -89,7 +136,7 @@ function iniciarPagina() {
             }
         });
 
-        alert("Nombre Profesor: " + nombreCompleto + "\nFecha Inicio: " + fechainicio + "\nFecha Limite: " + fechalimite + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
+        alert("Nombre Profesor: " + nombreCompleto + "\nFecha Inicio: " + fechainicio + "\nSalon: " + salon + "\nSerie: " + serie + "\nTurno: " + turno + "\nTipo: " + tipo + "\nIncidencia: " + tipoincidencia + avisoEquipo);
         const form = document.querySelector("#incforms");
         form.reset();
     });
@@ -100,17 +147,24 @@ function iniciarPagina() {
         e.preventDefault();
 
         const tipoSol = document.getElementById("tipoSol").value;
+        const salonSol = document.getElementById("salonSol").value;
         const descripcionSol = document.getElementById("descripcionSol").value;
+
+        if (!salonSol) {
+            alert("Seleccione un salón.");
+            return;
+        }
 
         guardarSolicitud({
             nombreProf: nombreCompleto,
             tipo: tipoSol,
+            salon: salonSol,
             descripcion: descripcionSol
         });
 
         const form = document.querySelector("#solforms");
         form.reset();
-        alert("Nombre del profesor: " + nombreCompleto + "\nTipo de solicitud: " + tipoSol + "\nDescripcion de Solicitud: " + descripcionSol);
+        alert("Nombre del profesor: " + nombreCompleto + "\nTipo de solicitud: " + tipoSol + "\nSalón: " + salonSol + "\nDescripcion de Solicitud: " + descripcionSol);
     });
 
     const btnVolverInc = document.querySelector("#volverInc");

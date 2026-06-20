@@ -106,3 +106,46 @@ form input[id="password"] {
     letter-spacing: 0.5px;
     transform: translateY(-2px);
 }
+
+@media (max-width: 768px){
+
+    #newsletter,
+    #crearoinicar{
+        width: 80%;
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 576px){
+
+    #newsletter,
+    #crearoinicar{
+        width: 100%;
+        padding: 15px;
+    }
+
+    #newsletter form{
+        padding: 20px;
+    }
+
+    #newsletter h1{
+        text-align: center;
+        font-size: 18px;
+    }
+
+    form input[id="cedula"],
+    form input[id="pasaporte"],
+    form input[id="password"]{
+        width: 100%;
+        padding: 13px;
+    }
+
+    #crear{
+        width: 100%;
+    }
+
+    #extranjero,
+    #btnCedula{
+        align-self: center;
+    }
+}

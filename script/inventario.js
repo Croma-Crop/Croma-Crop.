@@ -1,10 +1,10 @@
 const inventarioInicial = [
-    { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto", historial: [] },
-    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo", historial: [] },
-    { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto", historial: [
+    { nombre: "Computadora", marca: "Lenovo", serie: 134934344, estado: "Roto", salon: "L3", historial: [] },
+    { nombre: "Laptop", marca: "Mac", serie: 1338344, estado: "Nuevo", salon: "L3", historial: [] },
+    { nombre: "Monitor", marca: "Acer", serie: 46743, estado: "Roto", salon: "L4", historial: [
         { fecha: "10/06/2026", descripcion: "Pantalla rota", tecnico: "Ejemplo", solucion: "Se reemplazo el panel" }
     ] },
-    { nombre: "Proyector", marca: "HP", serie: 778812, estado: "Nuevo", historial: [] }
+    { nombre: "Proyector", marca: "HP", serie: 778812, estado: "Nuevo", salon: "Lab1", historial: [] }
 ];
 let inventario = JSON.parse(localStorage.getItem("inventario")) || inventarioInicial;
 
@@ -25,7 +25,18 @@ const inptNombre = document.querySelector("#nombre");
 const inptMarca = document.querySelector("#marca");
 const inptSerie = document.querySelector("#numSerie");
 const inptEstado = document.querySelector("#estado");
+const inptSalon = document.querySelector("#salonInventario");
 const tituloFormulario = document.querySelector("#seccion-formulario h3");
+
+function cargarSalonesEnSelect() {
+    const salones = JSON.parse(localStorage.getItem("salones")) || [];
+    let html = "<option value=''>--- Asignar a un salón ---</option>";
+    salones.forEach(function (salon) {
+        html += "<option value='" + salon.nombre + "'>" + salon.nombre + "</option>";
+    });
+    inptSalon.innerHTML = html;
+}
+cargarSalonesEnSelect();
 const dialogHistorial = document.querySelector("#dialogHistorial");
 const tituloHistorial = document.querySelector("#tituloHistorial");
 const listaHistorial = document.querySelector("#listaHistorial");
@@ -38,15 +49,16 @@ formulario.addEventListener("submit", function (e) {
     const marca = inptMarca.value;
     const serie = Number(inptSerie.value);
     const estado = inptEstado.value;
+    const salon = inptSalon.value;
 
     if (indiceModificando !== null) {
 
         const historial = inventario[indiceModificando].historial;
-        inventario[indiceModificando] = { nombre, marca, serie, estado, historial };
+        inventario[indiceModificando] = { nombre, marca, serie, estado, salon, historial };
         indiceModificando = null;
         tituloFormulario.textContent = "Ingresar Nuevo Artículo";
     } else {
-        inventario.push({ nombre, marca, serie, estado, historial: [] });
+        inventario.push({ nombre, marca, serie, estado, salon, historial: [] });
     }
 
     guardarInventario();
@@ -66,6 +78,7 @@ function renderizarInventario(lista) {
         htmlGenerado += "<p class='tarjeta-marca'>Marca: " + articulo.marca + "</p>";
         htmlGenerado += "<p class='tarjeta-serie'>Serie: " + articulo.serie + "</p>";
         htmlGenerado += "<p class='tarjeta-estado'>Estado: " + articulo.estado + "</p>";
+        htmlGenerado += "<p class='tarjeta-salon'>Salón: " + (articulo.salon || "Sin asignar") + "</p>";
         htmlGenerado += "<p class='tarjeta-intervenciones'>Intervenciones: " + cantidad + "</p>";
         htmlGenerado += "<div class='tarjeta-acciones'>";
         htmlGenerado += "<button class='boton-historial' data-indice='" + indiceReal + "'>Ver historial</button>";
@@ -84,6 +97,7 @@ function renderizarInventario(lista) {
             inptMarca.value = articulo.marca;
             inptSerie.value = articulo.serie;
             inptEstado.value = articulo.estado;
+            inptSalon.value = articulo.salon || "";
             indiceModificando = i;
             tituloFormulario.textContent = "Modificar Artículo";
         });
@@ -128,7 +142,7 @@ function abrirHistorial(articulo) {
             }
             html += "<li class='item-historial'>";
             html += "<p><strong>" + h.fecha + "</strong> — " + h.descripcion + "</p>";
-            html += "<p>Técnico: " + tecnico + "</p>";
+            html += "<p>Solicitante: " + tecnico + "</p>";
             html += "<p>Solución: " + solucion + "</p>";
             html += "</li>";
         });
@@ -156,7 +170,8 @@ cuadroDeBusqueda.addEventListener("keyup", function (e) {
         return articulo.nombre.toLowerCase().includes(texto) ||
             articulo.marca.toLowerCase().includes(texto) ||
             articulo.serie.toString().includes(texto) ||
-            articulo.estado.toLowerCase().includes(texto);
+            articulo.estado.toLowerCase().includes(texto) ||
+            (articulo.salon || "").toLowerCase().includes(texto);
     });
     renderizarInventario(filtrados);
 });

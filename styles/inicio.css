@@ -68,3 +68,35 @@
 .tarjeta-modulo a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px){
+
+    .inicio{
+        margin: 2em auto;
+    }
+
+    .modulos{
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8em;
+    }
+}
+
+@media (max-width: 576px){
+
+    .inicio{
+        margin: 1.2em auto;
+        width: 92%;
+    }
+
+    .bienvenida{
+        padding: 18px;
+    }
+
+    .bienvenida h2{
+        font-size: 19px;
+    }
+
+    .modulos{
+        grid-template-columns: 1fr;
+    }
+}

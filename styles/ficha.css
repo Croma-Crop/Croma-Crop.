@@ -1,0 +1,315 @@
+.titulo-seccion {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #30364F;
+}
+
+#contenido {
+    background-color: #e8ecef;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.158);
+    display: flex;
+    align-items: flex-start;
+    gap: 2em;
+    margin: 3em;
+    width: 90%;
+    transition: 0.5s;
+}
+
+#contenido:hover {
+    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
+    transform: translateY(-2px);
+}
+
+#seccion-formulario {
+    flex: 1;
+    min-width: 280px;
+}
+
+#seccion-equipos {
+    flex: 1.4;
+    min-width: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #a09f9f53;
+    border-radius: 10px;
+    padding: 25px;
+    transition: 0.5s;
+}
+
+form label,
+form p {
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 8px;
+}
+
+input,
+select {
+    padding: 13px;
+    margin-bottom: 5px;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    background-color: #faf8f8;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+select:hover {
+    background-color: #f5f5f5;
+    border-color: #30364F;
+}
+
+.radio-grupo {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.radio-grupo input[type="radio"] {
+    accent-color: #30364F;
+    width: 17px;
+    height: 17px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.radio-grupo label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+#enviarFicha {
+    padding: 10px;
+    background-color: #30364F;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 80%;
+    align-self: center;
+    margin-top: 20px;
+    transition: 0.5s;
+}
+
+#enviarFicha:hover {
+    background-color: #3d4460;
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    transform: translateY(-2px);
+}
+
+#avisoEquipos {
+    color: #777;
+    font-style: italic;
+    background-color: white;
+    border: 1px solid #a09f9f53;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#tablaEquipos {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #a09f9f53;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.1);
+}
+
+#tablaEquipos th {
+    background-color: #30364F;
+    color: #F0F0DB;
+    text-align: left;
+    padding: 12px;
+    font-size: 14px;
+}
+
+#tablaEquipos td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+#tablaEquipos tbody tr {
+    transition: 0.3s;
+}
+
+#tablaEquipos tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+#tablaEquipos tr:last-child td {
+    border-bottom: none;
+}
+
+#tablaEquipos .check-equipo {
+    width: 18px;
+    height: 18px;
+    accent-color: #30364F;
+    cursor: pointer;
+}
+
+.fila-cargada {
+    background-color: #e8ecef;
+}
+
+.fila-cargada td {
+    font-weight: bold;
+    color: #30364F;
+}
+
+.oculto {
+    display: none;
+}
+
+#dialogIncidencia {
+    border: 1px solid #a09f9f53;
+    border-radius: 10px;
+    padding: 30px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#dialogIncidencia::backdrop {
+    background-color: rgba(48, 54, 79, 0.45);
+}
+
+#dialogIncidencia form {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    transition: none;
+}
+
+#dialogIncidencia h3 {
+    color: #30364F;
+    margin-bottom: 10px;
+}
+
+#equipoSeleccionado {
+    color: #30364F;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dialog-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#guardarIncidenciaEquipo {
+    flex: 1;
+    padding: 10px;
+    background-color: #30364F;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#guardarIncidenciaEquipo:hover {
+    background-color: #3d4460;
+    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    transform: translateY(-2px);
+}
+
+#cancelarIncidenciaEquipo {
+    flex: 1;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#cancelarIncidenciaEquipo:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px){
+
+    #contenido{
+        flex-wrap: wrap;
+        margin: 2em;
+        gap: 1.5em;
+        padding: 20px;
+    }
+
+    #seccion-formulario,
+    #seccion-equipos{
+        flex: 1 1 100%;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px){
+
+    #contenido{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 1em 0;
+        padding: 16px;
+        gap: 1em;
+    }
+
+    #seccion-formulario{
+        order: 1;
+    }
+
+    #seccion-equipos{
+        order: 2;
+    }
+
+    form{
+        padding: 18px;
+    }
+
+    #enviarFicha{
+        width: 100%;
+    }
+
+    #tablaEquipos th,
+    #tablaEquipos td{
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    #dialogIncidencia{
+        min-width: auto;
+        width: 90%;
+        padding: 20px;
+    }
+
+    .dialog-acciones{
+        flex-direction: column;
+    }
+}
