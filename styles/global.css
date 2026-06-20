@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family:Arial, Helvetica, sans-serif
+    font-family:Arial, Helvetica, sans-serif;
 }
 html {
     scroll-behavior: smooth;
@@ -17,17 +17,14 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f0f0f0;
-}
-header nav a.pagSelec {
-    background-color: #1a1e30; 
-    box-shadow: 0 2px 6px rgba(0, 0, 1, 0.4);
-    pointer-events:none;
-    transform: translateY(-3px);
+    overflow-x: hidden;
+    max-width: 100%;
 }
 main {
     flex: 1;
     display: flex;
     justify-content: center;
+    min-width: 0;
 }
 
 #logo{
@@ -141,4 +138,79 @@ footer{
     font-size: 14px;
     padding-top: 15px;
     justify-content: space-between;
+}
+
+@media (max-width: 768px){
+
+    header{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+    }
+
+    header > a{
+        order: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    header h1{
+        order: 1;
+        flex: 1;
+        min-width: 0;
+        margin-left: 0;
+        font-size: 22px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .usuario-chip{
+        order: 2;
+        justify-self: auto;
+    }
+
+    header .dropdown{
+        order: 3;
+    }
+
+    header .dropdown-menu{
+        left: auto;
+        right: 0;
+    }
+}
+
+@media (max-width: 576px){
+
+    header{
+        padding: 8px 12px;
+    }
+
+    header h1{
+        font-size: 18px;
+    }
+
+    #logo{
+        height: 36px;
+        margin-right: 0;
+    }
+
+    #burguer{
+        height: 30px;
+        padding-bottom: 0;
+    }
+
+    footer{
+        margin-top: 0;
+        padding: 12px 16px 20px;
+    }
+
+    .footer-bottom{
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 8px;
+        padding-top: 10px;
+    }
 }
