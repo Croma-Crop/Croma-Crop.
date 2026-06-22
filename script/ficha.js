@@ -193,7 +193,8 @@ function iniciarPagina() {
                 horaEntrada: horaEntrada,
                 horaSalida: horaSalida,
                 tipo: cargada.tipo,
-                descripcion: cargada.descripcion
+                descripcion: cargada.descripcion,
+                prioridad: "Sin asignar"
             });
 
             inventario.forEach(function (equipo) {

@@ -122,6 +122,20 @@
     border-top: 1px solid #eee;
 }
 
+.tarjeta-prioridad {
+    margin-top: 6px;
+    font-weight: bold;
+}
+
+.select-prioridad {
+    margin-left: 6px;
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .sin-resultados {
     color: #777;
     font-style: italic;

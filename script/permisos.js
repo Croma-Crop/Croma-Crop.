@@ -14,12 +14,13 @@ const permisos = {
 };
 
 const acciones = {
-    eliminarTickets: ["admin", "tecnico"]
+    eliminarTickets: ["admin", "tecnico"],
+    asignarPrioridad: ["tecnico"]
 };
 
 const inicioPorRol = {
-    admin: "/html/admin/index_admin.html",
-    tecnico: "/html/admin/index_admin.html",
+    admin: "/html/admin/index_funcionarios.html",
+    tecnico: "/html/admin/index_funcionarios.html",
     solicitante: "/html/user/index_user.html"
 };
 

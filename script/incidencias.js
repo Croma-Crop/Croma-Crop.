@@ -1,6 +1,8 @@
 const incidencias = JSON.parse(localStorage.getItem("incidencias")) || [];
 const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
 const puedeEliminar = puedeHacer("eliminarTickets", usuario?.rol);
+const puedeAsignarPrioridad = puedeHacer("asignarPrioridad", usuario?.rol);
+const prioridades = ["Sin asignar", "Baja", "Media", "Alta"];
 
 let tickets = [];
 
@@ -53,6 +55,24 @@ function renderizarTickets(lista) {
             if (ticket.horaSalida) {
                 html += "<p>Hora salida: " + ticket.horaSalida + "</p>";
             }
+
+            const prioridad = ticket.prioridad || "Sin asignar";
+
+            if (puedeAsignarPrioridad) {
+                html += "<label class='tarjeta-prioridad'>Prioridad: ";
+                html += "<select class='select-prioridad' data-indice='" + indiceReal + "'>";
+                prioridades.forEach(function (opcion) {
+                    let seleccionada = "";
+                    if (opcion === prioridad) {
+                        seleccionada = " selected";
+                    }
+                    html += "<option value='" + opcion + "'" + seleccionada + ">" + opcion + "</option>";
+                });
+                html += "</select>";
+                html += "</label>";
+            } else {
+                html += "<p class='tarjeta-prioridad'>Prioridad: " + prioridad + "</p>";
+            }
         }
 
         if (ticket.clase === "Solicitud" && ticket.salon) {
@@ -67,6 +87,14 @@ function renderizarTickets(lista) {
     });
 
     contenedor.innerHTML = html;
+
+    document.querySelectorAll(".select-prioridad").forEach(function (select) {
+        select.addEventListener("change", function () {
+            const i = Number(select.dataset.indice);
+            incidencias[i].prioridad = select.value;
+            localStorage.setItem("incidencias", JSON.stringify(incidencias));
+        });
+    });
 
     document.querySelectorAll(".boton-eliminar-ticket").forEach(function (boton) {
         boton.addEventListener("click", function () {
