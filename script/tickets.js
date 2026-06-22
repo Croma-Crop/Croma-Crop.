@@ -110,7 +110,8 @@ function iniciarPagina() {
             serie: serie,
             turno: turno,
             tipo: tipo,
-            descripcion: tipoincidencia
+            descripcion: tipoincidencia,
+            prioridad: "Sin asignar"
         });
 
         let fecha = fechainicio;
