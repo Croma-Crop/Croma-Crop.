@@ -256,3 +256,50 @@ form select:hover {
         padding: 20px;
     }
 }
+
+@media (min-width: 1024px){
+ 
+    #newsletter,
+    .contenedor{
+        width: 50%;
+        padding: 40px 20px;
+    }
+ 
+    .contenedorSol{
+        width: auto;
+        padding: 0;
+    }
+ 
+    #solforms{
+        width: 500px;
+    }
+ 
+    #incidencia,
+    #regSolicitud{
+        width: 300px;
+        max-width: none;
+        font-size: 18px;
+    }
+ 
+    #newsletter form,
+    .contenedor form,
+    .contenedorSol form{
+        padding: 25px;
+    }
+ 
+    .radio-grupo{
+        flex-direction: row;
+        gap: 16px;
+    }
+ 
+    #enviarinc,
+    #enviarSol{
+        width: 80%;
+    }
+ 
+    #dialogSol{
+        min-width: 300px;
+        width: auto;
+        padding: 30px;
+    }
+}

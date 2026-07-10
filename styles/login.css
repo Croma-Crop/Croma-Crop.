@@ -108,44 +108,78 @@ form input[id="password"] {
 }
 
 @media (max-width: 768px){
-
+ 
     #newsletter,
     #crearoinicar{
         width: 80%;
         padding: 30px 15px;
     }
 }
-
+ 
 @media (max-width: 576px){
-
+ 
     #newsletter,
     #crearoinicar{
         width: 100%;
         padding: 15px;
     }
-
+ 
     #newsletter form{
         padding: 20px;
     }
-
+ 
     #newsletter h1{
         text-align: center;
         font-size: 18px;
     }
-
+ 
     form input[id="cedula"],
     form input[id="pasaporte"],
     form input[id="password"]{
         width: 100%;
         padding: 13px;
     }
-
+ 
     #crear{
         width: 100%;
     }
-
+ 
     #extranjero,
     #btnCedula{
         align-self: center;
+    }
+}
+
+@media (min-width: 1024px){
+ 
+    #newsletter,
+    #crearoinicar{
+        width: 50%;
+        padding: 40px 20px;
+    }
+ 
+    #newsletter form{
+        padding: 30px;
+    }
+ 
+    #newsletter h1{
+        font-size: 20px;
+        text-align: left;
+    }
+ 
+    form input[id="cedula"],
+    form input[id="pasaporte"],
+    form input[id="password"]{
+        width: auto;
+        padding: 15px;
+    }
+ 
+    #crear{
+        width: 80%;
+    }
+ 
+    #extranjero,
+    #btnCedula{
+        align-self: flex-end;
     }
 }
