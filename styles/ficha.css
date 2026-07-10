@@ -313,3 +313,53 @@ select:hover {
         flex-direction: column;
     }
 }
+
+@media (min-width: 1024px){
+ 
+    #contenido{
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: 3em;
+        gap: 2em;
+        padding: 25px;
+        width: 90%;
+    }
+ 
+    #seccion-formulario{
+        flex: 1;
+        min-width: 280px;
+        width: auto;
+        order: 0;
+    }
+ 
+    #seccion-equipos{
+        flex: 1.4;
+        min-width: 0;
+        width: auto;
+        order: 0;
+    }
+ 
+    form{
+        padding: 25px;
+    }
+ 
+    #enviarFicha{
+        width: 80%;
+    }
+ 
+    #tablaEquipos th,
+    #tablaEquipos td{
+        padding: 12px;
+        font-size: 14px;
+    }
+ 
+    #dialogIncidencia{
+        min-width: 320px;
+        width: auto;
+        padding: 30px;
+    }
+ 
+    .dialog-acciones{
+        flex-direction: row;
+    }
+}

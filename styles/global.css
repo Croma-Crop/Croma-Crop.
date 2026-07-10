@@ -214,3 +214,68 @@ footer{
         padding-top: 10px;
     }
 }
+
+@media (min-width: 1024px){
+ 
+    header{
+        display: grid;
+        grid-template-columns: auto auto auto 1fr;
+        align-items: center;
+        gap: normal;
+        padding: 10px 30px;
+    }
+ 
+    header > a{
+        order: 0;
+        display: inline;
+        align-items: normal;
+    }
+ 
+    header h1{
+        order: 0;
+        flex: initial;
+        min-width: auto;
+        margin-left: 0.5em;
+        font-size: 25px;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+ 
+    .usuario-chip{
+        order: 0;
+        justify-self: end;
+    }
+ 
+    header .dropdown{
+        order: 0;
+    }
+ 
+    header .dropdown-menu{
+        left: auto;
+        right: auto;
+    }
+ 
+    #logo{
+        height: 50px;
+        margin-right: 10px;
+    }
+ 
+    #burguer{
+        height: 40px;
+        padding-bottom: 10px;
+    }
+ 
+    footer{
+        margin-top: 2em;
+        padding: 10px 30px 25px;
+    }
+ 
+    .footer-bottom{
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: normal;
+        padding-top: 15px;
+    }
+}

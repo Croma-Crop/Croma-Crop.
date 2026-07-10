@@ -326,3 +326,44 @@ dialog.dialogGestionarEmpleado::backdrop {
         width: 100%;
     }
 }
+
+@media (min-width: 1024px){
+ 
+    .seccionTablaEmpleados{
+        width: 90%;
+        margin: 3em;
+        padding: 25px;
+    }
+ 
+    .cajaEncabezado{
+        flex-direction: row;
+        align-items: center;
+        gap: normal;
+    }
+ 
+    .btnOperacion{
+        width: auto;
+    }
+ 
+    table{
+        min-width: auto;
+    }
+ 
+    dialog.dialogGestionarEmpleado{
+        width: 30%;
+        min-width: 420px;
+    }
+ 
+    .seccionFormulario form{
+        padding: 30px;
+    }
+ 
+    .cajaEntradaDeDatos input,
+    .cajaEntradaDeDatos select{
+        padding: 15px;
+    }
+ 
+    .seccionFormulario fieldset > button[type="submit"]{
+        width: 80%;
+    }
+}

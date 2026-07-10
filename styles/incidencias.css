@@ -208,3 +208,37 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (min-width: 1024px){
+ 
+    #seccion-listado{
+        width: 90%;
+        margin: 3em;
+        padding: 25px;
+    }
+ 
+    #listado-tickets{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+ 
+    #controles{
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+    }
+ 
+    #inptbusqueda{
+        min-width: 220px;
+        width: auto;
+    }
+ 
+    #filtros{
+        width: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+ 
+    .filtro-clase{
+        flex: initial;
+    }
+}
