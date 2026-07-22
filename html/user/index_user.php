@@ -39,18 +39,18 @@
                 <article class="tarjeta-modulo">
                     <h4>Tickets</h4>
                     <p>Registro de incidencias técnicas y seguimiento de su estado: pendiente, en proceso o resuelto.</p>
-                    <a href="/Croma/html/tickets.html">Registrar ticket</a>
+                    <a href="/Croma/html/tickets.php">Registrar ticket</a>
                 </article>
 
                 <article class="tarjeta-modulo">
                     <h4>Incidencias</h4>
                     <p>Listado de las incidencias y solicitudes de servicio creadas en el sistema.</p>
-                    <a href="/Croma/html/incidenciascreadas.html">Ver incidencias</a>
+                    <a href="/Croma/html/incidenciascreadas.php">Ver incidencias</a>
                 </article>
                 <article class="tarjeta-modulo">
                     <h4>Ficha</h4>
                     <p>Registro de ficha diaria</p>
-                    <a href="ficha.html">Registrar Ficha</a>
+                    <a href="ficha.php">Registrar Ficha</a>
                 </article>
             </section>
 
