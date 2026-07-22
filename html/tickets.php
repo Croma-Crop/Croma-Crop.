@@ -5,24 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/tickets.css">
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/tickets.css">
     <title>Tickets</title>
-    <script src="/script/permisos.js" defer></script>
-    <script src="/script/script.js" defer></script>
-    <script src="/script/tickets.js" defer></script>
+    <script src="../script/permisos.js" defer></script>
+    <script src="../script/script.js" defer></script>
+    <script src="../script/tickets.js" defer></script>
 </head>
 
 <body data-modulo="tickets">
 
     <header>
-        <a href="login.html">
-            <img src="/img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
-        </a>
-        <div class="dropdown">
-            <img src="/img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
-            <ul class="dropdown-menu"></ul>
-        </div>
+        <a href="login.php">
+             <?php include '../backend/Header.php'?>
+    </a>
+        
 
         <h1 id="titulo">Incidencias y Solicitudes</h1>
 
@@ -102,12 +99,7 @@
         </section>
     </main>
 
-    <footer>
-        <section class="footer-bottom">
-            <p>&copy; 2026 Croma Corp. Todos los derechos reservados.</p>
-            <p>ITI - DGTEP</p>
-        </section>
-    </footer>
+    <?php include '../backend/Footer.php' ?> 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

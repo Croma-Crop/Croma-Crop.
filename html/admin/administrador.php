@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/admin.css">
-    <script src="/script/permisos.js" defer></script>
-    <script src="/script/script.js" defer></script>
-    <script src="/script/admin.js" defer></script>
+  <link rel="stylesheet" href="../../styles/global.css">
+  <link rel="stylesheet" href="../../styles/admin.css">
+    <script src="../../script/permisos.js" defer></script>
+    <script src="../../script/script.js" defer></script>
+    <script src="../../script/admin.js" defer></script>
    
 </head>
 <body data-modulo="administrador">
     <header>
         <a href="login.html">
-            <img src="/img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
+            <?php include '../../backend/Header.php'?>
         </a>
-        <div class="dropdown">
-            <img src="/img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
-            <ul class="dropdown-menu"></ul>
-        </div>
+
 
         <h1 id="titulo">Administrador</h1>
     </header>
@@ -49,9 +46,9 @@
         </section>
                <dialog id="dialog" class="dialogGestionarEmpleado seccionFormulario">
             <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">
-                <img src="/img/x.svg" alt="Cerrar Menú" class="iconoMenu">
+                <img src="../../img/x.svg" alt="Cerrar Menú" class="iconoMenu">
             </button>
-            <form action="administrador.html" method="post" id="formularioGestionarEmpleado">
+            <form action="administrador.php" method="post" id="formularioGestionarEmpleado">
                 <fieldset id="fieldset">
                     <legend>Gestión de empleado</legend>
 
@@ -104,12 +101,9 @@
             </form>
         </dialog>
     </main>
-    <footer>
-        <section class="footer-bottom">
-            <p>&copy; 2026 Croma Corp. Todos los derechos reservados.</p>
-            <p>ITI - DGTEP</p>
-        </section>
-    </footer>
+    
+    <?php include '../../backend/Footer.php' ?>  
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

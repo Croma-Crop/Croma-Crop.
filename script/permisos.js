@@ -1,10 +1,10 @@
 const modulos = {
-    inventario: { etiqueta: "Inventario", ruta: "/html/inventario.html" },
-    salones: { etiqueta: "Salones", ruta: "/html/salones.html" },
-    tickets: { etiqueta: "Tickets", ruta: "/html/tickets.html" },
-    incidencias: { etiqueta: "Incidencias Creadas", ruta: "/html/incidenciascreadas.html" },
-    ficha: { etiqueta: "Ficha", ruta: "/html/user/ficha.html" },
-    administrador: { etiqueta: "Administrador", ruta: "/html/admin/administrador.html" }
+    inventario: { etiqueta: "Inventario", ruta: "/Croma/html/inventario.php" },
+    salones: { etiqueta: "Salones", ruta: "/Croma/html/salones.php" },
+    tickets: { etiqueta: "Tickets", ruta: "/Croma/html/tickets.php" },
+    incidencias: { etiqueta: "Incidencias Creadas", ruta: "/Croma/html/incidenciascreadas.php" },
+    ficha: { etiqueta: "Ficha", ruta: "/Croma/html/user/ficha.php" },
+    administrador: { etiqueta: "Administrador", ruta: "/Croma/html/admin/administrador.php" }
 };
 
 const permisos = {
@@ -19,9 +19,9 @@ const acciones = {
 };
 
 const inicioPorRol = {
-    admin: "/html/admin/index_funcionarios.html",
-    tecnico: "/html/admin/index_funcionarios.html",
-    solicitante: "/html/user/index_user.html"
+    admin: "/Croma/html/admin/index_funcionarios.php",
+    tecnico: "/Croma/html/admin/index_funcionarios.php",
+    solicitante: "/Croma/html/user/index_user.php"
 };
 
 function tienePermiso(rol, modulo) {

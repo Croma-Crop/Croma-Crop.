@@ -3,7 +3,9 @@ const moduloActual = document.body.dataset.modulo;
 
 if (moduloActual) {
     if (!usuario) {
-        window.location.replace("/html/global/login.html");
+    window.location.replace("/Croma/html/global/login.php");
+    
+
     } else if (!tienePermiso(usuario.rol, moduloActual)) {
         window.location.replace(inicioPorRol[usuario.rol]);
     } else {
@@ -61,6 +63,6 @@ function construirChip(usuario) {
     document.getElementById("btnCerrarSesion").addEventListener("click", function (e) {
         e.preventDefault();
         sessionStorage.removeItem("usuarioActivo");
-        window.location.href = "/html/global/login.html";
+        window.location.href = "/Croma/html/global/login.php";
     });
 }

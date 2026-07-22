@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGRSI - Ficha | Croma Corp</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/ficha.css">
-    <script src="/script/permisos.js" defer></script>
-    <script src="/script/script.js" defer></script>
-    <script src="/script/ficha.js" defer></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../../styles/ficha.css">
+    <script src="../../script/permisos.js" defer></script>
+    <script src="../../script/script.js" defer></script>
+    <script src="../../script/ficha.js" defer></script>
 </head>
 <body data-modulo="ficha">
     <header>
-        <a href="/html/admin/index_funcionarios.html">
-            <img src="/img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
-        </a>
-        <div class="dropdown">
-            <img src="/img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
-            <ul class="dropdown-menu"></ul>
-        </div>
+        <a href="../../html/admin/index_funcionarios.php">
+            <?php include '../../backend/Header.php'?>
+ 
+    </a>
+        
 
         <h1 id="titulo">Ficha</h1>
 
@@ -105,12 +103,7 @@
         </form>
     </dialog>
 
-    <footer>
-        <section class="footer-bottom">
-            <p>&copy; 2026 Croma Corp. Todos los derechos reservados.</p>
-            <p>ITI - DGTEP</p>
-        </section>
-    </footer>
+     <?php include '../../backend/Footer.php' ?> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
