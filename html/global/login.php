@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,29 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../../styles/login.css">
     <title>Iniciar Sesión</title>
-    <script src="/script/permisos.js" defer></script>
-    <script src="/script/script.js" defer></script>
-    <script src="/script/login.js" defer></script>
+    <script src="../../script/permisos.js" defer></script>
+    <script src="../../script/script.js" defer></script>
+    <script src="../../script/login.js" defer></script>
 
 </head>
 
 <body>
-
     <header>
-        <a href="/html/global/login.html">
-            <img src="/img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
-        </a>
-        <div class="dropdown">
-            <img src="/img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
-        </div>
-
-        <h1 id="titulo">Iniciar Sesión</h1>
-    </header>
-
-    <main>
+<?php include '../../backend/Header.php'?>   
+</header>    
+<main>
         <section id="newsletter">
             <form id="formularioNewsletter">
                 <h1>Datos personales</h1>
@@ -51,12 +43,7 @@
         </section>
     </main>
 
-    <footer>
-        <section class="footer-bottom">
-            <p>&copy; 2026 Croma Corp. Todos los derechos reservados.</p>
-            <p>ITI - DGTEP</p>
-        </section>
-    </footer>
+<?php include '../../backend/Footer.php'  ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

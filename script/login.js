@@ -49,7 +49,8 @@ extranjero.addEventListener("click", function(e){
         const contenedor = document.getElementById("campo-documento");
         contenedor.innerHTML = `
             <label for="cedula">Cedula</label>
-            <input type="text" id="cedula" name="cedula" placeholder="Ingresá tu cedula" required>
+            <input type="text" id="cedula" name="cedula" placeholder="Ingresá tu cedula" pattern="[A-Za-z][0-9]{7}"
+          maxlength="8" required>
             <p id="mensaje" class="mensaje-error"></p>
         `;
         campoboton.innerHTML = "";
@@ -98,8 +99,8 @@ formulario.addEventListener("submit", function(e) {
 
    
     if (empleado.rol === "admin" || empleado.rol === "tecnico") {
-        window.location.href = "../../html/admin/index_funcionarios.html";
+        window.location.href = "../../html/admin/index_funcionarios.php";
     } else {
-        window.location.href = "../../html/user/index_user.html";
+        window.location.href = "../../html/user/index_user.php";
     }
 });
