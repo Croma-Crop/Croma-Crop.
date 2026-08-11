@@ -97,9 +97,5 @@ formulario.addEventListener("submit", function(e) {
         nombre: empleado.nombre, apellido: empleado.apellido, rol: empleado.rol}));
 
    
-    if (empleado.rol === "admin" || empleado.rol === "tecnico") {
-        window.location.href = "../../html/admin/index_funcionarios.html";
-    } else {
-        window.location.href = "../../html/user/index_user.html";
-    }
+    window.location.href = inicioPorRol[empleado.rol];
 });

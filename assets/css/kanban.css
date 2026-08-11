@@ -4,19 +4,19 @@
     font-weight: bold;
 }
 
-#seccion-listado {
+#seccion-tablero {
     background-color: #e8ecef;
     padding: 25px;
     border-radius: 10px;
     margin: 3em;
     width: 90%;
     border: 1px solid rgba(0, 0, 0, 0.158);
-    transition: 0.5s;
 }
 
-#seccion-listado:hover {
-    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
-    transform: translateY(-2px);
+.ayuda-tablero {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 #controles {
@@ -50,7 +50,6 @@
 .filtro-clase {
     padding: 9px 18px;
     font-weight: bold;
-    border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
@@ -69,26 +68,87 @@
     color: #ffffff;
 }
 
-#listado-tickets {
+.tablero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    align-items: start;
+}
+
+.columna-kanban {
+    background-color: #f4f6f7;
+    border: 1px solid #ddd;
+    border-top: 4px solid #30364F;
+    border-radius: 8px;
+    padding: 12px;
+    transition: 0.3s;
+}
+
+.columna-kanban[data-estado="Pendiente"] {
+    border-top-color: #e67e22;
+}
+
+.columna-kanban[data-estado="En proceso"] {
+    border-top-color: #2980b9;
+}
+
+.columna-kanban[data-estado="Resuelto"] {
+    border-top-color: #27ae60;
+}
+
+.columna-activa {
+    background-color: #dfe6e9;
+    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
+}
+
+.cabecera-columna {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.cabecera-columna h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #30364F;
+}
+
+.contador-kanban {
+    background-color: #30364F;
+    color: #F0F0DB;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 2px 10px;
+    border-radius: 49px;
+}
+
+.lista-kanban {
     list-style: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 1em;
-}
-
-.tarjeta-ticket {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 4px;
-    transition: 0.3s ;
+    margin: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.8em;
+    min-height: 120px;
 }
 
-.tarjeta-ticket:hover {
+.tarjeta-kanban {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    cursor: grab;
+    transition: 0.3s;
+}
+
+.tarjeta-kanban:hover {
     box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
+}
+
+.arrastrando {
+    opacity: 0.5;
+    cursor: grabbing;
 }
 
 .tarjeta-clase {
@@ -116,59 +176,51 @@
     margin-top: 5px;
 }
 
+.tarjeta-gravedad,
+.tarjeta-prioridad {
+    margin-top: 6px;
+    font-weight: bold;
+}
+
 .tarjeta-descripcion {
     margin-top: 8px;
     padding-top: 8px;
     border-top: 1px solid #eee;
 }
 
-.tarjeta-prioridad {
-    margin-top: 6px;
+.campo-kanban {
+    display: block;
+    margin-top: 10px;
     font-weight: bold;
+    font-size: 14px;
 }
 
-.select-prioridad {
-    margin-left: 6px;
-    padding: 3px 6px;
+.campo-kanban select {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 5px 6px;
     border: 1px solid #ccc;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
 }
 
-.sin-resultados {
+.sin-tarjetas {
     color: #777;
     font-style: italic;
-}
-
-.boton-eliminar-ticket {
-    margin-top: auto;
-    width: 100%;
-    padding: 9px 0;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    color: #F0F0DB;
-    background-color: #e74c3c;
-}
-
-.boton-eliminar-ticket:hover {
-    background-color: #c0392b;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    font-size: 14px;
 }
 
 @media (max-width: 768px){
 
-    #seccion-listado{
+    #seccion-tablero{
         width: 95%;
         margin: 2em auto;
     }
 
-    #listado-tickets{
-        grid-template-columns: 1fr 1fr;
+    .tablero{
+        grid-template-columns: 1fr;
     }
 
     #controles{
@@ -178,7 +230,7 @@
 
 @media (max-width: 576px){
 
-    #seccion-listado{
+    #seccion-tablero{
         width: 95%;
         margin: 1em auto;
         padding: 18px;
@@ -203,41 +255,37 @@
     .filtro-clase{
         flex: 1;
     }
-
-    #listado-tickets{
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (min-width: 1024px){
- 
-    #seccion-listado{
+
+    #seccion-tablero{
         width: 90%;
         margin: 3em;
         padding: 25px;
     }
- 
-    #listado-tickets{
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    .tablero{
+        grid-template-columns: 1fr 1fr 1fr;
     }
- 
+
     #controles{
         flex-direction: row;
         align-items: center;
         gap: 1em;
     }
- 
+
     #inptbusqueda{
         min-width: 220px;
         width: auto;
     }
- 
+
     #filtros{
         width: auto;
         flex-wrap: nowrap;
         justify-content: flex-start;
     }
- 
+
     .filtro-clase{
         flex: initial;
     }

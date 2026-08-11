@@ -2,7 +2,7 @@
 const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
 
 if (!usuarioActivo) {
-    window.location.replace("/html/global/login.html");
+    window.location.replace("/index.html");
 } else {
     iniciarPagina();
 }
