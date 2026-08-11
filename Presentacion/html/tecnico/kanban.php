@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero Kanban</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/kanban.css">
+    <script src="../../js/permisos.js" defer></script>
+    <script src="../../js/script.js" defer></script>
+    <script src="../../js/clasificacion.js" defer></script>
+    <script src="../../js/kanban.js" defer></script>
+
+</head>
+<body data-modulo="kanban">
+    <header>
+       
+
+        <h1 id="titulo">Tablero Kanban</h1>
+<?php include '../../globales/Header.php'?>
+    </header>
+    <main>
+        <section id="seccion-tablero">
+            <h3 class="titulo-seccion">Asignación y seguimiento de tickets</h3>
+            <p class="ayuda-tablero">Abrí una tarjeta con "Ver más" para tomar la tarea y clasificar su gravedad. Para cambiar el estado, arrastrá la tarjeta a otra columna o usá el selector de la tarjeta.</p>
+
+            <div id="controles">
+                <input id="inptbusqueda" name="inptbusqueda" placeholder="Buscar por profesor, tipo o descripción...">
+                <div id="filtros">
+                    <button type="button" class="filtro-clase activo" data-clase="Todos">Todos</button>
+                    <button type="button" class="filtro-clase" data-clase="Incidencia">Incidencias</button>
+                    <button type="button" class="filtro-clase" data-clase="Solicitud">Solicitudes</button>
+                </div>
+            </div>
+
+            <div class="tablero">
+
+                <section class="columna-kanban" data-estado="Pendiente">
+                    <div class="cabecera-columna">
+                        <h4>Pendiente</h4>
+                        <span class="contador-kanban" data-estado="Pendiente">0</span>
+                    </div>
+                    <ul class="lista-kanban" data-estado="Pendiente"></ul>
+                </section>
+
+                <section class="columna-kanban" data-estado="En proceso">
+                    <div class="cabecera-columna">
+                        <h4>En proceso</h4>
+                        <span class="contador-kanban" data-estado="En proceso">0</span>
+                    </div>
+                    <ul class="lista-kanban" data-estado="En proceso"></ul>
+                </section>
+
+                <section class="columna-kanban" data-estado="Resuelto">
+                    <div class="cabecera-columna">
+                        <h4>Resuelto</h4>
+                        <span class="contador-kanban" data-estado="Resuelto">0</span>
+                    </div>
+                    <ul class="lista-kanban" data-estado="Resuelto"></ul>
+                </section>
+
+            </div>
+        </section>
+    </main>
+<?php include '../../globales/Footer.php' ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

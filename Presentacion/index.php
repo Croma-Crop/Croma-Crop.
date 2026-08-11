@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,24 +8,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../styles/global.css">
-    <link rel="stylesheet" href="../../styles/login.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
     <title>Iniciar Sesión</title>
-    <script src="../../script/permisos.js" defer></script>
-    <script src="../../script/script.js" defer></script>
-    <script src="../../script/login.js" defer></script>
+    <script src="js/login.js" defer></script>
 
 </head>
 
 <body>
     <header>
-<?php include '../../backend/Header.php'?>   
+        <a href="/html/global/login.php">
+            <img src="img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
+        </a>
+        
+        <div class="dropdown">
+            <img src="img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
+            <ul class="dropdown-menu"></ul>
+        </div>
+
+
 </header>    
 <main>
         <section id="newsletter">
-            <form id="formularioNewsletter">
+            <form id="formularioNewsletter" method="post" action="../Procesos/backend/procesologin.php">
                 <h1>Datos personales</h1>
 
+                <?php if (isset($_SESSION["error"])): ?>
+                <p class="mensaje-error"><?= htmlspecialchars($_SESSION["error"]) ?></p>
+                <?php unset($_SESSION["error"]); ?>
+            <?php endif; ?>
+            
                 <section id="campo-documento">
                     <label for="cedula">Cedula</label>
                     <input type="text" id="cedula" name="cedula" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}" required pattern="[1-9][0-9]{7}" maxlength="8" required >
@@ -43,7 +57,7 @@
         </section>
     </main>
 
-<?php include '../../backend/Footer.php'  ?>
+<?php include 'globales/Footer.php'  ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

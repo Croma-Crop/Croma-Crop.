@@ -1,11 +1,4 @@
-
-const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
-
-if (!usuarioActivo) {
-    window.location.replace("/html/global/login.html");
-} else {
-    iniciarPagina();
-}
+iniciarPagina();
 
 function iniciarPagina() {
     const btnIncidencia = document.querySelector("#incidencia");
@@ -14,7 +7,7 @@ function iniciarPagina() {
     const contenedor = document.querySelector(".contenedor");
     const contenedorSol = document.querySelector(".contenedorSol");
 
-    const nombreCompleto = usuarioActivo.nombre + " " + usuarioActivo.apellido;
+ 
 
     contenedor.classList.add("mostrar");
     contenedorSol.classList.add("mostrar");
