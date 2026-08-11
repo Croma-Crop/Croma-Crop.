@@ -113,13 +113,83 @@ header nav a:hover {
     transform: translateY(-2px);
 }
 
-.etiqueta-gravedad {
+.fila-tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.etiqueta-clase {
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.etiqueta-incidencia {
+    color: #ee1313;
+}
+
+.etiqueta-solicitud {
+    color: #30364F;
+}
+
+.etiqueta-gravedad,
+.etiqueta-estado {
     display: inline-block;
     padding: 2px 10px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.estado-pendiente {
+    background-color: #e67e22;
+    color: #F0F0DB;
+}
+
+.estado-en-proceso {
+    background-color: #2980b9;
+    color: #F0F0DB;
+}
+
+.estado-resuelto {
+    background-color: #27ae60;
+    color: #F0F0DB;
+}
+
+.boton-detalle {
+    width: 100%;
+    margin-top: 10px;
+    padding: 6px 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #30364F;
+    background-color: white;
+    border: 1px solid #30364F;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.boton-detalle:hover {
+    background-color: #30364F;
+    color: #F0F0DB;
+}
+
+.detalle-ticket {
+    display: none;
+}
+
+.detalle-ticket.mostrar {
+    display: block;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
 .gravedad-sin-clasificar {

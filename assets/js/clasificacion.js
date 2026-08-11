@@ -10,8 +10,18 @@ const clasesGravedad = {
     "Crítica": "gravedad-critica"
 };
 
+const clasesEstado = {
+    "Pendiente": "estado-pendiente",
+    "En proceso": "estado-en-proceso",
+    "Resuelto": "estado-resuelto"
+};
+
 function claseDeGravedad(gravedad) {
     return clasesGravedad[gravedad] || "gravedad-sin-clasificar";
+}
+
+function claseDeEstado(estado) {
+    return clasesEstado[estado] || "estado-pendiente";
 }
 
 function construirOpciones(lista, valorActual) {
@@ -26,4 +36,19 @@ function construirOpciones(lista, valorActual) {
     });
 
     return html;
+}
+
+function activarDetalles() {
+    document.querySelectorAll(".boton-detalle").forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            const detalle = boton.nextElementSibling;
+            detalle.classList.toggle("mostrar");
+
+            if (detalle.classList.contains("mostrar")) {
+                boton.textContent = "Ver menos";
+            } else {
+                boton.textContent = "Ver más";
+            }
+        });
+    });
 }

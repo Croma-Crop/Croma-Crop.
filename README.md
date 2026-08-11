@@ -32,12 +32,19 @@ Scripts compartidos por todas las páginas:
 
 - `assets/js/permisos.js` — módulos del sistema, permisos por rol, acciones e inicio de cada rol.
 - `assets/js/script.js` — valida la sesión, arma el menú hamburguesa y el chip de usuario.
-- `assets/js/clasificacion.js` — gravedades, estados y armado de `<option>` para los selectores.
+- `assets/js/clasificacion.js` — lo compartido por las tarjetas de tickets: gravedades, estados, sus colores, el armado de `<option>` y el botón "Ver más".
+
+## Circuito de un ticket
+
+El docente registra la incidencia o la solicitud en **Tickets**; nace en estado `Pendiente` y sin asignar.
+El técnico entra al **Tablero Kanban**, toma la tarea, le determina la **gravedad** y la mueve entre
+`Pendiente`, `En proceso` y `Resuelto`. En **Incidencias** cualquiera consulta ese avance: gravedad,
+estado y técnico asignado quedan a la vista, pero solo se editan desde el tablero.
 
 ## Roles
 
 | Rol | Inicio | Puede |
 |---|---|---|
-| `admin` | `/pages/admin/index_admin.html` | Todos los módulos, incluida la gestión de empleados |
-| `tecnico` | `/pages/tecnico/index_tecnico.html` | Inventario, tickets, incidencias y el tablero kanban; clasifica gravedad y prioridad |
+| `admin` | `/pages/admin/index_admin.html` | Inventario, salones, tickets, incidencias, ficha y la gestión de empleados |
+| `tecnico` | `/pages/tecnico/index_tecnico.html` | Inventario, tickets, incidencias y el tablero kanban, donde toma las tareas y les determina la gravedad |
 | `solicitante` | `/pages/usuario/index_usuario.html` | Registrar tickets, ver incidencias y su ficha |
