@@ -2,6 +2,7 @@ const incidencias = JSON.parse(localStorage.getItem("incidencias")) || [];
 const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
 const puedeEliminar = puedeHacer("eliminarTickets", usuario?.rol);
 const puedeAsignarPrioridad = puedeHacer("asignarPrioridad", usuario?.rol);
+const puedeAsignarGravedad = puedeHacer("asignarGravedad", usuario?.rol);
 const prioridades = ["Sin asignar", "Baja", "Media", "Alta"];
 
 let tickets = [];
@@ -56,18 +57,26 @@ function renderizarTickets(lista) {
                 html += "<p>Hora salida: " + ticket.horaSalida + "</p>";
             }
 
+            const gravedad = ticket.gravedad || "Sin clasificar";
+
+            if (puedeAsignarGravedad) {
+                html += "<label class='tarjeta-gravedad'>Gravedad: ";
+                html += "<select class='select-gravedad " + claseDeGravedad(gravedad) + "' data-indice='" + indiceReal + "'>";
+                html += construirOpciones(gravedades, gravedad);
+                html += "</select>";
+                html += "</label>";
+            } else {
+                html += "<p class='tarjeta-gravedad'>Gravedad: ";
+                html += "<span class='etiqueta-gravedad " + claseDeGravedad(gravedad) + "'>" + gravedad + "</span>";
+                html += "</p>";
+            }
+
             const prioridad = ticket.prioridad || "Sin asignar";
 
             if (puedeAsignarPrioridad) {
                 html += "<label class='tarjeta-prioridad'>Prioridad: ";
                 html += "<select class='select-prioridad' data-indice='" + indiceReal + "'>";
-                prioridades.forEach(function (opcion) {
-                    let seleccionada = "";
-                    if (opcion === prioridad) {
-                        seleccionada = " selected";
-                    }
-                    html += "<option value='" + opcion + "'" + seleccionada + ">" + opcion + "</option>";
-                });
+                html += construirOpciones(prioridades, prioridad);
                 html += "</select>";
                 html += "</label>";
             } else {
@@ -87,6 +96,15 @@ function renderizarTickets(lista) {
     });
 
     contenedor.innerHTML = html;
+
+    document.querySelectorAll(".select-gravedad").forEach(function (select) {
+        select.addEventListener("change", function () {
+            const i = Number(select.dataset.indice);
+            incidencias[i].gravedad = select.value;
+            localStorage.setItem("incidencias", JSON.stringify(incidencias));
+            filtrarTickets();
+        });
+    });
 
     document.querySelectorAll(".select-prioridad").forEach(function (select) {
         select.addEventListener("change", function () {

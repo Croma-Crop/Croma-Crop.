@@ -113,6 +113,40 @@ header nav a:hover {
     transform: translateY(-2px);
 }
 
+.etiqueta-gravedad {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.gravedad-sin-clasificar {
+    background-color: #7a7a7a;
+    color: #F0F0DB;
+}
+
+.gravedad-leve {
+    background-color: #27ae60;
+    color: #F0F0DB;
+}
+
+.gravedad-moderada {
+    background-color: #e67e22;
+    color: #F0F0DB;
+}
+
+.gravedad-grave {
+    background-color: #e74c3c;
+    color: #F0F0DB;
+}
+
+.gravedad-critica {
+    background-color: #922b21;
+    color: #F0F0DB;
+}
+
 footer{
     height: auto;
     width: 100%;
