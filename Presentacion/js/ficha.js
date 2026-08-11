@@ -1,8 +1,8 @@
 
-const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
+const usuarioActivo = true;
 
 if (!usuarioActivo) {
-    window.location.replace("/html/global/login.html");
+    window.location.replace("js/index.php");
 } else {
     iniciarPagina();
 }

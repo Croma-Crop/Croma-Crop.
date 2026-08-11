@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGRSI - Ficha | Croma Corp</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../styles/global.css">
-    <link rel="stylesheet" href="../../styles/ficha.css">
-    <script src="../../script/permisos.js" defer></script>
-    <script src="../../script/script.js" defer></script>
-    <script src="../../script/ficha.js" defer></script>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/ficha.css">
+    <script src="../../js/ficha.js" defer></script>
 </head>
 <body data-modulo="ficha">
     <header>
-        <a href="../../html/admin/index_funcionarios.php">
-            <?php include '../../backend/Header.php'?>
+        <h1 id="titulo">Ficha</h1>
+            <?php include '../../globales/Header.php'?>
  
-    </a>
+    
         
 
-        <h1 id="titulo">Ficha</h1>
+        
 
     </header>
     <main>
@@ -103,7 +101,7 @@
         </form>
     </dialog>
 
-     <?php include '../../backend/Footer.php' ?> 
+     <?php include '../../globales/Footer.php' ?> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

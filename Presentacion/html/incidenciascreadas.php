@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incidencias Creadas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/incidencias.css">
-    <script src="../script/permisos.js" defer></script>
-    <script src="../script/script.js" defer></script>
-    <script src="../script/incidencias.js" defer></script>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/incidencias.css">
+    <script src="../js/incidencias.js" defer></script>
    
 </head>
 <body data-modulo="incidencias">
     <header>
-        <a href="incidenciascreadas.php">
-    <?php include '../backend/Header.php'?>         
-    </a>
-       
+       <h1 id="titulo">Incidencias creadas</h1>
+        <?php require_once '../globales/Header.php'?>
 
-        <h1 id="titulo">Incidencias creadas</h1>
+       
 
     </header>
     <main>
@@ -36,7 +32,7 @@
             <ul id="listado-tickets"></ul>
         </section>
     </main>
-    <?php include '../backend/Footer.php' ?>
+    <?php include '../globales/Footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
