@@ -1,9 +1,6 @@
 const incidencias = JSON.parse(localStorage.getItem("incidencias")) || [];
 const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
 const puedeEliminar = puedeHacer("eliminarTickets", usuario?.rol);
-const puedeAsignarPrioridad = puedeHacer("asignarPrioridad", usuario?.rol);
-const puedeAsignarGravedad = puedeHacer("asignarGravedad", usuario?.rol);
-const prioridades = ["Sin asignar", "Baja", "Media", "Alta"];
 
 let tickets = [];
 
@@ -40,10 +37,31 @@ function renderizarTickets(lista) {
             indiceReal = solicitudes.indexOf(ticket);
         }
 
+        const estado = ticket.estado || "Pendiente";
+        const asignado = ticket.asignado || "Sin asignar";
+
         html += "<li class='tarjeta-ticket'>";
-        html += "<p class='tarjeta-clase tarjeta-" + ticket.clase.toLowerCase() + "'>" + ticket.clase + "</p>";
+
+        html += "<div class='fila-tarjeta'>";
+        html += "<span class='etiqueta-clase etiqueta-" + ticket.clase.toLowerCase() + "'>" + ticket.clase + "</span>";
+        html += "<span class='etiqueta-estado " + claseDeEstado(estado) + "'>" + estado + "</span>";
+        html += "</div>";
+
         html += "<p class='tarjeta-nombre'>" + ticket.nombreProf + "</p>";
-        html += "<p class='tarjeta-tipo'>Tipo: " + ticket.tipo + "</p>";
+        html += "<p class='tarjeta-tipo'>" + ticket.tipo + "</p>";
+
+        if (ticket.clase === "Incidencia") {
+            const gravedad = ticket.gravedad || "Sin clasificar";
+            html += "<p class='tarjeta-gravedad'>Gravedad: ";
+            html += "<span class='etiqueta-gravedad " + claseDeGravedad(gravedad) + "'>" + gravedad + "</span>";
+            html += "</p>";
+        }
+
+        html += "<p class='tarjeta-asignado'>Técnico: " + asignado + "</p>";
+
+        html += "<button type='button' class='boton-detalle'>Ver más</button>";
+
+        html += "<div class='detalle-ticket'>";
 
         if (ticket.clase === "Incidencia") {
             html += "<p>Fecha inicio: " + ticket.fechaInicio + "</p>";
@@ -56,32 +74,6 @@ function renderizarTickets(lista) {
             if (ticket.horaSalida) {
                 html += "<p>Hora salida: " + ticket.horaSalida + "</p>";
             }
-
-            const gravedad = ticket.gravedad || "Sin clasificar";
-
-            if (puedeAsignarGravedad) {
-                html += "<label class='tarjeta-gravedad'>Gravedad: ";
-                html += "<select class='select-gravedad " + claseDeGravedad(gravedad) + "' data-indice='" + indiceReal + "'>";
-                html += construirOpciones(gravedades, gravedad);
-                html += "</select>";
-                html += "</label>";
-            } else {
-                html += "<p class='tarjeta-gravedad'>Gravedad: ";
-                html += "<span class='etiqueta-gravedad " + claseDeGravedad(gravedad) + "'>" + gravedad + "</span>";
-                html += "</p>";
-            }
-
-            const prioridad = ticket.prioridad || "Sin asignar";
-
-            if (puedeAsignarPrioridad) {
-                html += "<label class='tarjeta-prioridad'>Prioridad: ";
-                html += "<select class='select-prioridad' data-indice='" + indiceReal + "'>";
-                html += construirOpciones(prioridades, prioridad);
-                html += "</select>";
-                html += "</label>";
-            } else {
-                html += "<p class='tarjeta-prioridad'>Prioridad: " + prioridad + "</p>";
-            }
         }
 
         if (ticket.clase === "Solicitud" && ticket.salon) {
@@ -89,30 +81,18 @@ function renderizarTickets(lista) {
         }
 
         html += "<p class='tarjeta-descripcion'>" + ticket.descripcion + "</p>";
+        html += "</div>";
+
         if (puedeEliminar) {
             html += "<button class='boton-eliminar-ticket' data-clase='" + ticket.clase + "' data-indice='" + indiceReal + "'>Eliminar</button>";
         }
+
         html += "</li>";
     });
 
     contenedor.innerHTML = html;
 
-    document.querySelectorAll(".select-gravedad").forEach(function (select) {
-        select.addEventListener("change", function () {
-            const i = Number(select.dataset.indice);
-            incidencias[i].gravedad = select.value;
-            localStorage.setItem("incidencias", JSON.stringify(incidencias));
-            filtrarTickets();
-        });
-    });
-
-    document.querySelectorAll(".select-prioridad").forEach(function (select) {
-        select.addEventListener("change", function () {
-            const i = Number(select.dataset.indice);
-            incidencias[i].prioridad = select.value;
-            localStorage.setItem("incidencias", JSON.stringify(incidencias));
-        });
-    });
+    activarDetalles();
 
     document.querySelectorAll(".boton-eliminar-ticket").forEach(function (boton) {
         boton.addEventListener("click", function () {

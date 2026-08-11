@@ -1,6 +1,7 @@
 const incidencias = JSON.parse(localStorage.getItem("incidencias")) || [];
 const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
 const empleados = JSON.parse(localStorage.getItem("empleados")) || [];
+const puedeClasificar = puedeHacer("asignarGravedad", usuario?.rol);
 
 const cuadroDeBusqueda = document.querySelector("#inptbusqueda");
 const botonesFiltro = document.querySelectorAll(".filtro-clase");
@@ -9,6 +10,11 @@ const columnas = document.querySelectorAll(".columna-kanban");
 let claseActiva = "Todos";
 let tarjetaArrastrada = null;
 let tickets = [];
+
+let nombreCompleto = "";
+if (usuario) {
+    nombreCompleto = usuario.nombre + " " + usuario.apellido;
+}
 
 const tecnicos = ["Sin asignar"];
 empleados.forEach(function (empleado) {
@@ -35,6 +41,9 @@ function construirTickets() {
         }
         if (!ticket.asignado) {
             ticket.asignado = "Sin asignar";
+        }
+        if (ticket.clase === "Incidencia" && !ticket.gravedad) {
+            ticket.gravedad = "Sin clasificar";
         }
     });
 }
@@ -70,40 +79,63 @@ function seMuestra(ticket, texto) {
 
 function construirTarjeta(ticket) {
     const indice = obtenerIndice(ticket);
+    const datos = "data-clase='" + ticket.clase + "' data-indice='" + indice + "'";
 
-    let html = "<li class='tarjeta-kanban' draggable='true' data-clase='" + ticket.clase + "' data-indice='" + indice + "'>";
-    html += "<p class='tarjeta-clase tarjeta-" + ticket.clase.toLowerCase() + "'>" + ticket.clase + "</p>";
-    html += "<p class='tarjeta-nombre'>" + ticket.nombreProf + "</p>";
-    html += "<p class='tarjeta-tipo'>Tipo: " + ticket.tipo + "</p>";
+    let html = "<li class='tarjeta-kanban' draggable='true' " + datos + ">";
 
-    if (ticket.salon) {
-        html += "<p>Salón: " + ticket.salon + "</p>";
+    html += "<div class='fila-tarjeta'>";
+    html += "<span class='etiqueta-clase etiqueta-" + ticket.clase.toLowerCase() + "'>" + ticket.clase + "</span>";
+    if (ticket.clase === "Incidencia") {
+        html += "<span class='etiqueta-gravedad " + claseDeGravedad(ticket.gravedad) + "'>" + ticket.gravedad + "</span>";
     }
+    html += "</div>";
+
+    html += "<p class='tarjeta-nombre'>" + ticket.nombreProf + "</p>";
+    html += "<p class='tarjeta-tipo'>" + ticket.tipo + "</p>";
+    html += "<p class='tarjeta-asignado'>Técnico: " + ticket.asignado + "</p>";
+
+    html += "<button type='button' class='boton-detalle'>Ver más</button>";
+
+    html += "<div class='detalle-ticket'>";
 
     if (ticket.clase === "Incidencia") {
-        const gravedad = ticket.gravedad || "Sin clasificar";
-        const prioridad = ticket.prioridad || "Sin asignar";
-
-        html += "<p class='tarjeta-gravedad'>Gravedad: ";
-        html += "<span class='etiqueta-gravedad " + claseDeGravedad(gravedad) + "'>" + gravedad + "</span>";
-        html += "</p>";
-        html += "<p class='tarjeta-prioridad'>Prioridad: " + prioridad + "</p>";
+        html += "<p>Fecha inicio: " + ticket.fechaInicio + "</p>";
+        html += "<p>Salón: " + ticket.salon + "</p>";
+        html += "<p>Serie: " + ticket.serie + "</p>";
+        html += "<p>Turno: " + ticket.turno + "</p>";
+    } else if (ticket.salon) {
+        html += "<p>Salón: " + ticket.salon + "</p>";
     }
 
     html += "<p class='tarjeta-descripcion'>" + ticket.descripcion + "</p>";
 
-    html += "<label class='campo-kanban'>Técnico asignado";
-    html += "<select class='select-tecnico' data-clase='" + ticket.clase + "' data-indice='" + indice + "'>";
-    html += construirOpciones(tecnicos, ticket.asignado);
-    html += "</select>";
-    html += "</label>";
+    if (puedeClasificar) {
+        if (ticket.asignado !== nombreCompleto) {
+            html += "<button type='button' class='boton-tomar' " + datos + ">Tomar la tarea</button>";
+        }
 
-    html += "<label class='campo-kanban'>Estado";
-    html += "<select class='select-estado' data-clase='" + ticket.clase + "' data-indice='" + indice + "'>";
-    html += construirOpciones(estados, ticket.estado);
-    html += "</select>";
-    html += "</label>";
+        html += "<label class='campo-kanban'>Técnico asignado";
+        html += "<select class='select-tecnico' " + datos + ">";
+        html += construirOpciones(tecnicos, ticket.asignado);
+        html += "</select>";
+        html += "</label>";
 
+        if (ticket.clase === "Incidencia") {
+            html += "<label class='campo-kanban'>Gravedad";
+            html += "<select class='select-gravedad' " + datos + ">";
+            html += construirOpciones(gravedades, ticket.gravedad);
+            html += "</select>";
+            html += "</label>";
+        }
+
+        html += "<label class='campo-kanban'>Estado";
+        html += "<select class='select-estado' " + datos + ">";
+        html += construirOpciones(estados, ticket.estado);
+        html += "</select>";
+        html += "</label>";
+    }
+
+    html += "</div>";
     html += "</li>";
     return html;
 }
@@ -133,6 +165,7 @@ function renderizarTablero() {
         contador.textContent = cantidad;
     });
 
+    activarDetalles();
     activarTarjetas();
 }
 
@@ -142,12 +175,42 @@ function moverTicket(clase, indice, estado) {
     renderizarTablero();
 }
 
+function asignarTecnico(tarjeta, ticket, tecnico) {
+    ticket.asignado = tecnico;
+    guardarTickets();
+    tarjeta.querySelector(".tarjeta-asignado").textContent = "Técnico: " + tecnico;
+}
+
 function activarTarjetas() {
+    document.querySelectorAll(".boton-tomar").forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            const tarjeta = boton.closest(".tarjeta-kanban");
+            const ticket = obtenerTicket(boton.dataset.clase, Number(boton.dataset.indice));
+
+            asignarTecnico(tarjeta, ticket, nombreCompleto);
+            tarjeta.querySelector(".select-tecnico").value = nombreCompleto;
+            boton.remove();
+        });
+    });
+
     document.querySelectorAll(".select-tecnico").forEach(function (select) {
         select.addEventListener("change", function () {
+            const tarjeta = select.closest(".tarjeta-kanban");
             const ticket = obtenerTicket(select.dataset.clase, Number(select.dataset.indice));
-            ticket.asignado = select.value;
+
+            asignarTecnico(tarjeta, ticket, select.value);
+        });
+    });
+
+    document.querySelectorAll(".select-gravedad").forEach(function (select) {
+        select.addEventListener("change", function () {
+            const ticket = obtenerTicket(select.dataset.clase, Number(select.dataset.indice));
+            ticket.gravedad = select.value;
             guardarTickets();
+
+            const etiqueta = select.closest(".tarjeta-kanban").querySelector(".etiqueta-gravedad");
+            etiqueta.textContent = select.value;
+            etiqueta.className = "etiqueta-gravedad " + claseDeGravedad(select.value);
         });
     });
 

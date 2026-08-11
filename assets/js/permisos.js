@@ -9,14 +9,13 @@ const modulos = {
 };
 
 const permisos = {
-    admin: ["inicio-admin", "inventario", "salones", "tickets", "incidencias", "kanban", "ficha", "administrador"],
+    admin: ["inicio-admin", "inventario", "salones", "tickets", "incidencias", "ficha", "administrador"],
     tecnico: ["inicio-tecnico", "inventario", "tickets", "incidencias", "kanban"],
     solicitante: ["inicio-usuario", "tickets", "incidencias", "ficha"]
 };
 
 const acciones = {
     eliminarTickets: ["admin", "tecnico"],
-    asignarPrioridad: ["tecnico"],
     asignarGravedad: ["tecnico"]
 };
 

@@ -91,21 +91,6 @@
     box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
 }
 
-.tarjeta-clase {
-    font-weight: bold;
-    font-size: 15px;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-}
-
-.tarjeta-incidencia {
-    color: #ee1313;
-}
-
-.tarjeta-solicitud {
-    color: #30364F;
-}
-
 .tarjeta-nombre {
     font-weight: bold;
     font-size: 16px;
@@ -113,35 +98,22 @@
 
 .tarjeta-tipo {
     color: #27ae60;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 .tarjeta-descripcion {
     margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #eee;
 }
 
-.tarjeta-prioridad,
 .tarjeta-gravedad {
-    display: block;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.tarjeta-asignado {
     margin-top: 6px;
-    font-weight: bold;
-}
-
-.select-prioridad,
-.select-gravedad {
-    margin-left: 6px;
-    padding: 3px 6px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.select-gravedad option {
-    background-color: white;
-    color: #30364F;
+    font-size: 14px;
+    color: #555;
 }
 
 .sin-resultados {

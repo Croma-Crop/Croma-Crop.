@@ -111,7 +111,9 @@ function iniciarPagina() {
             turno: turno,
             tipo: tipo,
             descripcion: tipoincidencia,
-            prioridad: "Sin asignar"
+            gravedad: "Sin clasificar",
+            estado: "Pendiente",
+            asignado: "Sin asignar"
         });
 
         let fecha = fechainicio;
@@ -160,7 +162,9 @@ function iniciarPagina() {
             nombreProf: nombreCompleto,
             tipo: tipoSol,
             salon: salonSol,
-            descripcion: descripcionSol
+            descripcion: descripcionSol,
+            estado: "Pendiente",
+            asignado: "Sin asignar"
         });
 
         const form = document.querySelector("#solforms");
