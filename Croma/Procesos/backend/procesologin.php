@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $empleados = [
     ["cedula" => "11111111", "nombre" => "Admin", "apellido" => "Prueba", "rol" => "admin", "contrasena" => "fafealmo"],
     ["cedula" => "22222222", "nombre" => "Tecnico", "apellido" => "Prueba", "rol" => "tecnico", "contrasena" => "fafealmo"],
@@ -35,8 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
    if (!$empleado) {
+    $scriptPath = $_SERVER['SCRIPT_NAME'];
+$posicion = strpos($scriptPath, '/Presentacion/');
+$BASE_URL = substr($scriptPath, 0, $posicion);
     $_SESSION["error"] = $mensaje;
-    header("Location: /Croma/Presentacion/index.php");
+    header("Location: ../../Presentacion/index.php");
     exit;
 } else {
     $_SESSION["usuarioActivo"] = [
@@ -53,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../../Presentacion/html/tecnico/index_tecnico.php");
             exit;
          } else{
-            if ($empleado['rol'] === "usuario") {
+            if ($empleado['rol'] === "solicitante") {
         header("Location: ../../Presentacion/html/usuario/index_user.php");
         exit;
          }
