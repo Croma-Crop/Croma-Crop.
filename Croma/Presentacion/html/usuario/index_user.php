@@ -1,3 +1,11 @@
+<?php
+
+
+$scriptPath = $_SERVER['SCRIPT_NAME'];
+$posicion = strpos($scriptPath, '/Presentacion/');
+$BASE_URL = substr($scriptPath, 0, $posicion);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGRSI - Inicio | Croma Corp</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../styles/global.css">
-  <link rel="stylesheet" href="../../styles/inicio.css">
-    <script src="../../script/permisos.js" defer></script>
-    <script src="../../script/script.js" defer></script>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/inicio.css">
+    
 
 </head>
 <body data-modulo="inicio-user">
     <header>
         <a href="../../html/admin/index_funcionarios.php">
-    <?php include '../../backend/Header.php'?>    
+    <?php include '../../globales/Header.php'?>    
     </a>
        
 
@@ -39,13 +46,13 @@
                 <article class="tarjeta-modulo">
                     <h4>Tickets</h4>
                     <p>Registro de incidencias técnicas y seguimiento de su estado: pendiente, en proceso o resuelto.</p>
-                    <a href="/Croma/html/tickets.php">Registrar ticket</a>
+                    <a href="<?php echo $BASE_URL ?> /Presentacion/html/tickets.php">Registrar ticket</a>
                 </article>
 
                 <article class="tarjeta-modulo">
                     <h4>Incidencias</h4>
                     <p>Listado de las incidencias y solicitudes de servicio creadas en el sistema.</p>
-                    <a href="/Croma/html/incidenciascreadas.php">Ver incidencias</a>
+                    <a href="<?php echo $BASE_URL ?>/Presentacion/html/incidenciascreadas.php">Ver incidencias</a>
                 </article>
                 <article class="tarjeta-modulo">
                     <h4>Ficha</h4>
@@ -57,7 +64,7 @@
         </div>
 
     </main>
-   <?php include '../../backend/Footer.php' ?>
+   <?php include '../../globales/Footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

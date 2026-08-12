@@ -4,6 +4,6 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: /Croma/Presentacion/index.php");
+header("Location: ../../Presentacion/index.php");
 exit;
 ?>

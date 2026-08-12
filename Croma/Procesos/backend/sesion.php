@@ -1,5 +1,6 @@
 <?php
 
+
 require_once 'permisos.php';
 
 $moduloactual = basename($_SERVER['SCRIPT_NAME'], ".php");
@@ -33,6 +34,9 @@ return $html;
 
 
 function construirChip($usuario){
+    $scriptPath = $_SERVER['SCRIPT_NAME'];
+$posicion = strpos($scriptPath, '/Presentacion/');
+$BASE_URL = substr($scriptPath, 0, $posicion);
 $rol = $usuario["rol"];
 if ($usuario["rol"] === "admin"){
 $rol = "Admin";
@@ -55,7 +59,7 @@ if ($usuario["rol"] === "solicitante") {
             <ul class='dropdown-menu dropdown-menu-end'>
                 <li><span class='dropdown-item-text'>" . $rol . "</span></li>
                 <li><hr class='dropdown-divider'></li>
-                <li><a class='dropdown-item' href='/Croma/Procesos/backend/logout.php'>Cerrar sesión</a></li>
+                <li><a class='dropdown-item' href='" . $BASE_URL . "/Procesos/backend/logout.php'>Cerrar sesión</a></li>
             </ul>
         </div>
     
