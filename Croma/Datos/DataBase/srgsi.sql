@@ -3,7 +3,6 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-07-2026 a las 23:22:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,16 +42,31 @@ CREATE TABLE `equipo` (
 
 CREATE TABLE `incidencia` (
   `id_incidencia` int(11) NOT NULL,
-  `tipo` enum('incidencia','solicitud de software') NOT NULL,
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp(),
   `descripcion` text NOT NULL,
   `prioridad` enum('alta','media','baja') DEFAULT NULL,
+  `turno` varchar(20) DEFAULT NULL,
   `estado` enum('Pendiente','En proceso','Resuelto') NOT NULL DEFAULT 'Pendiente',
   `fecha_limite` date DEFAULT NULL,
-  `documento_solicitante` varchar(12) NOT NULL,
   `documento_tecnico` varchar(12) DEFAULT NULL,
   `numero_serie` varchar(50) DEFAULT NULL,
   `id_registro_origen` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud`
+--
+
+CREATE TABLE `solicitud` (
+  `id_solicitud` int(11) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `descripcion` text NOT NULL,
+  `estado` enum('Pendiente','En proceso','Resuelto','Cancelada') NOT NULL DEFAULT 'Pendiente',
+  `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp(),
+  `documento_solicitante` varchar(12) NOT NULL,
+  `documento_tecnico` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -151,10 +165,17 @@ ALTER TABLE `equipo`
 --
 ALTER TABLE `incidencia`
   ADD PRIMARY KEY (`id_incidencia`),
-  ADD KEY `fk_incidencia_solicitante` (`documento_solicitante`),
   ADD KEY `fk_incidencia_tecnico` (`documento_tecnico`),
   ADD KEY `fk_incidencia_equipo` (`numero_serie`),
   ADD KEY `fk_incidencia_registro` (`id_registro_origen`);
+
+--
+-- Indices de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD PRIMARY KEY (`id_solicitud`),
+  ADD KEY `fk_solicitud_solicitante` (`documento_solicitante`),
+  ADD KEY `fk_solicitud_tecnico` (`documento_tecnico`);
 
 --
 -- Indices de la tabla `intervencion`
@@ -209,6 +230,12 @@ ALTER TABLE `incidencia`
   MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `intervencion`
 --
 ALTER TABLE `intervencion`
@@ -242,8 +269,14 @@ ALTER TABLE `equipo`
 ALTER TABLE `incidencia`
   ADD CONSTRAINT `fk_incidencia_equipo` FOREIGN KEY (`numero_serie`) REFERENCES `equipo` (`numero_serie`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencia_registro` FOREIGN KEY (`id_registro_origen`) REFERENCES `registro_diario` (`id_registro`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_incidencia_solicitante` FOREIGN KEY (`documento_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencia_tecnico` FOREIGN KEY (`documento_tecnico`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD CONSTRAINT `fk_solicitud_solicitante` FOREIGN KEY (`documento_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_solicitud_tecnico` FOREIGN KEY (`documento_tecnico`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `intervencion`
