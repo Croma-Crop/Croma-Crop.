@@ -31,11 +31,15 @@ main {
     height: 50px;
     width: auto;
     margin-right: 10px;
+    order: 1;
 }
 #burguer{
     height: 40px;
     transition: 0.5s;
     padding-bottom: 10px;
+}
+.dropdown {
+    order: 2;
 }
 .dropdown .dropdown-menu {
     display: block; 
@@ -51,6 +55,7 @@ main {
   }
 #titulo{
     text-align: left;
+    order: 3;
 }
 header {
     display: grid;
@@ -94,6 +99,7 @@ header nav a:hover {
 
 .usuario-chip {
     justify-self: end;
+    order: 4;
 }
 .btn-usuario {
     min-width: 100px;
