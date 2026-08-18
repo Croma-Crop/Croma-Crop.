@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensaje = "Cédula o contraseña incorrectos.";
     }
 
+
     $stmt = mysqli_prepare($conexion,
         "SELECT documento, nombre, apellido, contrasena, rol FROM usuario WHERE documento = ?"
     );

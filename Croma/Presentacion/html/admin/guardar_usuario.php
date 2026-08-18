@@ -1,11 +1,11 @@
 <?php
 session_start();
 require '../../../Datos/conexion.php';
-require '../../../Datos/Clases/GestorEmpleados.php';
+require '../../../Datos/Clases/GestorUsuarios.php';
 
 header('Content-Type: application/json');
 
-if (!GestorEmpleados::esAdministrador()) {
+if (!GestorUsuarios::esAdministrador()) {
     http_response_code(403);
     exit(json_encode(['error' => 'No autorizado']));
 }
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit(json_encode(['error' => 'Método no permitido']));
 }
 
-$gestor = new GestorEmpleados($conexion);
+$gestor = new GestorUsuarios($conexion);
 $resultado = $gestor->guardar($_POST);
 
 if (isset($resultado['error'])) {

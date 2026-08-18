@@ -43,7 +43,7 @@ const cuerpoTabla = document.getElementById("cuerpoTablaEmpleados");
 
 async function cargarEmpleados() {
     try {
-        const resp = await fetch("listar_empleados.php");
+        const resp = await fetch("listar_usuario.php");
         const empleados = await resp.json();
 
         if (!resp.ok) {
@@ -59,7 +59,7 @@ async function cargarEmpleados() {
                 <td>${emp.nombre}</td>
                 <td>${emp.apellido}</td>
                 <td>${emp.rol}</td>
-                <td>••••••••</td>
+                <td>*******</td>
                 <td></td>
             `;
             cuerpoTabla.appendChild(fila);
@@ -76,7 +76,7 @@ formulario.addEventListener("submit", async function (evento) {
     const datos = new FormData(formulario);
 
     try {
-        const resp = await fetch("guardar_empleado.php", {
+        const resp = await fetch("guardar_usuario.php", {
             method: "POST",
             body: datos
         });
