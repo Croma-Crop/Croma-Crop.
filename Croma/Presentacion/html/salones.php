@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/inventario.css">
-    <script src="../js/salones.js" defer></script>
+  <script src="../js/salones.js" defer></script>
 
 </head>
 <body data-modulo="salones">
@@ -36,10 +36,21 @@
 
             <article id="seccion-formulario">
                 <h3 class="titulo-seccion">Ingresar Nuevo Salón</h3>
-                <form id="formulario-salon">
+                <form id="formulario-salon" method="POST" action="../../Procesos/backend/procesosalones.php">
                     <input name="nombre" type="text" id="nombreSalon" placeholder="Código del salón (Ej: L3)" required>
+
+                 <select id="tipo" name="tipo">
+                    <option value="">Seleccione un tipo</option>
+                    <option value="taller">Taller</option>
+                    <option value="laboratorio">Laboratorio</option>
+                 </select>
                     <button id="submit" type="submit">Guardar Salón</button>
                 </form>
+                <?php if (isset($_GET["mensaje"])): ?>
+             <div class="mensaje">
+                 <?= htmlspecialchars($_GET["mensaje"]) ?>
+             </div>
+                 <?php endif; ?>
             </article>
         </section>
     </main>

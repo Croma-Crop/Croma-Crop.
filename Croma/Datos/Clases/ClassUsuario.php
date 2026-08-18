@@ -1,9 +1,5 @@
 <?php
-enum Rol: string {
-    case solicitante;
-    case tecnico;
-    case administrador; 
-}
+require "../conexion.php";
 
 class Usuario {
 public int $documento;
@@ -21,6 +17,7 @@ public String $rol;
         
     }
     public function __construct(int $documento, string $nombre, string $apellido, string $contraseña) {
+        msqli
         $this->documento = $documento;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
@@ -63,6 +60,5 @@ class Administrador extends Usuario {
     public function gestionarIncidencias(): void { /* ... */ }
     public function gestionarSolicitudes(): void { /* ... */ }
 }
-
 
 ?>
