@@ -1,72 +1,66 @@
 <?php
 session_start();
-
-$empleados = [
-    ["cedula" => "11111111", "nombre" => "Admin", "apellido" => "Prueba", "rol" => "admin", "contrasena" => "fafealmo"],
-    ["cedula" => "22222222", "nombre" => "Tecnico", "apellido" => "Prueba", "rol" => "tecnico", "contrasena" => "fafealmo"],
-    ["cedula" => "33333333", "nombre" => "Usuario", "apellido" => "Prueba", "rol" => "solicitante", "contrasena" => "fafealmo"]
-];
+require '../../Datos/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contraseñaIngresada = $_POST['password'];
     $empleado = null;
     $mensaje = "";
 
-
-
- if (!empty($_POST['pasaporte'])) {
-        $pasaporteIngresado = trim($_POST['pasaporte']);
-        foreach ($empleados as $emp) {
-            if (($emp['pasaporte'] ?? null) === $pasaporteIngresado && $emp['contrasena'] === $contraseñaIngresada) {
-                $empleado = $emp;
-                break;
-            }
-        }
- 
+    if (!empty($_POST['pasaporte'])) {
+        $documentoIngresado = trim($_POST['pasaporte']);
         $mensaje = "Pasaporte o contraseña incorrectos.";
     } else {
-        $cedulaIngresada = trim($_POST['cedula'] ?? '');
-        foreach ($empleados as $emp) {
-            if (($emp['cedula'] ?? null) === $cedulaIngresada && $emp['contrasena'] === $contraseñaIngresada) {
-                $empleado = $emp;
-                break;
-            }
-        }
+        $documentoIngresado = trim($_POST['cedula'] ?? '');
         $mensaje = "Cédula o contraseña incorrectos.";
     }
 
-   if (!$empleado) {
-    $scriptPath = $_SERVER['SCRIPT_NAME'];
-$posicion = strpos($scriptPath, '/Presentacion/');
-$BASE_URL = substr($scriptPath, 0, $posicion);
-    $_SESSION["error"] = $mensaje;
-    header("Location: ../../Presentacion/index.php");
-    exit;
-} else {
-    $_SESSION["usuarioActivo"] = [
-        "nombre" => $empleado['nombre'],
-        "apellido" => $empleado['apellido'],
-        "rol" => $empleado['rol']
-    ];
-    $_SESSION["rol"] = $empleado['rol'];
+    $stmt = mysqli_prepare($conexion,
+        "SELECT documento, nombre, apellido, contrasena, rol FROM usuario WHERE documento = ?"
+    );
+    mysqli_stmt_bind_param($stmt, "s", $documentoIngresado);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+    $filaUsuario = mysqli_fetch_assoc($resultado);
 
-    if ($empleado['rol'] === "admin") {
-        header("Location: ../../Presentacion/html/admin/index_admin.php");
+    if ($filaUsuario && password_verify($contraseñaIngresada, $filaUsuario['contrasena'])) {
+        $mapaRoles = [
+            'administrador' => 'admin',
+            'tecnico'       => 'tecnico',
+            'solicitante'   => 'solicitante',
+        ];
+        $rolCorto = $mapaRoles[$filaUsuario['rol']] ?? null;
+
+        $empleado = [
+            "nombre"   => $filaUsuario['nombre'],
+            "apellido" => $filaUsuario['apellido'],
+            "rol"      => $rolCorto
+        ];
+    }
+
+    if (!$empleado) {
+        $_SESSION["error"] = $mensaje;
+        header("Location: ../../Presentacion/index.php");
+        exit;
     } else {
-         if ($empleado['rol'] === "tecnico"){
+        $_SESSION["usuarioActivo"] = [
+            "nombre"   => $empleado['nombre'],
+            "apellido" => $empleado['apellido'],
+            "rol"      => $empleado['rol']
+        ];
+        $_SESSION["rol"] = $empleado['rol'];
+
+        if ($empleado['rol'] === "admin") {
+            header("Location: ../../Presentacion/html/admin/index_admin.php");
+            exit;
+        } else if ($empleado['rol'] === "tecnico") {
             header("Location: ../../Presentacion/html/tecnico/index_tecnico.php");
             exit;
-         } else{
-            if ($empleado['rol'] === "solicitante") {
-        header("Location: ../../Presentacion/html/usuario/index_user.php");
-        exit;
-         }
-    
-    exit;
-}
+        } else if ($empleado['rol'] === "solicitante") {
+            header("Location: ../../Presentacion/html/usuario/index_user.php");
+            exit;
+        }
     }
 }
-    }
-
 ?>
 

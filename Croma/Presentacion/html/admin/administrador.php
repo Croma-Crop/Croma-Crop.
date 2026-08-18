@@ -85,7 +85,7 @@
                             <label for="rol">Rol</label>
                             <select name="rol" id="rol" required>
                                 <option value="" disabled selected>Seleccione un rol</option>
-                                <option value="admin">Admin</option>
+                                <option value="administrador">Admin</option>
                                 <option value="tecnico">Técnico</option>
                                 <option value="solicitante">Solicitante</option>
                             </select>

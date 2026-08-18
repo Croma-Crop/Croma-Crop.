@@ -38,3 +38,62 @@ btnExtranjeroAdmin.addEventListener("click", function () {
         btnExtranjeroAdmin.disabled = false;
     });
 });
+
+const cuerpoTabla = document.getElementById("cuerpoTablaEmpleados");
+
+async function cargarEmpleados() {
+    try {
+        const resp = await fetch("listar_empleados.php");
+        const empleados = await resp.json();
+
+        if (!resp.ok) {
+            console.error(empleados.error);
+            return;
+        }
+
+        cuerpoTabla.innerHTML = "";
+        empleados.forEach(emp => {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                <td>${emp.documento}</td>
+                <td>${emp.nombre}</td>
+                <td>${emp.apellido}</td>
+                <td>${emp.rol}</td>
+                <td>••••••••</td>
+                <td></td>
+            `;
+            cuerpoTabla.appendChild(fila);
+        });
+    } catch (error) {
+        console.error("Error al cargar empleados:", error);
+    }
+}
+
+const formulario = document.getElementById("formularioGestionarEmpleado");
+
+formulario.addEventListener("submit", async function (evento) {
+    evento.preventDefault(); 
+    const datos = new FormData(formulario);
+
+    try {
+        const resp = await fetch("guardar_empleado.php", {
+            method: "POST",
+            body: datos
+        });
+        const resultado = await resp.json();
+
+        if (!resp.ok) {
+            alert(resultado.error || "No se pudo guardar el empleado");
+            return;
+        }
+
+        formulario.reset();
+        dialog.close();
+        cargarEmpleados(); 
+    } catch (error) {
+        console.error("Error al guardar empleado:", error);
+        alert("Ocurrió un error al guardar el empleado");
+    }
+});
+
+cargarEmpleados();

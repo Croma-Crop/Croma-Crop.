@@ -20,12 +20,10 @@ $BASE_URL = substr($scriptPath, 0, $posicion);
 </head>
 <body data-modulo="inicio-user">
     <header>
-        <a href="../../html/admin/index_funcionarios.php">
+            <h1 id="titulo">Inicio</h1>
     <?php include '../../globales/Header.php'?>    
     </a>
        
-
-        <h1 id="titulo">Inicio</h1>
 
     </header>
     <main>
