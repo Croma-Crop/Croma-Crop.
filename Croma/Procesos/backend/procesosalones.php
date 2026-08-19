@@ -1,17 +1,25 @@
 <?php
-require "../../Datos/Clases/ClassSalones.php";
-$nombreingresados = $_POST["nombre"];
-$tipoingresados = $_POST["tipo"];
-print_r($_POST);
-$salones = new Salon($conexion, $tipoingresados, $nombreingresados);
-if($salones->guardar()){
-    header("Location: ../../Presentacion/html/salones.php?mensaje=Salon ingresado correctamente&tipo=exito");
-    
-}else{
-    header("Location: ../../Presentacion/html/salones.php?mensaje=Salon no fue ingresado correctamente&tipo=error");
-   
+require_once '../../Datos/Clases/ClassSalones.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$id_salon = $_POST['id_salon'];
+$nombre = $_POST['nombre'];
+$tipo = $_POST['tipo'];
+
+$salon = new Salon($conexion, $tipo, $nombre, $id_salon);
+
+if ($id_salon !== '') {
+    $ok = $salon->modificar($id_salon);
+} else {
+    $ok = $salon->guardar();
+}
+
+if ($ok) {
+    header("Location: ../../Presentacion/html/salones.php");
+} else {
+    header("Location: ../../Presentacion/html/salones.php");
 }
 exit;
-
+}
 
 ?>

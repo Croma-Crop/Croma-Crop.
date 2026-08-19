@@ -30,20 +30,44 @@
             </section>
             <article id="seccion-listado">
                 <h3 class="titulo-seccion">Salones registrados:</h3>
+                
                 <ul id="listado">
+                    <?php include_once "../../Procesos/mostrarsalon.php";
+                    foreach ($tablasalon as $claveindexada => $valorindexado) {
+                    echo "
+             <li class='tarjeta-producto'>
+                    <p class='tarjeta-nombre'>" . htmlspecialchars($valorindexado['nombre']) . "</p>
+                <div class='tarjetas-acciones'>
+                    <a class='boton-modificar' href='?editar=" . $valorindexado['id_salon'] . "'>Modificar</a>
+                    <form method='post' action='../../Procesos/eliminarsalon.php' style='display:inline'>
+            <input type='hidden' name='id_salon' value='" . $valorindexado['id_salon'] . "'>
+                    <button class='boton-eliminar' type='submit' onclick=\"return confirm('¿Seguro que quieres eliminar el salon?')\">Eliminar</button>
+                    </form>
+                </div>
+            </li>
+    ";
+
+}
+                    
+                    
+                    ?>
                 </ul>
             </article>
 
             <article id="seccion-formulario">
-                <h3 class="titulo-seccion">Ingresar Nuevo Salón</h3>
-                <form id="formulario-salon" method="POST" action="../../Procesos/backend/procesosalones.php">
-                    <input name="nombre" type="text" id="nombreSalon" placeholder="Código del salón (Ej: L3)" required>
+                 <h3 class="titulo-seccion"><?= $editando ? "Modificar Salón" : "Ingresar Nuevo Salón" ?></h3>
+                <form id="formulario-salon" method="post" action="../../Procesos/backend/procesosalones.php">
+                    <input name="nombre" type="text" id="nombreSalon" placeholder="Código del salón (Ej: L3)"
+                        value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>" required>
 
-                 <select id="tipo" name="tipo">
-                    <option value="">Seleccione un tipo</option>
-                    <option value="taller">Taller</option>
-                    <option value="laboratorio">Laboratorio</option>
-                 </select>
+                    <select id="tipo" name="tipo">
+                        <option value="">Seleccione un tipo</option>
+                        <option value="taller" <?= ($editando && $editando['tipo'] === 'taller') ? 'selected' : '' ?>>Taller</option>
+                        <option value="laboratorio" <?= ($editando && $editando['tipo'] === 'laboratorio') ? 'selected' : '' ?>>Laboratorio</option>
+                    </select>
+
+                    <input type="hidden" name="id_salon" value="<?= $editando ? $editando['id_salon'] : '' ?>">
+
                     <button id="submit" type="submit">Guardar Salón</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>
