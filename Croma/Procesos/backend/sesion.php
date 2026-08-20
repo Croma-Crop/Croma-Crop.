@@ -3,10 +3,14 @@
 
 require_once 'permisos.php';
 
+$scriptPath = $_SERVER['SCRIPT_NAME'];
+$posicion = strpos($scriptPath, '/Presentacion/');
+$BASE_URL = substr($scriptPath, 0, $posicion);
+
 $moduloactual = basename($_SERVER['SCRIPT_NAME'], ".php");
 
 if(!isset($_SESSION["usuarioActivo"])){
-header('Location: /Croma/Presentacion/index.php');
+header('Location:' . $BASE_URL. '/Presentacion/index.php');
 exit;
 } else if (!tienepermiso($_SESSION["rol"], $moduloactual)){
 header("location: " . $InicioPorRol[$_SESSION["rol"]]);

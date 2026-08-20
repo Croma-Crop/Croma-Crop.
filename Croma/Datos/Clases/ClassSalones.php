@@ -28,6 +28,29 @@ public function __construct(mysqli $conexion, String $tipo, String $nombre, Stri
 }
 return $salones;
  }
+ 
+ 
+ public function buscarpornombre($nombre)
+{
+    $sql = "SELECT tipo, nombre, id_salon 
+            FROM salon 
+            WHERE nombre = ?";
+
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $nombre);
+    $stmt->execute();
+
+    $resultado = $stmt->get_result();
+
+    $salones = [];
+
+    while ($fila = $resultado->fetch_assoc()) {
+        $salones[] = $fila;
+    }
+
+    return $salones;
+}
+ 
  public function borrar($id_salon){
      $sql = "DELETE FROM salon WHERE id_salon = ?";
     $stmt = $this->conexion->prepare($sql);

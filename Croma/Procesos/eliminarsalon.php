@@ -1,6 +1,5 @@
 <?php
 require_once '../Datos/Clases/ClassSalones.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $id_salon = $_POST['id_salon'];
 
@@ -10,9 +9,9 @@ $ok = $salon->borrar($id_salon);
 
 
 if ($ok) {
-    header('Location: /Croma/Croma/Presentacion/html/salones.php?mensaje=Salon guardado correctamente&tipo=exito');
+    header('Location: ../Presentacion/html/salones.php?mensaje=Salon guardado correctamente&tipo=exito');
 } else {
-    header('Location: /Croma/Croma/Presentacion/html/salones.php?mensaje=Salon no fue guardado correctamente&tipo=error');
+    header('Location: ../Presentacion/html/salones.php?mensaje=Salon no fue guardado correctamente&tipo=error');
 }
 exit;
 }
