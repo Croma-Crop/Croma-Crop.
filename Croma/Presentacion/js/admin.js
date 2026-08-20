@@ -41,59 +41,84 @@ btnExtranjeroAdmin.addEventListener("click", function () {
 
 const cuerpoTabla = document.getElementById("cuerpoTablaEmpleados");
 
-async function cargarEmpleados() {
+async function cargarUsuarios() {
     try {
         const resp = await fetch("listar_usuario.php");
-        const empleados = await resp.json();
+        const usuarios = await resp.json();
 
         if (!resp.ok) {
-            console.error(empleados.error);
+            console.error(usuarios.error);
             return;
         }
 
         cuerpoTabla.innerHTML = "";
-        empleados.forEach(emp => {
+        usuarios.forEach(usuario => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${emp.documento}</td>
-                <td>${emp.nombre}</td>
-                <td>${emp.apellido}</td>
-                <td>${emp.rol}</td>
+                <td>${usuario.documento}</td>
+                <td>${usuario.nombre}</td>
+                <td>${usuario.apellido}</td>
+                <td>${usuario.rol}</td>
                 <td>*******</td>
-                <td></td>
+                <td><button type="button" class="btnEliminarEmpleado" data-doc="${usuario.documento}">Eliminar</button></td>
             `;
             cuerpoTabla.appendChild(fila);
         });
     } catch (error) {
-        console.error("Error al cargar empleados:", error);
+        console.error("Error al cargar usuarios:", error);
     }
 }
 
-const formulario = document.getElementById("formularioGestionarEmpleado");
-
-formulario.addEventListener("submit", async function (evento) {
-    evento.preventDefault(); 
-    const datos = new FormData(formulario);
+cuerpoTabla.addEventListener("click", async function (evento) {
+    if (!evento.target.classList.contains("btnEliminarEmpleado")) return;
+    
+    const documento = evento.target.dataset.doc;
+    const confirmar = confirm(`¿Seguro que querés eliminar al usuario con documento ${documento}?`);
+    if (!confirmar) return;
 
     try {
-        const resp = await fetch("guardar_usuario.php", {
+        const datos = new FormData();
+        datos.append("documento", documento);
+
+        const resp = await fetch("eliminar_usuario.php", {
             method: "POST",
             body: datos
         });
         const resultado = await resp.json();
 
         if (!resp.ok) {
-            alert(resultado.error || "No se pudo guardar el empleado");
+            alert(resultado.error || "No se pudo eliminar el usuario");
+            return;
+        }
+
+        cargarUsuarios();
+    } catch (error) {
+        console.error("Error al eliminar usuario:", error);
+        alert("Ocurrió un error al eliminar el usuario");
+    }
+});
+
+const formulario = document.getElementById("formularioGestionarEmpleado");
+
+formulario.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
+    const datos = new FormData(formulario);
+
+    try {
+        const resp = await fetch("guardar_usuario.php", { method: "POST", body: datos });
+        const resultado = await resp.json();
+
+        if (resultado.error) {
+            alert(resultado.error);
             return;
         }
 
         formulario.reset();
         dialog.close();
-        cargarEmpleados(); 
+        cargarUsuarios();
     } catch (error) {
-        console.error("Error al guardar empleado:", error);
-        alert("Ocurrió un error al guardar el empleado");
+        console.error("Error al guardar usuario:", error);
     }
 });
 
-cargarEmpleados();
+cargarUsuarios();
