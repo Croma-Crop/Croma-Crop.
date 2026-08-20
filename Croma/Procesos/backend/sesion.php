@@ -13,7 +13,7 @@ if(!isset($_SESSION["usuarioActivo"])){
 header('Location:' . $BASE_URL. '/Presentacion/index.php');
 exit;
 } else if (!tienepermiso($_SESSION["rol"], $moduloactual)){
-header("location: " . $InicioPorRol[$_SESSION["rol"]]);
+header("Location: " . $InicioPorRol[$_SESSION["rol"]]);
 exit;
 }else {
     $rolSesion= $_SESSION["rol"];
@@ -42,8 +42,8 @@ function construirChip($usuario){
 $posicion = strpos($scriptPath, '/Presentacion/');
 $BASE_URL = substr($scriptPath, 0, $posicion);
 $rol = $usuario["rol"];
-if ($usuario["rol"] === "admin"){
-$rol = "Admin";
+if ($usuario["rol"] === "administrador"){
+$rol = "administrador";
 
 
 }

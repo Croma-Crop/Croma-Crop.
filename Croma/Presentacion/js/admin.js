@@ -27,7 +27,7 @@ btnExtranjeroAdmin.addEventListener("click", function () {
         contenedorDocAdmin.innerHTML = `
             <div class="cajaEntradaDeDatos">
                 <label for="cedula">Cédula</label>
-                <input type="text" id="cedula" name="cedula" placeholder="Ingrese la cédula"
+                <input type="text" id="cedula" name="documento" placeholder="Ingrese la cédula"
                     autocomplete="off" pattern="[1-9][0-9]{7}"
                     title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric"
                     maxlength="8" required>
