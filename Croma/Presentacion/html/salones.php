@@ -26,14 +26,17 @@
     <main>
           <section id="contenido">
             <section id="busqueda">
-                <input id="inptbusqueda" name="inptbusqueda" placeholder="Buscar">
+                <form method="post" action="../../Procesos/mostrarsalon.php">
+                    <input id="inptbusqueda" name="nombre" type="text" placeholder="Buscar">
+                    <button type="submit">buscar</button>
+                </form>
             </section>
             <article id="seccion-listado">
                 <h3 class="titulo-seccion">Salones registrados:</h3>
                 
                 <ul id="listado">
                     <?php include_once "../../Procesos/mostrarsalon.php";
-                    foreach ($tablasalon as $claveindexada => $valorindexado) {
+                    foreach ($ok as $claveindexada => $valorindexado) {
                     echo "
              <li class='tarjeta-producto'>
                     <p class='tarjeta-nombre'>" . htmlspecialchars($valorindexado['nombre']) . "</p>
