@@ -14,18 +14,18 @@ $modulos = [
 ];
 
 $permisos = [
-    "admin"       => ["index_admin", "inventario", "salones", "tickets", "incidenciascreadas", "ficha", "administrador", "kanban"],
+    "administrador"       => ["index_admin", "inventario", "salones", "tickets", "incidenciascreadas", "ficha", "administrador", "kanban"],
     "tecnico"     => ["index_tecnico", "inventario", "salones", "tickets", "incidenciascreadas", "kanban"],
     "solicitante" => ["index_user", "tickets", "incidenciascreadas", "ficha"]
 ];
 
 $acciones = [
-    "eliminarTickets"  => ["admin", "tecnico"],
+    "eliminarTickets"  => ["administrador", "tecnico"],
     "asignarPrioridad" => ["tecnico"]
 ];
 
 $InicioPorRol = [
-    "admin"       => $BASE_URL ."/Presentacion/html/admin/index_admin.php",
+    "administrador"       => $BASE_URL ."/Presentacion/html/admin/index_admin.php",
     "tecnico"     => $BASE_URL ."/Presentacion/html/tecnico/index_tecnico.php",
     "solicitante" => $BASE_URL ."/Presentacion/html/usuario/index_user.php"
 ];

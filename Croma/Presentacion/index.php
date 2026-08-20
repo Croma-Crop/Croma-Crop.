@@ -40,13 +40,13 @@ session_start();
             
                 <section id="campo-documento">
                     <label for="cedula">Cedula</label>
-                    <input type="text" id="cedula" name="cedula" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}" required pattern="[1-9][0-9]{7}" maxlength="8" required >
+                    <input type="text" id="cedula" name="documento" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}" required pattern="[1-9][0-9]{7}" maxlength="8" required >
                     <p id="mensaje" class="mensaje-error"></p>
                 </section>
                 
 
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Ingresá una contraseña" required>
+                <input type="password" id="password" name="contrasena" placeholder="Ingresá una contraseña" required>
                 <p id="seguridad" class="mensaje-error"></p>
 
                 <button type="submit" id="crear">Iniciar Sesion</button>

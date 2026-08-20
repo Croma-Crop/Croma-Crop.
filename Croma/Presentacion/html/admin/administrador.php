@@ -39,6 +39,28 @@
                         <th>Rol</th>
                         <th>Contraseña</th>
                         <th>Acciones</th>
+                        <?php
+                        require "../../../Procesos/mostrarusuarios.php";
+                        
+                        foreach($usuario as $claveindexado => $valorindexado){
+                       echo "
+                        <tr>
+                        <td>{$valorindexado['documento']}</td>
+                        <td>{$valorindexado['nombre']}</td>
+                        <td>{$valorindexado['apellido']}</td>
+                        <td>{$valorindexado['rol']}</td>
+                        <td>•••••</td>
+                        <td>
+                        <form method='post' action='../../../Procesos/eliminarusuario.php' style='display:inline'>
+                        <input type='hidden' name='documento' value='{$valorindexado['documento']}'>
+                        <button class='btnEliminarEmpleado' type='submit'>Eliminar</button>
+                        </form>
+                        </td>
+                        </tr>
+                        ";
+                        }
+
+                        ?>
                     </tr>
                 </thead>
                 <tbody id="cuerpoTablaEmpleados">
@@ -49,7 +71,7 @@
             <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">
                 <img src="../../img/x.svg" alt="Cerrar Menú" class="iconoMenu">
             </button>
-            <form action="administrador.php" method="post" id="formularioGestionarEmpleado">
+            <form action="../../../Procesos/backend/procesoadmin.php" method="post" id="formularioGestionarEmpleado">
                 <fieldset id="fieldset">
                     <legend>Gestión de empleado</legend>
 
@@ -59,7 +81,7 @@
                         <div id="contenedor-documento-admin">
                             <div class="cajaEntradaDeDatos">
                                 <label for="cedula">Cédula</label>
-                                <input type="text" id="cedula" name="cedula" placeholder="Ingrese la cédula"
+                                <input type="text" id="cedula" name="documento" placeholder="Ingrese la cédula"
                                     autocomplete="off" pattern="[1-9][0-9]{7}"
                                     title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric"
                                     maxlength="8" required>
@@ -85,7 +107,7 @@
                             <label for="rol">Rol</label>
                             <select name="rol" id="rol" required>
                                 <option value="" disabled selected>Seleccione un rol</option>
-                                <option value="admin">Admin</option>
+                                <option value="administrador">Admin</option>
                                 <option value="tecnico">Técnico</option>
                                 <option value="solicitante">Solicitante</option>
                             </select>
