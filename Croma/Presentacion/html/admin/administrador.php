@@ -39,6 +39,8 @@
                         <th>Rol</th>
                         <th>Contraseña</th>
                         <th>Acciones</th>
+                        </thead>
+                        <tbody id="cuerpoTablaEmpleados">
                         <?php
                         require "../../../Procesos/mostrarusuarios.php";
                         
@@ -62,8 +64,7 @@
 
                         ?>
                     </tr>
-                </thead>
-                <tbody id="cuerpoTablaEmpleados">
+                
                 </tbody>
             </table>
         </section>
