@@ -5,7 +5,7 @@
 }
 
 .bienvenida {
-    background-color: #e8ecef;
+    background-color: var(--lienzo);
     border: 1px solid rgba(0, 0, 0, 0.158);
     border-radius: 10px;
     padding: 25px;
@@ -14,20 +14,20 @@
 
 .bienvenida h2 {
     font-size: 22px;
-    color: #30364F;
+    color: var(--navy-700);
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .bienvenida p {
     font-size: 15px;
-    color: #333;
+    color: var(--texto);
     line-height: 1.6;
 }
 
 .titulo-modulos {
     font-size: 18px;
-    color: #30364F;
+    color: var(--navy-700);
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -41,7 +41,7 @@
 
 .tarjeta-resumen {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid var(--borde);
     border-radius: 8px;
     padding: 20px;
     text-align: center;
@@ -49,7 +49,7 @@
 }
 
 .tarjeta-resumen:hover {
-    box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
+    box-shadow: var(--sombra-elevada);
     transform: translateY(-2px);
 }
 
@@ -57,12 +57,12 @@
     display: block;
     font-size: 30px;
     font-weight: bold;
-    color: #30364F;
+    color: var(--navy-700);
 }
 
 .tarjeta-resumen p {
     font-size: 14px;
-    color: #444;
+    color: var(--texto);
     margin-top: 4px;
 }
 
@@ -74,27 +74,27 @@
 
 .tarjeta-modulo {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid var(--borde);
     border-radius: 8px;
     padding: 20px;
 }
 
 .tarjeta-modulo h4 {
     font-size: 16px;
-    color: #30364F;
+    color: var(--navy-700);
     font-weight: bold;
     margin-bottom: 8px;
 }
 
 .tarjeta-modulo p {
     font-size: 14px;
-    color: #444;
+    color: var(--texto);
     line-height: 1.5;
     margin-bottom: 12px;
 }
 
 .tarjeta-modulo a {
-    color: #30364F;
+    color: var(--navy-700);
     font-weight: bold;
     font-size: 14px;
 }

@@ -5,7 +5,7 @@
 }
 
 #seccion-tablero {
-    background-color: #e8ecef;
+    background-color: var(--lienzo);
     padding: 25px;
     border-radius: 10px;
     margin: 3em;
@@ -15,7 +15,7 @@
 
 .ayuda-tablero {
     font-size: 14px;
-    color: #555;
+    color: var(--texto-tenue);
     margin-bottom: 20px;
 }
 
@@ -32,13 +32,13 @@
     min-width: 220px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--borde);
     border-radius: 4px;
     transition: 0.5s;
 }
 
 #inptbusqueda:hover {
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.137);
+    box-shadow: var(--sombra);
     border: 1px solid rgba(0, 0, 0, 0.877);
 }
 
@@ -54,18 +54,18 @@
     cursor: pointer;
     transition: 0.3s;
     background-color: white;
-    color: #30364F;
-    border: 1px solid #30364F;
+    color: var(--navy-700);
+    border: 1px solid var(--navy-700);
 }
 
 .filtro-clase:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(48, 54, 79, 0.45);
+    box-shadow: var(--sombra-elevada);
 }
 
 .filtro-clase.activo {
-    background-color: #30364F;
-    color: #ffffff;
+    background-color: var(--navy-700);
+    color: var(--superficie);
 }
 
 .tablero {
@@ -76,29 +76,29 @@
 }
 
 .columna-kanban {
-    background-color: #f4f6f7;
-    border: 1px solid #ddd;
-    border-top: 4px solid #30364F;
+    background-color: var(--lienzo-alt);
+    border: 1px solid var(--borde);
+    border-top: 4px solid var(--navy-700);
     border-radius: 8px;
     padding: 12px;
     transition: 0.3s;
 }
 
 .columna-kanban[data-estado="Pendiente"] {
-    border-top-color: #e67e22;
+    border-top-color: var(--alerta);
 }
 
 .columna-kanban[data-estado="En proceso"] {
-    border-top-color: #2980b9;
+    border-top-color: var(--info);
 }
 
 .columna-kanban[data-estado="Resuelto"] {
-    border-top-color: #27ae60;
+    border-top-color: var(--exito);
 }
 
 .columna-activa {
-    background-color: #dfe6e9;
-    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
+    background-color: var(--lienzo);
+    box-shadow: var(--sombra-elevada);
 }
 
 .cabecera-columna {
@@ -111,12 +111,12 @@
 .cabecera-columna h4 {
     font-size: 16px;
     font-weight: bold;
-    color: #30364F;
+    color: var(--navy-700);
 }
 
 .contador-kanban {
-    background-color: #30364F;
-    color: #F0F0DB;
+    background-color: var(--navy-700);
+    color: var(--crema);
     font-weight: bold;
     font-size: 13px;
     padding: 2px 10px;
@@ -137,7 +137,7 @@
 
 .tarjeta-kanban {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid var(--borde);
     border-radius: 4px;
     padding: 12px;
     cursor: grab;
@@ -145,7 +145,7 @@
 }
 
 .tarjeta-kanban:hover {
-    box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
+    box-shadow: var(--sombra-elevada);
 }
 
 .arrastrando {
@@ -159,7 +159,7 @@
 }
 
 .tarjeta-tipo {
-    color: #27ae60;
+    color: var(--exito);
     font-size: 14px;
     margin-top: 2px;
 }
@@ -167,7 +167,7 @@
 .tarjeta-asignado {
     margin-top: 6px;
     font-size: 13px;
-    color: #555;
+    color: var(--texto-tenue);
 }
 
 .tarjeta-descripcion {
@@ -183,14 +183,14 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.25s ease;
-    color: #F0F0DB;
-    background-color: #30364F;
+    color: var(--crema);
+    background-color: var(--navy-700);
 }
 
 .boton-tomar:hover {
-    background-color: #3d4460;
+    background-color: var(--navy-600);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    box-shadow: var(--sombra-elevada);
 }
 
 .campo-kanban {
@@ -205,14 +205,14 @@
     width: 100%;
     margin-top: 4px;
     padding: 5px 6px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--borde);
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
 }
 
 .sin-tarjetas {
-    color: #777;
+    color: var(--texto-tenue);
     font-style: italic;
     font-size: 14px;
 }

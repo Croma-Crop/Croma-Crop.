@@ -1,7 +1,6 @@
 
-const usuarioActivo = true;
 
-if (!usuarioActivo) {
+if (!usuarioActivo || !usuarioActivo.nombre) {
     window.location.replace("js/index.php");
 } else {
     iniciarPagina();

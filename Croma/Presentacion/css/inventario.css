@@ -7,7 +7,7 @@
 
 .tarjeta-producto {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid var(--borde);
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 4px;
@@ -16,16 +16,12 @@
     flex-direction: column;
 }
 .tarjeta-producto:hover{
-    box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158)
-}
-
-.tarjeta-nombre {
-    font-weight: bold;
+    box-shadow: var(--sombra-elevada);
     font-size: 16px;
 }
 
 .tarjeta-precio {
-    color: #27ae60;
+    color: var(--exito);
     margin-top: 5px;
 }
 
@@ -47,34 +43,34 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.25s ease;
-    color: #F0F0DB;
+    color: var(--crema);
 }
 
 .boton-historial,
 .boton-modificar {
-    background-color: #30364F;
+    background-color: var(--navy-700);
     
 }
 
 .boton-historial:hover,
 .boton-modificar:hover {
-    background-color: #3d4460;
+    background-color: var(--navy-600);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    box-shadow: var(--sombra-elevada);
 }
 
 .boton-eliminar {
-    background-color: #e74c3c;
+    background-color: var(--peligro);
 }
 
 .boton-eliminar:hover {
-    background-color: #c0392b;
+    background-color: var(--peligro);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    box-shadow: var(--sombra-elevada);
 }
 
 .tarjeta-intervenciones {
-    color: #ee1313;
+    color: var(--peligro);
     font-size: 15px;
     margin-top: 4px;
     font-weight: bold;
@@ -83,11 +79,11 @@
 
 #dialogHistorial {
     margin: auto;
-    border: 1px solid #d6d6d6;
+    border: 1px solid var(--borde);
     border-radius: 10px;
     padding: 25px;
     max-width: 90vw;
-    box-shadow: 0 2px 6px rgba(0, 0, 1, 0.4);
+    box-shadow: var(--sombra-elevada);
 }
 
 #dialogHistorial::backdrop {
@@ -95,14 +91,14 @@
 }
 
 #tituloHistorial {
-    color: #30364F;
+    color: var(--navy-700);
     margin-bottom: 15px;
 }
 
 #cerrarHistorial {
     float: right;
-    background-color: #e74c3c;
-    color: #F0F0DB;
+    background-color: var(--peligro);
+    color: var(--crema);
 }
 
 #listaHistorial {
@@ -111,13 +107,13 @@
 }
 
 .item-historial {
-    border-left: 3px solid #30364F;
+    border-left: 3px solid var(--navy-700);
     padding: 8px 12px;
     margin-bottom: 8px;
 }
 
 #contenido{
-    background-color: #e8ecef;
+    background-color: var(--lienzo);
     padding: 25px;
     border-radius: 10px;
     margin-top: 20px;
@@ -146,11 +142,11 @@
     transition: 0.5s;
 }
 #contenido input:hover{
-    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.137);
+    box-shadow: var(--sombra);
     border: 1px solid rgba(122, 122, 122, 0.712);
 }
 #contenido:hover{
-    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
+    box-shadow: var(--sombra-elevada);
     transform: translateY(-2px);
 }
 #listado{
@@ -175,22 +171,22 @@ button
 {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--borde);
     border-radius: 4px;
     
 }
 
 button, #submit {
-    background-color: #30364F;
-    color: #F0F0DB;
+    background-color: var(--navy-700);
+    color: var(--crema);
     border: none;
     cursor: pointer;
     transition: 0.5s;
     font-weight: bold;
 }
 #submit:hover{
-    background-color: #3d4460;
-    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
 }
 
 ul {
@@ -283,7 +279,7 @@ ul {
 
 .boton-desplegar {
     margin-top: auto;
-    background-color: #2c3555;
+    background-color: var(--navy-700);
     color: white;
     border: none;
     cursor: pointer;
@@ -296,7 +292,7 @@ ul {
     padding: 24px;
     min-width: 320px;
     max-width: 90vw;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--sombra-elevada);
 }
 
 .dialogo-equipo::backdrop {
@@ -324,7 +320,7 @@ ul {
 .boton-cerrar-equipo {
     margin-top: 16px;
     width: 100%;
-    background-color: #6c757d;
+    background-color: var(--texto-tenue);
     color: white;
     border: none;
     cursor: pointer;
