@@ -1,4 +1,8 @@
 <?php
+
+$moduloRequerido = "administrador";
+require_once __DIR__ . "/backend/guardia.php";
+
 require_once '../Datos/Clases/ClassUsuario.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $documento = $_POST['documento'];

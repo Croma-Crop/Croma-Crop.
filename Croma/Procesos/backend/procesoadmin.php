@@ -1,5 +1,9 @@
 <?php
 
+$moduloRequerido = "administrador";
+require_once __DIR__ . "/guardia.php";
+
+
 require "../../Datos/Clases/ClassUsuario.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $apellido = $_POST['apellido'];
     $documento = $_POST['documento'];
     $rol = $_POST['rol'];
+
+    $rolesValidos = ["administrador", "tecnico", "solicitante"];
+
+    if (!in_array($rol, $rolesValidos)) {
+        header("Location: ../../Presentacion/html/admin/administrador.php?mensaje=" . urlencode("Rol invalido"));
+        exit;
+    }
 
     if ($documento !== "") {
 

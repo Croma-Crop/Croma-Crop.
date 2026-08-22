@@ -63,7 +63,7 @@
                     <input name="nombre" type="text" id="nombreSalon" placeholder="Código del salón (Ej: L3)"
                         value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>" required>
 
-                    <select id="tipo" name="tipo">
+                    <select id="tipo" name="tipo" required>
                         <option value="">Seleccione un tipo</option>
                         <option value="taller" <?= ($editando && $editando['tipo'] === 'taller') ? 'selected' : '' ?>>Taller</option>
                         <option value="laboratorio" <?= ($editando && $editando['tipo'] === 'laboratorio') ? 'selected' : '' ?>>Laboratorio</option>

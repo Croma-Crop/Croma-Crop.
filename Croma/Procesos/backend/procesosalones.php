@@ -1,4 +1,8 @@
 <?php
+
+$moduloRequerido = "salones";
+require_once __DIR__ . "/guardia.php";
+
 require_once '../../Datos/Clases/ClassSalones.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,9 +19,9 @@ if ($id_salon !== '') {
 }
 
 if ($ok) {
-    header("Location: ../../Presentacion/html/salones.php");
+    header("Location: ../../Presentacion/html/salones.php?mensaje=" . urlencode("Salon guardado correctamente"));
 } else {
-    header("Location: ../../Presentacion/html/salones.php");
+    header("Location: ../../Presentacion/html/salones.php?mensaje=" . urlencode("No se pudo guardar el salon"));
 }
 exit;
 }

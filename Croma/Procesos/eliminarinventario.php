@@ -1,4 +1,8 @@
 <?php
+
+$moduloRequerido = "inventario";
+require_once __DIR__ . "/backend/guardia.php";
+
 require_once '../Datos/Clases/ClassInventario.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $numero_serie = $_POST['numero_serie'];

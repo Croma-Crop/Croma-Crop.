@@ -1,4 +1,8 @@
 <?php
+
+$moduloRequerido = "salones";
+require_once __DIR__ . "/backend/guardia.php";
+
 require_once '../Datos/Clases/ClassSalones.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $id_salon = $_POST['id_salon'];
