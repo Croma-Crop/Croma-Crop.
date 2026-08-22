@@ -115,7 +115,7 @@
     padding: 25px;
     border-radius: var(--radio);
     margin-top: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.158);
+    border: 1px solid var(--borde);
     display: flex;
     align-items: flex-start;
     gap: 2em;
@@ -293,7 +293,7 @@ ul {
 }
 
 .dialogo-equipo::backdrop {
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(48, 54, 79, 0.45);
 }
 
 .dialogo-equipo .dialogo-edicion {

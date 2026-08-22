@@ -1,7 +1,7 @@
 .seccionTablaEmpleados {
     background-color: var(--lienzo);
     border-radius: var(--radio);
-    border: 1px solid rgba(0, 0, 0, 0.158);
+    border: 1px solid var(--borde);
     padding: 25px;
     margin: 3em;
     transition: var(--transicion);
@@ -101,13 +101,12 @@ fieldset{
 
 dialog.dialogGestionarEmpleado::backdrop {
     background-color: rgba(48, 54, 79, 0.45);
-    backdrop-filter: blur(2px);
 }
 
 .seccionFormulario fieldset {
-    border: 1px solid rgba(0, 0, 0, 0.158);
+    border: 1px solid var(--borde-tenue);
     border-radius: var(--radio);
-    padding: 20px;
+    padding: var(--esp-4);
     margin: 0;
 }
 
