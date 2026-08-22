@@ -29,7 +29,39 @@
                     <button type="button" class="filtro-clase" data-clase="Solicitud">Solicitudes</button>
                 </div>
             </div>
-            <ul id="listado-tickets"></ul>
+            <ul id="listado-tickets">
+        <?php if (empty($tickets)): ?>
+            <li class="sin-resultados">No hay tickets registrados.</li>
+        <?php else: ?>
+            <?php foreach ($tickets as $ticket): ?>
+        <li class="tarjeta-ticket">
+            <p class="tarjeta-clase tarjeta-<?= strtolower($ticket['clase']) ?>"><?= $ticket['clase'] ?></p>
+            <p class="tarjeta-tipo">Tipo: <?= htmlspecialchars($ticket['tipo']) ?></p>
+
+            <?php if ($ticket['clase'] === 'Incidencia'): ?>
+                <p>Fecha: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                <p>Turno: <?= htmlspecialchars($ticket['turno']) ?></p>
+                <p class="tarjeta-prioridad">Prioridad: <?= htmlspecialchars($ticket['prioridad']) ?></p>
+            <?php endif; ?>
+
+            <p class="tarjeta-descripcion"><?= htmlspecialchars($ticket['descripcion']) ?></p>
+            <p>Estado: <?= htmlspecialchars($ticket['estado']) ?></p>
+
+            <?php if (puedeHacer("eliminarTickets", $_SESSION["rol"])): ?>
+                <form method="post" action="../../Procesos/eliminarticket.php" style="display:inline">
+                    <input type="hidden" name="clase" value="<?= $ticket['clase'] ?>">
+                    <input type="hidden" name="id" value="<?= $ticket['id'] ?>">
+                    <button type="submit" onclick="return confirm('¿Seguro que quiere eliminar este ticket?')">Eliminar</button>
+                </form>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+
+
+
+            </ul>
         </section>
     </main>
     <?php include '../globales/Footer.php' ?>

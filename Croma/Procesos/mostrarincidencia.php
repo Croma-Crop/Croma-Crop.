@@ -1,45 +1,17 @@
 <?php
-require __DIR__ . "../../Datos/Clases/ClassIncidencia.php";
-require __DIR__ . "../../Datos/Clases/ClassIntervencion.php";
+require_once '../../Datos/Clases/ClassSalon.php';
+require_once '../../Datos/Clases/ClassInventario.php';
+require_once '../../Datos/DataBase/ConexionMYSQL/conexion.php';
 
+$salones = Salon::mostrar($conexion);
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-$ok = Incidencia::mostrar();
+$salonElegido = $_POST['salon'] ?? $_GET['salon'] ?? '';
+$equiposDelSalon = [];
 
-}else{
-    $ok = Incidencia::mostrar();
-
+if ($salonElegido !== '') {
+    $sql = $conexion->prepare("SELECT numero_serie, nombre FROM inventario WHERE id_salon = ?");
+    $sql->bind_param("i", $salonElegido);
+    $sql->execute();
+    $equiposDelSalon = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
 }
-$historial = [];
-$numeroSerieHistorial = null;
-
-if (isset($_GET['historial'])) {
-    $numeroSerieHistorial = $_GET['historial'];
-    $historial = Intervencion::mostrarPorEquipo($numeroSerieHistorial, $conexion);
-}
-
-if (isset($_GET['buscar']) && trim($_GET['buscar']) !== '') {
-
-    $nombrebusqueda = trim($_GET['buscar']);
-
-    $tablabusqueda = new Inventario($conexion, "", "", "", "", "", null);
-
-    $equipos = $tablabusqueda->buscarpornombre($nombrebusqueda);
-}
-
-$editando = null;
-
-if (isset($_GET['editar'])) {
-
-    $nombremodificado = $_GET['editar'];
-
-    $consulta = new Inventario($conexion, "", $nombremodificado, "", "", "", null);
-    $editando = $consulta->buscarpornumero($nombremodificado);
-
-    if ($editando) {
-        $id_salon = $editando['id_salon'];
-    }
-}
-
-
 ?>
