@@ -703,3 +703,155 @@ body #fichaForm button[type="submit"] {
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+        "marca enlaces usuario"
+        "titulo titulo titulo";
+    align-items: center;
+    gap: var(--esp-5);
+    background-color: var(--navy-700);
+    border-bottom: none;
+    padding: 0 var(--esp-6);
+}
+
+.marca {
+    grid-area: marca;
+    display: flex;
+    align-items: center;
+    gap: var(--esp-3);
+    padding: var(--esp-3) 0;
+}
+
+#logo {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+.marca-texto {
+    color: var(--crema);
+    font-size: var(--texto-md);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.nav-principal {
+    grid-area: enlaces;
+    justify-self: start;
+}
+
+.nav-lista {
+    display: flex;
+    align-items: center;
+    gap: var(--esp-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-enlace {
+    display: block;
+    padding: 10px var(--esp-3);
+    color: rgba(240, 240, 219, 0.75);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    border-radius: var(--radio);
+    white-space: nowrap;
+    transition: color var(--transicion), background-color var(--transicion);
+}
+
+.nav-enlace:hover {
+    color: var(--crema);
+    background-color: var(--navy-600);
+}
+
+.nav-enlace.nav-activo {
+    color: var(--crema);
+    font-weight: 600;
+    background-color: var(--navy-600);
+}
+
+.usuario-chip {
+    grid-area: usuario;
+    justify-self: end;
+}
+
+.btn-usuario {
+    min-width: 0;
+    white-space: nowrap;
+    color: var(--crema);
+    font-weight: 600;
+    font-size: var(--texto-sm);
+    background-color: transparent;
+    padding: 7px var(--esp-3);
+    border: 1px solid rgba(240, 240, 219, 0.35);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color var(--transicion), border-color var(--transicion);
+}
+
+.btn-usuario:hover {
+    background-color: var(--navy-600);
+    border-color: rgba(240, 240, 219, 0.6);
+}
+
+.nav-movil {
+    display: none;
+    grid-area: enlaces;
+    justify-self: start;
+}
+
+#burguer {
+    height: 28px;
+    display: block;
+    cursor: pointer;
+    transition: opacity var(--transicion);
+}
+
+#burguer:hover {
+    opacity: 0.75;
+}
+
+header h1#titulo {
+    grid-area: titulo;
+    margin: 0 calc(-1 * var(--esp-6));
+    padding: var(--esp-4) var(--esp-6);
+    background-color: var(--superficie);
+    border-bottom: 1px solid var(--borde);
+    font-size: var(--texto-xl);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--navy-700);
+    text-align: left;
+}
+
+@media (max-width: 992px) {
+    header {
+        gap: var(--esp-3);
+        padding: 0 var(--esp-4);
+    }
+
+    .nav-principal {
+        display: none;
+    }
+
+    .nav-movil {
+        display: block;
+        justify-self: end;
+    }
+
+    .marca-texto {
+        display: none;
+    }
+
+    header h1#titulo {
+        margin: 0 calc(-1 * var(--esp-4));
+        padding: var(--esp-3) var(--esp-4);
+        font-size: var(--texto-lg);
+    }
+}
