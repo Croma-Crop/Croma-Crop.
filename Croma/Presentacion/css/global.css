@@ -855,3 +855,89 @@ header h1#titulo {
         font-size: var(--texto-lg);
     }
 }
+
+header {
+    background-color: var(--superficie);
+    border-bottom: 1px solid var(--borde);
+    gap: var(--esp-5);
+    padding: 0 var(--esp-6);
+}
+
+.marca-texto {
+    color: var(--navy-700);
+}
+
+.nav-enlace {
+    display: block;
+    padding: var(--esp-4) var(--esp-3);
+    color: var(--texto-tenue);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color var(--transicion), border-color var(--transicion);
+}
+
+.nav-enlace:hover {
+    color: var(--navy-700);
+    background-color: transparent;
+    border-bottom-color: var(--borde);
+}
+
+.nav-enlace.nav-activo {
+    color: var(--navy-700);
+    font-weight: 600;
+    background-color: transparent;
+    border-bottom-color: var(--navy-700);
+}
+
+.nav-lista {
+    gap: var(--esp-2);
+}
+
+.btn-usuario {
+    color: var(--crema);
+    background-color: var(--navy-700);
+    border: 1px solid transparent;
+    font-size: var(--texto-sm);
+    padding: 7px var(--esp-4);
+}
+
+.btn-usuario:hover {
+    background-color: var(--navy-600);
+    border-color: transparent;
+}
+
+#burguer {
+    height: 26px;
+}
+
+header h1#titulo {
+    margin: 0 calc(-1 * var(--esp-6));
+    padding: var(--esp-4) var(--esp-6);
+    background-color: var(--lienzo-alt);
+    border-top: 1px solid var(--borde-tenue);
+    border-bottom: none;
+    font-size: var(--texto-lg);
+    font-weight: 600;
+    color: var(--navy-700);
+}
+
+body[data-modulo="login"] header,
+body:not([data-modulo]) header {
+    grid-template-areas: "marca enlaces usuario";
+    padding: var(--esp-3) var(--esp-6);
+}
+
+body[data-modulo="login"] .dropdown,
+body:not([data-modulo]) .dropdown {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    header h1#titulo {
+        margin: 0 calc(-1 * var(--esp-4));
+        padding: var(--esp-3) var(--esp-4);
+    }
+}
