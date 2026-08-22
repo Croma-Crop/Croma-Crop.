@@ -2,6 +2,7 @@
 
 require_once '../../Datos/Clases/ClassSalones.php';
 require_once '../../Datos/DataBase/ConexionMYSQL/conexion.php';
+require_once '../../Procesos/mostrarticket.php';
 
 $usuario = $_SESSION['usuarioActivo'];
 
