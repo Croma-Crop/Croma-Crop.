@@ -177,7 +177,7 @@ INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) V
 ('11111111', 'Juan', 'Administrador', '$2y$10$C5GRmTka4xoRDk8RlmiieekJcJAHWQtXBoGVDgKQIYNDzWOhS06QS', 'administrador'),
 ('22222222', 'juan', 'joan', '$2y$10$0pg0LsqFt.9QoKLpneN6D.yEWdiGx7oIzSaJrF4wW8J5R0MXUt0bi', 'administrador'),
 ('33333333', 'Juancho', 'ELTECHNICIAN', '$2y$10$A4L2C99WVq8N.pKUjfGxw.GbcI5ghnE9l4vCNnZcYuMNXQP/wU.Fu', 'tecnico'),
-('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
+('44444444', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
 ('77777777', 'guille', 'gille', '$2y$10$ZMb5ai8MgBsyEs.Cypu.Zek6E5LoJJfbF/xOk0vp9w/oPiMoHfFhS', 'administrador');
 
 --
