@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cedulaSolicitante = $_SESSION['usuarioActivo']['documento'] ?? null;
 
     $incidencia = new Incidencia(
-        $conexion, null, $fecha, $descripcion, "Sin asignar", $turno, null, null, "Pendiente");
+        $conexion, null, $fecha, $descripcion, "Sin asignar", $turno, null, null, "Pendiente", NULL);
 
     $ok = $incidencia->guardar($cedulaSolicitante, $tipo);
 

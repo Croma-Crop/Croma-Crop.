@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,7 +28,7 @@
         
 
     </header>
-
+<?php require '../../Procesos/backend/cargarinventario.php'; ?>
     <main>
         <section id="newsletter">
             <form id="formularioNewsletter">
@@ -39,7 +40,7 @@
                 </div>
             </form>
         </section>
-        <section class="contenedor">
+        <section class="contenedor mostrar">
        
     <form id="incforms" method="post" action="../../Procesos/backend/procesoincidencia.php">
         <h3>Incidencias</h3>
@@ -94,7 +95,7 @@
     </form>
         
             </section>
-            <section class="contenedorSol">
+            <section class="contenedorSol mostrar">
         <form id="solforms" method="post" action="../../Procesos/backend/procesosolicitud.php">
             <h3>Solicitudes</h3>
             <label for="tipoSol">¿Tipo de solicitud?</label>

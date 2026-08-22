@@ -10,7 +10,9 @@ Public String $prioridad;
 Public String $turno;
 Public ?string $fecha_limite;
 Public ?string $tecnico;
+Public ?string $cedulaSolicitante;
 Public string $estado;
+
 
  public function __construct(
         mysqli $conexion,
@@ -21,6 +23,7 @@ Public string $estado;
         string $turno,
         ?string $fecha_limite,
         ?String $tecnico,
+        ?string $cedulaSolicitante,
         string $estado = 'Pendiente'
     ) {
         $this->conexion = $conexion;
@@ -30,6 +33,7 @@ Public string $estado;
         $this->prioridad = $prioridad;
         $this->turno = $turno;
         $this->tecnico = $tecnico;
+        $this->cedulaSolicitante = $cedulaSolicitante;
         $this->estado = $estado;
       
     }
@@ -42,6 +46,24 @@ Public string $estado;
         ORDER BY fecha DESC";
     $resultado = $conexion->query($sql);
     return $resultado->fetch_all(MYSQLI_ASSOC);
+}
+public function guardar($cedulaSolicitante, $tipo) {
+    try {
+        $sql = "INSERT INTO incidencia (fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("sssssssss", $this->fecha, $this->fecha_limite, $this->turno, $this->estado, $tipo, $this->descripcion, $this->prioridad, $cedulaSolicitante, $this->tecnico);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return false;
+    }
 }
 
     public function cambiarEstado(string $nuevoEstado): void { /* ... */ }
