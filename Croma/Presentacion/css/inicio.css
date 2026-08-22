@@ -5,47 +5,51 @@
 }
 
 .bienvenida {
-    background-color: var(--lienzo);
-    border: 1px solid rgba(0, 0, 0, 0.158);
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--navy-700);
     border-radius: var(--radio);
-    padding: 25px;
-    margin-bottom: 25px;
+    padding: var(--esp-5);
+    margin-bottom: var(--esp-5);
 }
 
 .bienvenida h2 {
-    font-size: 22px;
+    font-size: var(--texto-xl);
     color: var(--navy-700);
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--esp-2);
 }
 
 .bienvenida p {
-    font-size: 15px;
-    color: var(--texto);
+    font-size: var(--texto-base);
+    color: var(--texto-tenue);
     line-height: 1.6;
+    max-width: 70ch;
 }
 
 .titulo-modulos {
-    font-size: 18px;
+    font-size: var(--texto-lg);
     color: var(--navy-700);
-    font-weight: bold;
-    margin-bottom: 15px;
+    font-weight: 600;
+    margin-bottom: var(--esp-4);
 }
 
 .resumen {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1em;
-    margin-bottom: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--esp-4);
+    margin-bottom: var(--esp-5);
 }
 
 .tarjeta-resumen {
-    background-color: white;
+    background-color: var(--superficie);
     border: 1px solid var(--borde);
     border-radius: var(--radio);
-    padding: 20px;
-    text-align: center;
-    transition: var(--transicion);
+    padding: var(--esp-4) var(--esp-5);
+    text-align: left;
+    box-shadow: var(--sombra);
+    transition: box-shadow var(--transicion);
 }
 
 .tarjeta-resumen:hover {
@@ -54,15 +58,17 @@
 
 .tarjeta-resumen .numero {
     display: block;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
     color: var(--navy-700);
 }
 
 .tarjeta-resumen p {
-    font-size: 14px;
-    color: var(--texto);
-    margin-top: 4px;
+    font-size: var(--texto-sm);
+    color: var(--texto-tenue);
+    margin-top: var(--esp-1);
 }
 
 .modulos {
