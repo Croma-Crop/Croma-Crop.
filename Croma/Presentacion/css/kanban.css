@@ -190,7 +190,7 @@
     border: none;
     border-radius: var(--radio);
     cursor: pointer;
-    transition: 0.25s ease;
+    transition: var(--transicion);
     color: var(--crema);
     background-color: var(--navy-700);
 }
