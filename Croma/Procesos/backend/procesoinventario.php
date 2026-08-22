@@ -18,6 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $esEdicion = $_POST['esEdicion'] ?? '';
 
+    $mensajeError = "";
+
+    if ($id_salon === "") {
+        $mensajeError = "Tenes que asignar un salon";
+    }
+
+    if ($mensajeError === "" && $esEdicion !== '1') {
+        $consulta = $conexion->prepare("SELECT numero_serie FROM inventario WHERE numero_serie = ?");
+        $consulta->bind_param("s", $numero_serie);
+        $consulta->execute();
+
+        if ($consulta->get_result()->num_rows > 0) {
+            $mensajeError = "Ya existe un equipo con el numero de serie " . $numero_serie;
+        }
+    }
+
+    if ($mensajeError !== "") {
+        header("Location: ../../Presentacion/html/inventario.php?mensaje=" . urlencode($mensajeError));
+        exit;
+    }
+
     $inventario = new Inventario(
         $conexion,
         $numero_serie,
