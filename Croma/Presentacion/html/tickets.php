@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="../css/tickets.css">
     <title>Tickets</title>
 
-    <script>
-    const nombreCompleto = "<?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?>";
-</script>
     <script src="../js/tickets.js" defer></script>
 </head>
 
@@ -29,6 +26,10 @@
 
     </header>
 <?php require '../../Procesos/backend/cargarinventario.php'; ?>
+    <script>
+    const nombreCompleto = "<?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?>";
+    </script>
+
     <main>
         <section id="newsletter">
             <form id="formularioNewsletter">

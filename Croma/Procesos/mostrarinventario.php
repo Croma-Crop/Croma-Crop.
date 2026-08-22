@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . "../../Datos/Clases/ClassInventario.php";
-require __DIR__ . "../../Datos/Clases/ClassIntervencion.php";
+require __DIR__ . "/../Datos/Clases/ClassInventario.php";
+require __DIR__ . "/../Datos/Clases/ClassIntervencion.php";
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
