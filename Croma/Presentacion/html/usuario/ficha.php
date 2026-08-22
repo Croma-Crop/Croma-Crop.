@@ -20,6 +20,9 @@
         
 
     </header>
+    <script>
+    const usuarioActivo = { nombre: "<?= htmlspecialchars($usuario['nombre']) ?>", apellido: "<?= htmlspecialchars($usuario['apellido']) ?>" };
+    </script>
     <main>
         <section id="contenido">
             <section id="seccion-formulario">

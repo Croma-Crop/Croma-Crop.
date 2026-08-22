@@ -5,7 +5,7 @@
 }
 
 #seccion-listado {
-    background-color: #e8ecef;
+    background-color: var(--lienzo);
     padding: 25px;
     border-radius: 10px;
     margin: 3em;
@@ -15,7 +15,7 @@
 }
 
 #seccion-listado:hover {
-    box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.24);
+    box-shadow: var(--sombra-elevada);
     transform: translateY(-2px);
 }
 
@@ -32,13 +32,13 @@
     min-width: 220px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--borde);
     border-radius: 4px;
     transition: 0.5s;
 }
 
 #inptbusqueda:hover {
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.137);
+    box-shadow: var(--sombra);
     border: 1px solid rgba(0, 0, 0, 0.877);
 }
 
@@ -55,18 +55,18 @@
     cursor: pointer;
     transition: 0.3s;
     background-color: white;
-    color: #30364F;
-    border: 1px solid #30364F;
+    color: var(--navy-700);
+    border: 1px solid var(--navy-700);
 }
 
 .filtro-clase:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(48, 54, 79, 0.45);
+    box-shadow: var(--sombra-elevada);
 }
 
 .filtro-clase.activo {
-    background-color: #30364F;
-    color: #ffffff;
+    background-color: var(--navy-700);
+    color: var(--superficie);
 }
 
 #listado-tickets {
@@ -79,7 +79,7 @@
 
 .tarjeta-ticket {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid var(--borde);
     padding: 15px;
     border-radius: 4px;
     transition: 0.3s ;
@@ -88,7 +88,7 @@
 }
 
 .tarjeta-ticket:hover {
-    box-shadow: 1px 6px 6px rgba(80, 80, 80, 0.158);
+    box-shadow: var(--sombra-elevada);
 }
 
 .tarjeta-clase {
@@ -99,11 +99,11 @@
 }
 
 .tarjeta-incidencia {
-    color: #ee1313;
+    color: var(--peligro);
 }
 
 .tarjeta-solicitud {
-    color: #30364F;
+    color: var(--navy-700);
 }
 
 .tarjeta-nombre {
@@ -112,14 +112,14 @@
 }
 
 .tarjeta-tipo {
-    color: #27ae60;
+    color: var(--exito);
     margin-top: 5px;
 }
 
 .tarjeta-descripcion {
     margin-top: 8px;
     padding-top: 8px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--borde-tenue);
 }
 
 .tarjeta-prioridad {
@@ -130,14 +130,14 @@
 .select-prioridad {
     margin-left: 6px;
     padding: 3px 6px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--borde);
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
 }
 
 .sin-resultados {
-    color: #777;
+    color: var(--texto-tenue);
     font-style: italic;
 }
 
@@ -150,14 +150,14 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.25s ease;
-    color: #F0F0DB;
-    background-color: #e74c3c;
+    color: var(--crema);
+    background-color: var(--peligro);
 }
 
 .boton-eliminar-ticket:hover {
-    background-color: #c0392b;
+    background-color: var(--peligro);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(48, 54, 79, 0.45);
+    box-shadow: var(--sombra-elevada);
 }
 
 @media (max-width: 768px){
