@@ -8,19 +8,18 @@
 #contenido {
     background-color: var(--lienzo);
     padding: 25px;
-    border-radius: 10px;
+    border-radius: var(--radio);
     border: 1px solid rgba(0, 0, 0, 0.158);
     display: flex;
     align-items: flex-start;
     gap: 2em;
     margin: 3em;
     width: 90%;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 #contenido:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 #seccion-formulario {
@@ -40,9 +39,9 @@ form {
     background-color: white;
     box-shadow: var(--sombra-elevada);
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 25px;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 form label,
@@ -58,10 +57,10 @@ select {
     padding: 13px;
     margin-bottom: 5px;
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
     background-color: var(--lienzo-alt);
     font-size: 14px;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 select:hover {
@@ -96,20 +95,19 @@ select:hover {
     background-color: var(--navy-700);
     color: var(--superficie);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     width: 80%;
     align-self: center;
     margin-top: 20px;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 #enviarFicha:hover {
     background-color: var(--navy-600);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 #avisoEquipos {
@@ -117,7 +115,7 @@ select:hover {
     font-style: italic;
     background-color: white;
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 20px;
 }
 
@@ -126,7 +124,7 @@ select:hover {
     border-collapse: collapse;
     background-color: white;
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     overflow: hidden;
     box-shadow: var(--sombra-elevada);
 }
@@ -146,7 +144,7 @@ select:hover {
 }
 
 #tablaEquipos tbody tr {
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 #tablaEquipos tbody tr:hover {
@@ -179,7 +177,7 @@ select:hover {
 
 #dialogIncidencia {
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 30px;
     min-width: 320px;
     max-width: 90vw;
@@ -220,17 +218,16 @@ select:hover {
     background-color: var(--navy-700);
     color: var(--superficie);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 15px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 #guardarIncidenciaEquipo:hover {
     background-color: var(--navy-600);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 #cancelarIncidenciaEquipo {
@@ -239,16 +236,15 @@ select:hover {
     background-color: var(--peligro);
     color: var(--superficie);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 15px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 #cancelarIncidenciaEquipo:hover {
     background-color: var(--peligro);
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px){

@@ -57,7 +57,7 @@
                 <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
                 <p class="tarjeta-serie">Serie: <?= htmlspecialchars($equipo['numero_serie']) ?></p>
                 <p class="tarjeta-modelo">Modelo: <?= htmlspecialchars($equipo['modelo']) ?></p>
-                <p class="tarjeta-estado">Estado: <?= htmlspecialchars($equipo['estado']) ?></p>
+                <p class="tarjeta-estado">Estado: <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
                 <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
                 <p class="tarjeta-intervenciones">Intervenciones: <?= $equipo['numero_intervenciones'] ?></p>
                 <div class="tarjeta-acciones">

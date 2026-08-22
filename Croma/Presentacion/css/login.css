@@ -19,14 +19,13 @@
     background-color: white;
     box-shadow: var(--sombra-elevada);
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 30px;
-    transition: 0.4s;
+    transition: var(--transicion);
 }
 #newsletter form:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-3px);
-    transition: 0.4s;
+    transition: var(--transicion);
 }
 #newsletter h1 {
     font-size: 20px;
@@ -54,15 +53,15 @@ form input[id="pasaporte"],
 form input[id="password"] {
     padding: 15px;
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
     background-color: var(--lienzo-alt);
     font-size: 14px;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 #newsletter input:hover {
     background-color: var(--lienzo-alt);
     border-color: var(--navy-700);
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 #crear {
@@ -70,18 +69,17 @@ form input[id="password"] {
     background-color: var(--navy-700);
     color: var(--superficie);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     width: 80%;
     align-self: center;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 #crear:hover {
     background-color: var(--navy-600);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
     letter-spacing: 0.5px;
 }
 
@@ -97,14 +95,13 @@ form input[id="password"] {
     color: var(--texto);
     font-weight: 500;
     letter-spacing: 0px;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 #btnCedula:hover,
 #extranjero:hover {
     border-bottom: 2px solid var(--navy-700);
     color: var(--navy-700);
     letter-spacing: 0.5px;
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px){

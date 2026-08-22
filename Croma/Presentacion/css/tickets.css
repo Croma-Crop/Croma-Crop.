@@ -30,8 +30,8 @@ main{
     background-color: #020513d8;
     font-size: 18px;
     padding: 0.5em 1.0em;
-    border-radius: 15px;
-    transition: 0.5s;
+    border-radius: var(--radio);
+    transition: var(--transicion);
     width: 300px;
 }
 #incidencia {
@@ -40,7 +40,6 @@ main{
 #incidencia:hover,
 #regSolicitud:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
     background-color: #020513c9;
 }
 
@@ -55,9 +54,9 @@ main{
     background-color: white;
     box-shadow: var(--sombra-elevada);
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 25px;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 #solforms{
     width: 500px;
@@ -67,8 +66,7 @@ main{
 .contenedor form:hover,
 .contenedorSol form:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-3px);
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 #newsletter p,
 .contenedor p,
@@ -96,10 +94,10 @@ form input[id="fecha_limite"],
     padding: 13px;
     margin-bottom: 5px;
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
     background-color: var(--lienzo-alt);
     font-size: 14px;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 #campo-documento, #campo-boton {
@@ -121,14 +119,13 @@ form input[id="fecha_limite"],
     color: var(--texto);
     font-weight: 500;
     letter-spacing: 0px;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 #volverInc:hover,
 #volverSol:hover{
     border-bottom: 2px solid var(--navy-700);
     color: var(--navy-700);
     letter-spacing: 0.5px;
-    transform: translateY(-2px);
 }
 #enviarinc,
 #enviarSol {
@@ -136,26 +133,25 @@ form input[id="fecha_limite"],
     background-color: var(--navy-700);
     color: var(--superficie);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     width: 80%;
     align-self: center;
-    transition: 0.5s;
+    transition: var(--transicion);
     margin-top: 20px;
 }
 #enviarinc:hover,
 #enviarSol:hover {
     background-color: var(--navy-600);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 form input:hover,
 form select:hover {
     background-color: var(--lienzo-alt);
     border-color: var(--navy-700);
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 .radio-grupo {
@@ -183,7 +179,7 @@ form select:hover {
 
 #dialogSol {
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 30px;
     min-width: 300px;
     box-shadow: var(--sombra-elevada);

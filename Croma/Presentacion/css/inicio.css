@@ -7,7 +7,7 @@
 .bienvenida {
     background-color: var(--lienzo);
     border: 1px solid rgba(0, 0, 0, 0.158);
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 25px;
     margin-bottom: 25px;
 }
@@ -42,15 +42,14 @@
 .tarjeta-resumen {
     background-color: white;
     border: 1px solid var(--borde);
-    border-radius: 8px;
+    border-radius: var(--radio);
     padding: 20px;
     text-align: center;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 .tarjeta-resumen:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 .tarjeta-resumen .numero {
@@ -75,7 +74,7 @@
 .tarjeta-modulo {
     background-color: white;
     border: 1px solid var(--borde);
-    border-radius: 8px;
+    border-radius: var(--radio);
     padding: 20px;
 }
 
