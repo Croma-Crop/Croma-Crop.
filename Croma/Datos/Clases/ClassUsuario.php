@@ -29,18 +29,19 @@ public String $rol;
         $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conexion->prepare($sql);
 
-        if (!$stmt) {
-        die("ERROR PREPARE: " . $this->conexion->error);
+         if (!$stmt) {
+            return false;
+        }
     }
 
 
         $stmt->bind_param("sssss", $this->documento, $this->nombre, $this->apellido, $this->contrasena, $this->rol);
-if (!$stmt->execute()) {
-        die("ERROR EXECUTE: " . $stmt->error);
-    }
-
+ if (!$stmt->execute()) {
+            return false;
+        }
 
         return true;
+    
 
     } catch (mysqli_sql_exception $e) {
         return false;
