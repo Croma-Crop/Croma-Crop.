@@ -7,16 +7,15 @@
 #seccion-listado {
     background-color: var(--lienzo);
     padding: 25px;
-    border-radius: 10px;
+    border-radius: var(--radio);
     margin: 3em;
     width: 90%;
     border: 1px solid rgba(0, 0, 0, 0.158);
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 #seccion-listado:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 #controles {
@@ -34,7 +33,7 @@
     font-size: 16px;
     border: 1px solid var(--borde);
     border-radius: 4px;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 #inptbusqueda:hover {
@@ -51,16 +50,15 @@
     padding: 9px 18px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radio);
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transicion);
     background-color: white;
     color: var(--navy-700);
     border: 1px solid var(--navy-700);
 }
 
 .filtro-clase:hover {
-    transform: translateY(-2px);
     box-shadow: var(--sombra-elevada);
 }
 
@@ -82,7 +80,7 @@
     border: 1px solid var(--borde);
     padding: 15px;
     border-radius: 4px;
-    transition: 0.3s ;
+    transition: var(--transicion) ;
     display: flex;
     flex-direction: column;
 }
@@ -131,7 +129,7 @@
     margin-left: 6px;
     padding: 3px 6px;
     border: 1px solid var(--borde);
-    border-radius: 6px;
+    border-radius: var(--radio);
     cursor: pointer;
     font-weight: bold;
 }
@@ -147,7 +145,7 @@
     padding: 9px 0;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radio);
     cursor: pointer;
     transition: 0.25s ease;
     color: var(--crema);
@@ -156,7 +154,6 @@
 
 .boton-eliminar-ticket:hover {
     background-color: var(--peligro);
-    transform: translateY(-2px);
     box-shadow: var(--sombra-elevada);
 }
 

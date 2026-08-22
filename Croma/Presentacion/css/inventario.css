@@ -11,7 +11,7 @@
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: all var(--transicion) ease;
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +40,7 @@
     padding: 9px 0;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radio);
     cursor: pointer;
     transition: 0.25s ease;
     color: var(--crema);
@@ -55,7 +55,6 @@
 .boton-historial:hover,
 .boton-modificar:hover {
     background-color: var(--navy-600);
-    transform: translateY(-2px);
     box-shadow: var(--sombra-elevada);
 }
 
@@ -65,7 +64,6 @@
 
 .boton-eliminar:hover {
     background-color: var(--peligro);
-    transform: translateY(-2px);
     box-shadow: var(--sombra-elevada);
 }
 
@@ -80,7 +78,7 @@
 #dialogHistorial {
     margin: auto;
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 25px;
     max-width: 90vw;
     box-shadow: var(--sombra-elevada);
@@ -115,14 +113,14 @@
 #contenido{
     background-color: var(--lienzo);
     padding: 25px;
-    border-radius: 10px;
+    border-radius: var(--radio);
     margin-top: 20px;
     border: 1px solid rgba(0, 0, 0, 0.158);
     display: flex;
     align-items: flex-start;
     gap: 2em;
     margin: 3em;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 #seccion-listado {
@@ -139,7 +137,7 @@
     min-width: 220px;
 }
 #contenido input{
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 #contenido input:hover{
     box-shadow: var(--sombra);
@@ -147,7 +145,6 @@
 }
 #contenido:hover{
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 #listado{
     display: grid;
@@ -181,7 +178,7 @@ button, #submit {
     color: var(--crema);
     border: none;
     cursor: pointer;
-    transition: 0.5s;
+    transition: var(--transicion);
     font-weight: bold;
 }
 #submit:hover{
@@ -288,7 +285,7 @@ ul {
 .dialogo-equipo {
     margin: auto;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radio);
     padding: 24px;
     min-width: 320px;
     max-width: 90vw;

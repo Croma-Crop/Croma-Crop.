@@ -183,15 +183,15 @@ main {
 }
 
 #logo{
-    height: 50px;
+    height: 42px;
     width: auto;
-    margin-right: 10px;
+    margin-right: var(--esp-3);
     order: 1;
 }
 #burguer{
-    height: 40px;
-    transition: 0.5s;
-    padding-bottom: 10px;
+    height: 34px;
+    transition: opacity var(--transicion);
+    cursor: pointer;
 }
 .dropdown {
     order: 2;
@@ -199,14 +199,12 @@ main {
 .dropdown .dropdown-menu {
     display: block; 
     opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px); 
-    transition: 0.3s ; 
+    visibility: hidden; 
+    transition: var(--transicion) ; 
   }
 .dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
   }
 #titulo{
     text-align: left;
@@ -217,15 +215,15 @@ header {
     grid-template-columns: auto auto auto 1fr;
     align-items: center;
     border-bottom: 1px solid var(--borde);
-    background-color: var(--lienzo);
-    box-shadow: var(--sombra-elevada);
-    padding: 10px 30px;
+    background-color: var(--superficie);
+    padding: var(--esp-3) var(--esp-6);
 }
 header h1 {
-    font-size: 25px;
+    font-size: var(--texto-xl);
     color: var(--navy-700);
-    font-weight: bold;
-    margin-left: 0.5em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-left: var(--esp-2);
 }
 header nav {
     
@@ -240,16 +238,15 @@ header nav a {
     min-width: 100px;
     white-space: nowrap;
     color: var(--crema);
-    font-weight: bold;
+    font-weight: 600;
+    font-size: var(--texto-base);
     background-color: var(--navy-700);
-    padding: 0.7em 1.2em;
-    border-radius: 49px;
-    transition: 0.5s;
+    padding: 9px var(--esp-4);
+    border-radius: 999px;
+    transition: background-color var(--transicion);
 }
 header nav a:hover {
     background-color: var(--navy-600);
-    box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 .usuario-chip {
@@ -260,18 +257,17 @@ header nav a:hover {
     min-width: 100px;
     white-space: nowrap;
     color: var(--crema);
-    font-weight: bold;
+    font-weight: 600;
+    font-size: var(--texto-base);
     background-color: var(--navy-700);
-    padding: 0.7em 1.2em;
+    padding: 9px var(--esp-4);
     border: none;
-    border-radius: 49px;
+    border-radius: 999px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: background-color var(--transicion);
 }
 .btn-usuario:hover {
     background-color: var(--navy-600);
-    box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 footer{
@@ -597,4 +593,110 @@ body .tarjeta-intervenciones {
 
 body .dialogo-equipo {
     box-shadow: var(--sombra-elevada);
+}
+
+body .btnOperacion,
+body .btnAgregar,
+body .btn-alta {
+    background-color: var(--navy-700);
+    color: var(--crema);
+    border: 1px solid transparent;
+    border-radius: var(--radio);
+    padding: 9px var(--esp-4);
+    font-size: var(--texto-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transicion);
+}
+
+body .btnOperacion:hover,
+body .btnAgregar:hover,
+body .btn-alta:hover {
+    background-color: var(--navy-600);
+}
+
+body .btnEliminarEmpleado {
+    background-color: var(--peligro);
+    color: var(--superficie);
+    border: 1px solid transparent;
+    border-radius: var(--radio);
+    padding: 6px var(--esp-3);
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transicion);
+}
+
+body .btnEliminarEmpleado:hover {
+    background-color: var(--peligro-hover);
+}
+
+body .tabla-datos caption {
+    text-align: left;
+    padding-bottom: var(--esp-2);
+    color: var(--texto-tenue);
+    font-size: var(--texto-sm);
+    font-style: normal;
+}
+
+body .celda-oculta {
+    color: var(--texto-tenue);
+    letter-spacing: 2px;
+}
+
+body .tabla-envoltorio {
+    background-color: var(--superficie);
+}
+
+body .campo-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--esp-3);
+}
+
+body .grupo-opciones {
+    border: 1px solid var(--borde-tenue);
+    border-radius: var(--radio);
+    padding: var(--esp-3) var(--esp-4);
+}
+
+body .grupo-opciones legend {
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    color: var(--texto-tenue);
+    padding: 0 var(--esp-2);
+}
+
+body .radio-grupo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-4);
+}
+
+body .opcion {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--esp-2);
+    font-size: var(--texto-base);
+    font-weight: 400;
+    color: var(--texto);
+    cursor: pointer;
+}
+
+body .opcion input[type="radio"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--navy-700);
+    cursor: pointer;
+}
+
+body #fichaForm button[type="submit"] {
+    margin-top: var(--esp-2);
+    width: 100%;
+}
+
+@media (max-width: 576px) {
+    body .campo-fila {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }

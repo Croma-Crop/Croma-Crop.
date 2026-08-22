@@ -29,34 +29,52 @@
                 <h3 class="titulo-seccion">Ficha Docente</h3>
                 <form id="fichaForm">
 
-                    <label for="nombreProf">Profesor</label>
-                    <input id="nombreProf" type="text" readonly>
+                    <div class="campo">
+                        <label for="nombreProf">Profesor</label>
+                        <input id="nombreProf" type="text" readonly>
+                    </div>
 
-                    <label for="fecha_inicio">Fecha</label>
-                    <input id="fecha_inicio" type="date" name="fecha" required>
+                    <div class="campo">
+                        <label for="fecha_inicio">Fecha</label>
+                        <input id="fecha_inicio" type="date" name="fecha" required>
+                    </div>
 
-                    <label for="hora_entrada">Hora entrada</label>
-                    <input type="time" id="hora_entrada" name="hora_entrada" required>
+                    <div class="campo-fila">
+                        <div class="campo">
+                            <label for="hora_entrada">Hora entrada</label>
+                            <input type="time" id="hora_entrada" name="hora_entrada" required>
+                        </div>
 
-                    <label for="hora_salida">Hora salida</label>
-                    <input type="time" id="hora_salida" name="hora_salida" required>
+                        <div class="campo">
+                            <label for="hora_salida">Hora salida</label>
+                            <input type="time" id="hora_salida" name="hora_salida" required>
+                        </div>
+                    </div>
 
-                    <label for="salon">Salón</label>
-                    <select id="salon" name="salon" required>
-                        <option value="">--- Seleccionar salón ---</option>
-                    </select>
+                    <div class="campo">
+                        <label for="salon">Salón</label>
+                        <select id="salon" name="salon" required>
+                            <option value="">--- Seleccionar salón ---</option>
+                        </select>
+                    </div>
 
-                    <p>Turno:</p>
-                    <section class="radio-grupo">
-                        <input type="radio" id="matutino" name="turno" value="Matutino">
-                        <label for="matutino">Matutino</label>
-
-                        <input type="radio" id="vespertino" name="turno" value="Vespertino">
-                        <label for="vespertino">Vespertino</label>
-
-                        <input type="radio" id="nocturno" name="turno" value="Nocturno">
-                        <label for="nocturno">Nocturno</label>
-                    </section>
+                    <fieldset class="campo grupo-opciones">
+                        <legend>Turno</legend>
+                        <div class="radio-grupo">
+                            <label class="opcion" for="matutino">
+                                <input type="radio" id="matutino" name="turno" value="Matutino">
+                                <span>Matutino</span>
+                            </label>
+                            <label class="opcion" for="vespertino">
+                                <input type="radio" id="vespertino" name="turno" value="Vespertino">
+                                <span>Vespertino</span>
+                            </label>
+                            <label class="opcion" for="nocturno">
+                                <input type="radio" id="nocturno" name="turno" value="Nocturno">
+                                <span>Nocturno</span>
+                            </label>
+                        </div>
+                    </fieldset>
 
                     <button type="submit" id="enviarFicha">Enviar Ficha</button>
                 </form>

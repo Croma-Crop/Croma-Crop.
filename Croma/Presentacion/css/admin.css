@@ -1,16 +1,15 @@
 .seccionTablaEmpleados {
     background-color: var(--lienzo);
-    border-radius: 10px;
+    border-radius: var(--radio);
     border: 1px solid rgba(0, 0, 0, 0.158);
     padding: 25px;
     margin: 3em;
-    transition: 0.5s;
+    transition: var(--transicion);
     width: 90%;
 }
 
 .seccionTablaEmpleados:hover {
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 .cajaEncabezado {
@@ -31,24 +30,23 @@
     color: var(--crema);
     border: none;
     padding: 10px 20px;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 .btnOperacion:hover {
     background-color: var(--navy-600);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-    border-radius: 8px;
+    border-radius: var(--radio);
     overflow: hidden;
     box-shadow: var(--sombra-elevada);
 }
@@ -75,7 +73,7 @@ thead th {
 
 tbody tr {
     border-bottom: 1px solid var(--borde-tenue);
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 tbody tr:hover {
@@ -90,7 +88,7 @@ tbody td {
 
 dialog.dialogGestionarEmpleado {
     border: 1px solid #a09f9f53;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 0;
     min-width: 420px;
     box-shadow: var(--sombra-elevada);
@@ -108,7 +106,7 @@ dialog.dialogGestionarEmpleado::backdrop {
 
 .seccionFormulario fieldset {
     border: 1px solid rgba(0, 0, 0, 0.158);
-    border-radius: 8px;
+    border-radius: var(--radio);
     padding: 20px;
     margin: 0;
 }
@@ -126,12 +124,12 @@ dialog.dialogGestionarEmpleado::backdrop {
 
 .seccionFormulario form {
     background-color: white;
-    border-radius: 10px;
+    border-radius: var(--radio);
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 .seccionFormulario form:hover {
@@ -148,7 +146,7 @@ dialog.dialogGestionarEmpleado::backdrop {
     cursor: pointer;
     padding: 4px;
     border-radius: 4px;
-    transition: 0.3s;
+    transition: var(--transicion);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +154,6 @@ dialog.dialogGestionarEmpleado::backdrop {
 
 .btnCerrarGestionarEmpleado:hover {
     background-color: var(--lienzo);
-    transform: translateY(-1px);
 }
 
 .btnCerrarGestionarEmpleado .iconoMenu {
@@ -182,9 +179,9 @@ dialog.dialogGestionarEmpleado::backdrop {
     padding: 15px;
     font-size: 14px;
     border: 1px solid var(--borde);
-    border-radius: 10px;
+    border-radius: var(--radio);
     background-color: var(--lienzo-alt);
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 .cajaEntradaDeDatos input:hover,
@@ -204,19 +201,18 @@ dialog.dialogGestionarEmpleado::backdrop {
     background-color: var(--navy-700);
     color: var(--crema);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radio);
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     width: 80%;
     align-self: center;
-    transition: 0.5s;
+    transition: var(--transicion);
 }
 
 .seccionFormulario fieldset > button[type="submit"]:hover {
     background-color: var(--navy-600);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-2px);
 }
 
 .btnEliminarEmpleado {
@@ -228,13 +224,12 @@ dialog.dialogGestionarEmpleado::backdrop {
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 
 .btnEliminarEmpleado:hover {
     background-color: var(--peligro);
     box-shadow: var(--sombra-elevada);
-    transform: translateY(-1px);
 }
 
 #fieldset {
@@ -255,14 +250,13 @@ dialog.dialogGestionarEmpleado::backdrop {
     color: var(--texto);
     font-weight: 500;
     letter-spacing: 0px;
-    transition: 0.3s;
+    transition: var(--transicion);
 }
 #btnExtranjeroAdmin:hover,
 #btnCedulaAdmin:hover {
     border-bottom: 2px solid var(--navy-700);
     color: var(--navy-700);
     letter-spacing: 0.5px;
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px){
