@@ -1,5 +1,5 @@
 <?php
-require "ClassSalones.php";
+require __DIR__ ."/ClassSalones.php";
 require __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
 
 class Inventario{
