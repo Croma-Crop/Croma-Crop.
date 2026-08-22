@@ -1027,3 +1027,47 @@ header h1#titulo {
         padding: 0 var(--esp-4);
     }
 }
+
+body button.boton-eliminar,
+body button.boton-eliminar-ticket,
+body button.btnEliminarEmpleado {
+    background-color: var(--peligro);
+    color: var(--superficie);
+    border: 1px solid transparent;
+}
+
+body button.boton-eliminar:hover,
+body button.boton-eliminar-ticket:hover,
+body button.btnEliminarEmpleado:hover {
+    background-color: var(--peligro-hover);
+}
+
+body a.boton-modificar,
+body a.boton-historial,
+body button.boton-modificar,
+body button.boton-historial,
+body button.boton-cerrar-equipo,
+body button.boton-cancelar-edicion {
+    background-color: var(--superficie);
+    color: var(--navy-700);
+    border: 1px solid var(--navy-700);
+}
+
+body a.boton-modificar:hover,
+body a.boton-historial:hover,
+body button.boton-modificar:hover,
+body button.boton-historial:hover,
+body button.boton-cerrar-equipo:hover,
+body button.boton-cancelar-edicion:hover {
+    background-color: var(--lienzo);
+}
+
+#busqueda {
+    padding-top: calc(var(--texto-lg) * 1.25 + var(--esp-4));
+}
+
+@media (max-width: 576px) {
+    #busqueda {
+        padding-top: 0;
+    }
+}
