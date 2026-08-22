@@ -128,7 +128,7 @@
                     <button id="submit" type="submit">Guardar Artículo</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>
-                <div class="mensaje">
+                <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
                     <?= htmlspecialchars($_GET["mensaje"]) ?>
                 </div>
                 <?php endif; ?>

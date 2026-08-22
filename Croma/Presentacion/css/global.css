@@ -968,3 +968,37 @@ a:hover {
 .marca-texto {
     order: 1;
 }
+
+.mensaje,
+.mensaje-error {
+    display: block;
+    padding: var(--esp-3) var(--esp-4);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--texto-tenue);
+    border-radius: var(--radio);
+    background-color: var(--lienzo-alt);
+    color: var(--texto);
+    font-size: var(--texto-sm);
+    line-height: 1.5;
+}
+
+.mensaje:empty,
+.mensaje-error:empty {
+    display: none;
+    padding: 0;
+    border: none;
+}
+
+.mensaje-exito {
+    background-color: var(--exito-claro);
+    border-color: var(--exito);
+    border-left-color: var(--exito);
+    color: var(--exito-texto);
+}
+
+.mensaje-error {
+    background-color: var(--peligro-claro);
+    border-color: var(--peligro);
+    border-left-color: var(--peligro);
+    color: var(--peligro);
+}

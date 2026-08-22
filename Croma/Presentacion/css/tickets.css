@@ -27,7 +27,7 @@ main{
     justify-content: center;
     color: var(--crema);
     font-weight: bold;
-    background-color: #020513d8;
+    background-color: var(--navy-600);
     font-size: 18px;
     padding: 0.5em 1.0em;
     border-radius: var(--radio);
@@ -39,8 +39,7 @@ main{
 }
 #incidencia:hover,
 #regSolicitud:hover {
-    box-shadow: var(--sombra-elevada);
-    background-color: #020513c9;
+    background-color: var(--navy-600);
 }
 
 #newsletter form,
@@ -50,31 +49,24 @@ main{
     max-width: 650px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background-color: white;
-    box-shadow: var(--sombra-elevada);
-    border: 1px solid #a09f9f53;
+    gap: var(--esp-4);
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
     border-radius: var(--radio);
-    padding: 25px;
-    transition: var(--transicion);
+    box-shadow: var(--sombra);
+    padding: var(--esp-5);
 }
 #solforms{
     width: 500px;
 }
 
-#newsletter form:hover,
-.contenedor form:hover,
-.contenedorSol form:hover {
-    box-shadow: var(--sombra-elevada);
-    transition: var(--transicion);
-}
+
 #newsletter p,
 .contenedor p,
 .contenedorSol p {
-    font-size: 20px;
-    letter-spacing: 1px;
-    color: var(--texto);
-    margin-bottom: 2px;
+    font-size: var(--texto-base);
+    color: var(--texto-tenue);
+    margin-bottom: var(--esp-1);
 }
 form label {
     font-size: 16px;
@@ -156,7 +148,8 @@ form select:hover {
 
 .radio-grupo {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: var(--esp-4);
 }
 
 .radio-grupo input[type="radio"] {
@@ -169,16 +162,14 @@ form select:hover {
 .radio-grupo label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--esp-2);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--texto-base);
   color: var(--texto);
-  font-weight: 400;
-  margin-top: 0;
 }
 
 #dialogSol {
-    border: 1px solid #a09f9f53;
+    border: 1px solid var(--borde);
     border-radius: var(--radio);
     padding: 30px;
     min-width: 300px;

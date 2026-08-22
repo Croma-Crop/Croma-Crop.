@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($mensajeError !== "") {
-        header("Location: ../../Presentacion/html/inventario.php?mensaje=" . urlencode($mensajeError));
+        header("Location: ../../Presentacion/html/inventario.php?tipo=error&mensaje=" . urlencode($mensajeError));
         exit;
     }
 
@@ -61,9 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($ok) {
-        header("Location: ../../Presentacion/html/inventario.php?mensaje=" . urlencode("Equipo guardado correctamente"));
+        header("Location: ../../Presentacion/html/inventario.php?tipo=exito&mensaje=" . urlencode("Equipo guardado correctamente"));
     } else {
-        header("Location: ../../Presentacion/html/inventario.php?mensaje=" . urlencode("No se pudo guardar el equipo"));
+        header("Location: ../../Presentacion/html/inventario.php?tipo=error&mensaje=" . urlencode("No se pudo guardar el equipo"));
     }
     exit;
 }
