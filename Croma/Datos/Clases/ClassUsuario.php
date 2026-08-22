@@ -32,7 +32,7 @@ public String $rol;
          if (!$stmt) {
             return false;
         }
-    }
+
 
 
         $stmt->bind_param("sssss", $this->documento, $this->nombre, $this->apellido, $this->contrasena, $this->rol);
@@ -79,8 +79,9 @@ return $usuarios;
     return $filaUsuario;
  }
  
-
 }
+
+
 class solicitante extends Usuario {
     public function rolPorDefecto(): String {
         return "solicitante";

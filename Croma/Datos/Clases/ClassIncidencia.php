@@ -33,6 +33,16 @@ Public string $estado;
         $this->estado = $estado;
       
     }
+    public static function mostrar($conexion) {
+    $sql = "SELECT 'Incidencia' AS clase, id_incidencia AS id, fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico
+        FROM incidencia
+        UNION ALL
+        SELECT 'Solicitud' AS clase, id_solicitud AS id, NULL AS fecha, NULL AS fecha_limite, NULL AS turno, estado, tipo, descripcion, NULL AS prioridad, cedula_solicitante, cedula_tecnico
+        FROM solicitud
+        ORDER BY fecha DESC";
+    $resultado = $conexion->query($sql);
+    return $resultado->fetch_all(MYSQLI_ASSOC);
+}
 
     public function cambiarEstado(string $nuevoEstado): void { /* ... */ }
     public function asignarFechaLimite(): void { /* ... */ }
