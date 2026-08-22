@@ -41,9 +41,19 @@
 
                 
                         <ul id="listado-equipos">
-        <?php foreach ($equipos as $equipo): ?>
+        <?php foreach ($equipos as $indice => $equipo): ?>
             <li class="tarjeta-producto">
                 <p class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></p>
+                <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
+                <button type="button" class="boton-desplegar" data-indice="<?= $indice ?>">Mostrar mas</button>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+
+        <?php foreach ($equipos as $indice => $equipo): ?>
+        <dialog class="dialogo-equipo" id="dialogo-equipo-<?= $indice ?>">
+            <div class="dialogo-detalle">
+                <h3 class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></h3>
                 <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
                 <p class="tarjeta-serie">Serie: <?= htmlspecialchars($equipo['numero_serie']) ?></p>
                 <p class="tarjeta-modelo">Modelo: <?= htmlspecialchars($equipo['modelo']) ?></p>
@@ -51,21 +61,41 @@
                 <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
                 <p class="tarjeta-intervenciones">Intervenciones: <?= $equipo['numero_intervenciones'] ?></p>
                 <div class="tarjeta-acciones">
-                    <form method="post" action="../../Procesos/registrarintervencion.php">
-                        <input type="hidden" name="numero_serie" value="<?= $equipo['numero_serie'] ?>">
-                    <a class="boton-historial" href="?historial=<?= $equipo['numero_serie'] ?>">Ver historial</a>
-                    </form>
-                    <form>
-                    <a class="boton-modificar" href="?editar=<?= $equipo['numero_serie'] ?>">Modificar</a>
-                    </form>
-                    <form method="post" action="../../Procesos/eliminarinventario.php" style="display:inline">
-                        <input type="hidden" name="numero_serie" value="<?= $equipo['numero_serie'] ?>">
+                    <a class="boton-historial" href="?historial=<?= urlencode($equipo['numero_serie']) ?>">Ver historial</a>
+                    <button type="button" class="boton-modificar boton-abrir-edicion" data-indice="<?= $indice ?>">Modificar</button>
+                    <form method="post" action="../../Procesos/eliminarinventario.php">
+                        <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
                         <button class="boton-eliminar" type="submit" onclick="return confirm('¿Seguro que quiere eliminar este equipo?')">Eliminar</button>
                     </form>
                 </div>
-            </li>
+            </div>
+
+            <form class="dialogo-edicion" method="post" action="../../Procesos/backend/procesoinventario.php">
+                <h3 class="titulo-seccion">Modificar equipo</h3>
+                <input type="hidden" name="esEdicion" value="1">
+                <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
+                <input name="nombre" type="text" placeholder="Nombre del articulo" required value="<?= htmlspecialchars($equipo['nombre']) ?>">
+                <input name="marca" type="text" placeholder="Marca del articulo" required value="<?= htmlspecialchars($equipo['marca']) ?>">
+                <input name="modelo" type="text" placeholder="Modelo" required value="<?= htmlspecialchars($equipo['modelo']) ?>">
+                <select name="estado" required>
+                    <option value="operativo" <?= $equipo['estado'] === 'operativo' ? 'selected' : '' ?>>Operativo</option>
+                    <option value="en_reparacion" <?= $equipo['estado'] === 'en_reparacion' ? 'selected' : '' ?>>En reparación</option>
+                    <option value="de_baja" <?= $equipo['estado'] === 'de_baja' ? 'selected' : '' ?>>De baja</option>
+                    <option value="prestado" <?= $equipo['estado'] === 'prestado' ? 'selected' : '' ?>>Prestado</option>
+                </select>
+                <select name="id_salon" required>
+                    <option value="">--- Asignar a un salón ---</option>
+                    <?php foreach ($salones as $salon): ?>
+                    <option value="<?= $salon['id_salon'] ?>" <?= $equipo['id_salon'] == $salon['id_salon'] ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit">Guardar cambios</button>
+                <button type="button" class="boton-cancelar-edicion" data-indice="<?= $indice ?>">Cancelar</button>
+            </form>
+
+            <button type="button" class="boton-cerrar-equipo" data-indice="<?= $indice ?>">Cerrar</button>
+        </dialog>
         <?php endforeach; ?>
-        </ul>
                     
 
                     
