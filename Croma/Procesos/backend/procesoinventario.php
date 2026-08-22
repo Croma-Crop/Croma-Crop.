@@ -1,5 +1,9 @@
 <?php
 
+$moduloRequerido = "inventario";
+require_once __DIR__ . "/guardia.php";
+
+
 require_once '../../Datos/Clases/ClassInventario.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -35,7 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     }
 
-    header("Location: ../../Presentacion/html/inventario.php");
+    if ($ok) {
+        header("Location: ../../Presentacion/html/inventario.php?mensaje=" . urlencode("Equipo guardado correctamente"));
+    } else {
+        header("Location: ../../Presentacion/html/inventario.php?mensaje=" . urlencode("No se pudo guardar el equipo"));
+    }
     exit;
 }
 

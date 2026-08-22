@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '../../Datos/Clases/ClassIntervencion.php';
-require_once __DIR__ . '../../Datos/DataBase/ConexionMYSQL/conexion.php';
+require_once __DIR__ . '/../Datos/Clases/ClassIntervencion.php';
+require_once __DIR__ . '/../Datos/DataBase/ConexionMYSQL/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $numero_serie = $_POST['numero_serie'];

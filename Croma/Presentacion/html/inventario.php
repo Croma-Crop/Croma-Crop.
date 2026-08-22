@@ -75,7 +75,7 @@
             </article>
 
             <article id="seccion-formulario">
-                <h3 class="titulo-seccion">Ingresar Nuevo Equipo</h3>
+                <h3 class="titulo-seccion"><?= $editando ? "Modificar Equipo" : "Ingresar Nuevo Equipo" ?></h3>
                 <form id="formulario-producto" method="post" action="../../Procesos/backend/procesoinventario.php">
                     <input name="nombre" type="text" id="nombre" placeholder="Nombre del artículo" required value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>">
                     <input name="marca" type="text" id="marca" placeholder="Marca del articulo" required value="<?= $editando ? htmlspecialchars($editando['marca']) : '' ?>">
@@ -97,6 +97,11 @@
                     </select>
                     <button id="submit" type="submit">Guardar Artículo</button>
                 </form>
+                <?php if (isset($_GET["mensaje"])): ?>
+                <div class="mensaje">
+                    <?= htmlspecialchars($_GET["mensaje"]) ?>
+                </div>
+                <?php endif; ?>
             </article>
         </section>
 

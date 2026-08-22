@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "../../Datos/Clases/ClassSalones.php";
+require __DIR__ . "/../Datos/Clases/ClassSalones.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['nombre']) && trim($_POST['nombre']) !== '') {

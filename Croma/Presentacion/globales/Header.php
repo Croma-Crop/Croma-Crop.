@@ -3,7 +3,7 @@ $scriptPath = $_SERVER['SCRIPT_NAME'];
 $posicion = strpos($scriptPath, '/Presentacion/');
 $BASE_URL = substr($scriptPath, 0, $posicion);
 session_start();
-    require __DIR__ . '../../../Procesos/backend/sesion.php';
+    require __DIR__ . '/../../Procesos/backend/sesion.php';
 
 ?>
 <a href="<?php echo $InicioPorRol[$rolSesion]; ?>">
