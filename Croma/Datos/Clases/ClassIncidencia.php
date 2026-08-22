@@ -1,21 +1,36 @@
 <?php
+require __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
+
 class Incidencia {
-Private int $id_incidencia;
-Public int $fecha_creacion;
+Public mysqli $conexion;
+Public ?int $id_incidencia;
+Public string $fecha;
 Public String $descripcion;
 Public String $prioridad;
 Public String $turno;
-Public int $fecha_limite;
-
+Public ?string $fecha_limite;
+Public ?string $tecnico;
+Public string $estado;
 
  public function __construct(
-        int $idIncidencia,
+        mysqli $conexion,
+        ?int $id_incidencia,
+        string $fecha,
         string $descripcion,
-        String $tecnico,
+        string $prioridad,
+        string $turno,
+        ?string $fecha_limite,
+        ?String $tecnico,
+        string $estado = 'Pendiente'
     ) {
-        $this->idIncidencia = $idIncidencia;
+        $this->conexion = $conexion;
+        $this->id_incidencia = $id_incidencia;
+        $this->fecha = $fecha;
         $this->descripcion = $descripcion;
-        $this->fecha_creacion = $fecha_creacion;
+        $this->prioridad = $prioridad;
+        $this->turno = $turno;
+        $this->tecnico = $tecnico;
+        $this->estado = $estado;
       
     }
 

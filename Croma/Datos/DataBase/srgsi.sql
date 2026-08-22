@@ -223,6 +223,10 @@ ALTER TABLE `salon`
 --
 ALTER TABLE `solicitud`
   MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
+  
+  ALTER TABLE inventario
+  ADD COLUMN marca VARCHAR(50) NOT NULL AFTER nombre,
+  ADD COLUMN modelo VARCHAR(50) NOT NULL AFTER marca;
 
 --
 -- Restricciones para tablas volcadas

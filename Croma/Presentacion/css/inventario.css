@@ -53,6 +53,7 @@
 .boton-historial,
 .boton-modificar {
     background-color: #30364F;
+    
 }
 
 .boton-historial:hover,
@@ -162,14 +163,20 @@ form {
     flex-direction: column;
     gap: 12px;
 }
+a{
+    display: inline-block;
+    text-decoration: none;
+}
 
 input,
 select,
-button {
+button
+{
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    
 }
 
 button, #submit {

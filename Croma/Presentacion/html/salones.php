@@ -28,7 +28,7 @@
             <section id="busqueda">
                 <form method="post" action="../../Procesos/mostrarsalon.php">
                     <input id="inptbusqueda" name="nombre" type="text" placeholder="Buscar">
-                    <button type="submit">buscar</button>
+                    <button type="submit">Buscar</button>
                 </form>
             </section>
             <article id="seccion-listado">
