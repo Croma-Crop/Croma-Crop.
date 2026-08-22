@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-08-2026 a las 19:41:16
+-- Tiempo de generación: 23-08-2026 a las 00:46:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,8 +49,17 @@ CREATE TABLE `incidencia` (
   `prioridad` enum('Sin asignar','Baja','Media','Alta') NOT NULL DEFAULT 'Sin asignar',
   `cedula_solicitante` varchar(12) NOT NULL,
   `cedula_tecnico` varchar(12) DEFAULT NULL,
-  `id_registro_origen` int(11) DEFAULT NULL
+  `id_registro_origen` int(11) DEFAULT NULL,
+  `numero_serie` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `incidencia`
+--
+
+INSERT INTO `incidencia` (`id_incidencia`, `fecha`, `fecha_limite`, `turno`, `estado`, `tipo`, `descripcion`, `prioridad`, `cedula_solicitante`, `cedula_tecnico`, `id_registro_origen`, `numero_serie`) VALUES
+(2, '2026-08-20', NULL, 'vespertino', 'Pendiente', 'Periferico', 'mano firme que esta utu es una garcha', 'Sin asignar', '56357055', NULL, NULL, '123'),
+(3, '2026-08-22', NULL, 'nocturno', 'Pendiente', 'Televisor', 'wachin', 'Sin asignar', '33333333', NULL, NULL, '123');
 
 -- --------------------------------------------------------
 
@@ -98,7 +107,9 @@ CREATE TABLE `inventario` (
 
 INSERT INTO `inventario` (`numero_serie`, `nombre`, `marca`, `modelo`, `estado`, `numero_intervenciones`, `id_salon`, `cedula_administrador`) VALUES
 ('123', 'asd', 'FacuCorp', 'sad', 'en_reparacion', 2, 5, NULL),
-('123123213', 'assa', 'assa', 'sdsd', 'en_reparacion', 0, 2, NULL);
+('123123213', 'assa', 'assa', 'sdsd', 'en_reparacion', 0, 2, NULL),
+('343', 'a', 'as', 'assa', 'en_reparacion', 0, 10, NULL),
+('555555', 'asdasd', 'FacuCorp', 'sad', 'de_baja', 0, 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,8 +123,16 @@ CREATE TABLE `registro_diario` (
   `hora_entrada` time NOT NULL,
   `hora_salida` time NOT NULL,
   `cedula_solicitante` varchar(12) NOT NULL,
-  `id_espacio` int(11) NOT NULL
+  `id_salon` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `registro_diario`
+--
+
+INSERT INTO `registro_diario` (`id_registro`, `fecha`, `hora_entrada`, `hora_salida`, `cedula_solicitante`, `id_salon`) VALUES
+(1, '2026-08-06', '21:40:00', '00:42:00', '56357055', 14),
+(2, '2026-08-20', '00:42:00', '22:40:00', '56357055', 5);
 
 -- --------------------------------------------------------
 
@@ -137,7 +156,11 @@ INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
 (7, 'LKÑL', ''),
 (8, '+1+2{2]}', ''),
 (9, '1', ''),
-(10, 'assa', 'taller');
+(10, 'assa', 'taller'),
+(11, 'l8', 'taller'),
+(12, 'l', 'laboratorio'),
+(13, 'a', 'laboratorio'),
+(14, 'LAB12', 'laboratorio');
 
 -- --------------------------------------------------------
 
@@ -152,7 +175,7 @@ CREATE TABLE `solicitud` (
   `estado` enum('Pendiente','En proceso','Resuelto','Cancelada') NOT NULL DEFAULT 'Pendiente',
   `cedula_solicitante` varchar(12) NOT NULL,
   `cedula_tecnico` varchar(12) DEFAULT NULL,
-  `id_espacio` int(11) NOT NULL
+  `id_salon` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -174,11 +197,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) VALUES
-('11111111', 'Juan', 'Administrador', '$2y$10$BAoHFfChji6OdjPiClvnC.nk6f5u55iOC3Zg8Fz8mXmlJtTbm2AjC', 'administrador'),
-('22222222', 'juan', 'joan', '$2y$10$5p3hfUSYBcY2HGIRIhD7AuICI8lSK9aqg3AcvmNOG8HCNAmKxE.zW', 'administrador'),
-('33333333', 'Juancho', 'ELTECHNICIAN', '$2y$10$HkGLMZ9ShpiUaGQswtjFGODZYWUw.A11iYTiJUeZwPAQFH6XrxPSC', 'tecnico'),
-('44444444', 'Juan', 'ElPROFE', '$2y$10$eKdjTU8xf4WC4TLAKvyRC.DOurvBZDS6opVKrY6XhreWTpgvDePEy', 'solicitante'),
-('77777777', 'guille', 'gille', '$2y$10$/UALbb45ZqfaooL5Q4mYN.jWO8z6660UGbTpE7pwneca5u9PLcmuK', 'administrador');
+('22222222', 'as', 'ffffffffffffffffffffffffff', '$2y$10$n6RwiFPOxLL5O4fBVH3Or.cCL0E29lp7ViUUzHdKdcwWgemvXKTeG', 'tecnico'),
+('33333333', 'asd', 'fffffffffffffffffffffffffffffffffffffff', '$2y$10$GMCVFN7HoZBUTQ67nRYHWOPrbyEXDpwwuk1ZR2P2q5Wbpe4Ys37he', 'solicitante'),
+('44444444', 'asdasd', 'fa', '$2y$10$22v8A13FThdgC8DdAdF48eT4dRP7X8jmUeqOEymr27vUAXnc8Ohlm', 'solicitante'),
+('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
+('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'solicitante');
 
 --
 -- Índices para tablas volcadas
@@ -198,7 +221,8 @@ ALTER TABLE `incidencia`
   ADD PRIMARY KEY (`id_incidencia`),
   ADD KEY `fk_incidencia_solicitante` (`cedula_solicitante`),
   ADD KEY `fk_incidencia_tecnico` (`cedula_tecnico`),
-  ADD KEY `fk_incidencia_registro` (`id_registro_origen`);
+  ADD KEY `fk_incidencia_registro` (`id_registro_origen`),
+  ADD KEY `fk_incidencia_inventario` (`numero_serie`);
 
 --
 -- Indices de la tabla `intervencion`
@@ -221,7 +245,7 @@ ALTER TABLE `inventario`
 ALTER TABLE `registro_diario`
   ADD PRIMARY KEY (`id_registro`),
   ADD KEY `fk_registro_solicitante` (`cedula_solicitante`),
-  ADD KEY `fk_registro_espacio` (`id_espacio`);
+  ADD KEY `fk_registro_espacio` (`id_salon`);
 
 --
 -- Indices de la tabla `salon`
@@ -237,7 +261,7 @@ ALTER TABLE `solicitud`
   ADD PRIMARY KEY (`id_solicitud`),
   ADD KEY `fk_solicitud_solicitante` (`cedula_solicitante`),
   ADD KEY `fk_solicitud_tecnico` (`cedula_tecnico`),
-  ADD KEY `fk_solicitud_espacio` (`id_espacio`);
+  ADD KEY `fk_solicitud_espacio` (`id_salon`);
 
 --
 -- Indices de la tabla `usuario`
@@ -253,7 +277,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
-  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `intervencion`
@@ -265,19 +289,19 @@ ALTER TABLE `intervencion`
 -- AUTO_INCREMENT de la tabla `registro_diario`
 --
 ALTER TABLE `registro_diario`
-  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `salon`
 --
 ALTER TABLE `salon`
-  MODIFY `id_salon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_salon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -294,6 +318,7 @@ ALTER TABLE `gestiona`
 -- Filtros para la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
+  ADD CONSTRAINT `fk_incidencia_inventario` FOREIGN KEY (`numero_serie`) REFERENCES `inventario` (`numero_serie`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencia_registro` FOREIGN KEY (`id_registro_origen`) REFERENCES `registro_diario` (`id_registro`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencia_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_incidencia_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -315,14 +340,14 @@ ALTER TABLE `inventario`
 -- Filtros para la tabla `registro_diario`
 --
 ALTER TABLE `registro_diario`
-  ADD CONSTRAINT `fk_registro_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_registro_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_registro_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  ADD CONSTRAINT `fk_solicitud_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_solicitud_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_solicitud_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_solicitud_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;

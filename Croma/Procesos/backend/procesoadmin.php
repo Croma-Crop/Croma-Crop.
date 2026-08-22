@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($documento !== "") {
 
-        $usuario = new $rol(
+        $usuario = new Usuario(
             $conexion,
             $documento,
             $nombre,

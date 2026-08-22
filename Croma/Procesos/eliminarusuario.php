@@ -15,8 +15,8 @@ $ok = $usuario->borrar($documento);
 if ($ok) {
     header('Location: ../Presentacion/html/admin/administrador.php?mensaje=Usuario borrado correctamente&tipo=exito');
 } else {
-    header('Location: ../Presentacion/html/admin/administrador.php?mensaje=Usuario no fue borrado correctamente&tipo=error');
+    $mensaje = $usuario->errorBorrado ?? "Usuario no fue borrado correctamente";
+    header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode($mensaje) . '&tipo=error');
 }
-exit;
 }
 ?>

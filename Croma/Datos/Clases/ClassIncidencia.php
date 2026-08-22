@@ -11,6 +11,7 @@ class Incidencia {
     public ?string $fecha_limite;
     public ?string $tecnico;
     public string $estado;
+    public ?string $numero_serie;
 
     public function __construct(
         mysqli $conexion,
@@ -21,7 +22,8 @@ class Incidencia {
         string $turno,
         ?string $fecha_limite,
         ?string $tecnico,
-        string $estado = 'Pendiente'
+        string $estado = 'Pendiente',
+        ?string $numero_serie = null
     ) {
         $this->conexion = $conexion;
         $this->id_incidencia = $id_incidencia;
@@ -32,10 +34,11 @@ class Incidencia {
         $this->fecha_limite = $fecha_limite;
         $this->tecnico = $tecnico;
         $this->estado = $estado;
+        $this->numero_serie = $numero_serie;
     }
 
     public static function mostrar($conexion) {
-        $sql = "SELECT id_incidencia, fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico
+        $sql = "SELECT id_incidencia, fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico, numero_serie
                 FROM incidencia
                 ORDER BY fecha DESC";
         $resultado = $conexion->query($sql);
@@ -44,15 +47,15 @@ class Incidencia {
 
     public function guardar($tipo, $cedulaSolicitante) {
         try {
-            $sql = "INSERT INTO incidencia (fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO incidencia (fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico, numero_serie)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->conexion->prepare($sql);
 
             if (!$stmt) {
                 return false;
             }
 
-            $stmt->bind_param("sssssssss", $this->fecha, $this->fecha_limite, $this->turno, $this->estado, $tipo, $this->descripcion, $this->prioridad, $cedulaSolicitante, $this->tecnico);
+            $stmt->bind_param("ssssssssss", $this->fecha, $this->fecha_limite, $this->turno, $this->estado, $tipo, $this->descripcion, $this->prioridad, $cedulaSolicitante, $this->tecnico, $this->numero_serie);
 
             return $stmt->execute();
 
@@ -60,6 +63,12 @@ class Incidencia {
             return false;
         }
     }
+    public function borrar($id_incidencia) {
+    $sql = "DELETE FROM incidencia WHERE id_incidencia = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("i", $id_incidencia);
+    return $stmt->execute();
+}
 
     public function cambiarEstado(string $nuevoEstado): void { /* ... */ }
     public function asignarFechaLimite(): void { /* ... */ }

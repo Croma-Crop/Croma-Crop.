@@ -1,7 +1,10 @@
 <?php
+
+$moduloRequerido = "tickets";
+require_once __DIR__ . "/guardia.php";
+
 require_once '../../Datos/Clases/ClassIncidencia.php';
 require_once '../../Datos/DataBase/ConexionMYSQL/conexion.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha = $_POST['fecha'] ?: date('Y-m-d');
@@ -23,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cedulaSolicitante = $_SESSION['usuarioActivo']['documento'] ?? null;
 
     $incidencia = new Incidencia(
-        $conexion, null, $fecha, $descripcion, "Sin asignar", $turno, null, null, "Pendiente", NULL);
+        $conexion, null, $fecha, $descripcion, "Sin asignar", $turno, null, null, "Pendiente", $serie);
 
-    $ok = $incidencia->guardar($cedulaSolicitante, $tipo);
+    $ok = $incidencia->guardar($tipo, $cedulaSolicitante);
 
     if ($ok) {
         header("Location: ../../Presentacion/html/tickets.php?mensaje=" . urlencode("Incidencia registrada correctamente") . "&tipo=exito");

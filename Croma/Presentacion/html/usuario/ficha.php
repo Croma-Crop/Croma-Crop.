@@ -12,22 +12,21 @@
 <body data-modulo="ficha">
     <header>
         <h1 id="titulo">Ficha</h1>
-            <?php include '../../globales/Header.php'?>
- 
-    
-        
-
-        
-
+        <?php include '../../globales/Header.php'?>
     </header>
+    <?php include_once '../../../Procesos/mostrarficha.php'; ?>
     <main>
         <section id="contenido">
             <section id="seccion-formulario">
                 <h3 class="titulo-seccion">Ficha Docente</h3>
-                <form id="fichaForm">
-
-                    <label for="nombreProf">Profesor</label>
-                    <input id="nombreProf" type="text" readonly>
+                <form id="fichaForm" method="post" action="../../../Procesos/backend/procesoficha.php">
+                    <label for="profesor">Profesor</label>
+                    <select id="profesor" name="documento_profesor" required>
+                        <option value="">--- Seleccionar profesor ---</option>
+                        <?php foreach ($profesores as $profesor): ?>
+                            <option value="<?= $profesor['documento'] ?>"><?= htmlspecialchars($profesor['nombre'] . ' ' . $profesor['apellido']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
 
                     <label for="fecha_inicio">Fecha</label>
                     <input id="fecha_inicio" type="date" name="fecha" required>
@@ -39,8 +38,11 @@
                     <input type="time" id="hora_salida" name="hora_salida" required>
 
                     <label for="salon">Salón</label>
-                    <select id="salon" name="salon" required>
+                    <select id="salon" name="id_salon" required>
                         <option value="">--- Seleccionar salón ---</option>
+                        <?php foreach ($salones as $salon): ?>
+                            <option value="<?= $salon['id_salon'] ?>"><?= htmlspecialchars($salon['nombre']) ?></option>
+                        <?php endforeach; ?>
                     </select>
 
                     <p>Turno:</p>
@@ -60,7 +62,7 @@
             </section>
 
             <section id="seccion-equipos">
-                 <h3 class="titulo-seccion">Equipos del salón</h3>
+                <h3 class="titulo-seccion">Equipos del salón</h3>
                 <p id="avisoEquipos">Seleccioná un salón para ver sus equipos.</p>
                 <table id="tablaEquipos" class="oculto">
                     <thead>
@@ -71,7 +73,16 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody id="cuerpoTablaEquipos"></tbody>
+                    <tbody id="cuerpoTablaEquipos">
+                        <?php foreach ($equipos as $equipo): ?>
+                            <tr class="oculto" data-salon="<?= $equipo['id_salon'] ?>" data-serie="<?= $equipo['numero_serie'] ?>" data-nombre="<?= htmlspecialchars($equipo['nombre']) ?>">
+                                <td><input type="checkbox" class="check-equipo"></td>
+                                <td><?= htmlspecialchars($equipo['nombre']) ?></td>
+                                <td><?= htmlspecialchars($equipo['numero_serie']) ?></td>
+                                <td><?= htmlspecialchars($equipo['estado']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </section>
         </section>
@@ -101,7 +112,7 @@
         </form>
     </dialog>
 
-     <?php include '../../globales/Footer.php' ?> 
+    <?php include '../../globales/Footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

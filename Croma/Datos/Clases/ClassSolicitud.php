@@ -27,9 +27,15 @@ class Solicitud {
         $this->tecnico = $tecnico;
         $this->estado = $estado;
     }
+        public function borrar($id_solicitud) {
+    $sql = "DELETE FROM solicitud WHERE id_solicitud = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("i", $id_solicitud);
+    return $stmt->execute();
+}
 
     public static function mostrar($conexion) {
-        $sql = "SELECT id_solicitud, tipo, descripcion, estado, cedula_solicitante, cedula_tecnico, id_espacio
+        $sql = "SELECT id_solicitud, tipo, descripcion, estado, cedula_solicitante, cedula_tecnico, id_salon
                 FROM solicitud";
         $resultado = $conexion->query($sql);
         return $resultado->fetch_all(MYSQLI_ASSOC);
@@ -37,7 +43,7 @@ class Solicitud {
 
     public function guardar($cedulaSolicitante) {
         try {
-            $sql = "INSERT INTO solicitud (tipo, descripcion, estado, cedula_solicitante, cedula_tecnico, id_espacio)
+            $sql = "INSERT INTO solicitud (tipo, descripcion, estado, cedula_solicitante, cedula_tecnico, id_salon)
                     VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->conexion->prepare($sql);
 
