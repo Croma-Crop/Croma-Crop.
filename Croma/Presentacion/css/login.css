@@ -3,44 +3,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
-    color: rgb(48, 54, 79);
-    width: 50%;
-    height: auto;
-
+    padding: var(--esp-7) var(--esp-4);
+    width: 100%;
 }
 
 #newsletter form {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background-color: white;
-    box-shadow: var(--sombra-elevada);
-    border: 1px solid #a09f9f53;
+    gap: var(--esp-4);
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
     border-radius: var(--radio);
-    padding: 30px;
-    transition: var(--transicion);
+    box-shadow: var(--sombra);
+    padding: var(--esp-6);
 }
-#newsletter form:hover {
-    box-shadow: var(--sombra-elevada);
-    transition: var(--transicion);
-}
+
 #newsletter h1 {
-    font-size: 20px;
-    letter-spacing: 1px;
+    font-size: var(--texto-lg);
     font-weight: 600;
-    color: var(--texto);
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--navy-700);
+    margin-bottom: var(--esp-2);
 }
 
 form label {
-    font-size: 16px;
-    color: var(--texto);
-    font-weight: 400;
-    margin-top: 10px;
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    color: var(--texto-tenue);
+    margin-bottom: var(--esp-1);
 }
 #campo-documento, #campo-boton {
     display: flex;
@@ -51,36 +43,39 @@ form label {
 form input[id="cedula"],
 form input[id="pasaporte"],
 form input[id="password"] {
-    padding: 15px;
+    padding: 10px var(--esp-3);
     border: 1px solid var(--borde);
     border-radius: var(--radio);
-    background-color: var(--lienzo-alt);
-    font-size: 14px;
-    transition: var(--transicion);
+    background-color: var(--superficie);
+    font-size: var(--texto-base);
+    font-family: inherit;
+    color: var(--texto);
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+#newsletter input:focus {
+    outline: none;
+    border-color: var(--navy-700);
+    box-shadow: 0 0 0 3px rgba(48, 54, 79, 0.12);
 }
 #newsletter input:hover {
-    background-color: var(--lienzo-alt);
-    border-color: var(--navy-700);
-    transition: var(--transicion);
+    border-color: var(--navy-600);
 }
 
 #crear {
-    padding: 10px;
+    padding: 10px var(--esp-4);
     background-color: var(--navy-700);
-    color: var(--superficie);
-    border: none;
+    color: var(--crema);
+    border: 1px solid transparent;
     border-radius: var(--radio);
-    font-size: 16px;
+    font-size: var(--texto-base);
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    width: 80%;
-    align-self: center;
-    transition: var(--transicion);
+    width: 100%;
+    transition: background-color var(--transicion);
 }
 #crear:hover {
     background-color: var(--navy-600);
-    box-shadow: var(--sombra-elevada);
-    letter-spacing: 0.5px;
 }
 
 #extranjero, #btnCedula {
@@ -99,9 +94,8 @@ form input[id="password"] {
 }
 #btnCedula:hover,
 #extranjero:hover {
-    border-bottom: 2px solid var(--navy-700);
+    border-bottom-color: var(--navy-700);
     color: var(--navy-700);
-    letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px){

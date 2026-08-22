@@ -19,9 +19,9 @@ if ($id_salon !== '') {
 }
 
 if ($ok) {
-    header("Location: ../../Presentacion/html/salones.php?mensaje=" . urlencode("Salon guardado correctamente"));
+    header("Location: ../../Presentacion/html/salones.php?tipo=exito&mensaje=" . urlencode("Salon guardado correctamente"));
 } else {
-    header("Location: ../../Presentacion/html/salones.php?mensaje=" . urlencode("No se pudo guardar el salon"));
+    header("Location: ../../Presentacion/html/salones.php?tipo=error&mensaje=" . urlencode("No se pudo guardar el salon"));
 }
 exit;
 }

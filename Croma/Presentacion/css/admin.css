@@ -87,7 +87,7 @@ tbody td {
 }
 
 dialog.dialogGestionarEmpleado {
-    border: 1px solid #a09f9f53;
+    border: 1px solid var(--borde);
     border-radius: var(--radio);
     padding: 0;
     min-width: 420px;
