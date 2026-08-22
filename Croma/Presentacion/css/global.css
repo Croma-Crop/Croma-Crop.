@@ -183,10 +183,9 @@ main {
 }
 
 #logo{
-    height: 42px;
+    height: 36px;
     width: auto;
     display: block;
-    order: 1;
 }
 #burguer{
     height: 34px;
@@ -228,33 +227,8 @@ header h1 {
     line-height: 1;
     margin: 0;
 }
-header nav {
-    
-    display: flex;
-    gap: 20px;
-    justify-self: end;
-}
-header nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px;
-    white-space: nowrap;
-    color: var(--crema);
-    font-weight: 600;
-    font-size: var(--texto-base);
-    background-color: var(--navy-700);
-    padding: 9px var(--esp-4);
-    border-radius: 999px;
-    transition: background-color var(--transicion);
-}
-header nav a:hover {
-    background-color: var(--navy-600);
-}
-
 .usuario-chip {
     justify-self: end;
-    order: 4;
 }
 .btn-usuario {
     min-width: 100px;
@@ -940,4 +914,57 @@ body:not([data-modulo]) .dropdown {
         margin: 0 calc(-1 * var(--esp-4));
         padding: var(--esp-3) var(--esp-4);
     }
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.marca,
+.marca:hover,
+.nav-enlace,
+.nav-enlace:hover,
+.dropdown-item,
+.dropdown-item:hover {
+    text-decoration: none;
+}
+
+.nav-enlace {
+    display: block;
+    min-width: 0;
+    background-color: transparent;
+    color: var(--texto-tenue);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    padding: var(--esp-4) var(--esp-3);
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    white-space: nowrap;
+    transition: color var(--transicion), border-color var(--transicion);
+}
+
+.nav-enlace:hover {
+    background-color: transparent;
+    color: var(--navy-700);
+    border-bottom-color: var(--borde);
+}
+
+.nav-enlace.nav-activo {
+    background-color: transparent;
+    color: var(--navy-700);
+    font-weight: 600;
+    border-bottom-color: var(--navy-700);
+}
+
+.marca {
+    order: 0;
+}
+
+.marca-texto {
+    order: 1;
 }
