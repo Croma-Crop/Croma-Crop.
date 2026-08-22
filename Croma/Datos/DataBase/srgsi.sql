@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-08-2026 a las 00:50:08
+-- Tiempo de generación: 22-08-2026 a las 19:41:16
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -45,10 +45,35 @@ CREATE TABLE `incidencia` (
   `turno` enum('matutino','vespertino','nocturno') DEFAULT NULL,
   `estado` enum('Pendiente','En proceso','Resuelto') NOT NULL DEFAULT 'Pendiente',
   `tipo` varchar(50) NOT NULL,
+  `descripcion` text NOT NULL,
+  `prioridad` enum('Sin asignar','Baja','Media','Alta') NOT NULL DEFAULT 'Sin asignar',
   `cedula_solicitante` varchar(12) NOT NULL,
   `cedula_tecnico` varchar(12) DEFAULT NULL,
   `id_registro_origen` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `intervencion`
+--
+
+CREATE TABLE `intervencion` (
+  `id_intervencion` int(11) NOT NULL,
+  `numero_serie` varchar(50) NOT NULL,
+  `fecha` date NOT NULL,
+  `descripcion` text NOT NULL,
+  `tecnico` varchar(12) DEFAULT NULL,
+  `solucion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `intervencion`
+--
+
+INSERT INTO `intervencion` (`id_intervencion`, `numero_serie`, `fecha`, `descripcion`, `tecnico`, `solucion`) VALUES
+(1, '123', '2026-08-13', 'wachin', NULL, NULL),
+(2, '123', '2026-09-01', 'wachin2', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -59,11 +84,21 @@ CREATE TABLE `incidencia` (
 CREATE TABLE `inventario` (
   `numero_serie` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
+  `marca` varchar(50) NOT NULL,
+  `modelo` varchar(50) NOT NULL,
   `estado` enum('operativo','en_reparacion','de_baja','prestado') NOT NULL DEFAULT 'operativo',
   `numero_intervenciones` int(11) NOT NULL DEFAULT 0,
-  `id_espacio` int(11) NOT NULL,
+  `id_salon` int(11) NOT NULL,
   `cedula_administrador` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`numero_serie`, `nombre`, `marca`, `modelo`, `estado`, `numero_intervenciones`, `id_salon`, `cedula_administrador`) VALUES
+('123', 'asd', 'FacuCorp', 'sad', 'en_reparacion', 2, 5, NULL),
+('123123213', 'assa', 'assa', 'sdsd', 'en_reparacion', 0, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,7 +132,12 @@ CREATE TABLE `salon` (
 --
 
 INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
-(2, 'asdas', 'taller');
+(2, 'asdas', 'taller'),
+(5, 'tierrasanta', 'taller'),
+(7, 'LKÑL', ''),
+(8, '+1+2{2]}', ''),
+(9, '1', ''),
+(10, 'assa', 'taller');
 
 -- --------------------------------------------------------
 
@@ -135,8 +175,10 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) VALUES
 ('11111111', 'Juan', 'Administrador', '$2y$10$C5GRmTka4xoRDk8RlmiieekJcJAHWQtXBoGVDgKQIYNDzWOhS06QS', 'administrador'),
+('22222222', 'juan', 'joan', '$2y$10$0pg0LsqFt.9QoKLpneN6D.yEWdiGx7oIzSaJrF4wW8J5R0MXUt0bi', 'administrador'),
 ('33333333', 'Juancho', 'ELTECHNICIAN', '$2y$10$A4L2C99WVq8N.pKUjfGxw.GbcI5ghnE9l4vCNnZcYuMNXQP/wU.Fu', 'tecnico'),
-('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante');
+('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
+('77777777', 'guille', 'gille', '$2y$10$ZMb5ai8MgBsyEs.Cypu.Zek6E5LoJJfbF/xOk0vp9w/oPiMoHfFhS', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -159,11 +201,18 @@ ALTER TABLE `incidencia`
   ADD KEY `fk_incidencia_registro` (`id_registro_origen`);
 
 --
+-- Indices de la tabla `intervencion`
+--
+ALTER TABLE `intervencion`
+  ADD PRIMARY KEY (`id_intervencion`),
+  ADD KEY `numero_serie` (`numero_serie`);
+
+--
 -- Indices de la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD PRIMARY KEY (`numero_serie`),
-  ADD KEY `fk_inventario_espacio` (`id_espacio`),
+  ADD KEY `fk_inventario_espacio` (`id_salon`),
   ADD KEY `fk_inventario_administrador` (`cedula_administrador`);
 
 --
@@ -207,6 +256,12 @@ ALTER TABLE `incidencia`
   MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `intervencion`
+--
+ALTER TABLE `intervencion`
+  MODIFY `id_intervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `registro_diario`
 --
 ALTER TABLE `registro_diario`
@@ -216,17 +271,13 @@ ALTER TABLE `registro_diario`
 -- AUTO_INCREMENT de la tabla `salon`
 --
 ALTER TABLE `salon`
-  MODIFY `id_salon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_salon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
   MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
-  
-  ALTER TABLE inventario
-  ADD COLUMN marca VARCHAR(50) NOT NULL AFTER nombre,
-  ADD COLUMN modelo VARCHAR(50) NOT NULL AFTER marca;
 
 --
 -- Restricciones para tablas volcadas
@@ -248,11 +299,17 @@ ALTER TABLE `incidencia`
   ADD CONSTRAINT `fk_incidencia_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `intervencion`
+--
+ALTER TABLE `intervencion`
+  ADD CONSTRAINT `intervencion_ibfk_1` FOREIGN KEY (`numero_serie`) REFERENCES `inventario` (`numero_serie`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `fk_inventario_administrador` FOREIGN KEY (`cedula_administrador`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_inventario_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_inventario_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `registro_diario`
