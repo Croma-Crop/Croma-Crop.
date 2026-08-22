@@ -185,11 +185,12 @@ main {
 #logo{
     height: 42px;
     width: auto;
-    margin-right: var(--esp-3);
+    display: block;
     order: 1;
 }
 #burguer{
     height: 34px;
+    display: block;
     transition: opacity var(--transicion);
     cursor: pointer;
 }
@@ -214,6 +215,7 @@ header {
     display: grid;
     grid-template-columns: auto auto auto 1fr;
     align-items: center;
+    gap: var(--esp-4);
     border-bottom: 1px solid var(--borde);
     background-color: var(--superficie);
     padding: var(--esp-3) var(--esp-6);
@@ -223,7 +225,8 @@ header h1 {
     color: var(--navy-700);
     font-weight: 600;
     letter-spacing: -0.01em;
-    margin-left: var(--esp-2);
+    line-height: 1;
+    margin: 0;
 }
 header nav {
     
@@ -633,7 +636,7 @@ body .btnEliminarEmpleado:hover {
 
 body .tabla-datos caption {
     text-align: left;
-    padding-bottom: var(--esp-2);
+    padding: var(--esp-3) var(--esp-3) var(--esp-2);
     color: var(--texto-tenue);
     font-size: var(--texto-sm);
     font-style: normal;
