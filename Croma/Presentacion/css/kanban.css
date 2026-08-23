@@ -12,6 +12,14 @@
     width: 90%;
     border: 1px solid var(--borde);
 }
+.detalle-ticket {
+    display: none;
+    margin-top: 10px;
+}
+
+.detalle-ticket.mostrar {
+    display: block;
+}
 
 .ayuda-tablero {
     font-size: 14px;

@@ -69,8 +69,57 @@ class Incidencia {
     $stmt->bind_param("i", $id_incidencia);
     return $stmt->execute();
 }
+public function cambiarEstado(string $nuevoEstado): bool {
+    try {
+        $sql = "UPDATE incidencia SET estado = ? WHERE id_incidencia = ?";
+        $stmt = $this->conexion->prepare($sql);
 
-    public function cambiarEstado(string $nuevoEstado): void { /* ... */ }
-    public function asignarFechaLimite(): void { /* ... */ }
-    public function cerrarIncidencia(): void { /* ... */ }
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("si", $nuevoEstado, $this->id_incidencia);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return false;
+    }
+}
+
+public function cambiarPrioridad(string $nuevaPrioridad): bool {
+    try {
+        $sql = "UPDATE incidencia SET prioridad = ? WHERE id_incidencia = ?";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("si", $nuevaPrioridad, $this->id_incidencia);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return false;
+    }
+}
+public function asignarTecnico(?string $cedulaTecnico): bool {
+    try {
+        $sql = "UPDATE incidencia SET cedula_tecnico = ? WHERE id_incidencia = ?";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("si", $cedulaTecnico, $this->id_incidencia);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return false;
+    }
+}
+
 }

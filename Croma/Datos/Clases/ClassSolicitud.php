@@ -59,4 +59,38 @@ class Solicitud {
             return false;
         }
     }
+    public function cambiarEstado(string $nuevoEstado): bool {
+    try {
+        $sql = "UPDATE solicitud SET estado = ? WHERE id_solicitud = ?";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("si", $nuevoEstado, $this->id_solicitud);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return false;
+    }
+}
+public function asignarTecnico(?string $cedulaTecnico): bool {
+    try {
+        $sql = "UPDATE solicitud SET cedula_tecnico = ? WHERE id_solicitud = ?";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("si", $cedulaTecnico, $this->id_solicitud);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return false;
+    }
+}
 }
