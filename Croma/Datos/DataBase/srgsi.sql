@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2026 a las 00:46:29
+-- Tiempo de generación: 23-08-2026 a las 23:44:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -58,8 +58,8 @@ CREATE TABLE `incidencia` (
 --
 
 INSERT INTO `incidencia` (`id_incidencia`, `fecha`, `fecha_limite`, `turno`, `estado`, `tipo`, `descripcion`, `prioridad`, `cedula_solicitante`, `cedula_tecnico`, `id_registro_origen`, `numero_serie`) VALUES
-(2, '2026-08-20', NULL, 'vespertino', 'Pendiente', 'Periferico', 'mano firme que esta utu es una garcha', 'Sin asignar', '56357055', NULL, NULL, '123'),
-(3, '2026-08-22', NULL, 'nocturno', 'Pendiente', 'Televisor', 'wachin', 'Sin asignar', '33333333', NULL, NULL, '123');
+(3, '2026-08-22', NULL, 'nocturno', 'En proceso', 'Televisor', 'wachin', 'Alta', '33333333', '22222222', NULL, '123'),
+(4, '2026-08-23', NULL, 'vespertino', 'Resuelto', 'Periferico', 'se rompio mal ahi mano', 'Media', '33333333', '22222222', NULL, '123');
 
 -- --------------------------------------------------------
 
@@ -151,7 +151,7 @@ CREATE TABLE `salon` (
 --
 
 INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
-(2, 'asdas', 'taller'),
+(2, 'asdasdasd', 'taller'),
 (5, 'tierrasanta', 'taller'),
 (7, 'LKÑL', ''),
 (8, '+1+2{2]}', ''),
@@ -178,6 +178,13 @@ CREATE TABLE `solicitud` (
   `id_salon` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `solicitud`
+--
+
+INSERT INTO `solicitud` (`id_solicitud`, `tipo`, `descripcion`, `estado`, `cedula_solicitante`, `cedula_tecnico`, `id_salon`) VALUES
+(4, 'Instalacion de Software', 'profe si ves esto por favor pone un 10 vamo arriba el cuadro que sea vamo arriba la programacion y el programa estudiantil es una mierda te banco en todo ysb', 'Pendiente', '66666666', NULL, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -201,7 +208,7 @@ INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) V
 ('33333333', 'asd', 'fffffffffffffffffffffffffffffffffffffff', '$2y$10$GMCVFN7HoZBUTQ67nRYHWOPrbyEXDpwwuk1ZR2P2q5Wbpe4Ys37he', 'solicitante'),
 ('44444444', 'asdasd', 'fa', '$2y$10$22v8A13FThdgC8DdAdF48eT4dRP7X8jmUeqOEymr27vUAXnc8Ohlm', 'solicitante'),
 ('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
-('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'solicitante');
+('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -277,7 +284,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
-  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `intervencion`
@@ -301,7 +308,7 @@ ALTER TABLE `salon`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
