@@ -20,12 +20,18 @@
 
         
     </header>
-       <section>
-            <h1>Panel del administrador</h1>
-            <p>Work in progress</p>
-        </section>
     <main>
-      
+        <div class="inicio">
+
+            <section class="bienvenida">
+                <h2>Panel del administrador</h2>
+                <p>
+                    Desde acá administrás el sistema: el alta y baja de empleados, el inventario de
+                    equipos y los salones del instituto. Usá el menú para entrar a cada módulo.
+                </p>
+            </section>
+
+        </div>
     </main>
     <?php include '../../globales/Footer.php' ?>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

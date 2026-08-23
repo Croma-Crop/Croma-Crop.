@@ -20,11 +20,6 @@ session_start();
         <a href="/html/global/login.php">
             <img src="img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
         </a>
-        
-        <div class="dropdown">
-            <img src="img/menu.png" alt="burguer" id="burguer" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer">
-            <ul class="dropdown-menu"></ul>
-        </div>
 
 
 </header>    

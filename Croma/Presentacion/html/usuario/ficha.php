@@ -12,31 +12,44 @@
 <body data-modulo="ficha">
     <header>
         <h1 id="titulo">Ficha</h1>
-        <?php include '../../globales/Header.php'?>
+        <?php include '../../globales/Header.php';
+        require '../../../Procesos/mostrarficha.php';
+        ?>
     </header>
-    <?php include_once '../../../Procesos/mostrarficha.php'; ?>
+    <script>
+    const usuarioActivo = { nombre: "<?= htmlspecialchars($usuario['nombre']) ?>", apellido: "<?= htmlspecialchars($usuario['apellido']) ?>" };
+    </script>
     <main>
         <section id="contenido">
             <section id="seccion-formulario">
                 <h3 class="titulo-seccion">Ficha Docente</h3>
                 <form id="fichaForm" method="post" action="../../../Procesos/backend/procesoficha.php">
-                    <label for="profesor">Profesor</label>
+                <div class="camp">    
+                <label for="profesor">Profesor</label>
                     <select id="profesor" name="documento_profesor" required>
                         <option value="">--- Seleccionar profesor ---</option>
                         <?php foreach ($profesores as $profesor): ?>
                             <option value="<?= $profesor['documento'] ?>"><?= htmlspecialchars($profesor['nombre'] . ' ' . $profesor['apellido']) ?></option>
                         <?php endforeach; ?>
                     </select>
+                    </div>
+                    <div class="campo">
+                        <label for="fecha_inicio">Fecha</label>
+                        <input id="fecha_inicio" type="date" name="fecha" required>
+                    </div>
 
-                    <label for="fecha_inicio">Fecha</label>
-                    <input id="fecha_inicio" type="date" name="fecha" required>
+                    <div class="campo-fila">
+                        <div class="campo">
+                            <label for="hora_entrada">Hora entrada</label>
+                            <input type="time" id="hora_entrada" name="hora_entrada" required>
+                        </div>
 
-                    <label for="hora_entrada">Hora entrada</label>
-                    <input type="time" id="hora_entrada" name="hora_entrada" required>
-
-                    <label for="hora_salida">Hora salida</label>
-                    <input type="time" id="hora_salida" name="hora_salida" required>
-
+                        <div class="campo">
+                            <label for="hora_salida">Hora salida</label>
+                            <input type="time" id="hora_salida" name="hora_salida" required>
+                        </div>
+                    </div>
+                    <div class="campo">
                     <label for="salon">Salón</label>
                     <select id="salon" name="id_salon" required>
                         <option value="">--- Seleccionar salón ---</option>
@@ -44,18 +57,24 @@
                             <option value="<?= $salon['id_salon'] ?>"><?= htmlspecialchars($salon['nombre']) ?></option>
                         <?php endforeach; ?>
                     </select>
-
-                    <p>Turno:</p>
-                    <section class="radio-grupo">
-                        <input type="radio" id="matutino" name="turno" value="Matutino">
-                        <label for="matutino">Matutino</label>
-
-                        <input type="radio" id="vespertino" name="turno" value="Vespertino">
-                        <label for="vespertino">Vespertino</label>
-
-                        <input type="radio" id="nocturno" name="turno" value="Nocturno">
-                        <label for="nocturno">Nocturno</label>
-                    </section>
+                        </div>
+                    <fieldset class="campo grupo-opciones">
+                        <legend>Turno</legend>
+                        <div class="radio-grupo">
+                            <label class="opcion" for="matutino">
+                                <input type="radio" id="matutino" name="turno" value="Matutino">
+                                <span>Matutino</span>
+                            </label>
+                            <label class="opcion" for="vespertino">
+                                <input type="radio" id="vespertino" name="turno" value="Vespertino">
+                                <span>Vespertino</span>
+                            </label>
+                            <label class="opcion" for="nocturno">
+                                <input type="radio" id="nocturno" name="turno" value="Nocturno">
+                                <span>Nocturno</span>
+                            </label>
+                        </div>
+                    </fieldset>
 
                     <button type="submit" id="enviarFicha">Enviar Ficha</button>
                 </form>

@@ -37,6 +37,24 @@ return $html;
 }
 
 
+function construirNav($rol, $moduloactual){
+    global $permisos, $modulos, $InicioPorRol;
+
+    $html = "";
+    $activo = ($moduloactual === "index_admin" || $moduloactual === "index_tecnico" || $moduloactual === "index_user") ? " nav-activo" : "";
+    $html .= "<li><a class='nav-enlace" . $activo . "' href='" . $InicioPorRol[$rol] . "'>Inicio</a></li>";
+
+    foreach ($permisos[$rol] as $clave){
+        if(isset($modulos[$clave])){
+            $modulo = $modulos[$clave];
+            $activo = ($moduloactual === $clave) ? " nav-activo" : "";
+            $html .= "<li><a class='nav-enlace" . $activo . "' href='" . $modulo['ruta'] . "'>" . $modulo['etiqueta'] . "</a></li>";
+        }
+    }
+
+    return $html;
+}
+
 function construirChip($usuario){
     $scriptPath = $_SERVER['SCRIPT_NAME'];
 $posicion = strpos($scriptPath, '/Presentacion/');

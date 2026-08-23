@@ -1,4 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
+
+
+if (!usuarioActivo || !usuarioActivo.nombre) {
+    window.location.replace("js/index.php");
+} else {
+    iniciarPagina();
+}
+
+function iniciarPagina() {
+    const nombreCompleto = usuarioActivo.nombre + " " + usuarioActivo.apellido;
+    document.getElementById("nombreProf").value = nombreCompleto;
+
     const fichaForm = document.getElementById("fichaForm");
     const selectSalon = document.getElementById("salon");
     const selectProfesor = document.getElementById("profesor");
@@ -132,4 +143,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
     });
-});
+};

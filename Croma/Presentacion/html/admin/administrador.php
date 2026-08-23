@@ -29,8 +29,9 @@
                 <button type="button" class="btnOperacion" id="btnAltaEmpleado">Alta Empleado</button>
             </header>
             
-            <table>
-                <caption>Listado de empleados registrados</caption>
+            <div class="tabla-envoltorio">
+            <table class="tabla-datos">
+                <caption class="subtitulo">Listado de empleados registrados</caption>
                 <thead>
                     <tr>
                         <th>Documento</th>
@@ -38,35 +39,35 @@
                         <th>Apellido</th>
                         <th>Rol</th>
                         <th>Contraseña</th>
-                        <th>Acciones</th>
-                        </thead>
-                        <tbody id="cuerpoTablaEmpleados">
-                        <?php
-                        require "../../../Procesos/mostrarusuarios.php";
-                        
-                        foreach($usuario as $claveindexado => $valorindexado){
-                       echo "
-                        <tr>
-                        <td>{$valorindexado['documento']}</td>
-                        <td>{$valorindexado['nombre']}</td>
-                        <td>{$valorindexado['apellido']}</td>
-                        <td>{$valorindexado['rol']}</td>
-                        <td>•••••</td>
-                        <td>
-                        <form method='post' action='../../../Procesos/eliminarusuario.php' style='display:inline'>
-                        <input type='hidden' name='documento' value='{$valorindexado['documento']}'>
-                        <button class='btnEliminarEmpleado' type='submit'>Eliminar</button>
-                        </form>
-                        </td>
-                        </tr>
-                        ";
-                        }
-
-                        ?>
+                        <th class="celda-acciones">Acciones</th>
                     </tr>
-                
+                </thead>
+                <tbody id="cuerpoTablaEmpleados">
+                    <?php
+                    require "../../../Procesos/mostrarusuarios.php";
+
+                    foreach($usuario as $claveindexado => $valorindexado){
+                    echo "
+                    <tr>
+                    <td class='celda-numerica'>{$valorindexado['documento']}</td>
+                    <td>{$valorindexado['nombre']}</td>
+                    <td>{$valorindexado['apellido']}</td>
+                    <td>{$valorindexado['rol']}</td>
+                    <td class='celda-oculta'>•••••</td>
+                    <td class='celda-acciones'>
+                    <form method='post' action='../../../Procesos/eliminarusuario.php' style='display:inline'>
+                    <input type='hidden' name='documento' value='{$valorindexado['documento']}'>
+                    <button class='btnEliminarEmpleado' type='submit'>Eliminar</button>
+                    </form>
+                    </td>
+                    </tr>
+                    ";
+                    }
+
+                    ?>
                 </tbody>
             </table>
+            </div>
         </section>
                <dialog id="dialog" class="dialogGestionarEmpleado seccionFormulario">
             <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">

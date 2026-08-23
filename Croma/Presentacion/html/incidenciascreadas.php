@@ -46,7 +46,7 @@
             <?php endif; ?>
 
             <p class="tarjeta-descripcion"><?= htmlspecialchars($ticket['descripcion']) ?></p>
-            <p>Estado: <?= htmlspecialchars($ticket['estado']) ?></p>
+            <p class="linea-estado">Estado: <span class="estado-chip" data-estado="<?= htmlspecialchars($ticket['estado']) ?>"><?= htmlspecialchars($ticket['estado']) ?></span></p>
 
             <?php if (puedeHacer("eliminarTickets", $_SESSION["rol"])): ?>
                 <form method="post" action="../../Procesos/eliminarticket.php" style="display:inline">
