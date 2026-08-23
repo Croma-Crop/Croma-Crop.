@@ -7,8 +7,7 @@ if (!usuarioActivo || !usuarioActivo.nombre) {
 }
 
 function iniciarPagina() {
-    const nombreCompleto = usuarioActivo.nombre + " " + usuarioActivo.apellido;
-    document.getElementById("nombreProf").value = nombreCompleto;
+ 
 
     const fichaForm = document.getElementById("fichaForm");
     const selectSalon = document.getElementById("salon");
