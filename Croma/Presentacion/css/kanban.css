@@ -1,0 +1,320 @@
+.titulo-seccion {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#seccion-tablero {
+    background-color: var(--lienzo);
+    padding: 25px;
+    border-radius: var(--radio);
+    margin: 3em;
+    width: 90%;
+    border: 1px solid var(--borde);
+}
+.detalle-ticket {
+    display: none;
+    margin-top: 10px;
+}
+
+.detalle-ticket.mostrar {
+    display: block;
+}
+
+.ayuda-tablero {
+    font-size: 14px;
+    color: var(--texto-tenue);
+    margin-bottom: 20px;
+}
+
+#controles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 20px;
+}
+
+#inptbusqueda {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    transition: var(--transicion);
+}
+
+#inptbusqueda:hover {
+    box-shadow: var(--sombra);
+    border: 1px solid var(--texto);
+}
+
+#filtros {
+    display: flex;
+    gap: 8px;
+}
+
+.filtro-clase {
+    padding: 9px 18px;
+    font-weight: bold;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: var(--transicion);
+    background-color: white;
+    color: var(--navy-700);
+    border: 1px solid var(--navy-700);
+}
+
+.filtro-clase:hover {
+    box-shadow: var(--sombra-elevada);
+}
+
+.filtro-clase.activo {
+    background-color: var(--navy-700);
+    color: var(--superficie);
+}
+
+.tablero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    align-items: start;
+}
+
+.columna-kanban {
+    background-color: var(--lienzo-alt);
+    border: 1px solid var(--borde);
+    border-top: 3px solid var(--navy-700);
+    border-radius: var(--radio);
+    padding: var(--esp-4);
+    transition: background-color var(--transicion), box-shadow var(--transicion);
+}
+
+.columna-kanban[data-estado="Pendiente"] {
+    border-top-color: var(--alerta);
+}
+
+.columna-kanban[data-estado="En proceso"] {
+    border-top-color: var(--info);
+}
+
+.columna-kanban[data-estado="Resuelto"] {
+    border-top-color: var(--exito);
+}
+
+.columna-activa {
+    background-color: var(--lienzo);
+    box-shadow: var(--sombra-elevada);
+}
+
+.cabecera-columna {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--esp-2);
+    padding-bottom: var(--esp-3);
+    margin-bottom: var(--esp-3);
+    border-bottom: 1px solid var(--borde-tenue);
+}
+
+.cabecera-columna h4 {
+    font-size: var(--texto-base);
+    font-weight: 600;
+    color: var(--navy-700);
+    letter-spacing: 0.01em;
+}
+
+.contador-kanban {
+    background-color: var(--lienzo);
+    color: var(--texto-tenue);
+    font-weight: 600;
+    font-size: var(--texto-xs);
+    font-variant-numeric: tabular-nums;
+    min-width: 22px;
+    text-align: center;
+    padding: 2px var(--esp-2);
+    border-radius: var(--radio);
+}
+
+.lista-kanban {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-3);
+    min-height: 100px;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.tarjeta-kanban {
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: var(--esp-3) var(--esp-4);
+    cursor: grab;
+    box-shadow: var(--sombra);
+    transition: box-shadow var(--transicion), border-color var(--transicion);
+}
+
+.tarjeta-kanban:hover {
+    border-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+
+.arrastrando {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.tarjeta-nombre {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.tarjeta-tipo {
+    color: var(--exito);
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.tarjeta-asignado {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--texto-tenue);
+}
+
+.tarjeta-descripcion {
+    margin-top: 8px;
+}
+
+.boton-tomar {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 0;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: var(--transicion);
+    color: var(--crema);
+    background-color: var(--navy-700);
+}
+
+.boton-tomar:hover {
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+
+.campo-kanban {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.campo-kanban select {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 5px 6px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.sin-tarjetas {
+    color: var(--texto-tenue);
+    font-style: italic;
+    font-size: 14px;
+}
+
+@media (max-width: 768px){
+
+    #seccion-tablero{
+        width: 95%;
+        margin: 2em auto;
+    }
+
+    .tablero{
+        grid-template-columns: 1fr;
+    }
+
+    .lista-kanban{
+        max-height: 45vh;
+    }
+
+    #controles{
+        gap: 0.8em;
+    }
+}
+
+@media (max-width: 576px){
+
+    #seccion-tablero{
+        width: 95%;
+        margin: 1em auto;
+        padding: 18px;
+    }
+
+    #controles{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #inptbusqueda{
+        min-width: auto;
+        width: 100%;
+    }
+
+    #filtros{
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filtro-clase{
+        flex: 1;
+    }
+}
+
+@media (min-width: 1024px){
+
+    #seccion-tablero{
+        width: 90%;
+        margin: 3em;
+        padding: 25px;
+    }
+
+    .tablero{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .lista-kanban{
+        max-height: 65vh;
+    }
+
+    #controles{
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+    }
+
+    #inptbusqueda{
+        min-width: 220px;
+        width: auto;
+    }
+
+    #filtros{
+        width: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .filtro-clase{
+        flex: initial;
+    }
+}

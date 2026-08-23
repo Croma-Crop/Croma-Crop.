@@ -1,0 +1,361 @@
+
+.titulo-seccion {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tarjeta-producto {
+    background-color: white;
+    border: 1px solid var(--borde);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    transition: all var(--transicion) ease;
+    display: flex;
+    flex-direction: column;
+}
+.tarjeta-producto:hover{
+    box-shadow: var(--sombra-elevada);
+    font-size: 16px;
+}
+
+.tarjeta-precio {
+    color: var(--exito);
+    margin-top: 5px;
+}
+
+
+.tarjeta-acciones {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.boton-historial,
+.boton-modificar,
+.boton-eliminar {
+    flex: 1;
+    padding: 9px 0;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: var(--transicion);
+    color: var(--crema);
+}
+
+.boton-historial,
+.boton-modificar {
+    background-color: var(--navy-700);
+    
+}
+
+.boton-historial:hover,
+.boton-modificar:hover {
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+
+.boton-eliminar {
+    background-color: var(--peligro);
+}
+
+.boton-eliminar:hover {
+    background-color: var(--peligro);
+    box-shadow: var(--sombra-elevada);
+}
+
+.tarjeta-intervenciones {
+    color: var(--peligro);
+    font-size: 15px;
+    margin-top: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#dialogHistorial {
+    margin: auto;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 25px;
+    max-width: 90vw;
+    box-shadow: var(--sombra-elevada);
+}
+
+#dialogHistorial::backdrop {
+    background-color: rgba(48, 54, 79, 0.45);
+}
+
+#tituloHistorial {
+    color: var(--navy-700);
+    margin-bottom: 15px;
+}
+
+#cerrarHistorial {
+    float: right;
+    background-color: var(--peligro);
+    color: var(--crema);
+}
+
+#listaHistorial {
+    list-style: none;
+    padding: 0;
+}
+
+.item-historial {
+    border-left: 3px solid var(--navy-700);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+}
+
+#contenido{
+    background-color: var(--lienzo);
+    padding: 25px;
+    border-radius: var(--radio);
+    margin-top: 20px;
+    border: 1px solid var(--borde);
+    display: flex;
+    align-items: flex-start;
+    gap: 2em;
+    margin: 3em;
+    transition: var(--transicion);
+}
+
+#seccion-listado {
+    flex: 1;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+#seccion-formulario {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    min-width: 220px;
+}
+#contenido input{
+    transition: var(--transicion);
+}
+#contenido input:hover{
+    box-shadow: var(--sombra);
+    border: 1px solid rgba(122, 122, 122, 0.712);
+}
+#contenido:hover{
+    box-shadow: var(--sombra-elevada);
+}
+#listado{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+a{
+    display: inline-block;
+    text-decoration: none;
+}
+
+input,
+select,
+button
+{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    
+}
+
+button, #submit {
+    background-color: var(--navy-700);
+    color: var(--crema);
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+    font-weight: bold;
+}
+#submit:hover{
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+
+ul {
+    list-style: none;
+}
+
+#seccion-formulario {
+    order: 1;
+    position: sticky;
+    top: var(--esp-5);
+    align-self: flex-start;
+    min-width: 240px;
+    flex: 0 0 240px;
+}
+
+#seccion-listado {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+}
+
+#busqueda {
+    order: 3;
+    align-self: flex-start;
+    min-width: 200px;
+    flex: 0 0 200px;
+}
+
+@media (max-width: 768px){
+
+    #contenido{
+        flex-wrap: wrap;
+        margin: 2em;
+        gap: 1.5em;
+        padding: 20px;
+    }
+
+    #busqueda{
+        width: 100%;
+    }
+
+    #busqueda input{
+        width: 100%;
+    }
+
+    #listado{
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 576px){
+
+    #contenido{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 1em 0;
+        padding: 16px;
+        gap: 1em;
+    }
+
+    #busqueda{
+        order: 2;
+        flex: none;
+        width: 100%;
+        min-width: 0;
+    }
+
+    #seccion-formulario{
+        order: 1;
+        flex: none;
+        position: static;
+        min-width: 0;
+        width: 100%;
+    }
+
+    #seccion-listado{
+        order: 3;
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        max-height: none;
+        padding-right: 0;
+    }
+
+    #listado{
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta-acciones{
+        flex-wrap: wrap;
+    }
+
+    .boton-historial,
+    .boton-modificar,
+    .boton-eliminar{
+        min-width: 0;
+    }
+}
+
+#listado-equipos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    list-style: none;
+    padding: 0;
+}
+
+#listado-equipos .tarjeta-producto {
+    margin-bottom: 0;
+    gap: 8px;
+}
+
+.boton-desplegar {
+    margin-top: auto;
+    background-color: var(--navy-700);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dialogo-equipo {
+    margin: auto;
+    border: none;
+    border-radius: var(--radio);
+    padding: 24px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: var(--sombra-elevada);
+}
+
+.dialogo-equipo::backdrop {
+    background-color: rgba(48, 54, 79, 0.45);
+}
+
+.dialogo-equipo .dialogo-edicion {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dialogo-equipo .tarjeta-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.dialogo-equipo .tarjeta-acciones form {
+    display: inline;
+}
+
+.boton-cerrar-equipo {
+    margin-top: 16px;
+    width: 100%;
+    background-color: var(--texto-tenue);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    #listado-equipos {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    #listado-equipos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

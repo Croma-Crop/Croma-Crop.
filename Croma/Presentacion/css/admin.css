@@ -1,0 +1,321 @@
+.seccionTablaEmpleados {
+    background-color: var(--lienzo);
+    border-radius: var(--radio);
+    border: 1px solid var(--borde);
+    padding: 25px;
+    margin: 3em;
+    transition: var(--transicion);
+    width: 90%;
+}
+
+.seccionTablaEmpleados:hover {
+    box-shadow: var(--sombra-elevada);
+}
+
+.cajaEncabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cajaEncabezado h2 {
+    font-size: 22px;
+    color: var(--navy-700);
+    font-weight: bold;
+}
+
+.btnOperacion {
+    background-color: var(--navy-700);
+    color: var(--crema);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radio);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btnOperacion:hover {
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: var(--sombra-elevada);
+}
+
+table caption {
+    caption-side: top;
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--texto-tenue);
+    font-style: italic;
+}
+
+thead {
+    background-color: var(--navy-700);
+    color: var(--crema);
+}
+
+thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--borde-tenue);
+    transition: var(--transicion);
+}
+
+tbody tr:hover {
+    background-color: var(--lienzo-alt);
+}
+
+tbody td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--texto);
+}
+
+dialog.dialogGestionarEmpleado {
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 0;
+    min-width: 420px;
+    box-shadow: var(--sombra-elevada);
+    margin: auto;
+    width: 30%;
+}
+fieldset{
+    width: 100%;
+}
+
+dialog.dialogGestionarEmpleado::backdrop {
+    background-color: rgba(48, 54, 79, 0.45);
+}
+
+.seccionFormulario fieldset {
+    border: 1px solid var(--borde-tenue);
+    border-radius: var(--radio);
+    padding: var(--esp-4);
+    margin: 0;
+}
+
+.seccionFormulario legend {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--navy-700);
+    padding: 0 8px;
+}
+
+.seccionFormulario > fieldset > legend {
+    font-size: 18px;
+}
+
+.seccionFormulario form {
+    background-color: white;
+    border-radius: var(--radio);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: var(--transicion);
+}
+
+.seccionFormulario form:hover {
+    box-shadow: var(--sombra-elevada);
+    
+}
+
+.btnCerrarGestionarEmpleado {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnCerrarGestionarEmpleado:hover {
+    background-color: var(--lienzo);
+}
+
+.btnCerrarGestionarEmpleado .iconoMenu {
+    width: 20px;
+    height: 20px;
+}
+
+.cajaEntradaDeDatos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cajaEntradaDeDatos label {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--texto);
+}
+
+.cajaEntradaDeDatos input,
+.cajaEntradaDeDatos select {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background-color: var(--lienzo-alt);
+    transition: var(--transicion);
+}
+
+.cajaEntradaDeDatos input:hover,
+.cajaEntradaDeDatos select:hover {
+    border-color: var(--navy-700);
+    background-color: var(--lienzo-alt);
+}
+
+.cajaEntradaDeDatos input:focus,
+.cajaEntradaDeDatos select:focus {
+    border-color: var(--navy-700);
+}
+
+.seccionFormulario fieldset > button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--navy-700);
+    color: var(--crema);
+    border: none;
+    border-radius: var(--radio);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 80%;
+    align-self: center;
+    transition: var(--transicion);
+}
+
+.seccionFormulario fieldset > button[type="submit"]:hover {
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+
+.btnEliminarEmpleado {
+    background-color: var(--peligro);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btnEliminarEmpleado:hover {
+    background-color: var(--peligro);
+    box-shadow: var(--sombra-elevada);
+}
+
+#fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#btnExtranjeroAdmin,
+#btnCedulaAdmin {
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+    align-self: flex-end;
+    cursor: pointer;
+    color: var(--texto);
+    font-weight: 500;
+    letter-spacing: 0px;
+    transition: var(--transicion);
+}
+#btnExtranjeroAdmin:hover,
+#btnCedulaAdmin:hover {
+    border-bottom: 2px solid var(--navy-700);
+    color: var(--navy-700);
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px){
+
+    .seccionTablaEmpleados{
+        width: 95%;
+        margin: 2em auto;
+        padding: 20px;
+    }
+
+    .cajaEncabezado{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    dialog.dialogGestionarEmpleado{
+        width: 70%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 576px){
+
+    .seccionTablaEmpleados{
+        width: 95%;
+        margin: 1em auto;
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .cajaEncabezado{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .btnOperacion{
+        width: 100%;
+    }
+
+    table{
+        min-width: 600px;
+    }
+
+    dialog.dialogGestionarEmpleado{
+        width: 95%;
+        min-width: auto;
+    }
+
+    .seccionFormulario form{
+        padding: 20px;
+    }
+
+    .cajaEntradaDeDatos input,
+    .cajaEntradaDeDatos select{
+        padding: 12px;
+    }
+
+    .seccionFormulario fieldset > button[type="submit"]{
+        width: 100%;
+    }
+}

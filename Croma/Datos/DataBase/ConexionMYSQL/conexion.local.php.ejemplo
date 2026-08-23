@@ -1,0 +1,8 @@
+<?php
+
+$db_host = "localhost";
+$db_usuario = "usuario_de_la_base";
+$db_clave = "contrasena_de_la_base";
+$db_nombre = "srgsi";
+
+?>

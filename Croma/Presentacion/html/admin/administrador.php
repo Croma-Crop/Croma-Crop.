@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+    <script src="../../js/permisos.js" defer></script>
+    <script src="../../js/script.js" defer></script>
+    <script src="../../js/admin.js" defer></script>
+   
+</head>
+<body data-modulo="administrador">
+    <header>
+        <h1 id="titulo">Administrador</h1>
+           
+         <?php require '../../globales/Header.php'?>
+
+
+        
+        
+    </header>
+    <main>
+         <section class="seccionTablaEmpleados">
+            <header class="cajaEncabezado">
+                <h2>Datos de empleados</h2>
+                <button type="button" class="btnOperacion" id="btnAltaEmpleado">Alta Empleado</button>
+            </header>
+            
+            <div class="tabla-envoltorio">
+            <table class="tabla-datos">
+                <caption class="subtitulo">Listado de empleados registrados</caption>
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Rol</th>
+                        <th>Contraseña</th>
+                        <th class="celda-acciones">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaEmpleados">
+                    <?php
+                    require "../../../Procesos/mostrarusuarios.php";
+
+                    foreach($usuario as $claveindexado => $valorindexado){
+                    echo "
+                    <tr>
+                    <td class='celda-numerica'>{$valorindexado['documento']}</td>
+                    <td>{$valorindexado['nombre']}</td>
+                    <td>{$valorindexado['apellido']}</td>
+                    <td>{$valorindexado['rol']}</td>
+                    <td class='celda-oculta'>•••••</td>
+                    <td class='celda-acciones'>
+                    <form method='post' action='../../../Procesos/eliminarusuario.php' style='display:inline'>
+                    <input type='hidden' name='documento' value='{$valorindexado['documento']}'>
+                    <button class='btnEliminarEmpleado' type='submit'>Eliminar</button>
+                    </form>
+                    </td>
+                    </tr>
+                    ";
+                    }
+
+                    ?>
+                </tbody>
+            </table>
+            </div>
+        </section>
+               <dialog id="dialog" class="dialogGestionarEmpleado seccionFormulario">
+            <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">
+                <img src="../../img/x.svg" alt="Cerrar Menú" class="iconoMenu">
+            </button>
+            <form action="../../../Procesos/backend/procesoadmin.php" method="post" id="formularioGestionarEmpleado">
+                <fieldset id="fieldset">
+                    <legend>Gestión de empleado</legend>
+
+                    <fieldset>
+                        <legend>Datos del empleado</legend>
+
+                        <div id="contenedor-documento-admin">
+                            <div class="cajaEntradaDeDatos">
+                                <label for="cedula">Cédula</label>
+                                <input type="text" id="cedula" name="documento" placeholder="Ingrese la cédula"
+                                    autocomplete="off" pattern="[1-9][0-9]{7}"
+                                    title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric"
+                                    maxlength="8" required>
+                            </div>
+                        </div>
+                        <div id="campo-boton-admin">
+                            <button type="button" id="btnExtranjeroAdmin">Empleado extranjero</button>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre"
+                                autocomplete="given-name" required>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" placeholder="Ingrese el apellido"
+                                autocomplete="family-name" required>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="rol">Rol</label>
+                            <select name="rol" id="rol" required>
+                                <option value="" disabled selected>Seleccione un rol</option>
+                                <option value="administrador">Admin</option>
+                                <option value="tecnico">Técnico</option>
+                                <option value="solicitante">Solicitante</option>
+                            </select>
+                        </div>
+
+                        <div class="cajaEntradaDeDatos">
+                            <label for="contrasena">Contraseña</label>
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese una contraseña" required>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit">Guardar empleado</button>
+                </fieldset>
+            </form>
+        </dialog>
+    </main>
+    
+    <?php include '../../globales/Footer.php' ?>  
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

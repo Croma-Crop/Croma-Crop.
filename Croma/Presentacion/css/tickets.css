@@ -1,0 +1,245 @@
+
+#newsletter,
+.contenedor {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    color: rgb(48, 54, 79);
+    width: 50%;
+    height: auto;
+
+}
+main{
+        align-items: center;
+
+}
+.mostrar{
+    display: none !important;
+}
+#incidencia,
+#regSolicitud {
+    align-self: center;
+    border: var(--borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--crema);
+    font-weight: bold;
+    background-color: var(--navy-600);
+    font-size: 18px;
+    padding: 0.5em 1.0em;
+    border-radius: var(--radio);
+    transition: var(--transicion);
+    width: 300px;
+}
+#incidencia {
+    margin: 10px;
+}
+#incidencia:hover,
+#regSolicitud:hover {
+    background-color: var(--navy-600);
+}
+
+#newsletter form,
+.contenedor form,
+.contenedorSol form {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-4);
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: var(--esp-5);
+}
+#solforms{
+    width: 500px;
+}
+
+
+#newsletter p,
+.contenedor p,
+.contenedorSol p {
+    font-size: var(--texto-base);
+    color: var(--texto-tenue);
+    margin-bottom: var(--esp-1);
+}
+form label {
+    font-size: 16px;
+    color: var(--texto);
+    font-weight: 400;
+    margin-top: 8px;
+}
+form input[id="serie"],
+form input[id="salon"],
+form input[id="descripcioninc"],
+form input[id="fecha_inicio"],
+form select,
+form input[id="descripcionSol"],
+form input[id="nombreProf"],
+form input[id="fecha_limite"],
+#nombreProfSol{
+    padding: 13px;
+    margin-bottom: 5px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background-color: var(--lienzo-alt);
+    font-size: 14px;
+    transition: var(--transicion);
+}
+
+#campo-documento, #campo-boton {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#volverInc,
+#volverSol{
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-top: 10px;
+    padding: 3px;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+    align-self: flex-end;
+    cursor: pointer;
+    color: var(--texto);
+    font-weight: 500;
+    letter-spacing: 0px;
+    transition: var(--transicion);
+}
+#volverInc:hover,
+#volverSol:hover{
+    border-bottom: 2px solid var(--navy-700);
+    color: var(--navy-700);
+    letter-spacing: 0.5px;
+}
+#enviarinc,
+#enviarSol {
+    padding: 10px;
+    background-color: var(--navy-700);
+    color: var(--superficie);
+    border: none;
+    border-radius: var(--radio);
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 80%;
+    align-self: center;
+    transition: var(--transicion);
+    margin-top: 20px;
+}
+#enviarinc:hover,
+#enviarSol:hover {
+    background-color: var(--navy-600);
+    box-shadow: var(--sombra-elevada);
+}
+form input:hover,
+form select:hover {
+    background-color: var(--lienzo-alt);
+    border-color: var(--navy-700);
+    transition: var(--transicion);
+}
+
+.radio-grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-4);
+}
+
+.radio-grupo input[type="radio"] {
+  accent-color: var(--navy-600);
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.radio-grupo label {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  cursor: pointer;
+  font-size: var(--texto-base);
+  color: var(--texto);
+}
+
+#dialogSol {
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 30px;
+    min-width: 300px;
+    box-shadow: var(--sombra-elevada);
+}
+
+#dialogSol p {
+    font-size: 16px;
+    color: var(--navy-700);
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px){
+
+    #newsletter,
+    .contenedor,
+    .contenedorSol{
+        width: 80%;
+        padding: 30px 15px;
+    }
+
+    #solforms{
+        width: 100%;
+    }
+
+    #incidencia,
+    #regSolicitud{
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px){
+
+    #newsletter,
+    .contenedor,
+    .contenedorSol{
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    #newsletter form,
+    .contenedor form,
+    .contenedorSol form{
+        padding: 18px;
+    }
+
+    #solforms{
+        width: 100%;
+    }
+
+    #incidencia,
+    #regSolicitud{
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .radio-grupo{
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #enviarinc,
+    #enviarSol{
+        width: 100%;
+    }
+
+    #dialogSol{
+        min-width: auto;
+        width: 90%;
+        padding: 20px;
+    }
+}
