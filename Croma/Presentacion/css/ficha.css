@@ -19,7 +19,6 @@
     box-shadow: var(--sombra-elevada)
 }
 
-
 #seccion-formulario {
     flex: 1;
     min-width: 280px;
@@ -247,13 +246,12 @@ select:hover {
     background-color: var(--peligro);
 }
 
-@media (max-width: 768px){
-
-    #contenido{
+@media (max-width: 768px) {
+#contenido{
         flex-wrap: wrap;
-        margin: 2em;
-        gap: 1.5em;
-        padding: 20px;
+        margin: var(--esp-6);
+        gap: var(--esp-5);
+        padding: var(--esp-5);
     }
 
     #seccion-formulario,
@@ -264,17 +262,16 @@ select:hover {
     }
 }
 
-@media (max-width: 576px){
-
-    #contenido{
+@media (max-width: 576px) {
+#contenido{
         flex-direction: column;
         flex-wrap: nowrap;
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        margin: 1em 0;
-        padding: 16px;
-        gap: 1em;
+        margin: var(--esp-4) 0;
+        padding: var(--esp-4);
+        gap: var(--esp-4);
     }
 
     #seccion-formulario{
@@ -286,7 +283,7 @@ select:hover {
     }
 
     form{
-        padding: 18px;
+        padding: var(--esp-4);
     }
 
     #enviarFicha{
@@ -295,14 +292,14 @@ select:hover {
 
     #tablaEquipos th,
     #tablaEquipos td{
-        padding: 8px;
-        font-size: 13px;
+        padding: var(--esp-2);
+        font-size: var(--texto-sm);
     }
 
     #dialogIncidencia{
         min-width: auto;
         width: 90%;
-        padding: 20px;
+        padding: var(--esp-5);
     }
 
     .dialog-acciones{

@@ -108,77 +108,27 @@
     text-decoration: underline;
 }
 
-@media (max-width: 768px){
- 
-    .inicio{
-        margin: 2em auto;
-    }
- 
-    .resumen{
-        grid-template-columns: 1fr 1fr;
-        gap: 0.8em;
-    }
-
-    .modulos{
-        grid-template-columns: 1fr 1fr;
-        gap: 0.8em;
-    }
-}
-
-@media (max-width: 576px){
- 
-    .inicio{
-        margin: 1.2em auto;
-        width: 92%;
-    }
- 
-    .bienvenida{
-        padding: 18px;
-    }
- 
-    .bienvenida h2{
-        font-size: 19px;
-    }
-
-    .resumen{
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .tarjeta-resumen{
-        padding: 14px;
-    }
-
-    .tarjeta-resumen .numero{
-        font-size: 26px;
-    }
-
-    .modulos{
-        grid-template-columns: 1fr;
-    }
-}
- 
-@media (min-width: 1024px){
- 
-    .inicio{
+@media (min-width: 1024px) {
+.inicio{
         width: 90%;
-        margin: 3em;
+        margin: var(--esp-7);
     }
- 
+
     .bienvenida{
-        padding: 25px;
+        padding: var(--esp-5);
     }
- 
+
     .bienvenida h2{
-        font-size: 22px;
+        font-size: var(--texto-xl);
     }
 
     .resumen{
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 1em;
+        gap: var(--esp-4);
     }
 
     .tarjeta-resumen{
-        padding: 20px;
+        padding: var(--esp-5);
     }
 
     .tarjeta-resumen .numero{
@@ -187,6 +137,53 @@
 
     .modulos{
         grid-template-columns: 1fr 1fr;
-        gap: 1em;
+        gap: var(--esp-4);
+    }
+}
+
+@media (max-width: 768px) {
+.inicio{
+        margin: var(--esp-6) auto;
+    }
+
+    .resumen{
+        grid-template-columns: 1fr 1fr;
+        gap: var(--esp-3);
+    }
+
+    .modulos{
+        grid-template-columns: 1fr 1fr;
+        gap: var(--esp-3);
+    }
+}
+
+@media (max-width: 576px) {
+.inicio{
+        margin: var(--esp-4) auto;
+        width: 92%;
+    }
+
+    .bienvenida{
+        padding: var(--esp-4);
+    }
+
+    .bienvenida h2{
+        font-size: var(--texto-lg);
+    }
+
+    .resumen{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .tarjeta-resumen{
+        padding: var(--esp-4);
+    }
+
+    .tarjeta-resumen .numero{
+        font-size: var(--texto-xl);
+    }
+
+    .modulos{
+        grid-template-columns: 1fr;
     }
 }
