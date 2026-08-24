@@ -3,27 +3,34 @@ $moduloRequerido = "kanban";
 require_once __DIR__ . "/guardia.php";
 require_once "../../Datos/Clases/ClassIncidencia.php";
 require_once "../../Datos/Clases/ClassSolicitud.php";
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     if (!puedeHacer("asignarPrioridad", $_SESSION["rol"])) {
-    header("Location: ../../Presentacion/html/tecnico/kanban.php?mensaje=" . urlencode("No tenés permiso para modificar tickets") . "&tipo=error");
-    exit;
-}
-$id = $_POST['id'];
-$clase = $_POST['clase'];
-$campo = $_POST['campo'];
-$valor = $_POST['valor'];
-$camposValidos = ['estado', 'prioridad', 'asignado'];
+        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("No tenés permiso para modificar tickets"));
+        exit;
+    }
 
- if ($campo === 'prioridad' && $clase !== 'Incidencia') {
-    header("Location: ../../Presentacion/html/tecnico/kanban.php?mensaje=" . urlencode("Las solicitudes no tienen prioridad") . "&tipo=error");
-    exit;
-}
+    $id = $_POST['id'];
+    $clase = $_POST['clase'];
+    $campo = $_POST['campo'];
+    $valor = $_POST['valor'];
 
-if ($campo === 'asignado' && $valor === '') {
-    $valor = null;
-}
+    $camposValidos = ['estado', 'prioridad', 'asignado'];
 
-$ok = false;
+    if (!in_array($campo, $camposValidos)) {
+        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("El campo no es valido"));
+        exit;
+    }
+
+    if ($campo === 'prioridad' && $clase !== 'Incidencia') {
+        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("Las solicitudes no tienen prioridad"));
+        exit;
+    }
+
+    if ($campo === 'asignado' && $valor === '') {
+        $valor = null;
+    }
 
     $ok = false;
 
@@ -48,14 +55,9 @@ $ok = false;
     }
 
     if ($ok) {
-        header("Location: ../../Presentacion/html/tecnico/kanban.php?mensaje=" . urlencode("Ticket actualizado correctamente") . "&tipo=exito");
+        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=exito&mensaje=" . urlencode("Ticket actualizado correctamente"));
     } else {
-        header("Location: ../../Presentacion/html/tecnico/kanban.php?mensaje=" . urlencode("No se pudo actualizar el ticket") . "&tipo=error");
+        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("No se pudo actualizar el ticket"));
     }
     exit;
 }
-
-
-
-
-?>
