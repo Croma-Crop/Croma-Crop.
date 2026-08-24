@@ -274,7 +274,7 @@ ul {
 }
 
 @media (min-width: 1024px) {
-    #contenido {
+#contenido {
         width: 90%;
         margin: var(--esp-7) auto;
         padding: var(--esp-5);
@@ -295,7 +295,7 @@ ul {
 }
 
 @media (max-width: 768px) {
-    #listado,
+#listado,
     #listado-equipos {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -314,7 +314,7 @@ ul {
 }
 
 @media (max-width: 576px) {
-    #contenido {
+#contenido {
         flex-direction: column;
         flex-wrap: nowrap;
         width: 100%;

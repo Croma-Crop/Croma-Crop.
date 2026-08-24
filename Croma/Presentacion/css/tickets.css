@@ -60,7 +60,6 @@ main{
     width: 500px;
 }
 
-
 #newsletter p,
 .contenedor p,
 .contenedorSol p {
@@ -182,13 +181,12 @@ form select:hover {
     margin-bottom: 10px;
 }
 
-@media (max-width: 768px){
-
-    #newsletter,
+@media (max-width: 768px) {
+#newsletter,
     .contenedor,
     .contenedorSol{
         width: 80%;
-        padding: 30px 15px;
+        padding: var(--esp-6) var(--esp-4);
     }
 
     #solforms{
@@ -202,19 +200,18 @@ form select:hover {
     }
 }
 
-@media (max-width: 576px){
-
-    #newsletter,
+@media (max-width: 576px) {
+#newsletter,
     .contenedor,
     .contenedorSol{
         width: 95%;
-        padding: 20px 10px;
+        padding: var(--esp-5) var(--esp-3);
     }
 
     #newsletter form,
     .contenedor form,
     .contenedorSol form{
-        padding: 18px;
+        padding: var(--esp-4);
     }
 
     #solforms{
@@ -224,12 +221,12 @@ form select:hover {
     #incidencia,
     #regSolicitud{
         width: 100%;
-        font-size: 16px;
+        font-size: var(--texto-md);
     }
 
     .radio-grupo{
         flex-direction: column;
-        gap: 8px;
+        gap: var(--esp-2);
     }
 
     #enviarinc,
@@ -240,6 +237,6 @@ form select:hover {
     #dialogSol{
         min-width: auto;
         width: 90%;
-        padding: 20px;
+        padding: var(--esp-5);
     }
 }

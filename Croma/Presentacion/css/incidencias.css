@@ -186,11 +186,10 @@
     box-shadow: var(--sombra-elevada);
 }
 
-@media (max-width: 768px){
-
-    #seccion-listado{
+@media (max-width: 768px) {
+#seccion-listado{
         width: 95%;
-        margin: 2em auto;
+        margin: var(--esp-6) auto;
     }
 
     #listado-tickets{
@@ -198,16 +197,15 @@
     }
 
     #controles{
-        gap: 0.8em;
+        gap: var(--esp-3);
     }
 }
 
-@media (max-width: 576px){
-
-    #seccion-listado{
+@media (max-width: 576px) {
+#seccion-listado{
         width: 95%;
-        margin: 1em auto;
-        padding: 18px;
+        margin: var(--esp-4) auto;
+        padding: var(--esp-4);
     }
 
     #controles{
