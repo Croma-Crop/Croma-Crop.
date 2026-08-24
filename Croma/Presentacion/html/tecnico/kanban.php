@@ -7,19 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/global.css">
     <link rel="stylesheet" href="../../css/kanban.css">
-    <script src="../../js/permisos.js" defer></script>
-    <script src="../../js/script.js" defer></script>
-    <script src="../../js/clasificacion.js" defer></script>
     <script src="../../js/kanban.js" defer></script>
-
 </head>
 <body data-modulo="kanban">
     <header>
-       
-
         <h1 id="titulo">Tablero Kanban</h1>
-<?php include '../../globales/Header.php'?>
+        <?php include '../../globales/Header.php'?>
     </header>
+    <?php include_once '../../../Procesos/mostrarkanban.php'; ?>
     <main>
         <section id="seccion-tablero">
             <h3 class="titulo-seccion">Asignación y seguimiento de tickets</h3>
@@ -35,35 +30,98 @@
             </div>
 
             <div class="tablero">
+                <?php foreach (["Pendiente", "En proceso", "Resuelto"] as $columna): ?>
+                    <section class="columna-kanban" data-estado="<?= $columna ?>">
+                        <div class="cabecera-columna">
+                            <h4><?= $columna ?></h4>
+                            <span class="contador-kanban" data-estado="<?= $columna ?>">
+                                <?php
+                                    $cantidad = 0;
+                                    foreach ($tickets as $ticket) {
+                                        if ($ticket['estado'] === $columna) {
+                                            $cantidad++;
+                                        }
+                                    }
+                                    echo $cantidad;
+                                ?>
+                            </span>
+                        </div>
+                        <ul class="lista-kanban" data-estado="<?= $columna ?>">
+                            <?php foreach ($tickets as $ticket): ?>
+                                <?php if ($ticket['estado'] !== $columna) continue; ?>
+                                <li class="tarjeta-kanban" draggable="true" data-id="<?= $ticket['id'] ?>" data-clase="<?= $ticket['clase'] ?>" data-estado="<?= $ticket['estado'] ?>" data-mi-documento="<?= htmlspecialchars($miDocumento) ?>">
+                                    <div class="fila-tarjeta">
+                                        <span class="etiqueta-clase etiqueta-<?= strtolower($ticket['clase']) ?>"><?= $ticket['clase'] ?></span>
+                                        <?php if ($ticket['clase'] === 'Incidencia'): ?>
+                                            <span class="etiqueta-gravedad"><?= htmlspecialchars($ticket['prioridad']) ?></span>
+                                        <?php endif; ?>
+                                    </div>
 
-                <section class="columna-kanban" data-estado="Pendiente">
-                    <div class="cabecera-columna">
-                        <h4>Pendiente</h4>
-                        <span class="contador-kanban" data-estado="Pendiente">0</span>
-                    </div>
-                    <ul class="lista-kanban" data-estado="Pendiente"></ul>
-                </section>
+                                    <p class="tarjeta-nombre"><?= htmlspecialchars($ticket['nombreProf']) ?></p>
+                                    <p class="tarjeta-tipo"><?= htmlspecialchars($ticket['tipo']) ?></p>
+                                    <p class="tarjeta-asignado">Técnico: <?= htmlspecialchars($ticket['nombreTecnico']) ?></p>
 
-                <section class="columna-kanban" data-estado="En proceso">
-                    <div class="cabecera-columna">
-                        <h4>En proceso</h4>
-                        <span class="contador-kanban" data-estado="En proceso">0</span>
-                    </div>
-                    <ul class="lista-kanban" data-estado="En proceso"></ul>
-                </section>
+                                    <button type="button" class="boton-detalle">Ver más</button>
 
-                <section class="columna-kanban" data-estado="Resuelto">
-                    <div class="cabecera-columna">
-                        <h4>Resuelto</h4>
-                        <span class="contador-kanban" data-estado="Resuelto">0</span>
-                    </div>
-                    <ul class="lista-kanban" data-estado="Resuelto"></ul>
-                </section>
+                                    <div class="detalle-ticket">
+                                        <?php if ($ticket['clase'] === 'Incidencia'): ?>
+                                            <p>Fecha inicio: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                                            <p>Serie: <?= htmlspecialchars($ticket['numero_serie'] ?? '-') ?></p>
+                                            <p>Turno: <?= htmlspecialchars($ticket['turno']) ?></p>
+                                        <?php endif; ?>
 
+                                        <p class="tarjeta-descripcion"><?= htmlspecialchars($ticket['descripcion']) ?></p>
+
+                                        <?php if ($puedeClasificar): ?>
+                                            <?php if ($ticket['cedula_tecnico'] !== $miDocumento): ?>
+                                                <button type="button" class="boton-tomar">Tomar la tarea</button>
+                                            <?php endif; ?>
+
+                                            <label class="campo-kanban">Técnico asignado
+                                                <select class="select-tecnico">
+                                                    <option value="">Sin asignar</option>
+                                                    <?php foreach ($tecnicos as $tecnico): ?>
+                                                        <option value="<?= $tecnico['documento'] ?>" <?= $tecnico['documento'] === $ticket['cedula_tecnico'] ? 'selected' : '' ?>><?= htmlspecialchars($tecnico['nombre'] . ' ' . $tecnico['apellido']) ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </label>
+
+                                            <?php if ($ticket['clase'] === 'Incidencia'): ?>
+                                                <label class="campo-kanban">Prioridad
+                                                    <select class="select-gravedad">
+                                                        <?php foreach (["Sin asignar", "Baja", "Media", "Alta"] as $prioridad): ?>
+                                                            <option value="<?= $prioridad ?>" <?= $prioridad === $ticket['prioridad'] ? 'selected' : '' ?>><?= $prioridad ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </label>
+                                            <?php endif; ?>
+
+                                            <label class="campo-kanban">Estado
+                                                <select class="select-estado">
+                                                    <?php foreach (["Pendiente", "En proceso", "Resuelto"] as $estado): ?>
+                                                        <option value="<?= $estado ?>" <?= $estado === $ticket['estado'] ? 'selected' : '' ?>><?= $estado ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </label>
+                                        <?php endif; ?>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </section>
+                <?php endforeach; ?>
             </div>
         </section>
     </main>
-<?php include '../../globales/Footer.php' ?>
+
+    <form id="formAccionKanban" method="post" action="../../../Procesos/backend/procesokanban.php">
+        <input type="hidden" id="accionId" name="id">
+        <input type="hidden" id="accionClase" name="clase">
+        <input type="hidden" id="accionCampo" name="campo">
+        <input type="hidden" id="accionValor" name="valor">
+    </form>
+
+    <?php include '../../globales/Footer.html' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
