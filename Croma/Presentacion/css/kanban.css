@@ -88,23 +88,11 @@
 .columna-kanban {
     background-color: var(--lienzo-alt);
     border: 1px solid var(--borde);
-    border-top: 3px solid var(--navy-700);
     border-radius: var(--radio);
     padding: var(--esp-4);
     transition: background-color var(--transicion), box-shadow var(--transicion);
 }
 
-.columna-kanban[data-estado="Pendiente"] {
-    border-top-color: var(--alerta);
-}
-
-.columna-kanban[data-estado="En proceso"] {
-    border-top-color: var(--info);
-}
-
-.columna-kanban[data-estado="Resuelto"] {
-    border-top-color: var(--exito);
-}
 
 .columna-activa {
     background-color: var(--lienzo);
