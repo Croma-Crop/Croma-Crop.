@@ -118,6 +118,7 @@
     margin-top: 20px;
     border: 1px solid var(--borde);
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: var(--esp-5);
     margin: 3em;
@@ -139,7 +140,7 @@
 
 #listado{
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: var(--esp-4);
 }
 
@@ -183,32 +184,27 @@ ul {
 
 #seccion-formulario {
     order: 1;
-    position: sticky;
-    top: var(--esp-5);
+    flex: 1 1 240px;
+    min-width: 0;
     align-self: flex-start;
-    min-width: 200px;
-    flex: 0 1 240px;
 }
 
 #seccion-listado {
-    order: 2;
-    flex: 1;
+    order: 3;
+    flex: 1 1 100%;
     min-width: 0;
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: var(--esp-1);
 }
 
 #busqueda {
-    order: 3;
+    order: 2;
+    flex: 1 1 200px;
+    min-width: 0;
     align-self: flex-start;
-    min-width: 160px;
-    flex: 0 1 200px;
 }
 
 #listado-equipos {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: var(--esp-4);
     list-style: none;
     padding: 0;
@@ -268,43 +264,65 @@ ul {
     cursor: pointer;
 }
 
+.tarjeta-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+    margin-top: auto;
+    padding-top: var(--esp-3);
+}
+
+.tarjeta-acciones > *,
+.tarjeta-acciones > form {
+    flex: 1 1 120px;
+    min-width: 0;
+    margin: 0;
+}
+
+.tarjeta-acciones .boton-historial,
+.tarjeta-acciones .boton-modificar,
+.tarjeta-acciones .boton-eliminar {
+    display: block;
+    width: 100%;
+    padding-inline: var(--esp-2);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media (min-width: 1024px) {
     #contenido {
         width: 90%;
         margin: var(--esp-7) auto;
         padding: var(--esp-5);
-    }
-
-    #listado,
-    #listado-equipos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        flex-wrap: nowrap;
     }
 
     #seccion-formulario {
         flex: 0 1 240px;
+        position: sticky;
+        top: var(--esp-5);
+    }
+
+    #seccion-listado {
+        flex: 1 1 auto;
+        max-height: 60vh;
+        overflow-y: auto;
+        padding-right: var(--esp-1);
     }
 
     #busqueda {
         flex: 0 1 200px;
+        padding-top: calc(var(--texto-lg) * 1.25 + var(--esp-4));
     }
 }
 
 @media (max-width: 768px) {
-    #listado,
-    #listado-equipos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     #contenido {
-        flex-wrap: wrap;
-        margin: var(--esp-6);
-        padding: var(--esp-5);
-        gap: var(--esp-5);
-    }
-
-    #busqueda,
-    #busqueda input {
-        width: 100%;
+        margin: var(--esp-5);
+        padding: var(--esp-4);
+        gap: var(--esp-4);
     }
 }
 
@@ -341,11 +359,6 @@ ul {
         order: 3;
         max-height: none;
         padding-right: 0;
-    }
-
-    #listado,
-    #listado-equipos {
-        grid-template-columns: minmax(0, 1fr);
     }
 
     .tarjeta-acciones {
