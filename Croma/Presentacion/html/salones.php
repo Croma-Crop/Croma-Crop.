@@ -26,6 +26,7 @@
     <main>
           <section id="contenido">
             <section id="busqueda">
+                <h3 class="titulo-seccion titulo-busqueda">Buscar salón</h3>
                 <form method="post" action="../../Procesos/mostrarsalon.php">
                     <input id="inptbusqueda" name="nombre" type="text" placeholder="Buscar">
                     <button type="submit">Buscar</button>

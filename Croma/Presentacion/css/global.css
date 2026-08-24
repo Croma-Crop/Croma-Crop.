@@ -943,9 +943,7 @@ body button.boton-cancelar-edicion:hover {
     background-color: var(--lienzo);
 }
 
-#busqueda {
-    padding-top: calc(var(--texto-lg) * 1.25 + var(--esp-4));
-}
+
 
 body .tabla-datos caption {
     position: absolute;
@@ -1050,10 +1048,6 @@ body .tabla-datos caption {
 
     body .campo-fila {
         grid-template-columns: minmax(0, 1fr);
-    }
-
-    #busqueda {
-        padding-top: 0;
     }
 
     footer {
