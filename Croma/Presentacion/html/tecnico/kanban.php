@@ -20,6 +20,10 @@
             <h3 class="titulo-seccion">Asignación y seguimiento de tickets</h3>
             <p class="ayuda-tablero">Abrí una tarjeta con "Ver más" para tomar la tarea y clasificar su gravedad. Para cambiar el estado, arrastrá la tarjeta a otra columna o usá el selector de la tarjeta.</p>
 
+            <?php if (isset($_GET["mensaje"])): ?>
+                <div id="mensaje-kanban" class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>"><?= htmlspecialchars($_GET["mensaje"]) ?></div>
+            <?php endif; ?>
+
             <div id="controles">
                 <input id="inptbusqueda" name="inptbusqueda" placeholder="Buscar por profesor, tipo o descripción...">
                 <div id="filtros">
