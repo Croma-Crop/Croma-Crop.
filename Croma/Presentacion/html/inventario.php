@@ -22,8 +22,9 @@
     <main>
           <section id="contenido">
             <section id="busqueda">
+                <h3 class="titulo-seccion titulo-busqueda">Buscar equipo</h3>
                 <form method="post" action="../../Procesos/busquedainventario.php">
-                <input id="inptbusqueda" name="nombre" placeholder="Buscar">
+                <input id="inptbusqueda" name="nombre" type="text" placeholder="Buscar">
                 <button type="submit">Buscar</button>
                 </form>
             </section>

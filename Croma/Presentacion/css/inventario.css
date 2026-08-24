@@ -197,7 +197,7 @@ ul {
 
 #busqueda {
     order: 2;
-    flex: 1 1 200px;
+    flex: 1 1 240px;
     min-width: 0;
     align-self: flex-start;
 }
@@ -313,8 +313,7 @@ ul {
     }
 
     #busqueda {
-        flex: 0 1 200px;
-        padding-top: calc(var(--texto-lg) * 1.25 + var(--esp-4));
+        flex: 0 1 240px;
     }
 }
 
