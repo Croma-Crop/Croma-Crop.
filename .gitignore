@@ -2,8 +2,6 @@
 .idea/
 *.code-workspace
 
-.claude/settings.local.json
-
 Thumbs.db
 Desktop.ini
 .DS_Store
