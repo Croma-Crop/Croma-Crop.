@@ -23,13 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($documento !== "") {
 
-        $usuario = new $rol(
-            $conexion,
-            $documento,
-            $nombre,
-            $apellido,
-            $contrasena
-        );
+        $usuario = Usuario::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena);
         
         $ok = $usuario->crearusuario();
 
