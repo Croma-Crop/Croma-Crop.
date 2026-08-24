@@ -7,7 +7,7 @@ $modulos = [
     "inventario"     => ["etiqueta" => "Inventario", "ruta" => $BASE_URL . "/Presentacion/html/inventario.php"],
     "salones"        => ["etiqueta" => "Salones", "ruta" => $BASE_URL . "/Presentacion/html/salones.php"],
     "tickets"        => ["etiqueta" => "Tickets", "ruta" => $BASE_URL . "/Presentacion/html/tickets.php"],
-    "incidenciascreadas"    => ["etiqueta" => "Incidencias Creadas", "ruta" => $BASE_URL . "/Presentacion/html/incidenciascreadas.php"],
+    "incidenciascreadas"    => ["etiqueta" => "Tickets Creados", "ruta" => $BASE_URL . "/Presentacion/html/incidenciascreadas.php"],
     "ficha"          => ["etiqueta" => "Ficha", "ruta" => $BASE_URL . "/Presentacion/html/usuario/ficha.php"],
     "administrador"  => ["etiqueta" => "Administrador", "ruta" => $BASE_URL ."/Presentacion/html/admin/administrador.php"],
     "kanban" => ["etiqueta" => "Tablero Kanban", "ruta" => $BASE_URL ."/Presentacion/html/tecnico/kanban.php"]
