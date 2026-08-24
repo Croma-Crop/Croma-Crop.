@@ -7,7 +7,6 @@
 .bienvenida {
     background-color: var(--superficie);
     border: 1px solid var(--borde);
-    border-left: 3px solid var(--navy-700);
     border-radius: var(--radio);
     padding: var(--esp-5);
     margin-bottom: var(--esp-5);
