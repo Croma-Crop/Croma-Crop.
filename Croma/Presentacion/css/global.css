@@ -1017,7 +1017,7 @@ body .tabla-datos caption {
 }
 
 @media (max-width: 768px) {
-body > header {
+    body > header {
         grid-template-areas: "marca enlaces usuario";
         gap: var(--esp-3);
         padding: 0 var(--esp-4);
@@ -1039,7 +1039,7 @@ body > header {
 }
 
 @media (max-width: 576px) {
-body > header {
+    body > header {
         padding: 0 var(--esp-3);
         gap: var(--esp-2);
     }

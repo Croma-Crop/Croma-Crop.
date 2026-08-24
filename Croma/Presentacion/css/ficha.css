@@ -247,7 +247,7 @@ select:hover {
 }
 
 @media (max-width: 768px) {
-#contenido{
+    #contenido{
         flex-wrap: wrap;
         margin: var(--esp-6);
         gap: var(--esp-5);
@@ -263,7 +263,7 @@ select:hover {
 }
 
 @media (max-width: 576px) {
-#contenido{
+    #contenido{
         flex-direction: column;
         flex-wrap: nowrap;
         width: 100%;

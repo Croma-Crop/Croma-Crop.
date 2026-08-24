@@ -40,7 +40,7 @@
                     echo "
              <li class='tarjeta-producto'>
                     <p class='tarjeta-nombre'>" . htmlspecialchars($valorindexado['nombre']) . "</p>
-                <div class='tarjetas-acciones'>
+                <div class='tarjeta-acciones'>
                     <a class='boton-modificar' href='?editar=" . $valorindexado['id_salon'] . "'>Modificar</a>
                     <form method='post' action='../../Procesos/eliminarsalon.php' style='display:inline'>
             <input type='hidden' name='id_salon' value='" . $valorindexado['id_salon'] . "'>
