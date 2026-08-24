@@ -12,10 +12,11 @@
     width: 90%;
     border: 1px solid var(--borde);
     transition: var(--transicion);
+    box-shadow: var(--sombra-elevada);
+
 }
 
 #seccion-listado:hover {
-    box-shadow: var(--sombra-elevada);
 }
 
 #controles {
