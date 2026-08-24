@@ -224,6 +224,15 @@
     font-size: 14px;
 }
 
+.detalle-ticket {
+    display: none;
+    margin-top: var(--esp-3);
+}
+
+.detalle-ticket.mostrar {
+    display: block;
+}
+
 @media (min-width: 1024px) {
     #seccion-tablero{
         width: 90%;

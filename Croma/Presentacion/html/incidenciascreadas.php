@@ -18,6 +18,7 @@
        
 
     </header>
+    <?php require_once __DIR__ . '/../../Procesos/backend/cargarincidenciascreadas.php'; ?>
     <main>
         <section id="seccion-listado">
             <h3 class="titulo-seccion">Incidencias Registradas</h3>
@@ -34,7 +35,7 @@
             <li class="sin-resultados">No hay tickets registrados.</li>
         <?php else: ?>
             <?php foreach ($tickets as $ticket): ?>
-        <li class="tarjeta-ticket">
+        <li class="tarjeta-ticket" data-clase="<?= $ticket['clase'] ?>">
             <p class="tarjeta-clase tarjeta-<?= strtolower($ticket['clase']) ?>"><?= $ticket['clase'] ?></p>
             <p class="tarjeta-tipo">Tipo: <?= htmlspecialchars($ticket['tipo']) ?></p>
 
@@ -64,7 +65,7 @@
             </ul>
         </section>
     </main>
-    <?php include '../globales/Footer.php' ?>
+    <?php include '../globales/Footer.html' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -39,6 +39,9 @@ if (!isset($permisos[$rol])) {
 }
 function puedeHacer($accion, $rol){
 global $acciones;
+if ($rol === "administrador") {
+    return true;
+}
 if (!isset($acciones[$accion])) {
     return false;
 }

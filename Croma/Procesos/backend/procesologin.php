@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     if ($filaUsuario && password_verify($contraseñaIngresada, $filaUsuario['contrasena'])) {
         $empleado = [
+            "documento" => $filaUsuario['documento'],
             "nombre"   => $filaUsuario['nombre'],
             "apellido" => $filaUsuario['apellido'],
             "rol"      => $filaUsuario['rol']
