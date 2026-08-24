@@ -25,7 +25,6 @@
     margin-top: 5px;
 }
 
-
 .tarjeta-acciones {
     display: flex;
     gap: 8px;
@@ -121,6 +120,8 @@
     gap: 2em;
     margin: 3em;
     transition: var(--transicion);
+    box-shadow: var(--sombra-elevada);
+
 }
 
 #seccion-listado {
@@ -143,9 +144,7 @@
     box-shadow: var(--sombra);
     border: 1px solid rgba(122, 122, 122, 0.712);
 }
-#contenido:hover{
-    box-shadow: var(--sombra-elevada);
-}
+
 #listado{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -212,80 +211,6 @@ ul {
     flex: 0 0 200px;
 }
 
-@media (max-width: 768px){
-
-    #contenido{
-        flex-wrap: wrap;
-        margin: 2em;
-        gap: 1.5em;
-        padding: 20px;
-    }
-
-    #busqueda{
-        width: 100%;
-    }
-
-    #busqueda input{
-        width: 100%;
-    }
-
-    #listado{
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    }
-}
-
-@media (max-width: 576px){
-
-    #contenido{
-        flex-direction: column;
-        flex-wrap: nowrap;
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        margin: 1em 0;
-        padding: 16px;
-        gap: 1em;
-    }
-
-    #busqueda{
-        order: 2;
-        flex: none;
-        width: 100%;
-        min-width: 0;
-    }
-
-    #seccion-formulario{
-        order: 1;
-        flex: none;
-        position: static;
-        min-width: 0;
-        width: 100%;
-    }
-
-    #seccion-listado{
-        order: 3;
-        flex: none;
-        width: 100%;
-        min-width: 0;
-        max-height: none;
-        padding-right: 0;
-    }
-
-    #listado{
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .tarjeta-acciones{
-        flex-wrap: wrap;
-    }
-
-    .boton-historial,
-    .boton-modificar,
-    .boton-eliminar{
-        min-width: 0;
-    }
-}
-
 #listado-equipos {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -349,13 +274,71 @@ ul {
 }
 
 @media (max-width: 992px) {
+    #listado,
     #listado-equipos {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #contenido {
+        flex-wrap: wrap;
+        margin: var(--esp-6);
+        padding: var(--esp-5);
+        gap: var(--esp-5);
+    }
+
+    #busqueda,
+    #busqueda input {
+        width: 100%;
     }
 }
 
 @media (max-width: 576px) {
+    #contenido {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: var(--esp-4) 0;
+        padding: var(--esp-4);
+        gap: var(--esp-4);
+    }
+
+    #seccion-formulario,
+    #busqueda,
+    #seccion-listado {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+    }
+
+    #seccion-formulario {
+        order: 1;
+        position: static;
+    }
+
+    #busqueda {
+        order: 2;
+    }
+
+    #seccion-listado {
+        order: 3;
+        max-height: none;
+        padding-right: 0;
+    }
+
+    #listado,
     #listado-equipos {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta-acciones {
+        flex-wrap: wrap;
+    }
+
+    :is(.boton-historial, .boton-modificar, .boton-eliminar) {
+        min-width: 0;
     }
 }

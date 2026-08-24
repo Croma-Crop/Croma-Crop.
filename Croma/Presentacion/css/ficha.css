@@ -16,11 +16,9 @@
     margin: 3em;
     width: 90%;
     transition: var(--transicion);
+    box-shadow: var(--sombra-elevada)
 }
 
-#contenido:hover {
-    box-shadow: var(--sombra-elevada);
-}
 
 #seccion-formulario {
     flex: 1;
