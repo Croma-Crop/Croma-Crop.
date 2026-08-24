@@ -20,7 +20,9 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
 </nav>
 
 <div class="dropdown nav-movil">
-    <img src="<?php echo $BASE_URL ?>/Presentacion/img/menu.png" alt="Abrir menu" id="burguer" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Abrir menu de navegacion">
+        <img src="<?php echo $BASE_URL ?>/Presentacion/img/menu.png" alt="" id="burguer">
+    </button>
     <ul class="dropdown-menu">
         <?php echo construirMenu($rolSesion); ?>
     </ul>
