@@ -1,5 +1,7 @@
 <?php
-require __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
+
+require_once __DIR__ . "/../DataBase/ErroresBD.php";
+require_once __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
 
 class Solicitud {
     public mysqli $conexion;
@@ -50,7 +52,7 @@ class Solicitud {
             return $stmt->execute();
 
         } catch (mysqli_sql_exception $e) {
-            return false;
+            return registrarErrorBD($e, "Solicitud");
         }
     }
 }

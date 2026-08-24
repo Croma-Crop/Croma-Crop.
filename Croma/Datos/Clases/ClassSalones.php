@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__ . "/../DataBase/ErroresBD.php";
 
-require __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
+
+require_once __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
 class Salon {
 Public mysqli $conexion;
 Public String $tipo;
@@ -71,7 +73,7 @@ return $salones;
     $resultado = $stmt->get_result();
     return $resultado->fetch_assoc();
     } catch (mysqli_sql_exception $e) {
-        return false;
+        return registrarErrorBD($e, "Salon");
     }
  }
  public function modificar($id_salon) {
@@ -100,7 +102,7 @@ return $salones;
         return true;
 
     } catch (mysqli_sql_exception $e) {
-        return false;
+        return registrarErrorBD($e, "Salon");
     }
 }
 }

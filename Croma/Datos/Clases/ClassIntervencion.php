@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../DataBase/ErroresBD.php";
+
 
 
 
@@ -45,7 +47,7 @@ class Intervencion {
             return true;
 
         } catch (mysqli_sql_exception $e) {
-            return false;
+            return registrarErrorBD($e, "Intervencion");
         }
     }
 

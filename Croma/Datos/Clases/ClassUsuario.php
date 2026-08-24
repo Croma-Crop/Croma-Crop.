@@ -1,5 +1,7 @@
 <?php
-require __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
+
+require_once __DIR__ . "/../DataBase/ErroresBD.php";
+require_once __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
 
 class Usuario {
 public mysqli $conexion;
@@ -21,6 +23,24 @@ public String $rol;
     Public function rolPorDefecto(): string{
         return "tecnico";
     }
+
+    public static function crear(mysqli $conexion, string $rol, string $documento, string $nombre, string $apellido, string $contrasena): ?Usuario {
+
+        if ($rol === "administrador") {
+            return new administrador($conexion, $documento, $nombre, $apellido, $contrasena);
+        }
+
+        if ($rol === "tecnico") {
+            return new tecnico($conexion, $documento, $nombre, $apellido, $contrasena);
+        }
+
+        if ($rol === "solicitante") {
+            return new solicitante($conexion, $documento, $nombre, $apellido, $contrasena);
+        }
+
+        return null;
+    }
+
     public function getRol(): string {
         return $this->rol;
     }
@@ -44,7 +64,7 @@ public String $rol;
     
 
     } catch (mysqli_sql_exception $e) {
-        return false;
+        return registrarErrorBD($e, "Usuario");
 
         }
 
