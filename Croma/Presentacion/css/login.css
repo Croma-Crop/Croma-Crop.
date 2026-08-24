@@ -99,7 +99,7 @@ form input[id="password"] {
 }
 
 @media (max-width: 768px) {
-#newsletter,
+    #newsletter,
     #crearoinicar{
         width: 80%;
         padding: var(--esp-6) var(--esp-4);
@@ -107,7 +107,7 @@ form input[id="password"] {
 }
 
 @media (max-width: 576px) {
-#newsletter,
+    #newsletter,
     #crearoinicar{
         width: 100%;
         padding: var(--esp-4);

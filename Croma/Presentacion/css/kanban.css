@@ -225,7 +225,7 @@
 }
 
 @media (min-width: 1024px) {
-#seccion-tablero{
+    #seccion-tablero{
         width: 90%;
         margin: var(--esp-7);
         padding: var(--esp-5);
@@ -262,7 +262,7 @@
 }
 
 @media (max-width: 768px) {
-#seccion-tablero{
+    #seccion-tablero{
         width: 95%;
         margin: var(--esp-6) auto;
     }
@@ -281,7 +281,7 @@
 }
 
 @media (max-width: 576px) {
-#seccion-tablero{
+    #seccion-tablero{
         width: 95%;
         margin: var(--esp-4) auto;
         padding: var(--esp-4);

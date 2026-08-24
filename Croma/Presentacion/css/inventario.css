@@ -27,15 +27,17 @@
 
 .tarjeta-acciones {
     display: flex;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
     margin-top: auto;
-    padding-top: 12px;
+    padding-top: var(--esp-3);
 }
 
 .boton-historial,
 .boton-modificar,
 .boton-eliminar {
     flex: 1;
+    min-width: 0;
     padding: 9px 0;
     font-weight: bold;
     border: none;
@@ -111,32 +113,22 @@
 
 #contenido{
     background-color: var(--lienzo);
-    padding: 25px;
+    padding: var(--esp-5);
     border-radius: var(--radio);
     margin-top: 20px;
     border: 1px solid var(--borde);
     display: flex;
     align-items: flex-start;
-    gap: 2em;
+    gap: var(--esp-5);
     margin: 3em;
     transition: var(--transicion);
     box-shadow: var(--sombra-elevada);
 
 }
 
-#seccion-listado {
-    flex: 1;
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: 6px;
-}
 
-#seccion-formulario {
-    position: sticky;
-    top: 20px;
-    align-self: flex-start;
-    min-width: 220px;
-}
+
+
 #contenido input{
     transition: var(--transicion);
 }
@@ -147,8 +139,8 @@
 
 #listado{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--esp-4);
 }
 
 form {
@@ -194,27 +186,30 @@ ul {
     position: sticky;
     top: var(--esp-5);
     align-self: flex-start;
-    min-width: 240px;
-    flex: 0 0 240px;
+    min-width: 200px;
+    flex: 0 1 240px;
 }
 
 #seccion-listado {
     order: 2;
     flex: 1;
     min-width: 0;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: var(--esp-1);
 }
 
 #busqueda {
     order: 3;
     align-self: flex-start;
-    min-width: 200px;
-    flex: 0 0 200px;
+    min-width: 160px;
+    flex: 0 1 200px;
 }
 
 #listado-equipos {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--esp-4);
     list-style: none;
     padding: 0;
 }
@@ -274,7 +269,7 @@ ul {
 }
 
 @media (min-width: 1024px) {
-#contenido {
+    #contenido {
         width: 90%;
         margin: var(--esp-7) auto;
         padding: var(--esp-5);
@@ -286,16 +281,16 @@ ul {
     }
 
     #seccion-formulario {
-        flex: 0 0 240px;
+        flex: 0 1 240px;
     }
 
     #busqueda {
-        flex: 0 0 200px;
+        flex: 0 1 200px;
     }
 }
 
 @media (max-width: 768px) {
-#listado,
+    #listado,
     #listado-equipos {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -314,7 +309,7 @@ ul {
 }
 
 @media (max-width: 576px) {
-#contenido {
+    #contenido {
         flex-direction: column;
         flex-wrap: nowrap;
         width: 100%;

@@ -289,7 +289,7 @@ dialog.dialogGestionarEmpleado::backdrop {
 }
 
 @media (max-width: 768px) {
-.seccionTablaEmpleados{
+    .seccionTablaEmpleados{
         width: 95%;
         margin: var(--esp-6) auto;
         padding: var(--esp-5);
@@ -308,7 +308,7 @@ dialog.dialogGestionarEmpleado::backdrop {
 }
 
 @media (max-width: 576px) {
-.seccionTablaEmpleados{
+    .seccionTablaEmpleados{
         width: 95%;
         margin: var(--esp-4) auto;
         padding: var(--esp-4);

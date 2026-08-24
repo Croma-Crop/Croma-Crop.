@@ -182,7 +182,7 @@ form select:hover {
 }
 
 @media (max-width: 768px) {
-#newsletter,
+    #newsletter,
     .contenedor,
     .contenedorSol{
         width: 80%;
@@ -201,7 +201,7 @@ form select:hover {
 }
 
 @media (max-width: 576px) {
-#newsletter,
+    #newsletter,
     .contenedor,
     .contenedorSol{
         width: 95%;
