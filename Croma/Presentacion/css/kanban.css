@@ -36,7 +36,18 @@
     border-radius: 4px;
     transition: var(--transicion);
 }
-
+.boton-detalle{
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 0;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: var(--transicion);
+    color: var(--crema);
+    background-color: var(--navy-700)
+}
 #inptbusqueda:hover {
     box-shadow: var(--sombra);
     border: 1px solid var(--texto);
