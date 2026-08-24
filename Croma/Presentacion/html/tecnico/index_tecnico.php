@@ -63,7 +63,7 @@
                 <article class="tarjeta-modulo">
                     <h4>Incidencias</h4>
                     <p>Listado de consulta de las incidencias y solicitudes creadas, con su gravedad, su estado y el técnico que las tiene asignadas.</p>
-                    <a href="../../html/incidenciascreadas.php">Ver incidencias</a>
+                    <a href="../../html/incidenciascreadas.php">Ver tickets</a>
                 </article>
 
                 <article class="tarjeta-modulo">

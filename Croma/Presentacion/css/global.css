@@ -19,7 +19,7 @@
     --texto-tenue: #555555;
     --radio: 4px;
     --sombra: 0 1px 2px rgba(48, 54, 79, 0.12);
-    --sombra-elevada: 0 2px 6px rgba(48, 54, 79, 0.18);
+    --sombra-elevada: 0 2px 3px rgba(48, 54, 79, 0.18);
     --transicion: 0.15s ease;
     --fila: 40px;
     --alerta-texto: #8a4b12;
@@ -210,7 +210,7 @@ main {
     text-align: left;
     order: 3;
 }
-header {
+body > header {
     display: grid;
     grid-template-columns: auto auto auto 1fr;
     align-items: center;
@@ -219,7 +219,7 @@ header {
     background-color: var(--superficie);
     padding: var(--esp-3) var(--esp-6);
 }
-header h1 {
+body > header h1 {
     font-size: var(--texto-xl);
     color: var(--navy-700);
     font-weight: 600;
@@ -678,7 +678,7 @@ body #fichaForm button[type="submit"] {
     }
 }
 
-header {
+body > header {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
@@ -790,7 +790,7 @@ header {
     opacity: 0.75;
 }
 
-header h1#titulo {
+body > header h1#titulo {
     grid-area: titulo;
     margin: 0 calc(-1 * var(--esp-6));
     padding: var(--esp-4) var(--esp-6);
@@ -805,7 +805,7 @@ header h1#titulo {
 }
 
 @media (max-width: 992px) {
-    header {
+    body > header {
         gap: var(--esp-3);
         padding: 0 var(--esp-4);
     }
@@ -830,7 +830,7 @@ header h1#titulo {
     }
 }
 
-header {
+body > header {
     background-color: var(--superficie);
     border-bottom: 1px solid var(--borde);
     gap: var(--esp-5);
@@ -887,7 +887,7 @@ header {
     height: 26px;
 }
 
-header h1#titulo {
+body > header h1#titulo {
     margin: 0 calc(-1 * var(--esp-6));
     padding: var(--esp-4) var(--esp-6);
     background-color: var(--lienzo-alt);
@@ -898,8 +898,8 @@ header h1#titulo {
     color: var(--navy-700);
 }
 
-body[data-modulo="login"] header,
-body:not([data-modulo]) header {
+body[data-modulo="login"] > header,
+body:not([data-modulo]) > header {
     grid-template-areas: "marca enlaces usuario";
     padding: var(--esp-3) var(--esp-6);
 }
@@ -1003,12 +1003,12 @@ a:hover {
     color: var(--peligro);
 }
 
-header {
+body > header {
     grid-template-areas: "marca enlaces usuario";
     padding: 0 var(--esp-6);
 }
 
-header h1#titulo {
+body > header h1#titulo {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1023,7 +1023,7 @@ header h1#titulo {
 }
 
 @media (max-width: 992px) {
-    header {
+    body > header {
         padding: 0 var(--esp-4);
     }
 }
@@ -1071,3 +1071,15 @@ body button.boton-cancelar-edicion:hover {
         padding-top: 0;
     }
 }
+
+body .tabla-datos caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+

@@ -45,6 +45,7 @@ function construirNav($rol, $moduloactual){
     $html .= "<li><a class='nav-enlace" . $activo . "' href='" . $InicioPorRol[$rol] . "'>Inicio</a></li>";
 
     foreach ($permisos[$rol] as $clave){
+        if ($clave === "administrador") { continue; }
         if(isset($modulos[$clave])){
             $modulo = $modulos[$clave];
             $activo = ($moduloactual === $clave) ? " nav-activo" : "";
@@ -56,21 +57,28 @@ function construirNav($rol, $moduloactual){
 }
 
 function construirChip($usuario){
+    global $modulos;
+
     $scriptPath = $_SERVER['SCRIPT_NAME'];
-$posicion = strpos($scriptPath, '/Presentacion/');
-$BASE_URL = substr($scriptPath, 0, $posicion);
-$rol = $usuario["rol"];
-if ($usuario["rol"] === "administrador"){
-$rol = "administrador";
+    $posicion = strpos($scriptPath, '/Presentacion/');
+    $BASE_URL = substr($scriptPath, 0, $posicion);
 
+    $rol = $usuario["rol"];
 
-}
-if ($usuario["rol"] === "tecnico"){
-$rol = "Técnico";
-
-}
-if ($usuario["rol"] === "solicitante") {
+    if ($usuario["rol"] === "administrador"){
+        $rol = "Administrador";
+    }
+    if ($usuario["rol"] === "tecnico"){
+        $rol = "Técnico";
+    }
+    if ($usuario["rol"] === "solicitante") {
         $rol = "Solicitante";
+    }
+
+    $enlaceAdmin = "";
+
+    if ($usuario["rol"] === "administrador" && isset($modulos["administrador"])) {
+        $enlaceAdmin = "<li><a class='dropdown-item' href='" . $modulos["administrador"]["ruta"] . "'>" . "Panel de administracion" . "</a></li>";
     }
 
     $chip = "
@@ -81,6 +89,7 @@ if ($usuario["rol"] === "solicitante") {
             <ul class='dropdown-menu dropdown-menu-end'>
                 <li><span class='dropdown-item-text'>" . $rol . "</span></li>
                 <li><hr class='dropdown-divider'></li>
+                " . $enlaceAdmin . "
                 <li><a class='dropdown-item' href='" . $BASE_URL . "/Procesos/backend/logout.php'>Cerrar sesión</a></li>
             </ul>
         </div>

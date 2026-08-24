@@ -52,7 +52,7 @@ $BASE_URL = substr($scriptPath, 0, $posicion);
                 <article class="tarjeta-modulo">
                     <h4>Incidencias</h4>
                     <p>Listado de las incidencias y solicitudes de servicio creadas en el sistema.</p>
-                    <a href="<?php echo $BASE_URL ?>/Presentacion/html/incidenciascreadas.php">Ver incidencias</a>
+                    <a href="<?php echo $BASE_URL ?>/Presentacion/html/incidenciascreadas.php">Ver tickets</a>
                 </article>
                 <article class="tarjeta-modulo">
                     <h4>Ficha</h4>

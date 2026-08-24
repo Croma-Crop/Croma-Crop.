@@ -6,11 +6,11 @@
     margin: 3em;
     transition: var(--transicion);
     width: 90%;
+    box-shadow: var(--sombra-elevada);
+
 }
 
-.seccionTablaEmpleados:hover {
-    box-shadow: var(--sombra-elevada);
-}
+
 
 .cajaEncabezado {
     display: flex;
@@ -318,4 +318,36 @@ dialog.dialogGestionarEmpleado::backdrop {
     .seccionFormulario fieldset > button[type="submit"]{
         width: 100%;
     }
+}
+
+.seccionTablaEmpleados {
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: var(--esp-5);
+    margin: var(--esp-6) auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.cajaEncabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--esp-4);
+    padding-bottom: var(--esp-4);
+    margin-bottom: var(--esp-4);
+    border-bottom: 1px solid var(--borde-tenue);
+}
+
+.cajaEncabezado h2 {
+    font-size: var(--texto-lg);
+    color: var(--navy-700);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.seccionTablaEmpleados .tabla-envoltorio {
+    border: 1px solid var(--borde-tenue);
 }
