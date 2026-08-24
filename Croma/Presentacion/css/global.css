@@ -274,80 +274,6 @@ footer{
     justify-content: space-between;
 }
 
-@media (max-width: 768px){
-
-    header{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 16px;
-    }
-
-    header > a{
-        order: 0;
-        display: flex;
-        align-items: center;
-    }
-
-    header h1{
-        order: 1;
-        flex: 1;
-        min-width: 0;
-        margin-left: 0;
-        font-size: 22px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .usuario-chip{
-        order: 2;
-        justify-self: auto;
-    }
-
-    header .dropdown{
-        order: 3;
-    }
-
-    header .dropdown-menu{
-        left: auto;
-        right: 0;
-    }
-}
-
-@media (max-width: 576px){
-
-    header{
-        padding: 8px 12px;
-    }
-
-    header h1{
-        font-size: 18px;
-    }
-
-    #logo{
-        height: 36px;
-        margin-right: 0;
-    }
-
-    #burguer{
-        height: 30px;
-        padding-bottom: 0;
-    }
-
-    footer{
-        margin-top: 0;
-        padding: 12px 16px 20px;
-    }
-
-    .footer-bottom{
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        gap: 8px;
-        padding-top: 10px;
-    }
-}
 :root {
     --texto-xs: 12px;
     --texto-sm: 13px;
@@ -672,12 +598,6 @@ body #fichaForm button[type="submit"] {
     width: 100%;
 }
 
-@media (max-width: 576px) {
-    body .campo-fila {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
 body > header {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -804,32 +724,6 @@ body > header h1#titulo {
     text-align: left;
 }
 
-@media (max-width: 768px) {
-    body > header {
-        gap: var(--esp-3);
-        padding: 0 var(--esp-4);
-    }
-
-    .nav-principal {
-        display: none;
-    }
-
-    .nav-movil {
-        display: block;
-        justify-self: end;
-    }
-
-    .marca-texto {
-        display: none;
-    }
-
-    header h1#titulo {
-        margin: 0 calc(-1 * var(--esp-4));
-        padding: var(--esp-3) var(--esp-4);
-        font-size: var(--texto-lg);
-    }
-}
-
 body > header {
     background-color: var(--superficie);
     border-bottom: 1px solid var(--borde);
@@ -907,13 +801,6 @@ body:not([data-modulo]) > header {
 body[data-modulo="login"] .dropdown,
 body:not([data-modulo]) .dropdown {
     display: none;
-}
-
-@media (max-width: 768px) {
-    header h1#titulo {
-        margin: 0 calc(-1 * var(--esp-4));
-        padding: var(--esp-3) var(--esp-4);
-    }
 }
 
 a {
@@ -1022,12 +909,6 @@ body > header h1#titulo {
     background: none;
 }
 
-@media (max-width: 768px) {
-    body > header {
-        padding: 0 var(--esp-4);
-    }
-}
-
 body button.boton-eliminar,
 body button.boton-eliminar-ticket,
 body button.btnEliminarEmpleado {
@@ -1066,12 +947,6 @@ body button.boton-cancelar-edicion:hover {
     padding-top: calc(var(--texto-lg) * 1.25 + var(--esp-4));
 }
 
-@media (max-width: 576px) {
-    #busqueda {
-        padding-top: 0;
-    }
-}
-
 body .tabla-datos caption {
     position: absolute;
     width: 1px;
@@ -1083,3 +958,115 @@ body .tabla-datos caption {
     white-space: nowrap;
 }
 
+.dropdown-menu {
+    min-width: 220px;
+    padding: var(--esp-2);
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-elevada);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px var(--esp-3);
+    border-radius: var(--radio);
+    color: var(--texto);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    transition: background-color var(--transicion), color var(--transicion);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+    background-color: var(--lienzo);
+    color: var(--navy-700);
+}
+
+.dropdown-item-text {
+    display: block;
+    padding: 6px var(--esp-3);
+    color: var(--texto-tenue);
+    font-size: var(--texto-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.dropdown-divider {
+    margin: var(--esp-2) 0;
+    border-top: 1px solid var(--borde-tenue);
+}
+
+.btn-menu {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--esp-2);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--radio);
+    cursor: pointer;
+    line-height: 0;
+    transition: background-color var(--transicion), border-color var(--transicion);
+}
+
+.btn-menu:hover,
+.btn-menu[aria-expanded="true"] {
+    background-color: var(--lienzo);
+    border-color: var(--borde);
+}
+
+@media (max-width: 768px) {
+    body > header {
+        grid-template-areas: "marca enlaces usuario";
+        gap: var(--esp-3);
+        padding: 0 var(--esp-4);
+    }
+
+    .nav-principal,
+    .marca-texto {
+        display: none;
+    }
+
+    .nav-movil {
+        display: block;
+        justify-self: end;
+    }
+
+
+    .dropdown-menu {
+        inset-inline: auto 0;
+    }
+}
+
+@media (max-width: 576px) {
+    body > header {
+        padding: 0 var(--esp-3);
+        gap: var(--esp-2);
+    }
+
+    #logo {
+        height: 32px;
+    }
+
+    body .campo-fila {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #busqueda {
+        padding-top: 0;
+    }
+
+    footer {
+        margin-top: 0;
+        padding: var(--esp-3) var(--esp-4) var(--esp-5);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: var(--esp-2);
+        padding-top: var(--esp-3);
+    }
+}
