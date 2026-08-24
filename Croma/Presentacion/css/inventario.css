@@ -273,14 +273,33 @@ ul {
     cursor: pointer;
 }
 
-@media (max-width: 992px) {
+@media (min-width: 1024px) {
+    #contenido {
+        width: 90%;
+        margin: var(--esp-7) auto;
+        padding: var(--esp-5);
+    }
+
     #listado,
     #listado-equipos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    #seccion-formulario {
+        flex: 0 0 240px;
+    }
+
+    #busqueda {
+        flex: 0 0 200px;
     }
 }
 
 @media (max-width: 768px) {
+    #listado,
+    #listado-equipos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     #contenido {
         flex-wrap: wrap;
         margin: var(--esp-6);
