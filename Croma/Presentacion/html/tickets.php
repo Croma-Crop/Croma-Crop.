@@ -17,21 +17,23 @@
 
     <header>
         <h1 id="titulo">Incidencias y Solicitudes</h1>
-        
-             <?php include '../globales/Header.php'?>
-    
-        
 
-        
+             <?php include '../globales/Header.php'?>
 
     </header>
 <?php require '../../Procesos/backend/cargarinventario.php'; ?>
+<?php
+$turnoElegido = $_POST['turno'] ?? '';
+$tipoElegido = $_POST['tipo'] ?? '';
+$fechaElegida = $_POST['fecha'] ?? '';
+$descripcionEscrita = $_POST['descripcion'] ?? '';
+?>
     <script>
     const nombreCompleto = "<?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?>";
     </script>
 
     <main>
-        <section id="newsletter">
+        <section id="newsletter" class="<?= $salonElegido !== '' ? 'mostrar' : '' ?>">
             <form id="formularioNewsletter">
                 <p id="paragraph"><strong>¿Que quiere registrar?</strong></p>
 
@@ -41,26 +43,28 @@
                 </div>
             </form>
         </section>
-        <section class="contenedor mostrar">
-       
+        <section class="contenedor <?= $salonElegido !== '' ? '' : 'mostrar' ?>">
+
     <form id="incforms" method="post" action="../../Procesos/backend/procesoincidencia.php">
         <h3>Incidencias</h3>
 
         <label for="fecha">Fecha</label>
-        <input id="fecha_inicio" type="date" name="fecha">
+        <input id="fecha_inicio" type="date" name="fecha" value="<?= htmlspecialchars($fechaElegida) ?>">
 
         <label for="salon">Salon:</label>
         <select id="salon" name="salon" required onchange="this.form.action='tickets.php'; this.form.submit();">
             <option value="">--- Seleccionar salón ---</option>
             <?php foreach ($salones as $salon): ?>
-                <option value="<?= $salon['id_salon'] ?>" <?= ($salonElegido == $salon['id_salon']) ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
+                <option value="<?= $salon['id_salon'] ?>" <?= $salonElegido == $salon['id_salon'] ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
             <?php endforeach; ?>
         </select>
 
         <label for="serie">Equipo del salón:</label>
         <select id="serie" name="serie" required>
-            <?php if (empty($equiposDelSalon)): ?>
+            <?php if ($salonElegido === ''): ?>
                 <option value="">--- Seleccione un salón primero ---</option>
+            <?php elseif (empty($equiposDelSalon)): ?>
+                <option value="">--- Este salón no tiene equipos ---</option>
             <?php else: ?>
                 <option value="">--- Seleccionar equipo ---</option>
                 <?php foreach ($equiposDelSalon as $equipo): ?>
@@ -71,30 +75,30 @@
 
         <p>Turno:</p>
         <section class="radio-grupo">
-            <input type="radio" id="matutino" name="turno" value="matutino">
+            <input type="radio" id="matutino" name="turno" value="matutino" <?= $turnoElegido === 'matutino' ? 'checked' : '' ?>>
             <label for="matutino">Matutino</label>
-            <input type="radio" id="vespertino" name="turno" value="vespertino">
+            <input type="radio" id="vespertino" name="turno" value="vespertino" <?= $turnoElegido === 'vespertino' ? 'checked' : '' ?>>
             <label for="vespertino">Vespertino</label>
-            <input type="radio" id="nocturno" name="turno" value="nocturno">
+            <input type="radio" id="nocturno" name="turno" value="nocturno" <?= $turnoElegido === 'nocturno' ? 'checked' : '' ?>>
             <label for="nocturno">Nocturno</label>
         </section>
 
         <p>Tipo de incidencia</p>
         <select id="tipo" name="tipo" required>
             <option value="">---Seleccionar---</option>
-            <option value="Computadora">Computadora</option>
-            <option value="Televisor">Televisor</option>
-            <option value="Periferico">Periferico</option>
-            <option value="Otro">Otro</option>
+            <option value="Computadora" <?= $tipoElegido === 'Computadora' ? 'selected' : '' ?>>Computadora</option>
+            <option value="Televisor" <?= $tipoElegido === 'Televisor' ? 'selected' : '' ?>>Televisor</option>
+            <option value="Periferico" <?= $tipoElegido === 'Periferico' ? 'selected' : '' ?>>Periferico</option>
+            <option value="Otro" <?= $tipoElegido === 'Otro' ? 'selected' : '' ?>>Otro</option>
         </select>
 
         <p>¿Cual es la incidencia?</p>
-        <input id="descripcioninc" name="descripcion">
+        <input id="descripcioninc" name="descripcion" value="<?= htmlspecialchars($descripcionEscrita) ?>">
 
         <button id="enviarinc" type="submit">Enviar Incidencia</button>
         <button type="button" id="volverInc">Volver</button>
     </form>
-        
+
             </section>
             <section class="contenedorSol mostrar">
         <form id="solforms" method="post" action="../../Procesos/backend/procesosolicitud.php">
