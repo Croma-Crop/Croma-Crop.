@@ -38,13 +38,16 @@
                 <ul id="listado">
                     <?php include_once "../../Procesos/mostrarsalon.php";
                     foreach ($ok as $claveindexada => $valorindexado) {
+                    $idSalon = htmlspecialchars($valorindexado['id_salon'], ENT_QUOTES);
+                    $nombreSalon = htmlspecialchars($valorindexado['nombre'], ENT_QUOTES);
+                    $tipoSalon = htmlspecialchars($valorindexado['tipo'], ENT_QUOTES);
                     echo "
              <li class='tarjeta-producto'>
-                    <p class='tarjeta-nombre'>" . htmlspecialchars($valorindexado['nombre']) . "</p>
+                    <p class='tarjeta-nombre'>" . $nombreSalon . "</p>
                 <div class='tarjeta-acciones'>
-                    <a class='boton-modificar' href='?editar=" . $valorindexado['id_salon'] . "'>Modificar</a>
+                    <button type='button' class='boton-modificar' data-id='" . $idSalon . "' data-nombre='" . $nombreSalon . "' data-tipo='" . $tipoSalon . "'>Modificar</button>
                     <form method='post' action='../../Procesos/eliminarsalon.php' style='display:inline'>
-            <input type='hidden' name='id_salon' value='" . $valorindexado['id_salon'] . "'>
+            <input type='hidden' name='id_salon' value='" . $idSalon . "'>
                     <button class='boton-eliminar' type='submit' onclick=\"return confirm('¿Seguro que quieres eliminar el salon?')\">Eliminar</button>
                     </form>
                 </div>
@@ -70,9 +73,10 @@
                         <option value="laboratorio" <?= ($editando && $editando['tipo'] === 'laboratorio') ? 'selected' : '' ?>>Laboratorio</option>
                     </select>
 
-                    <input type="hidden" name="id_salon" value="<?= $editando ? $editando['id_salon'] : '' ?>">
+                    <input type="hidden" name="id_salon" value="<?= $editando ? htmlspecialchars($editando['id_salon']) : '' ?>">
 
                     <button id="submit" type="submit">Guardar Salón</button>
+                    <button type="button" id="cancelarSalon" <?= $editando ? '' : 'hidden' ?>>Cancelar</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>
              <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">

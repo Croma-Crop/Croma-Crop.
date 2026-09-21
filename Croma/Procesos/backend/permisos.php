@@ -21,7 +21,12 @@ $permisos = [
 
 $acciones = [
     "eliminarTickets"  => ["administrador", "tecnico"],
-    "asignarPrioridad" => ["tecnico"]
+    "asignarPrioridad" => ["tecnico"],
+    "asignarTecnico"   => ["administrador"],
+    "tomarTarea"       => ["administrador", "tecnico"],
+    "darDeBajaEquipos" => ["administrador"],
+    "eliminarEquipos"  => ["administrador"],
+    "aprobarUsuarios"  => ["administrador"]
 ];
 
 $InicioPorRol = [

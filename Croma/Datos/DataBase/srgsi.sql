@@ -171,8 +171,12 @@ INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
 CREATE TABLE `solicitud` (
   `id_solicitud` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL,
+  `nombre_software` varchar(100) DEFAULT NULL,
   `descripcion` text NOT NULL,
-  `estado` enum('Pendiente','En proceso','Resuelto','Cancelada') NOT NULL DEFAULT 'Pendiente',
+  `fecha` date DEFAULT NULL,
+  `hora_inicio` time DEFAULT NULL,
+  `hora_fin` time DEFAULT NULL,
+  `estado` enum('Pendiente','En proceso','Resuelto','Cancelada','Rechazada') NOT NULL DEFAULT 'Pendiente',
   `cedula_solicitante` varchar(12) NOT NULL,
   `cedula_tecnico` varchar(12) DEFAULT NULL,
   `id_salon` int(11) NOT NULL
@@ -182,8 +186,30 @@ CREATE TABLE `solicitud` (
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`id_solicitud`, `tipo`, `descripcion`, `estado`, `cedula_solicitante`, `cedula_tecnico`, `id_salon`) VALUES
-(4, 'Instalacion de Software', 'profe si ves esto por favor pone un 10 vamo arriba el cuadro que sea vamo arriba la programacion y el programa estudiantil es una mierda te banco en todo ysb', 'Pendiente', '66666666', NULL, 5);
+INSERT INTO `solicitud` (`id_solicitud`, `tipo`, `nombre_software`, `descripcion`, `fecha`, `hora_inicio`, `hora_fin`, `estado`, `cedula_solicitante`, `cedula_tecnico`, `id_salon`) VALUES
+(4, 'Instalacion de Software', 'AutoCAD', 'Se necesita para la materia de dibujo tecnico', NULL, NULL, NULL, 'Pendiente', '66666666', NULL, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud_usuario`
+--
+
+CREATE TABLE `solicitud_usuario` (
+  `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `documento` varchar(12) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
+  `rol_pedido` enum('solicitante','tecnico','administrador') NOT NULL,
+  `motivo` text NOT NULL,
+  `estado` enum('Pendiente','Aprobada','Rechazada') NOT NULL DEFAULT 'Pendiente',
+  `fecha` datetime NOT NULL,
+  `motivo_rechazo` text DEFAULT NULL,
+  `cedula_administrador` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id_solicitud_usuario`),
+  KEY `fk_solicitud_usuario_admin` (`cedula_administrador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -357,6 +383,12 @@ ALTER TABLE `solicitud`
   ADD CONSTRAINT `fk_solicitud_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_solicitud_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_solicitud_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `solicitud_usuario`
+--
+ALTER TABLE `solicitud_usuario`
+  ADD CONSTRAINT `fk_solicitud_usuario_admin` FOREIGN KEY (`cedula_administrador`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

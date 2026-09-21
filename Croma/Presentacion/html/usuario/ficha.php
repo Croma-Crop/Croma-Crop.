@@ -29,7 +29,7 @@
                     <select id="profesor" name="documento_profesor" required>
                         <option value="">--- Seleccionar profesor ---</option>
                         <?php foreach ($profesores as $profesor): ?>
-                            <option value="<?= $profesor['documento'] ?>"><?= htmlspecialchars($profesor['nombre'] . ' ' . $profesor['apellido']) ?></option>
+                            <option value="<?= htmlspecialchars($profesor['documento']) ?>" <?= $profesor['documento'] === $usuario['documento'] ? 'selected' : '' ?>><?= htmlspecialchars($profesor['nombre'] . ' ' . $profesor['apellido']) ?></option>
                         <?php endforeach; ?>
                     </select>
                     </div>
@@ -54,7 +54,7 @@
                     <select id="salon" name="id_salon" required>
                         <option value="">--- Seleccionar salón ---</option>
                         <?php foreach ($salones as $salon): ?>
-                            <option value="<?= $salon['id_salon'] ?>"><?= htmlspecialchars($salon['nombre']) ?></option>
+                            <option value="<?= htmlspecialchars($salon['id_salon']) ?>"><?= htmlspecialchars($salon['nombre']) ?></option>
                         <?php endforeach; ?>
                     </select>
                         </div>
@@ -78,6 +78,11 @@
 
                     <button type="submit" id="enviarFicha">Enviar Ficha</button>
                 </form>
+                <?php if (isset($_GET["mensaje"])): ?>
+                    <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
+                        <?= htmlspecialchars($_GET["mensaje"]) ?>
+                    </div>
+                <?php endif; ?>
             </section>
 
             <section id="seccion-equipos">
@@ -94,7 +99,7 @@
                     </thead>
                     <tbody id="cuerpoTablaEquipos">
                         <?php foreach ($equipos as $equipo): ?>
-                            <tr class="oculto" data-salon="<?= $equipo['id_salon'] ?>" data-serie="<?= $equipo['numero_serie'] ?>" data-nombre="<?= htmlspecialchars($equipo['nombre']) ?>">
+                            <tr class="oculto" data-salon="<?= htmlspecialchars($equipo['id_salon']) ?>" data-serie="<?= htmlspecialchars($equipo['numero_serie']) ?>" data-nombre="<?= htmlspecialchars($equipo['nombre']) ?>">
                                 <td><input type="checkbox" class="check-equipo"></td>
                                 <td><?= htmlspecialchars($equipo['nombre']) ?></td>
                                 <td><?= htmlspecialchars($equipo['numero_serie']) ?></td>

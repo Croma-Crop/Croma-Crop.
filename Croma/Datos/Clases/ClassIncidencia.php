@@ -106,6 +106,84 @@ public function cambiarPrioridad(string $nuevaPrioridad): bool {
         return false;
     }
 }
+public static function siguienteGravedad($gravedadActual) {
+    if ($gravedadActual === "Sin asignar") {
+        return "Baja";
+    }
+    if ($gravedadActual === "Baja") {
+        return "Media";
+    }
+    if ($gravedadActual === "Media") {
+        return "Alta";
+    }
+    return "Alta";
+}
+
+public static function buscarEquivalentes($conexion, $numero_serie, $descripcion) {
+    $sql = "SELECT id_incidencia, prioridad
+            FROM incidencia
+            WHERE numero_serie = ? AND descripcion = ? AND estado <> 'Resuelto'";
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        return [];
+    }
+
+    $stmt->bind_param("ss", $numero_serie, $descripcion);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+public static function escalarPorRepeticion($conexion, $numero_serie, $descripcion) {
+
+    $equivalentes = Incidencia::buscarEquivalentes($conexion, $numero_serie, $descripcion);
+    $repetidas = count($equivalentes);
+
+    if ($repetidas === 0) {
+        return ["gravedad" => "Sin asignar", "repetidas" => 0];
+    }
+
+    $gravedad = "Sin asignar";
+
+    foreach ($equivalentes as $equivalente) {
+        if ($equivalente['prioridad'] === "Alta") {
+            $gravedad = "Alta";
+        } elseif ($equivalente['prioridad'] === "Media" && $gravedad !== "Alta") {
+            $gravedad = "Media";
+        } elseif ($equivalente['prioridad'] === "Baja" && $gravedad === "Sin asignar") {
+            $gravedad = "Baja";
+        }
+    }
+
+    $gravedad = Incidencia::siguienteGravedad($gravedad);
+
+    foreach ($equivalentes as $equivalente) {
+        $repetida = new Incidencia($conexion, $equivalente['id_incidencia'], "", "", "", "", null, null);
+        $repetida->cambiarPrioridad($gravedad);
+    }
+
+    return ["gravedad" => $gravedad, "repetidas" => $repetidas];
+}
+
+public function buscarTecnicoAsignado($id_incidencia) {
+    $sql = "SELECT cedula_tecnico FROM incidencia WHERE id_incidencia = ?";
+    $stmt = $this->conexion->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $stmt->bind_param("i", $id_incidencia);
+    $stmt->execute();
+    $fila = $stmt->get_result()->fetch_assoc();
+
+    if (!$fila) {
+        return false;
+    }
+
+    return $fila['cedula_tecnico'];
+}
+
 public function asignarTecnico(?string $cedulaTecnico): bool {
     try {
         $sql = "UPDATE incidencia SET cedula_tecnico = ? WHERE id_incidencia = ?";

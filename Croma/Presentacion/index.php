@@ -10,6 +10,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/registro.css">
     <title>Iniciar Sesión</title>
     <script src="js/login.js" defer></script>
 
@@ -20,6 +21,14 @@ session_start();
         <a href="/html/global/login.php">
             <img src="img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
         </a>
+
+        <div class="acciones-header">
+            <button class="btn-idioma notranslate" type="button" id="btn-idioma" translate="no">EN</button>
+            <div id="google_translate_element"></div>
+        </div>
+
+        <script src="js/idioma.js"></script>
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
 </header>    
@@ -35,7 +44,7 @@ session_start();
             
                 <section id="campo-documento">
                     <label for="cedula">Cedula</label>
-                    <input type="text" id="cedula" name="documento" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}" required pattern="[1-9][0-9]{7}" maxlength="8" required >
+                    <input type="text" id="cedula" name="documento" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}" title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric" maxlength="8" required>
                     <p id="mensaje" class="mensaje-error"></p>
                 </section>
                 
@@ -48,6 +57,10 @@ session_start();
                 <div id="campo-boton">
                 <button id="extranjero">Si sos extranjero clickea aca</button>
                 </div>
+
+                <p id="enlace-registro">
+                    ¿No tenés usuario? <a href="html/registro.php">Solicitá uno</a>
+                </p>
             </form>
         </section>
     </main>

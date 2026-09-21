@@ -347,3 +347,31 @@ dialog.dialogGestionarEmpleado::backdrop {
         width: 100%;
     }
 }
+
+.contador-pendientes {
+    display: inline-block;
+    min-width: 28px;
+    padding: 3px 10px;
+    border-radius: var(--radio);
+    background-color: var(--alerta-claro);
+    color: var(--alerta-texto);
+    font-size: var(--texto-base);
+    font-weight: 600;
+    text-align: center;
+}
+
+.ayuda-panel {
+    font-size: var(--texto-sm);
+    color: var(--texto-tenue);
+    padding: var(--esp-3) 0;
+}
+
+.boton-rechazar {
+    margin-left: var(--esp-2);
+}
+
+#nombreRechazado {
+    font-size: var(--texto-sm);
+    color: var(--texto-tenue);
+    margin-bottom: var(--esp-3);
+}

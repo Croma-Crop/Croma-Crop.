@@ -1,8 +1,12 @@
 const img = document.querySelector("#logo");
 const cedula = document.getElementById("cedula");
 const extranjero = document.querySelector("#extranjero");
+const formularioRegistro = document.querySelector("#formularioRegistro");
+const password = document.querySelector("#password");
+const password2 = document.querySelector("#password2");
+const seguridad = document.querySelector("#seguridad");
 
-img.addEventListener("click", function(e) {
+img.addEventListener("click", function (e) {
     e.preventDefault();
 });
 
@@ -10,7 +14,7 @@ cedula.addEventListener("input", () => {
     cedula.value = cedula.value.replace(/\D/g, "");
 });
 
-extranjero.addEventListener("click", function(e){
+extranjero.addEventListener("click", function (e) {
     e.preventDefault();
 
     const contenedor = document.getElementById("campo-documento");
@@ -26,7 +30,7 @@ extranjero.addEventListener("click", function(e){
     campoboton.innerHTML = `
     <button id="btnCedula">Si sos uruguayo clickea aca</button>
     `;
-    document.getElementById("btnCedula").addEventListener("click", function(e){
+    document.getElementById("btnCedula").addEventListener("click", function (e) {
         e.preventDefault();
         const contenedor = document.getElementById("campo-documento");
         contenedor.innerHTML = `
@@ -39,4 +43,11 @@ extranjero.addEventListener("click", function(e){
         campoboton.appendChild(extranjero);
         extranjero.disabled = false;
     });
+});
+
+formularioRegistro.addEventListener("submit", function (e) {
+    if (password.value !== password2.value) {
+        e.preventDefault();
+        seguridad.textContent = "Las dos contraseñas no coinciden.";
+    }
 });

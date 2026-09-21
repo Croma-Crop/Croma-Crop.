@@ -206,6 +206,12 @@
     font-size: 14px;
 }
 
+.aviso-kanban {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--texto-tenue);
+}
+
 .campo-kanban select {
     display: block;
     width: 100%;

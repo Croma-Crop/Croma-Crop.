@@ -7,7 +7,7 @@ require_once __DIR__ . '/../Datos/DataBase/ConexionMYSQL/conexion.php';
 
 $salones = Salon::mostrar($conexion);
 
-$datosInventario = Inventario::mostrar();
+$datosInventario = Inventario::mostrar($conexion);
 $equipos = $datosInventario['equipos'];
 
 $rolProfesor = "solicitante";

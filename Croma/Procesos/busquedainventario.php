@@ -1,10 +1,12 @@
 <?php
 
+require_once __DIR__ . "/backend/sanitizar.php";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (isset($_POST['nombre']) && trim($_POST['nombre']) !== '') {
+    $nombrebusqueda = limpiarTextoCorto($_POST['nombre'] ?? '', 50);
 
-        $nombrebusqueda = trim($_POST['nombre']);
+    if ($nombrebusqueda !== '') {
 
         header(
             "Location: ../Presentacion/html/inventario.php?buscar="

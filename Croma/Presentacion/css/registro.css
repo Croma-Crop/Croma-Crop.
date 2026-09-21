@@ -1,0 +1,38 @@
+#newsletter select,
+#newsletter input[id="nombre"],
+#newsletter input[id="apellido"],
+#newsletter input[id="motivo"],
+#newsletter input[id="password2"] {
+    width: 100%;
+    padding: var(--esp-3);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background-color: var(--superficie);
+    color: var(--texto);
+    font-size: var(--texto-base);
+    transition: var(--transicion);
+}
+
+#newsletter select {
+    cursor: pointer;
+}
+
+.aviso-registro {
+    font-size: var(--texto-sm);
+    color: var(--texto-tenue);
+    line-height: var(--alto-linea);
+}
+
+.aviso-registro a {
+    color: var(--info-texto);
+}
+
+#enlace-registro {
+    margin-top: var(--esp-3);
+    font-size: var(--texto-sm);
+    text-align: center;
+}
+
+#enlace-registro a {
+    color: var(--info-texto);
+}

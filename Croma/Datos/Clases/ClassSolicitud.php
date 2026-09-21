@@ -11,6 +11,10 @@ class Solicitud {
     public string $estado;
     public ?int $id_salon;
     public ?string $tecnico;
+    public ?string $nombre_software;
+    public ?string $fecha;
+    public ?string $hora_inicio;
+    public ?string $hora_fin;
 
     public function __construct(
         mysqli $conexion,
@@ -19,7 +23,11 @@ class Solicitud {
         string $descripcion,
         ?int $id_salon,
         ?string $tecnico = null,
-        string $estado = 'Pendiente'
+        string $estado = 'Pendiente',
+        ?string $nombre_software = null,
+        ?string $fecha = null,
+        ?string $hora_inicio = null,
+        ?string $hora_fin = null
     ) {
         $this->conexion = $conexion;
         $this->id_solicitud = $id_solicitud;
@@ -28,6 +36,10 @@ class Solicitud {
         $this->id_salon = $id_salon;
         $this->tecnico = $tecnico;
         $this->estado = $estado;
+        $this->nombre_software = $nombre_software;
+        $this->fecha = $fecha;
+        $this->hora_inicio = $hora_inicio;
+        $this->hora_fin = $hora_fin;
     }
         public function borrar($id_solicitud) {
     $sql = "DELETE FROM solicitud WHERE id_solicitud = ?";
@@ -37,7 +49,7 @@ class Solicitud {
 }
 
     public static function mostrar($conexion) {
-        $sql = "SELECT id_solicitud, tipo, descripcion, estado, cedula_solicitante, cedula_tecnico, id_salon
+        $sql = "SELECT id_solicitud, tipo, nombre_software, descripcion, fecha, hora_inicio, hora_fin, estado, cedula_solicitante, cedula_tecnico, id_salon
                 FROM solicitud";
         $resultado = $conexion->query($sql);
         return $resultado->fetch_all(MYSQLI_ASSOC);
@@ -45,15 +57,15 @@ class Solicitud {
 
     public function guardar($cedulaSolicitante) {
         try {
-            $sql = "INSERT INTO solicitud (tipo, descripcion, estado, cedula_solicitante, cedula_tecnico, id_salon)
-                    VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO solicitud (tipo, nombre_software, descripcion, fecha, hora_inicio, hora_fin, estado, cedula_solicitante, cedula_tecnico, id_salon)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->conexion->prepare($sql);
 
             if (!$stmt) {
                 return false;
             }
 
-            $stmt->bind_param("sssssi", $this->tipo, $this->descripcion, $this->estado, $cedulaSolicitante, $this->tecnico, $this->id_salon);
+            $stmt->bind_param("sssssssssi", $this->tipo, $this->nombre_software, $this->descripcion, $this->fecha, $this->hora_inicio, $this->hora_fin, $this->estado, $cedulaSolicitante, $this->tecnico, $this->id_salon);
 
             return $stmt->execute();
 
@@ -94,5 +106,24 @@ public function asignarTecnico(?string $cedulaTecnico): bool {
     } catch (mysqli_sql_exception $e) {
         return false;
     }
+}
+
+public function buscarTecnicoAsignado($id_solicitud) {
+    $sql = "SELECT cedula_tecnico FROM solicitud WHERE id_solicitud = ?";
+    $stmt = $this->conexion->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $stmt->bind_param("i", $id_solicitud);
+    $stmt->execute();
+    $fila = $stmt->get_result()->fetch_assoc();
+
+    if (!$fila) {
+        return false;
+    }
+
+    return $fila['cedula_tecnico'];
 }
 }

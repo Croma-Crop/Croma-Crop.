@@ -52,7 +52,12 @@ class Intervencion {
     }
 
     public static function mostrarPorEquipo($numero_serie, $conexion) {
-        $sql = "SELECT fecha, descripcion, tecnico, solucion FROM intervencion WHERE numero_serie = ? ORDER BY fecha DESC";
+        $sql = "SELECT intervencion.fecha, intervencion.descripcion, intervencion.solucion,
+                       usuario.nombre, usuario.apellido, intervencion.tecnico
+                FROM intervencion
+                LEFT JOIN usuario ON intervencion.tecnico = usuario.documento
+                WHERE intervencion.numero_serie = ?
+                ORDER BY intervencion.fecha DESC";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("s", $numero_serie);
         $stmt->execute();

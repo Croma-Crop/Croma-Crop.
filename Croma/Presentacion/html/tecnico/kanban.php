@@ -53,11 +53,11 @@
                         <ul class="lista-kanban" data-estado="<?= $columna ?>">
                             <?php foreach ($tickets as $ticket): ?>
                                 <?php if ($ticket['estado'] !== $columna) continue; ?>
-                                <li class="tarjeta-kanban" draggable="true" data-id="<?= $ticket['id'] ?>" data-clase="<?= $ticket['clase'] ?>" data-estado="<?= $ticket['estado'] ?>" data-mi-documento="<?= htmlspecialchars($miDocumento) ?>">
+                                <li class="tarjeta-kanban" draggable="true" data-id="<?= htmlspecialchars($ticket['id']) ?>" data-clase="<?= htmlspecialchars($ticket['clase']) ?>" data-estado="<?= htmlspecialchars($ticket['estado']) ?>" data-mi-documento="<?= htmlspecialchars($miDocumento) ?>">
                                     <div class="fila-tarjeta">
-                                        <span class="etiqueta-clase etiqueta-<?= strtolower($ticket['clase']) ?>"><?= $ticket['clase'] ?></span>
+                                        <span class="etiqueta-clase etiqueta-<?= strtolower($ticket['clase']) ?>"><?= htmlspecialchars($ticket['clase']) ?></span>
                                         <?php if ($ticket['clase'] === 'Incidencia'): ?>
-                                            <span class="etiqueta-gravedad"><?= htmlspecialchars($ticket['prioridad']) ?></span>
+                                            <span class="gravedad-chip" data-gravedad="<?= htmlspecialchars($ticket['prioridad']) ?>"><?= htmlspecialchars($ticket['prioridad']) ?></span>
                                         <?php endif; ?>
                                     </div>
 
@@ -70,28 +70,50 @@
                                     <div class="detalle-ticket">
                                         <?php if ($ticket['clase'] === 'Incidencia'): ?>
                                             <p>Fecha inicio: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                                            <p>Equipo: <?= htmlspecialchars($ticket['equipoNombre']) ?></p>
+                                            <p>Marca: <?= htmlspecialchars($ticket['equipoMarca']) ?></p>
+                                            <p>Modelo: <?= htmlspecialchars($ticket['equipoModelo']) ?></p>
                                             <p>Serie: <?= htmlspecialchars($ticket['numero_serie'] ?? '-') ?></p>
                                             <p>Turno: <?= htmlspecialchars($ticket['turno']) ?></p>
+                                        <?php endif; ?>
+
+                                        <?php if ($ticket['clase'] === 'Solicitud'): ?>
+                                            <p>Solicitante: <?= htmlspecialchars($ticket['nombreProf']) ?></p>
+                                            <?php if ($ticket['nombre_software'] !== null && $ticket['nombre_software'] !== ''): ?>
+                                                <p>Software pedido: <?= htmlspecialchars($ticket['nombre_software']) ?></p>
+                                            <?php endif; ?>
+                                            <?php if ($ticket['fecha'] !== null && $ticket['fecha'] !== ''): ?>
+                                                <p>Fecha de uso: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                                            <?php endif; ?>
+                                            <?php if ($ticket['hora_inicio'] !== null && $ticket['hora_inicio'] !== ''): ?>
+                                                <p>Horario: <?= htmlspecialchars($ticket['hora_inicio']) ?> a <?= htmlspecialchars($ticket['hora_fin']) ?></p>
+                                            <?php endif; ?>
                                         <?php endif; ?>
 
                                         <p class="tarjeta-descripcion"><?= htmlspecialchars($ticket['descripcion']) ?></p>
 
                                         <?php if ($puedeClasificar): ?>
-                                            <?php if ($ticket['cedula_tecnico'] !== $miDocumento): ?>
+                                            <?php if (!$puedeAsignarTecnico && $ticket['cedula_tecnico'] === null): ?>
                                                 <button type="button" class="boton-tomar">Tomar la tarea</button>
                                             <?php endif; ?>
 
-                                            <label class="campo-kanban">Técnico asignado
-                                                <select class="select-tecnico">
-                                                    <option value="">Sin asignar</option>
-                                                    <?php foreach ($tecnicos as $tecnico): ?>
-                                                        <option value="<?= $tecnico['documento'] ?>" <?= $tecnico['documento'] === $ticket['cedula_tecnico'] ? 'selected' : '' ?>><?= htmlspecialchars($tecnico['nombre'] . ' ' . $tecnico['apellido']) ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </label>
+                                            <?php if ($puedeAsignarTecnico): ?>
+                                                <label class="campo-kanban">Técnico asignado
+                                                    <select class="select-tecnico">
+                                                        <option value="">Sin asignar</option>
+                                                        <?php foreach ($tecnicos as $tecnico): ?>
+                                                            <option value="<?= htmlspecialchars($tecnico['documento']) ?>" <?= $tecnico['documento'] === $ticket['cedula_tecnico'] ? 'selected' : '' ?>><?= htmlspecialchars($tecnico['nombre'] . ' ' . $tecnico['apellido']) ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </label>
+                                            <?php else: ?>
+                                                <?php if ($ticket['cedula_tecnico'] !== null && $ticket['cedula_tecnico'] !== $miDocumento): ?>
+                                                    <p class="aviso-kanban">Solo un administrador puede reasignarlo.</p>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
 
                                             <?php if ($ticket['clase'] === 'Incidencia'): ?>
-                                                <label class="campo-kanban">Prioridad
+                                                <label class="campo-kanban">Gravedad
                                                     <select class="select-gravedad">
                                                         <?php foreach (["Sin asignar", "Baja", "Media", "Alta"] as $prioridad): ?>
                                                             <option value="<?= $prioridad ?>" <?= $prioridad === $ticket['prioridad'] ? 'selected' : '' ?>><?= $prioridad ?></option>

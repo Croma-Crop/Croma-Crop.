@@ -35,14 +35,32 @@
             <li class="sin-resultados">No hay tickets registrados.</li>
         <?php else: ?>
             <?php foreach ($tickets as $ticket): ?>
-        <li class="tarjeta-ticket" data-clase="<?= $ticket['clase'] ?>">
-            <p class="tarjeta-clase tarjeta-<?= strtolower($ticket['clase']) ?>"><?= $ticket['clase'] ?></p>
+        <li class="tarjeta-ticket" data-clase="<?= htmlspecialchars($ticket['clase']) ?>">
+            <p class="tarjeta-clase tarjeta-<?= strtolower($ticket['clase']) ?>"><?= htmlspecialchars($ticket['clase']) ?></p>
             <p class="tarjeta-tipo">Tipo: <?= htmlspecialchars($ticket['tipo']) ?></p>
+            <p class="tarjeta-nombre">Registrado por: <?= htmlspecialchars($ticket['nombreProf']) ?></p>
+            <p class="tarjeta-asignado">Técnico: <?= htmlspecialchars($ticket['nombreTecnico']) ?></p>
 
             <?php if ($ticket['clase'] === 'Incidencia'): ?>
                 <p>Fecha: <?= htmlspecialchars($ticket['fecha']) ?></p>
                 <p>Turno: <?= htmlspecialchars($ticket['turno']) ?></p>
-                <p class="tarjeta-prioridad">Prioridad: <?= htmlspecialchars($ticket['prioridad']) ?></p>
+                <p>Equipo: <?= htmlspecialchars($ticket['equipoNombre']) ?></p>
+                <p>Marca: <?= htmlspecialchars($ticket['equipoMarca']) ?></p>
+                <p>Modelo: <?= htmlspecialchars($ticket['equipoModelo']) ?></p>
+                <p>Serie: <?= htmlspecialchars($ticket['numero_serie'] ?? '-') ?></p>
+                <p class="tarjeta-prioridad">Gravedad: <span class="gravedad-chip" data-gravedad="<?= htmlspecialchars($ticket['prioridad']) ?>"><?= htmlspecialchars($ticket['prioridad']) ?></span></p>
+            <?php endif; ?>
+
+            <?php if ($ticket['clase'] === 'Solicitud'): ?>
+                <?php if ($ticket['nombre_software'] !== null && $ticket['nombre_software'] !== ''): ?>
+                    <p>Software pedido: <?= htmlspecialchars($ticket['nombre_software']) ?></p>
+                <?php endif; ?>
+                <?php if ($ticket['fecha'] !== null && $ticket['fecha'] !== ''): ?>
+                    <p>Fecha de uso: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                <?php endif; ?>
+                <?php if ($ticket['hora_inicio'] !== null && $ticket['hora_inicio'] !== ''): ?>
+                    <p>Horario: <?= htmlspecialchars($ticket['hora_inicio']) ?> a <?= htmlspecialchars($ticket['hora_fin']) ?></p>
+                <?php endif; ?>
             <?php endif; ?>
 
             <p class="tarjeta-descripcion"><?= htmlspecialchars($ticket['descripcion']) ?></p>
@@ -50,8 +68,8 @@
 
             <?php if (puedeHacer("eliminarTickets", $_SESSION["rol"])): ?>
                 <form method="post" action="../../Procesos/eliminarticket.php" style="display:inline">
-                    <input type="hidden" name="clase" value="<?= $ticket['clase'] ?>">
-                    <input type="hidden" name="id" value="<?= $ticket['id'] ?>">
+                    <input type="hidden" name="clase" value="<?= htmlspecialchars($ticket['clase']) ?>">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($ticket['id']) ?>">
                     <button type="submit" onclick="return confirm('¿Seguro que quiere eliminar este ticket?')">Eliminar</button>
                 </form>
             <?php endif; ?>
@@ -63,6 +81,11 @@
 
 
             </ul>
+            <?php if (isset($_GET["mensaje"])): ?>
+                <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
+                    <?= htmlspecialchars($_GET["mensaje"]) ?>
+                </div>
+            <?php endif; ?>
         </section>
     </main>
     <?php include '../globales/Footer.html' ?>

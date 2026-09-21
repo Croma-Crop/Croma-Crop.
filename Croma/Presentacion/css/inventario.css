@@ -243,15 +243,35 @@ ul {
 }
 
 .dialogo-equipo .tarjeta-acciones {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
-    align-items: center;
     margin-top: 16px;
 }
 
-.dialogo-equipo .tarjeta-acciones form {
-    display: inline;
+.dialogo-equipo .tarjeta-acciones > *,
+.dialogo-equipo .tarjeta-acciones > form {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+.boton-borrar {
+    display: block;
+    width: 100%;
+    padding: 9px 0;
+    font-weight: bold;
+    border: 1px solid var(--peligro);
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: var(--transicion);
+    background-color: var(--superficie);
+    color: var(--peligro);
+}
+
+.boton-borrar:hover {
+    background-color: var(--peligro-claro);
+    box-shadow: var(--sombra-elevada);
 }
 
 .boton-cerrar-equipo {
@@ -366,4 +386,28 @@ ul {
     :is(.boton-historial, .boton-modificar, .boton-eliminar) {
         min-width: 0;
     }
+}
+
+.ayuda-listado {
+    font-size: var(--texto-sm);
+    color: var(--texto-tenue);
+    margin-bottom: var(--esp-3);
+}
+
+.ayuda-listado a {
+    color: var(--info-texto);
+}
+
+#cancelarSalon {
+    margin-top: var(--esp-2);
+    padding: 10px;
+    border: 1px solid var(--navy-700);
+    border-radius: var(--radio);
+    background-color: var(--superficie);
+    color: var(--navy-700);
+}
+
+#cancelarSalon:hover {
+    background-color: var(--lienzo);
+    box-shadow: var(--sombra-elevada);
 }

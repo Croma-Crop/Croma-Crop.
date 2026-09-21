@@ -71,9 +71,8 @@ public String $rol;
 
     }
 
-    public static function mostrar(){
-    global $conexion;
-    $sql = $conexion->query("SELECT documento, nombre, apellido, documento, rol, contrasena FROM usuario");
+    public static function mostrar($conexion){
+    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario");
     $usuarios = [];
     while ($fila = $sql->fetch_assoc()) {
     $usuarios[] = $fila;
@@ -89,6 +88,44 @@ return $usuarios;
     $stmt->bind_param("s", $documento);
     return $stmt->execute();
  }
+ public static function existe($conexion, $documento){
+    $sql = "SELECT documento FROM usuario WHERE documento = ?";
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $stmt->bind_param("s", $documento);
+    $stmt->execute();
+
+    if (!$stmt->get_result()->fetch_assoc()) {
+        return false;
+    }
+
+    return true;
+ }
+
+ public static function esTecnico($conexion, $documento){
+    $rolTecnico = "tecnico";
+    $sql = "SELECT documento FROM usuario WHERE documento = ? AND rol = ?";
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $stmt->bind_param("ss", $documento, $rolTecnico);
+    $stmt->execute();
+    $fila = $stmt->get_result()->fetch_assoc();
+
+    if (!$fila) {
+        return false;
+    }
+
+    return true;
+ }
+
  public function iniciarsesion($documento){
     $sql = "SELECT documento, nombre, apellido, contrasena, rol FROM usuario WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);

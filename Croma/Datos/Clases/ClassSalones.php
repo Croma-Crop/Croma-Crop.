@@ -19,8 +19,7 @@ public function __construct(mysqli $conexion, String $tipo, String $nombre, Stri
         $this->id_salon = $id_salon;
     }
 
- public static function mostrar(){
-    global $conexion;
+ public static function mostrar($conexion){
     $sql = $conexion->query("SELECT tipo, nombre, id_salon FROM salon");
     $salones = [];
     while ($fila = $sql->fetch_assoc()) {

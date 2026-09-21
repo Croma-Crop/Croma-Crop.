@@ -68,22 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    const clasesGravedad = {
-    "Sin asignar": "gravedad-sin-clasificar",
-    "Baja": "gravedad-leve",
-    "Media": "gravedad-moderada",
-    "Alta": "gravedad-grave"
-};
-
-document.querySelectorAll(".select-gravedad").forEach(function (select) {
-    select.addEventListener("change", function () {
-        const tarjeta = select.closest(".tarjeta-kanban");
-        const etiqueta = tarjeta.querySelector(".etiqueta-gravedad");
-        etiqueta.textContent = select.value;
-        etiqueta.className = "etiqueta-gravedad " + (clasesGravedad[select.value] || "gravedad-sin-clasificar");
-        enviarAccion(tarjeta.dataset.id, tarjeta.dataset.clase, "prioridad", select.value);
+    document.querySelectorAll(".select-gravedad").forEach(function (select) {
+        select.addEventListener("change", function () {
+            const tarjeta = select.closest(".tarjeta-kanban");
+            const chip = tarjeta.querySelector(".gravedad-chip");
+            chip.textContent = select.value;
+            chip.dataset.gravedad = select.value;
+            enviarAccion(tarjeta.dataset.id, tarjeta.dataset.clase, "prioridad", select.value);
+        });
     });
-});
 
     document.querySelectorAll(".select-estado").forEach(function (select) {
         select.addEventListener("change", function () {

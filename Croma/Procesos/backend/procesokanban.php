@@ -1,57 +1,90 @@
 <?php
 $moduloRequerido = "kanban";
 require_once __DIR__ . "/guardia.php";
+require_once __DIR__ . "/sanitizar.php";
 require_once "../../Datos/Clases/ClassIncidencia.php";
 require_once "../../Datos/Clases/ClassSolicitud.php";
+require_once "../../Datos/Clases/ClassUsuario.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    $id = limpiarEntero($_POST['id'] ?? '');
+    $clase = limpiarOpcion($_POST['clase'] ?? '', ["Incidencia", "Solicitud"]);
+    $campo = limpiarOpcion($_POST['campo'] ?? '', ["estado", "prioridad", "asignado"]);
+    $valor = limpiarTexto($_POST['valor'] ?? '');
+
+    $miDocumento = $_SESSION['usuarioActivo']['documento'] ?? '';
+
+    $mensajeError = "";
+
     if (!puedeHacer("asignarPrioridad", $_SESSION["rol"])) {
-        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("No tenés permiso para modificar tickets"));
-        exit;
+        $mensajeError = "No tenés permiso para modificar tickets";
     }
 
-    $id = $_POST['id'];
-    $clase = $_POST['clase'];
-    $campo = $_POST['campo'];
-    $valor = $_POST['valor'];
-
-    $camposValidos = ['estado', 'prioridad', 'asignado'];
-
-    if (!in_array($campo, $camposValidos)) {
-        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("El campo no es valido"));
-        exit;
+    if ($mensajeError === "" && ($id === "" || $clase === "" || $campo === "")) {
+        $mensajeError = "Faltan datos para actualizar el ticket";
     }
 
-    if ($campo === 'prioridad' && $clase !== 'Incidencia') {
-        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode("Las solicitudes no tienen prioridad"));
-        exit;
+    if ($mensajeError === "" && $campo === 'prioridad' && $clase !== 'Incidencia') {
+        $mensajeError = "Las solicitudes no tienen gravedad";
     }
 
-    if ($campo === 'asignado' && $valor === '') {
-        $valor = null;
-    }
-
-    $ok = false;
-
-    if ($clase === 'Incidencia') {
-        $incidencia = new Incidencia($conexion, $id, "", "", "", "", null, null);
-
-        if ($campo === 'estado') {
-            $ok = $incidencia->cambiarEstado($valor);
-        } elseif ($campo === 'prioridad') {
-            $ok = $incidencia->cambiarPrioridad($valor);
-        } elseif ($campo === 'asignado') {
-            $ok = $incidencia->asignarTecnico($valor);
+    if ($mensajeError === "" && $campo === 'estado') {
+        $valor = limpiarOpcion($valor, ["Pendiente", "En proceso", "Resuelto"]);
+        if ($valor === "") {
+            $mensajeError = "El estado no es valido";
         }
-    } elseif ($clase === 'Solicitud') {
-        $solicitud = new Solicitud($conexion, $id, "", "", null);
+    }
 
-        if ($campo === 'estado') {
-            $ok = $solicitud->cambiarEstado($valor);
-        } elseif ($campo === 'asignado') {
-            $ok = $solicitud->asignarTecnico($valor);
+    if ($mensajeError === "" && $campo === 'prioridad') {
+        $valor = limpiarOpcion($valor, ["Sin asignar", "Baja", "Media", "Alta"]);
+        if ($valor === "") {
+            $mensajeError = "La gravedad no es valida";
         }
+    }
+
+    if ($mensajeError === "") {
+        if ($clase === 'Incidencia') {
+            $ticket = new Incidencia($conexion, $id, "", "", "", "", null, null);
+        } else {
+            $ticket = new Solicitud($conexion, $id, "", "", null);
+        }
+    }
+
+    if ($mensajeError === "" && $campo === 'asignado') {
+
+        $valor = limpiarDocumento($valor);
+        $tecnicoActual = $ticket->buscarTecnicoAsignado($id);
+
+        if ($tecnicoActual === false) {
+            $mensajeError = "El ticket no existe";
+        } elseif ($valor !== "" && !Usuario::esTecnico($conexion, $valor)) {
+            $mensajeError = "Solo se puede asignar el ticket a un usuario tecnico";
+        } elseif (!puedeHacer("asignarTecnico", $_SESSION["rol"])) {
+
+            if ($valor !== $miDocumento) {
+                $mensajeError = "Solo un administrador puede asignarle el ticket a otro tecnico";
+            } elseif ($tecnicoActual !== null && $tecnicoActual !== $miDocumento) {
+                $mensajeError = "El ticket ya lo tiene otro tecnico";
+            }
+        }
+
+        if ($valor === "") {
+            $valor = null;
+        }
+    }
+
+    if ($mensajeError !== "") {
+        header("Location: ../../Presentacion/html/tecnico/kanban.php?tipo=error&mensaje=" . urlencode($mensajeError));
+        exit;
+    }
+
+    if ($campo === 'estado') {
+        $ok = $ticket->cambiarEstado($valor);
+    } elseif ($campo === 'prioridad') {
+        $ok = $ticket->cambiarPrioridad($valor);
+    } else {
+        $ok = $ticket->asignarTecnico($valor);
     }
 
     if ($ok) {
