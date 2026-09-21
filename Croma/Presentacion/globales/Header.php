@@ -28,4 +28,11 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
     </ul>
 </div>
 
-<?php echo construirChip($usuario); ?>
+<div class="acciones-header">
+    <button class="btn-idioma notranslate" type="button" id="btn-idioma" translate="no">EN</button>
+    <div id="google_translate_element"></div>
+    <?php echo construirChip($usuario); ?>
+</div>
+
+<script src="<?php echo $BASE_URL ?>/Presentacion/js/idioma.js"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

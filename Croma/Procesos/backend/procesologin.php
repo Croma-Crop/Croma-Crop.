@@ -1,12 +1,19 @@
 <?php
 session_start();
+require_once __DIR__ . "/sanitizar.php";
 require "../../Datos/Clases/ClassUsuario.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $contraseñaIngresada = $_POST['contrasena'];
-    $documento = trim($_POST['documento'] ?? '');
+    $contraseñaIngresada = $_POST['contrasena'] ?? '';
+    $documento = limpiarDocumento($_POST['documento'] ?? $_POST['pasaporte'] ?? $_POST['cedula'] ?? '');
     $empleado = null;
     $mensaje = "Documento o contraseña incorrectos.";
+
+    if ($documento === '' || $contraseñaIngresada === '') {
+        $_SESSION["error"] = $mensaje;
+        header("Location: ../../Presentacion/index.php");
+        exit;
+    }
 
     $usuario = new Usuario($conexion, $documento, "", "", "");
     $filaUsuario = $usuario->iniciarsesion($documento);

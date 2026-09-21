@@ -1,28 +1,88 @@
 <?php
+
+$moduloRequerido = "tickets";
+require_once __DIR__ . "/guardia.php";
+require_once __DIR__ . "/sanitizar.php";
+
 require_once '../../Datos/Clases/ClassSolicitud.php';
 require_once '../../Datos/DataBase/ConexionMYSQL/conexion.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tipo = $_POST['tipo'];
-    $id_salon = $_POST['id_salon'];
-    $descripcion = $_POST['descripcion'];
 
-    if ($id_salon === '') {
-        header("Location: ../../Presentacion/html/tickets.php?mensaje=" . urlencode("Seleccione un salón.") . "&tipo=error");
+    $tipo = limpiarOpcion($_POST['tipo'] ?? '', ["Instalacion de Software", "Reserva de Salon"]);
+    $id_salon = limpiarEntero($_POST['id_salon'] ?? '');
+    $descripcion = limpiarTexto($_POST['descripcion'] ?? '');
+    $nombreSoftware = limpiarTextoCorto($_POST['nombre_software'] ?? '', 100);
+    $documentoIngresado = limpiarDocumento($_POST['documento_identidad'] ?? '');
+    $fecha = limpiarFecha($_POST['fecha'] ?? '');
+    $horaInicio = limpiarHora($_POST['hora_inicio'] ?? '');
+    $horaFin = limpiarHora($_POST['hora_fin'] ?? '');
+
+    $cedulaSolicitante = $_SESSION['usuarioActivo']['documento'] ?? '';
+
+    $mensajeError = "";
+
+    if ($tipo === '') {
+        $mensajeError = "Seleccione el tipo de solicitud.";
+    }
+
+    if ($mensajeError === "" && $id_salon === '') {
+        $mensajeError = "Seleccione un salón.";
+    }
+
+    if ($mensajeError === "" && $descripcion === '') {
+        $mensajeError = "Escribí el motivo de la solicitud.";
+    }
+
+    if ($mensajeError === "" && $tipo === "Instalacion de Software") {
+
+        if ($nombreSoftware === '') {
+            $mensajeError = "Indicá el nombre del software.";
+        } elseif ($documentoIngresado === '') {
+            $mensajeError = "Indicá tu documento de identidad.";
+        } elseif ($documentoIngresado !== $cedulaSolicitante) {
+            $mensajeError = "El documento no coincide con el de tu usuario.";
+        }
+    }
+
+    if ($mensajeError === "" && $tipo === "Reserva de Salon") {
+
+        if ($fecha === '') {
+            $mensajeError = "Indicá la fecha de uso del salón.";
+        } elseif ($horaInicio === '') {
+            $mensajeError = "Indicá la hora de inicio.";
+        } elseif ($horaFin === '') {
+            $mensajeError = "Indicá la hora de finalización.";
+        } elseif ($horaFin <= $horaInicio) {
+            $mensajeError = "La hora de finalización tiene que ser posterior a la de inicio.";
+        }
+    }
+
+    if ($mensajeError !== "") {
+        header("Location: ../../Presentacion/html/tickets.php?mensaje=" . urlencode($mensajeError) . "&tipo=error");
         exit;
     }
 
-    $cedulaSolicitante = $_SESSION['usuarioActivo']['documento'] ?? null;
+    if ($tipo === "Instalacion de Software") {
+        $fecha = null;
+        $horaInicio = null;
+        $horaFin = null;
+    } else {
+        $nombreSoftware = null;
+    }
 
     $solicitud = new Solicitud(
         $conexion,
-        null,     
+        null,
         $tipo,
         $descripcion,
         $id_salon,
-        null,       
-        "Pendiente"  
+        null,
+        "Pendiente",
+        $nombreSoftware,
+        $fecha,
+        $horaInicio,
+        $horaFin
     );
 
     $ok = $solicitud->guardar($cedulaSolicitante);
@@ -34,4 +94,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
+
 ?>

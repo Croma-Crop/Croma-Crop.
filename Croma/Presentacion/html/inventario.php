@@ -19,6 +19,7 @@
 </header>
     <article class="contenedor">
     </article>
+    <?php include_once '../../Procesos/mostrarinventario.php'; ?>
     <main>
           <section id="contenido">
             <section id="busqueda">
@@ -29,15 +30,14 @@
                 </form>
             </section>
             <article id="seccion-listado">
-                <h3 class="titulo-seccion">Inventario de equipos:</h3>
-                <ul id="listado">
-                    <?php 
-                    include_once '../../Procesos/mostrarinventario.php';
-                    ?>
-                   <?php foreach ($salones as $salon): ?>
-                    
-                <?php endforeach; ?>
-                </ul>
+                <h3 class="titulo-seccion"><?= $viendoBaja ? "Equipos dados de baja:" : "Inventario de equipos:" ?></h3>
+                <p class="ayuda-listado">
+                    <?php if ($viendoBaja): ?>
+                        <a href="inventario.php">Volver al inventario</a>
+                    <?php else: ?>
+                        <a href="?baja=1">Ver equipos dados de baja</a>
+                    <?php endif; ?>
+                </p>
 
 
                 
@@ -60,14 +60,24 @@
                 <p class="tarjeta-modelo">Modelo: <?= htmlspecialchars($equipo['modelo']) ?></p>
                 <p class="tarjeta-estado">Estado: <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
                 <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
-                <p class="tarjeta-intervenciones">Intervenciones: <?= $equipo['numero_intervenciones'] ?></p>
+                <p class="tarjeta-intervenciones">Intervenciones: <?= htmlspecialchars($equipo['numero_intervenciones']) ?></p>
                 <div class="tarjeta-acciones">
                     <a class="boton-historial" href="?historial=<?= urlencode($equipo['numero_serie']) ?>">Ver historial</a>
                     <button type="button" class="boton-modificar boton-abrir-edicion" data-indice="<?= $indice ?>">Modificar</button>
-                    <form method="post" action="../../Procesos/eliminarinventario.php">
-                        <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
-                        <button class="boton-eliminar" type="submit" onclick="return confirm('¿Seguro que quiere eliminar este equipo?')">Eliminar</button>
-                    </form>
+
+                    <?php if (puedeHacer("darDeBajaEquipos", $_SESSION["rol"]) && $equipo['estado'] !== 'de_baja'): ?>
+                        <form method="post" action="../../Procesos/bajainventario.php">
+                            <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
+                            <button class="boton-eliminar" type="submit" onclick="return confirm('¿Seguro que quiere dar de baja este equipo?')">Dar de baja</button>
+                        </form>
+                    <?php endif; ?>
+
+                    <?php if (puedeHacer("eliminarEquipos", $_SESSION["rol"])): ?>
+                        <form method="post" action="../../Procesos/eliminarinventario.php">
+                            <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
+                            <button class="boton-borrar" type="submit" onclick="return confirm('¿Seguro que quiere borrar este equipo del inventario?')">Eliminar</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -87,7 +97,7 @@
                 <select name="id_salon" required>
                     <option value="">--- Asignar a un salón ---</option>
                     <?php foreach ($salones as $salon): ?>
-                    <option value="<?= $salon['id_salon'] ?>" <?= $equipo['id_salon'] == $salon['id_salon'] ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
+                    <option value="<?= htmlspecialchars($salon['id_salon']) ?>" <?= $equipo['id_salon'] == $salon['id_salon'] ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
                     <?php endforeach; ?>
                 </select>
                 <button type="submit">Guardar cambios</button>
@@ -123,7 +133,7 @@
                     <select name="id_salon" id="salonInventario" required>
                         <option value="">--- Asignar a un salón ---</option>
                         <?php foreach ($salones as $salon): ?>
-                        <option value="<?= $salon['id_salon'] ?>" <?= ($editando && $editando['id_salon'] == $salon['id_salon']) ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>  
+                        <option value="<?= htmlspecialchars($salon['id_salon']) ?>" <?= ($editando && $editando['id_salon'] == $salon['id_salon']) ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>  
                         <?php endforeach; ?>
                     </select>
                     <button id="submit" type="submit">Guardar Artículo</button>
@@ -147,7 +157,7 @@
                             <?php foreach ($historial as $h): ?>
                                 <li class="item-historial">
                                     <p><strong><?= htmlspecialchars($h['fecha']) ?></strong> — <?= htmlspecialchars($h['descripcion']) ?></p>
-                                    <p>Técnico: <?= htmlspecialchars($h['tecnico'] ?? '-') ?></p>
+                                    <p>Técnico: <?= htmlspecialchars($h['nombre'] ? $h['nombre'] . ' ' . $h['apellido'] : ($h['tecnico'] ?? '-')) ?></p>
                                     <p>Solución: <?= htmlspecialchars($h['solucion'] ?? 'Pendiente') ?></p>
                                 </li>
                             <?php endforeach; ?>
@@ -159,8 +169,10 @@
                             <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($numeroSerieHistorial) ?>">
                             <label for="fecha">Fecha</label>
                             <input type="date" name="fecha" id="fecha">
-                            <label for="descripcion">Descripción</label>
+                            <label for="descripcion">Error encontrado</label>
                             <input type="text" name="descripcion" id="descripcion" required>
+                            <label for="solucion">Solución aplicada</label>
+                            <input type="text" name="solucion" id="solucion">
                             <button type="submit">Registrar intervención</button>
                         </form>
                     <?php endif; ?>

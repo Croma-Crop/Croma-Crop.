@@ -1,11 +1,13 @@
 <?php
 require __DIR__ . "/../Datos/Clases/ClassSalones.php";
+require_once __DIR__ . "/backend/sanitizar.php";
+require_once __DIR__ . "/../Datos/DataBase/ConexionMYSQL/conexion.php";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (isset($_POST['nombre']) && trim($_POST['nombre']) !== '') {
+    $nombrebusqueda = limpiarTextoCorto($_POST['nombre'] ?? '', 50);
 
-        $nombrebusqueda = trim($_POST['nombre']);
-
+    if ($nombrebusqueda !== '') {
         header("Location: ../Presentacion/html/salones.php?buscar=" . urlencode($nombrebusqueda));
         exit;
     }
@@ -15,25 +17,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-if (isset($_GET['buscar']) && trim($_GET['buscar']) !== '') {
+$nombrebusqueda = limpiarTextoCorto($_GET['buscar'] ?? '', 50);
+
+if ($nombrebusqueda !== '') {
 
     $tablabusqueda = new Salon($conexion, "", "", "");
-
-    $nombrebusqueda = trim($_GET['buscar']);
 
     $ok = $tablabusqueda->buscarpornombre($nombrebusqueda);
 
 } else {
 
-    $ok = Salon::mostrar();
+    $ok = Salon::mostrar($conexion);
 }
 
 
 $editando = null;
 if (isset($_GET['editar'])) {
-    $idmodificado = $_GET['editar'];
-    $consulta = new Salon($conexion, "", "", $idmodificado);
-    $editando = $consulta->buscarporid($idmodificado);
+    $idmodificado = limpiarEntero($_GET['editar']);
+
+    if ($idmodificado !== '') {
+        $consulta = new Salon($conexion, "", "", $idmodificado);
+        $editando = $consulta->buscarporid($idmodificado);
+    }
 }
 
 

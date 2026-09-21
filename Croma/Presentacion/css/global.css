@@ -117,7 +117,9 @@
     box-shadow: var(--sombra);
 }
 
-.estado-chip {
+.estado-chip,
+.gravedad-chip,
+.etiqueta-clase {
     display: inline-block;
     padding: 3px 10px;
     border-radius: var(--radio);
@@ -142,15 +144,51 @@
 
 .estado-chip[data-estado="Resuelto"],
 .estado-chip[data-estado="resuelto"],
-.estado-chip[data-estado="operativo"] {
+.estado-chip[data-estado="operativo"],
+.estado-chip[data-estado="Aprobada"] {
     background-color: var(--exito-claro);
     color: var(--exito-texto);
+}
+
+.estado-chip[data-estado="Rechazada"] {
+    background-color: var(--peligro-claro);
+    color: var(--peligro);
 }
 
 .estado-chip[data-estado="de_baja"],
 .estado-chip[data-estado="prestado"] {
     background-color: var(--lienzo);
     color: var(--texto-tenue);
+}
+
+.gravedad-chip {
+    background-color: var(--lienzo);
+    color: var(--texto-tenue);
+}
+
+.gravedad-chip[data-gravedad="Alta"] {
+    background-color: var(--peligro-claro);
+    color: var(--peligro);
+}
+
+.gravedad-chip[data-gravedad="Media"] {
+    background-color: var(--alerta-claro);
+    color: var(--alerta-texto);
+}
+
+.gravedad-chip[data-gravedad="Baja"] {
+    background-color: var(--exito-claro);
+    color: var(--exito-texto);
+}
+
+.etiqueta-incidencia {
+    background-color: var(--peligro-claro);
+    color: var(--peligro);
+}
+
+.etiqueta-solicitud {
+    background-color: var(--info-claro);
+    color: var(--info-texto);
 }
 
 * {
@@ -1058,5 +1096,50 @@ body .tabla-datos caption {
         text-align: center;
         gap: var(--esp-2);
         padding-top: var(--esp-3);
+    }
+}
+
+.acciones-header {
+    grid-area: usuario;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: var(--esp-3);
+}
+
+.btn-idioma {
+    min-width: 44px;
+    color: var(--navy-700);
+    background-color: transparent;
+    border: 1px solid var(--navy-700);
+    border-radius: 999px;
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    padding: 7px var(--esp-3);
+    cursor: pointer;
+    transition: background-color var(--transicion), color var(--transicion);
+}
+
+.btn-idioma:hover {
+    background-color: var(--navy-700);
+    color: var(--crema);
+}
+
+#google_translate_element {
+    display: none;
+}
+
+.goog-te-banner-frame,
+iframe.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+@media (max-width: 576px) {
+    .acciones-header {
+        gap: var(--esp-2);
     }
 }

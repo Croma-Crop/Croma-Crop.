@@ -46,13 +46,13 @@ $BASE_URL = substr($scriptPath, 0, $posicion);
                 <article class="tarjeta-modulo">
                     <h4>Tickets</h4>
                     <p>Registro de incidencias técnicas y seguimiento de su estado: pendiente, en proceso o resuelto.</p>
-                    <a href="<?php echo $BASE_URL ?> /Presentacion/html/tickets.php">Registrar ticket</a>
+                    <a href="<?php echo htmlspecialchars($BASE_URL) ?>/Presentacion/html/tickets.php">Registrar ticket</a>
                 </article>
 
                 <article class="tarjeta-modulo">
                     <h4>Incidencias</h4>
                     <p>Listado de las incidencias y solicitudes de servicio creadas en el sistema.</p>
-                    <a href="<?php echo $BASE_URL ?>/Presentacion/html/incidenciascreadas.php">Ver tickets</a>
+                    <a href="<?php echo htmlspecialchars($BASE_URL) ?>/Presentacion/html/incidenciascreadas.php">Ver tickets</a>
                 </article>
                 <article class="tarjeta-modulo">
                     <h4>Ficha</h4>

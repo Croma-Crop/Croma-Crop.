@@ -33,7 +33,7 @@ public ?int $numero_intervenciones;
     {
     $sql = "SELECT numero_serie, nombre, marca, modelo, estado, id_salon, numero_intervenciones
             FROM inventario 
-            WHERE nombre = ?";
+            WHERE nombre = ? AND estado <> 'de_baja'";
 
     $stmt = $this->conexion->prepare($sql);
     $stmt->bind_param("s", $nombre);
@@ -51,14 +51,14 @@ public ?int $numero_intervenciones;
 }
     
 
- public static function mostrar(){
-    global $conexion;
+ public static function mostrar($conexion){
     $sql = $conexion->query("SELECT tipo, nombre, id_salon FROM salon");
     $sql2 = $conexion->query("SELECT inventario.numero_serie, inventario.nombre, inventario.marca, inventario.modelo, 
                inventario.estado, inventario.numero_intervenciones, inventario.id_salon,
                salon.nombre AS nombre_salon
                 FROM inventario
-                JOIN salon ON inventario.id_salon = salon.id_salon");
+                JOIN salon ON inventario.id_salon = salon.id_salon
+                WHERE inventario.estado <> 'de_baja'");
     $salones = $sql->fetch_all(MYSQLI_ASSOC);
     $equipos = $sql2->fetch_all(MYSQLI_ASSOC);
     return [
@@ -69,12 +69,107 @@ public ?int $numero_intervenciones;
 
 }
 
+ public static function mostrarTodos($conexion){
+    $sql = $conexion->query("SELECT numero_serie, nombre, marca, modelo, estado FROM inventario");
+    return $sql->fetch_all(MYSQLI_ASSOC);
+ }
+
+ public static function mostrarDadosDeBaja($conexion){
+    $sql = $conexion->query("SELECT inventario.numero_serie, inventario.nombre, inventario.marca, inventario.modelo,
+               inventario.estado, inventario.numero_intervenciones, inventario.id_salon,
+               salon.nombre AS nombre_salon
+                FROM inventario
+                JOIN salon ON inventario.id_salon = salon.id_salon
+                WHERE inventario.estado = 'de_baja'");
+    return $sql->fetch_all(MYSQLI_ASSOC);
+ }
+
  
  public function borrar($numero_serie){
 $sql = "DELETE FROM inventario WHERE numero_serie = ?";
     $stmt = $this->conexion->prepare($sql);
     $stmt->bind_param("s", $numero_serie);
     return $stmt->execute();
+ }
+
+ public function darDeBaja($numero_serie){
+    try {
+        $estadoBaja = "de_baja";
+        $sql = "UPDATE inventario SET estado = ? WHERE numero_serie = ?";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $stmt->bind_param("ss", $estadoBaja, $numero_serie);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return registrarErrorBD($e, "Inventario");
+    }
+ }
+
+ public function buscarEstado($numero_serie){
+    $sql = "SELECT estado FROM inventario WHERE numero_serie = ?";
+    $stmt = $this->conexion->prepare($sql);
+
+    if (!$stmt) {
+        return "";
+    }
+
+    $stmt->bind_param("s", $numero_serie);
+    $stmt->execute();
+    $fila = $stmt->get_result()->fetch_assoc();
+
+    if (!$fila) {
+        return "";
+    }
+
+    return $fila['estado'];
+ }
+
+ public function contarIntervenciones($numero_serie){
+    $sql = "SELECT COUNT(*) AS total FROM intervencion WHERE numero_serie = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $numero_serie);
+    $stmt->execute();
+    $fila = $stmt->get_result()->fetch_assoc();
+    return (int) $fila['total'];
+ }
+
+ public function contarIncidencias($numero_serie){
+    $sql = "SELECT COUNT(*) AS total FROM incidencia WHERE numero_serie = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $numero_serie);
+    $stmt->execute();
+    $fila = $stmt->get_result()->fetch_assoc();
+    return (int) $fila['total'];
+ }
+
+ public function estaEnUso($numero_serie){
+    $motivos = [];
+
+    $intervenciones = $this->contarIntervenciones($numero_serie);
+    if ($intervenciones > 0) {
+        $motivos[] = $intervenciones . " intervencion(es) en su historial";
+    }
+
+    $incidencias = $this->contarIncidencias($numero_serie);
+    if ($incidencias > 0) {
+        $motivos[] = $incidencias . " incidencia(s) asociada(s)";
+    }
+
+    $texto = "";
+    foreach ($motivos as $motivo) {
+        if ($texto !== "") {
+            $texto = $texto . ", ";
+        }
+        $texto = $texto . $motivo;
+    }
+
+    return $texto;
  }
 
   public function buscarpornumero(string $numero_serie)

@@ -1,45 +1,52 @@
 <?php
 require __DIR__ . "/../Datos/Clases/ClassInventario.php";
 require __DIR__ . "/../Datos/Clases/ClassIntervencion.php";
+require_once __DIR__ . "/../Datos/DataBase/ConexionMYSQL/conexion.php";
+require_once __DIR__ . "/backend/sanitizar.php";
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-$ok = Inventario::mostrar();
+$ok = Inventario::mostrar($conexion);
 $salones = $ok['salones'];
 $equipos = $ok['equipos'];
 
+$viendoBaja = isset($_GET['baja']);
 
-}else{
-    $ok = Inventario::mostrar();
-    $salones = $ok['salones'];
-    $equipos = $ok['equipos'];
-    
+if ($viendoBaja) {
+    $equipos = Inventario::mostrarDadosDeBaja($conexion);
 }
+
 $historial = [];
 $numeroSerieHistorial = null;
 
 if (isset($_GET['historial'])) {
-    $numeroSerieHistorial = $_GET['historial'];
-    $historial = Intervencion::mostrarPorEquipo($numeroSerieHistorial, $conexion);
+    $serieBuscada = limpiarSerie($_GET['historial']);
+
+    if ($serieBuscada !== '') {
+        $numeroSerieHistorial = $serieBuscada;
+        $historial = Intervencion::mostrarPorEquipo($numeroSerieHistorial, $conexion);
+    }
 }
 
-if (isset($_GET['buscar']) && trim($_GET['buscar']) !== '') {
+if (isset($_GET['buscar'])) {
 
-    $nombrebusqueda = trim($_GET['buscar']);
+    $nombrebusqueda = limpiarTextoCorto($_GET['buscar'], 50);
 
-    $tablabusqueda = new Inventario($conexion, "", "", "", "", "", null);
-
-    $equipos = $tablabusqueda->buscarpornombre($nombrebusqueda);
+    if ($nombrebusqueda !== '') {
+        $tablabusqueda = new Inventario($conexion, "", "", "", "", "", null);
+        $equipos = $tablabusqueda->buscarpornombre($nombrebusqueda);
+    }
 }
 
 $editando = null;
 
 if (isset($_GET['editar'])) {
 
-    $nombremodificado = $_GET['editar'];
+    $nombremodificado = limpiarSerie($_GET['editar']);
 
-    $consulta = new Inventario($conexion, "", $nombremodificado, "", "", "", null);
-    $editando = $consulta->buscarpornumero($nombremodificado);
+    if ($nombremodificado !== '') {
+        $consulta = new Inventario($conexion, "", $nombremodificado, "", "", "", null);
+        $editando = $consulta->buscarpornumero($nombremodificado);
+    }
 
     if ($editando) {
         $id_salon = $editando['id_salon'];

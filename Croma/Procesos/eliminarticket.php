@@ -2,6 +2,7 @@
 
 $moduloRequerido = "tickets";
 require_once __DIR__ . "/backend/guardia.php";
+require_once __DIR__ . "/backend/sanitizar.php";
 
 require_once __DIR__ . '/../Datos/Clases/ClassIncidencia.php';
 require_once __DIR__ . '/../Datos/Clases/ClassSolicitud.php';
@@ -13,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $clase = $_POST['clase'] ?? '';
-    $id = $_POST['id'] ?? '';
+    $clase = limpiarOpcion($_POST['clase'] ?? '', ["Incidencia", "Solicitud"]);
+    $id = limpiarEntero($_POST['id'] ?? '');
 
     if ($clase === '' || $id === '') {
         header("Location: ../Presentacion/html/incidenciascreadas.php?mensaje=" . urlencode("Faltan datos para eliminar el ticket") . "&tipo=error");
@@ -24,11 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($clase === 'Incidencia') {
         $incidencia = new Incidencia($conexion, $id, "", "", "", "", null, null);
         $ok = $incidencia->borrar($id);
-    } elseif ($clase === 'Solicitud') {
+    } else {
         $solicitud = new Solicitud($conexion, $id, "", "", null);
         $ok = $solicitud->borrar($id);
-    } else {
-        $ok = false;
     }
 
     if ($ok) {

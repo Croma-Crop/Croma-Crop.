@@ -23,10 +23,12 @@
     </header>
 <?php require '../../Procesos/backend/cargarinventario.php'; ?>
 <?php
-$turnoElegido = $_POST['turno'] ?? '';
-$tipoElegido = $_POST['tipo'] ?? '';
-$fechaElegida = $_POST['fecha'] ?? '';
-$descripcionEscrita = $_POST['descripcion'] ?? '';
+require_once '../../Procesos/backend/sanitizar.php';
+
+$turnoElegido = limpiarOpcion($_POST['turno'] ?? '', ["matutino", "vespertino", "nocturno"]);
+$tipoElegido = limpiarOpcion($_POST['tipo'] ?? '', ["Computadora", "Televisor", "Periferico", "Otro"]);
+$fechaElegida = limpiarFecha($_POST['fecha'] ?? '');
+$descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
 ?>
     <script>
     const nombreCompleto = "<?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?>";
@@ -55,7 +57,7 @@ $descripcionEscrita = $_POST['descripcion'] ?? '';
         <select id="salon" name="salon" required onchange="this.form.action='tickets.php'; this.form.submit();">
             <option value="">--- Seleccionar salón ---</option>
             <?php foreach ($salones as $salon): ?>
-                <option value="<?= $salon['id_salon'] ?>" <?= $salonElegido == $salon['id_salon'] ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
+                <option value="<?= htmlspecialchars($salon['id_salon']) ?>" <?= $salonElegido == $salon['id_salon'] ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>
             <?php endforeach; ?>
         </select>
 
@@ -68,7 +70,7 @@ $descripcionEscrita = $_POST['descripcion'] ?? '';
             <?php else: ?>
                 <option value="">--- Seleccionar equipo ---</option>
                 <?php foreach ($equiposDelSalon as $equipo): ?>
-                    <option value="<?= $equipo['numero_serie'] ?>"><?= htmlspecialchars($equipo['nombre']) ?> (Serie: <?= $equipo['numero_serie'] ?>)</option>
+                    <option value="<?= htmlspecialchars($equipo['numero_serie']) ?>"><?= htmlspecialchars($equipo['nombre']) ?> (Serie: <?= htmlspecialchars($equipo['numero_serie']) ?>)</option>
                 <?php endforeach; ?>
             <?php endif; ?>
         </select>
@@ -113,15 +115,40 @@ $descripcionEscrita = $_POST['descripcion'] ?? '';
             <select id="salonSol" name="id_salon" required>
                 <option value="">--- Seleccionar salón ---</option>
                 <?php foreach ($salones as $salon): ?>
-                    <option value="<?= $salon['id_salon'] ?>"><?= htmlspecialchars($salon['nombre']) ?></option>
+                    <option value="<?= htmlspecialchars($salon['id_salon']) ?>"><?= htmlspecialchars($salon['nombre']) ?></option>
                 <?php endforeach; ?>
             </select>
-            <label for="descripcionSol">Descripcion de la Solicitud:</label>
-            <input type="text" id="descripcionSol" name="descripcion">
+
+            <div id="camposSoftware" class="campos-solicitud oculto">
+                <label for="nombreSoftware">Nombre del software:</label>
+                <input type="text" id="nombreSoftware" name="nombre_software" placeholder="Ej: AutoCAD" maxlength="100">
+
+                <label for="documentoSol">Documento de identidad:</label>
+                <input type="text" id="documentoSol" name="documento_identidad" value="<?= htmlspecialchars($usuario['documento']) ?>" readonly>
+            </div>
+
+            <div id="camposReserva" class="campos-solicitud oculto">
+                <label for="fechaSol">Fecha de uso:</label>
+                <input type="date" id="fechaSol" name="fecha">
+
+                <label for="horaInicioSol">Hora de inicio:</label>
+                <input type="time" id="horaInicioSol" name="hora_inicio">
+
+                <label for="horaFinSol">Hora de finalización:</label>
+                <input type="time" id="horaFinSol" name="hora_fin">
+            </div>
+
+            <label for="descripcionSol">Motivo de la Solicitud:</label>
+            <input type="text" id="descripcionSol" name="descripcion" required>
             <button id="enviarSol" type="submit">Enviar Solicitud</button>
             <button type="button" id="volverSol">Volver</button>
         </form>
         </section>
+        <?php if (isset($_GET["mensaje"])): ?>
+            <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
+                <?= htmlspecialchars($_GET["mensaje"]) ?>
+            </div>
+        <?php endif; ?>
     </main>
 
     <?php include '../globales/Footer.html' ?> 

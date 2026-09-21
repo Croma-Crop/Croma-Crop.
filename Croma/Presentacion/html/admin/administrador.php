@@ -47,17 +47,22 @@
                     require "../../../Procesos/mostrarusuarios.php";
 
                     foreach($usuario as $claveindexado => $valorindexado){
+                    $documentoEmpleado = htmlspecialchars($valorindexado['documento']);
+                    $nombreEmpleado = htmlspecialchars($valorindexado['nombre']);
+                    $apellidoEmpleado = htmlspecialchars($valorindexado['apellido']);
+                    $rolEmpleado = htmlspecialchars($valorindexado['rol']);
+
                     echo "
                     <tr>
-                    <td class='celda-numerica'>{$valorindexado['documento']}</td>
-                    <td>{$valorindexado['nombre']}</td>
-                    <td>{$valorindexado['apellido']}</td>
-                    <td>{$valorindexado['rol']}</td>
+                    <td class='celda-numerica'>" . $documentoEmpleado . "</td>
+                    <td>" . $nombreEmpleado . "</td>
+                    <td>" . $apellidoEmpleado . "</td>
+                    <td>" . $rolEmpleado . "</td>
                     <td class='celda-oculta'>•••••</td>
                     <td class='celda-acciones'>
                     <form method='post' action='../../../Procesos/eliminarusuario.php' style='display:inline'>
-                    <input type='hidden' name='documento' value='{$valorindexado['documento']}'>
-                    <button class='btnEliminarEmpleado' type='submit'>Eliminar</button>
+                    <input type='hidden' name='documento' value='" . $documentoEmpleado . "'>
+                    <button class='btnEliminarEmpleado' type='submit' onclick=\"return confirm('¿Seguro que quiere eliminar este empleado?')\">Eliminar</button>
                     </form>
                     </td>
                     </tr>
@@ -68,6 +73,11 @@
                 </tbody>
             </table>
             </div>
+            <?php if (isset($_GET["mensaje"])): ?>
+                <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
+                    <?= htmlspecialchars($_GET["mensaje"]) ?>
+                </div>
+            <?php endif; ?>
         </section>
                <dialog id="dialog" class="dialogGestionarEmpleado seccionFormulario">
             <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">
