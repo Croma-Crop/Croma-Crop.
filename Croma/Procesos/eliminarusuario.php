@@ -5,6 +5,8 @@ require_once __DIR__ . "/backend/guardia.php";
 require_once __DIR__ . "/backend/sanitizar.php";
 
 require_once '../Datos/Clases/ClassUsuario.php';
+require_once '../Datos/Clases/ClassUsuarioextranjero.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -22,8 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $usuario = new Usuario($conexion, $documento, "", "", "");
-    $ok = $usuario->borrar($documento);
+    if (usuarioextranjero::existe($conexion, $documento)) {
+        $usuario = new usuarioextranjero($conexion, $documento, "", "", "");
+    } else {
+        $usuario = new Usuario($conexion, $documento, "", "", "");
+    }
+        $ok = $usuario->borrar($documento);
 
     if ($ok) {
         header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("Usuario borrado correctamente") . '&tipo=exito');

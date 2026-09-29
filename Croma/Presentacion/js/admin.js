@@ -4,6 +4,8 @@ const btnCerrar = document.getElementById("btnCerrarGestionarEmpleado");
 const btnExtranjeroAdmin = document.getElementById("btnExtranjeroAdmin");
 const contenedorDocAdmin = document.getElementById("contenedor-documento-admin");
 const campoBtnAdmin = document.getElementById("campo-boton-admin");
+const formEmpleado = document.getElementById("formularioGestionarEmpleado");
+const actionEmpleado = formEmpleado.getAttribute("action");
 
 btnAbrir.addEventListener("click", function () {
     dialog.showModal();
@@ -14,6 +16,7 @@ btnCerrar.addEventListener("click", function () {
 });
 
 btnExtranjeroAdmin.addEventListener("click", function () {
+    formEmpleado.action = actionEmpleado + "?tipo=extranjero";
     contenedorDocAdmin.innerHTML = `
         <div class="cajaEntradaDeDatos">
             <label for="pasaporte">Pasaporte</label>
@@ -24,6 +27,7 @@ btnExtranjeroAdmin.addEventListener("click", function () {
     btnExtranjeroAdmin.disabled = true;
     campoBtnAdmin.innerHTML = `<button type="button" id="btnCedulaAdmin">Empleado uruguayo</button>`;
     document.getElementById("btnCedulaAdmin").addEventListener("click", function () {
+        formEmpleado.action = actionEmpleado;
         contenedorDocAdmin.innerHTML = `
             <div class="cajaEntradaDeDatos">
                 <label for="cedula">Cédula</label>

@@ -34,13 +34,14 @@ session_start();
 </header>    
 <main>
         <section id="newsletter">
+            <div class="tarjeta">
             <form id="formularioNewsletter" method="post" action="../Procesos/backend/procesologin.php">
                 <h1>Datos personales</h1>
 
                 <?php if (isset($_SESSION["error"])): ?>
                 <p class="mensaje-error"><?= htmlspecialchars($_SESSION["error"]) ?></p>
                 <?php unset($_SESSION["error"]); ?>
-            <?php endif; ?>
+                <?php endif; ?>
             
                 <section id="campo-documento">
                     <label for="cedula">Cedula</label>
@@ -55,13 +56,15 @@ session_start();
 
                 <button type="submit" id="crear">Iniciar Sesion</button>
                 <div id="campo-boton">
-                <button id="extranjero">Si sos extranjero clickea aca</button>
+                <button id="extranjero" type="submit">Si sos extranjero clickea aca</button>
                 </div>
 
                 <p id="enlace-registro">
                     ¿No tenés usuario? <a href="html/registro.php">Solicitá uno</a>
                 </p>
+                </div>
             </form>
+
         </section>
     </main>
 

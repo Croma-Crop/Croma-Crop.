@@ -6,16 +6,23 @@ require_once __DIR__ . "/sanitizar.php";
 
 
 require "../../Datos/Clases/ClassUsuario.php";
+require "../../Datos/Clases/ClassUsuarioextranjero.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    $tipo = limpiarOpcion($_GET['tipo'] ?? '', ["extranjero"]);
     $documento = limpiarDocumento($_POST['documento'] ?? $_POST['pasaporte'] ?? '');
     $nombre = limpiarTextoCorto($_POST['nombre'] ?? '', 50);
     $apellido = limpiarTextoCorto($_POST['apellido'] ?? '', 50);
     $rol = limpiarOpcion($_POST['rol'] ?? '', ["administrador", "tecnico", "solicitante"]);
     $contrasenaIngresada = $_POST['contrasena'] ?? '';
 
+    if ($tipo === "extranjero") {
+    $documento = limpiarTextoCorto($_POST['pasaporte'] ?? '', 20);
+    } else {
+    $documento = limpiarTextoCorto($_POST['documento'] ?? '', 8);
+    }
     $mensajeError = "";
+
 
     if ($documento === "") {
         $mensajeError = "Tenes que ingresar la cedula o el pasaporte del empleado";
@@ -44,7 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $contrasena = password_hash($contrasenaIngresada, PASSWORD_DEFAULT);
 
-    $usuario = Usuario::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena);
+    if ($tipo === "extranjero") {
+     $usuario = Usuarioextranjero::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena);
+    } else {
+        $usuario = Usuario::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena);
+    }
 
     $ok = $usuario->crearusuario();
 
