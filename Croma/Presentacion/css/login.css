@@ -7,7 +7,7 @@
     width: 100%;
 }
 
-#newsletter form {
+#newsletter .tarjeta {
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -18,6 +18,10 @@
     border-radius: var(--radio);
     box-shadow: var(--sombra);
     padding: var(--esp-6);
+}
+
+#newsletter form {
+    display: contents;
 }
 
 #newsletter h1 {
@@ -113,8 +117,8 @@ form input[id="password"] {
         padding: var(--esp-4);
     }
 
-    #newsletter form{
-        padding: var(--esp-5);
+    #newsletter .tarjeta{
+    padding: var(--esp-5);
     }
 
     #newsletter h1{

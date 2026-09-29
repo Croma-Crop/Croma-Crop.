@@ -1,6 +1,8 @@
 const img = document.querySelector("#logo");
 const cedula = document.getElementById("cedula");
 const extranjero = document.querySelector("#extranjero");
+const formRegistro = extranjero.closest("form");
+const actionRegistro = formRegistro.getAttribute("action");
 
 img.addEventListener("click", function(e) {
     e.preventDefault();
@@ -12,6 +14,7 @@ cedula.addEventListener("input", () => {
 
 extranjero.addEventListener("click", function(e){
     e.preventDefault();
+    formRegistro.action = actionRegistro + "?tipo=extranjero";
 
     const contenedor = document.getElementById("campo-documento");
     contenedor.innerHTML = `
@@ -28,6 +31,7 @@ extranjero.addEventListener("click", function(e){
     `;
     document.getElementById("btnCedula").addEventListener("click", function(e){
         e.preventDefault();
+        formRegistro.action = actionRegistro;
         const contenedor = document.getElementById("campo-documento");
         contenedor.innerHTML = `
             <label for="cedula">Cedula</label>
@@ -36,6 +40,10 @@ extranjero.addEventListener("click", function(e){
             <p id="mensaje" class="mensaje-error"></p>
         `;
         campoboton.innerHTML = "";
+        document.getElementById("cedula").addEventListener("input", function () {
+    this.value = this.value.replace(/\D/g, "");
+        });
+
         campoboton.appendChild(extranjero);
         extranjero.disabled = false;
     });

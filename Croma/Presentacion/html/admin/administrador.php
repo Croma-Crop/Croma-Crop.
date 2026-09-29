@@ -46,12 +46,12 @@
                     <?php
                     require "../../../Procesos/mostrarusuarios.php";
 
-                    foreach($usuario as $claveindexado => $valorindexado){
+                    foreach($todos as $claveindexado => $valorindexado){
+
                     $documentoEmpleado = htmlspecialchars($valorindexado['documento']);
                     $nombreEmpleado = htmlspecialchars($valorindexado['nombre']);
                     $apellidoEmpleado = htmlspecialchars($valorindexado['apellido']);
                     $rolEmpleado = htmlspecialchars($valorindexado['rol']);
-
                     echo "
                     <tr>
                     <td class='celda-numerica'>" . $documentoEmpleado . "</td>
@@ -68,7 +68,6 @@
                     </tr>
                     ";
                     }
-
                     ?>
                 </tbody>
             </table>
@@ -92,11 +91,15 @@
 
                         <div id="contenedor-documento-admin">
                             <div class="cajaEntradaDeDatos">
-                                <label for="cedula">Cédula</label>
-                                <input type="text" id="cedula" name="documento" placeholder="Ingrese la cédula"
-                                    autocomplete="off" pattern="[1-9][0-9]{7}"
-                                    title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric"
-                                    maxlength="8" required>
+                               <div class="cajaEntradaDeDatos">
+                              
+                                    <label for="cedula">Cédula</label>
+                                    <input type="text" id="cedula" name="documento" placeholder="Ingrese la cédula"
+                                        autocomplete="off" pattern="[1-9][0-9]{7}"
+                                        title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric"
+                                        maxlength="8" required>
+
+                                </div>
                             </div>
                         </div>
                         <div id="campo-boton-admin">
