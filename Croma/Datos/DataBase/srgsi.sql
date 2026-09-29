@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2026 a las 23:44:26
+-- Tiempo de generación: 30-09-2026 a las 01:48:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -59,7 +59,8 @@ CREATE TABLE `incidencia` (
 
 INSERT INTO `incidencia` (`id_incidencia`, `fecha`, `fecha_limite`, `turno`, `estado`, `tipo`, `descripcion`, `prioridad`, `cedula_solicitante`, `cedula_tecnico`, `id_registro_origen`, `numero_serie`) VALUES
 (3, '2026-08-22', NULL, 'nocturno', 'En proceso', 'Televisor', 'wachin', 'Alta', '33333333', '22222222', NULL, '123'),
-(4, '2026-08-23', NULL, 'vespertino', 'Resuelto', 'Periferico', 'se rompio mal ahi mano', 'Media', '33333333', '22222222', NULL, '123');
+(4, '2026-08-23', NULL, 'vespertino', 'Resuelto', 'Periferico', 'se rompio mal ahi mano', 'Media', '33333333', '22222222', NULL, '123'),
+(5, '2026-09-28', NULL, 'matutino', 'Pendiente', 'Computadora', 'assasa', 'Sin asignar', '66666666', NULL, NULL, '123');
 
 -- --------------------------------------------------------
 
@@ -108,6 +109,7 @@ CREATE TABLE `inventario` (
 INSERT INTO `inventario` (`numero_serie`, `nombre`, `marca`, `modelo`, `estado`, `numero_intervenciones`, `id_salon`, `cedula_administrador`) VALUES
 ('123', 'asd', 'FacuCorp', 'sad', 'en_reparacion', 2, 5, NULL),
 ('123123213', 'assa', 'assa', 'sdsd', 'en_reparacion', 0, 2, NULL),
+('1245', 'CUI', 'FacuCorp', 'assa', 'de_baja', 0, 5, NULL),
 ('343', 'a', 'as', 'assa', 'en_reparacion', 0, 10, NULL),
 ('555555', 'asdasd', 'FacuCorp', 'sad', 'de_baja', 0, 11, NULL);
 
@@ -196,7 +198,7 @@ INSERT INTO `solicitud` (`id_solicitud`, `tipo`, `nombre_software`, `descripcion
 --
 
 CREATE TABLE `solicitud_usuario` (
-  `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_solicitud_usuario` int(11) NOT NULL,
   `documento` varchar(12) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
@@ -206,10 +208,17 @@ CREATE TABLE `solicitud_usuario` (
   `estado` enum('Pendiente','Aprobada','Rechazada') NOT NULL DEFAULT 'Pendiente',
   `fecha` datetime NOT NULL,
   `motivo_rechazo` text DEFAULT NULL,
-  `cedula_administrador` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`id_solicitud_usuario`),
-  KEY `fk_solicitud_usuario_admin` (`cedula_administrador`)
+  `cedula_administrador` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `solicitud_usuario`
+--
+
+INSERT INTO `solicitud_usuario` (`id_solicitud_usuario`, `documento`, `nombre`, `apellido`, `contrasena`, `rol_pedido`, `motivo`, `estado`, `fecha`, `motivo_rechazo`, `cedula_administrador`) VALUES
+(1, '10101010', 'wachin', 'putito', '$2y$10$kned0SrJQxZ7K0j.OObwquVEMlYIXPV4cQyIxa.orH5Cia80jgy4i', 'solicitante', 'Soy docente hace 3939393 años, como no voy a tener usuario que falta de respeto', 'Aprobada', '2026-09-22 18:29:55', NULL, '66666666'),
+(2, '67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador', 'asdasdaladsl', 'Aprobada', '2026-09-28 09:53:28', NULL, '66666666'),
+(3, '67676760', 'Carlos', 'Arepa', '$2y$10$EMQQZEwuDaHJxjRa/16w..ZZFZcXsVIJLfJ6BNzDWoNXbhNej6OY6', 'tecnico', 'Porque mi sueño siempre fue trabjar como profe del iti como mi querido mazzeti', 'Rechazada', '2026-09-28 09:57:37', 'JAJAJ NO TE CREO NADA BOLIGUAYO', '66666666');
 
 -- --------------------------------------------------------
 
@@ -230,11 +239,27 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) VALUES
+('10101010', 'wachin', 'putito', '$2y$10$kned0SrJQxZ7K0j.OObwquVEMlYIXPV4cQyIxa.orH5Cia80jgy4i', 'solicitante'),
 ('22222222', 'as', 'ffffffffffffffffffffffffff', '$2y$10$n6RwiFPOxLL5O4fBVH3Or.cCL0E29lp7ViUUzHdKdcwWgemvXKTeG', 'tecnico'),
 ('33333333', 'asd', 'fffffffffffffffffffffffffffffffffffffff', '$2y$10$GMCVFN7HoZBUTQ67nRYHWOPrbyEXDpwwuk1ZR2P2q5Wbpe4Ys37he', 'solicitante'),
 ('44444444', 'asdasd', 'fa', '$2y$10$22v8A13FThdgC8DdAdF48eT4dRP7X8jmUeqOEymr27vUAXnc8Ohlm', 'solicitante'),
 ('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
-('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador');
+('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador'),
+('67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarioextranjero`
+--
+
+CREATE TABLE `usuarioextranjero` (
+  `documento` varchar(12) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
+  `rol` enum('solicitante','tecnico','administrador') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -297,6 +322,13 @@ ALTER TABLE `solicitud`
   ADD KEY `fk_solicitud_espacio` (`id_salon`);
 
 --
+-- Indices de la tabla `solicitud_usuario`
+--
+ALTER TABLE `solicitud_usuario`
+  ADD PRIMARY KEY (`id_solicitud_usuario`),
+  ADD KEY `fk_solicitud_usuario_admin` (`cedula_administrador`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -310,7 +342,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
-  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `intervencion`
@@ -335,6 +367,12 @@ ALTER TABLE `salon`
 --
 ALTER TABLE `solicitud`
   MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud_usuario`
+--
+ALTER TABLE `solicitud_usuario`
+  MODIFY `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
