@@ -11,12 +11,12 @@ public String $apellido;
 public string $contrasena;
 public String $rol;
 
-    public function __construct(mysqli $conexion, String $documento, string $nombre, string $apellido, string $contrasena) {
+    public function __construct(mysqli $conexion, String $documento, string $nombre, string $apellido, string $contrasena, ?string $rol = null) {
         $this->documento = $documento;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->contrasena = $contrasena;
-        $this->rol = $this->rolPorDefecto();
+        $this->rol = $rol ?? $this->rolPorDefecto();
         $this->conexion = $conexion;
     }
 
@@ -26,16 +26,8 @@ public String $rol;
 
     public static function crear(mysqli $conexion, string $rol, string $documento, string $nombre, string $apellido, string $contrasena): ?Usuario {
 
-        if ($rol === "administrador") {
-            return new administrador($conexion, $documento, $nombre, $apellido, $contrasena);
-        }
-
-        if ($rol === "tecnico") {
-            return new tecnico($conexion, $documento, $nombre, $apellido, $contrasena);
-        }
-
-        if ($rol === "solicitante") {
-            return new solicitante($conexion, $documento, $nombre, $apellido, $contrasena);
+        if ($rol === "administrador" || $rol === "tecnico" || $rol === "solicitante") {
+            return new Usuario($conexion, $documento, $nombre, $apellido, $contrasena, $rol);
         }
 
         return null;
@@ -70,12 +62,21 @@ public String $rol;
 
 
     }
+    public static function mostrarsolicitantes($conexion){
+        $rolProfesor = "solicitante";
+        $stmtProfesores = $conexion->prepare("SELECT documento, nombre, apellido FROM usuario WHERE rol = ?");
+        $stmtProfesores->bind_param("s", $rolProfesor);
+        $stmtProfesores->execute();
+        return $stmtProfesores->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    }
 
     public static function mostrar($conexion){
     $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario");
     $usuarios = [];
     while ($fila = $sql->fetch_assoc()) {
     $usuarios[] = $fila;
+    
     
 
 }
@@ -136,30 +137,6 @@ return $usuarios;
     return $filaUsuario;
  }
  
-}
-
-
-class solicitante extends Usuario {
-    public function rolPorDefecto(): String {
-        return "solicitante";
-    }
-
-  
-}
-
-class tecnico extends Usuario {
-    public function rolPorDefecto(): String {
-        return "tecnico";
-    }
-   
-}
-
-class administrador extends Usuario {
-    public function rolPorDefecto(): string {
-        return "administrador";
-    }
-    
-
 }
 
 ?>
