@@ -32,12 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $solicitud = new SolicitudUsuario($conexion, $id, "", "", "", "", "solicitante", "");
     }
     $datos = $solicitud->buscarporid($id);
-
     if (!$datos) {
         header('Location: ../Presentacion/html/admin/index_admin.php?mensaje=' . urlencode("La solicitud de registro no existe") . '&tipo=error');
         exit;
     }
-
     if ($datos['estado'] !== "Pendiente") {
         header('Location: ../Presentacion/html/admin/index_admin.php?mensaje=' . urlencode("Esa solicitud ya fue resuelta") . '&tipo=error');
         exit;
@@ -62,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if (Usuario::existe($conexion, $datos['documento']) || usuarioextranjero::existe($conexion, $datos['documento'])) {
+    if (Usuario::existe($conexion, $datos['documento']) || Usuarioextranjero::existe($conexion, $datos['documento'])) {
         header('Location: ../Presentacion/html/admin/index_admin.php?mensaje=' . urlencode("Ese documento ya tiene un usuario") . '&tipo=error');
         exit;
     }
 
     if ($tipo === "extranjero") {
-        $usuarioNuevo = usuarioextranjero::crear($conexion, $datos['rol_pedido'], $datos['documento'], $datos['nombre'], $datos['apellido'], $datos['contrasena']);
+        $usuarioNuevo = Usuarioextranjero::crear($conexion, $datos['rol_pedido'], $datos['documento'], $datos['nombre'], $datos['apellido'], $datos['contrasena']);
     } else {
         $usuarioNuevo = Usuario::crear($conexion, $datos['rol_pedido'], $datos['documento'], $datos['nombre'], $datos['apellido'], $datos['contrasena']);
     }
