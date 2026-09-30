@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2026 a las 01:48:39
+-- Tiempo de generación: 30-09-2026 a las 03:53:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -218,7 +218,37 @@ CREATE TABLE `solicitud_usuario` (
 INSERT INTO `solicitud_usuario` (`id_solicitud_usuario`, `documento`, `nombre`, `apellido`, `contrasena`, `rol_pedido`, `motivo`, `estado`, `fecha`, `motivo_rechazo`, `cedula_administrador`) VALUES
 (1, '10101010', 'wachin', 'putito', '$2y$10$kned0SrJQxZ7K0j.OObwquVEMlYIXPV4cQyIxa.orH5Cia80jgy4i', 'solicitante', 'Soy docente hace 3939393 años, como no voy a tener usuario que falta de respeto', 'Aprobada', '2026-09-22 18:29:55', NULL, '66666666'),
 (2, '67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador', 'asdasdaladsl', 'Aprobada', '2026-09-28 09:53:28', NULL, '66666666'),
-(3, '67676760', 'Carlos', 'Arepa', '$2y$10$EMQQZEwuDaHJxjRa/16w..ZZFZcXsVIJLfJ6BNzDWoNXbhNej6OY6', 'tecnico', 'Porque mi sueño siempre fue trabjar como profe del iti como mi querido mazzeti', 'Rechazada', '2026-09-28 09:57:37', 'JAJAJ NO TE CREO NADA BOLIGUAYO', '66666666');
+(3, '67676760', 'Carlos', 'Arepa', '$2y$10$EMQQZEwuDaHJxjRa/16w..ZZFZcXsVIJLfJ6BNzDWoNXbhNej6OY6', 'tecnico', 'Porque mi sueño siempre fue trabjar como profe del iti como mi querido mazzeti', 'Rechazada', '2026-09-28 09:57:37', 'JAJAJ NO TE CREO NADA BOLIGUAYO', '66666666'),
+(4, 'A2222223', 'asdasd', 'asdasdsa', '$2y$10$iM3q/FxiYMJV2A6HHwemYOkRDVc4vBL7DBzdk0u1VlX.UTvGyt9LC', 'solicitante', 'asasassa', 'Aprobada', '2026-09-29 22:08:12', NULL, '66666666'),
+(5, 'A2222233', 'assa', 'asdads', '$2y$10$cgICX/gvjhrGRxYuOaG7NeDBmDJfEk5xW.3FuPpTeyuvpL.alWFG.', 'tecnico', 'asdasd', 'Aprobada', '2026-09-29 22:20:17', NULL, '66666666'),
+(6, 'A9999999', 'ejemplo', 'sososo', '$2y$10$KYb4rcBKiLCMahotcXGXEeCoFnvHSwRsJEq.vcCD81G0paZTrGoxq', 'tecnico', 'asdasd', 'Aprobada', '2026-09-29 22:30:59', NULL, '66666666');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud_usuario_extranjero`
+--
+
+CREATE TABLE `solicitud_usuario_extranjero` (
+  `id_solicitud_usuario` int(11) NOT NULL,
+  `documento` varchar(12) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
+  `rol_pedido` enum('solicitante','tecnico','administrador') NOT NULL,
+  `motivo` text NOT NULL,
+  `estado` enum('Pendiente','Aprobada','Rechazada') NOT NULL DEFAULT 'Pendiente',
+  `fecha` datetime NOT NULL,
+  `motivo_rechazo` text DEFAULT NULL,
+  `cedula_administrador` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `solicitud_usuario_extranjero`
+--
+
+INSERT INTO `solicitud_usuario_extranjero` (`id_solicitud_usuario`, `documento`, `nombre`, `apellido`, `contrasena`, `rol_pedido`, `motivo`, `estado`, `fecha`, `motivo_rechazo`, `cedula_administrador`) VALUES
+(0, 'A1010101', 'jjjjj', 'asdasd', '$2y$10$SMDVZUxZLYKP/N0pK7FuBe6FKMJKs5Q471aUlAyxjioFoM9YnTfHa', 'tecnico', 'asdadsadsa', 'Aprobada', '2026-09-29 22:34:35', NULL, '66666666');
 
 -- --------------------------------------------------------
 
@@ -245,7 +275,10 @@ INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) V
 ('44444444', 'asdasd', 'fa', '$2y$10$22v8A13FThdgC8DdAdF48eT4dRP7X8jmUeqOEymr27vUAXnc8Ohlm', 'solicitante'),
 ('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
 ('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador'),
-('67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador');
+('67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador'),
+('A2222223', 'asdasd', 'asdasdsa', '$2y$10$iM3q/FxiYMJV2A6HHwemYOkRDVc4vBL7DBzdk0u1VlX.UTvGyt9LC', 'solicitante'),
+('A2222233', 'assa', 'asdads', '$2y$10$cgICX/gvjhrGRxYuOaG7NeDBmDJfEk5xW.3FuPpTeyuvpL.alWFG.', 'tecnico'),
+('A9999999', 'ejemplo', 'sososo', '$2y$10$KYb4rcBKiLCMahotcXGXEeCoFnvHSwRsJEq.vcCD81G0paZTrGoxq', 'tecnico');
 
 -- --------------------------------------------------------
 
@@ -259,7 +292,17 @@ CREATE TABLE `usuarioextranjero` (
   `apellido` varchar(50) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
   `rol` enum('solicitante','tecnico','administrador') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usuarioextranjero`
+--
+
+INSERT INTO `usuarioextranjero` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) VALUES
+('A1111111', 'estoesun', 'ejemplo', '$2y$10$vQkxOIVwr6bhLVfP66ndQ.x84u0zLkKgnNN3qFTVbQ9LTsheDajzi', 'solicitante'),
+('A3333333', 'as', 'asdad', '$2y$10$3JaF4.Kw.9eywu2nOG6qFOj7pbGKSKlix.T3AUsYq16p3p8HXyCuy', 'tecnico'),
+('a8888888', 'asdasd', 'asdasd', '$2y$10$1xlCI2zFLPTZBKvxvhBkGutUzoTyEWIfhS8M7QWGqEoxt9p9dJcAi', 'tecnico'),
+('A1010101', 'jjjjj', 'asdasd', '$2y$10$SMDVZUxZLYKP/N0pK7FuBe6FKMJKs5Q471aUlAyxjioFoM9YnTfHa', 'tecnico');
 
 --
 -- Índices para tablas volcadas
@@ -372,7 +415,7 @@ ALTER TABLE `solicitud`
 -- AUTO_INCREMENT de la tabla `solicitud_usuario`
 --
 ALTER TABLE `solicitud_usuario`
-  MODIFY `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

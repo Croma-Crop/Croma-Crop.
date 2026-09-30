@@ -7,7 +7,7 @@
     width: 100%;
 }
 
-#newsletter .tarjeta {
+#newsletter form {
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -20,9 +20,6 @@
     padding: var(--esp-6);
 }
 
-#newsletter form {
-    display: contents;
-}
 
 #newsletter h1 {
     font-size: var(--texto-lg);

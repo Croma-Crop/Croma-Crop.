@@ -34,7 +34,6 @@ session_start();
 </header>    
 <main>
         <section id="newsletter">
-            <div class="tarjeta">
             <form id="formularioNewsletter" method="post" action="../Procesos/backend/procesologin.php">
                 <h1>Datos personales</h1>
 
@@ -62,7 +61,6 @@ session_start();
                 <p id="enlace-registro">
                     ¿No tenés usuario? <a href="html/registro.php">Solicitá uno</a>
                 </p>
-                </div>
             </form>
 
         </section>
