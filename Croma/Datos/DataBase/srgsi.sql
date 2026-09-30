@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2026 a las 03:53:29
+-- Tiempo de generación: 30-09-2026 a las 19:37:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -162,7 +162,9 @@ INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
 (11, 'l8', 'taller'),
 (12, 'l', 'laboratorio'),
 (13, 'a', 'laboratorio'),
-(14, 'LAB12', 'laboratorio');
+(14, 'LAB12', 'laboratorio'),
+(15, 'Lab 4', 'laboratorio'),
+(16, 'kasdjkjdaskldjaskdhasdnnwudqushuuqwdsaljsadljasuiw', 'laboratorio');
 
 -- --------------------------------------------------------
 
@@ -221,7 +223,9 @@ INSERT INTO `solicitud_usuario` (`id_solicitud_usuario`, `documento`, `nombre`, 
 (3, '67676760', 'Carlos', 'Arepa', '$2y$10$EMQQZEwuDaHJxjRa/16w..ZZFZcXsVIJLfJ6BNzDWoNXbhNej6OY6', 'tecnico', 'Porque mi sueño siempre fue trabjar como profe del iti como mi querido mazzeti', 'Rechazada', '2026-09-28 09:57:37', 'JAJAJ NO TE CREO NADA BOLIGUAYO', '66666666'),
 (4, 'A2222223', 'asdasd', 'asdasdsa', '$2y$10$iM3q/FxiYMJV2A6HHwemYOkRDVc4vBL7DBzdk0u1VlX.UTvGyt9LC', 'solicitante', 'asasassa', 'Aprobada', '2026-09-29 22:08:12', NULL, '66666666'),
 (5, 'A2222233', 'assa', 'asdads', '$2y$10$cgICX/gvjhrGRxYuOaG7NeDBmDJfEk5xW.3FuPpTeyuvpL.alWFG.', 'tecnico', 'asdasd', 'Aprobada', '2026-09-29 22:20:17', NULL, '66666666'),
-(6, 'A9999999', 'ejemplo', 'sososo', '$2y$10$KYb4rcBKiLCMahotcXGXEeCoFnvHSwRsJEq.vcCD81G0paZTrGoxq', 'tecnico', 'asdasd', 'Aprobada', '2026-09-29 22:30:59', NULL, '66666666');
+(6, 'A9999999', 'ejemplo', 'sososo', '$2y$10$KYb4rcBKiLCMahotcXGXEeCoFnvHSwRsJEq.vcCD81G0paZTrGoxq', 'tecnico', 'asdasd', 'Aprobada', '2026-09-29 22:30:59', NULL, '66666666'),
+(7, '44444445', 'asdasd', 'asd', '$2y$10$42mAottiCA3Ffdsmv4B9MOVNdYn80aKMRHYCD6Bs9N1WyveVnxU8y', 'tecnico', 'asdasdasd', 'Aprobada', '2026-09-30 11:31:03', NULL, '66666666'),
+(8, '32801287', 'asduhadhuidaihuasdhuis', 'oñashuashuilad', '$2y$10$HDka4wufQS77K90xwxRJ.OA7LMM1/7DGazYwdQiuncNx3TfeUIDLu', 'solicitante', 'ijasasjojoasddajiskqdw', 'Aprobada', '2026-09-30 12:51:54', NULL, '66666666');
 
 -- --------------------------------------------------------
 
@@ -248,7 +252,7 @@ CREATE TABLE `solicitud_usuario_extranjero` (
 --
 
 INSERT INTO `solicitud_usuario_extranjero` (`id_solicitud_usuario`, `documento`, `nombre`, `apellido`, `contrasena`, `rol_pedido`, `motivo`, `estado`, `fecha`, `motivo_rechazo`, `cedula_administrador`) VALUES
-(0, 'A1010101', 'jjjjj', 'asdasd', '$2y$10$SMDVZUxZLYKP/N0pK7FuBe6FKMJKs5Q471aUlAyxjioFoM9YnTfHa', 'tecnico', 'asdadsadsa', 'Aprobada', '2026-09-29 22:34:35', NULL, '66666666');
+(1, 'D8888888', 'assd', 'asdasd', '$2y$10$gqc6crq/NCYCoNYfrQPYweuMmos04c4ug/Te3kHH9Rdyg46/nAyES', 'tecnico', 'asdasd', 'Rechazada', '2026-09-30 14:33:01', 'as', '66666666');
 
 -- --------------------------------------------------------
 
@@ -271,8 +275,10 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`) VALUES
 ('10101010', 'wachin', 'putito', '$2y$10$kned0SrJQxZ7K0j.OObwquVEMlYIXPV4cQyIxa.orH5Cia80jgy4i', 'solicitante'),
 ('22222222', 'as', 'ffffffffffffffffffffffffff', '$2y$10$n6RwiFPOxLL5O4fBVH3Or.cCL0E29lp7ViUUzHdKdcwWgemvXKTeG', 'tecnico'),
+('32801287', 'asduhadhuidaihuasdhuis', 'oñashuashuilad', '$2y$10$HDka4wufQS77K90xwxRJ.OA7LMM1/7DGazYwdQiuncNx3TfeUIDLu', 'solicitante'),
 ('33333333', 'asd', 'fffffffffffffffffffffffffffffffffffffff', '$2y$10$GMCVFN7HoZBUTQ67nRYHWOPrbyEXDpwwuk1ZR2P2q5Wbpe4Ys37he', 'solicitante'),
 ('44444444', 'asdasd', 'fa', '$2y$10$22v8A13FThdgC8DdAdF48eT4dRP7X8jmUeqOEymr27vUAXnc8Ohlm', 'solicitante'),
+('44444445', 'asdasd', 'asd', '$2y$10$42mAottiCA3Ffdsmv4B9MOVNdYn80aKMRHYCD6Bs9N1WyveVnxU8y', 'tecnico'),
 ('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante'),
 ('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador'),
 ('67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador'),
@@ -372,6 +378,12 @@ ALTER TABLE `solicitud_usuario`
   ADD KEY `fk_solicitud_usuario_admin` (`cedula_administrador`);
 
 --
+-- Indices de la tabla `solicitud_usuario_extranjero`
+--
+ALTER TABLE `solicitud_usuario_extranjero`
+  ADD PRIMARY KEY (`id_solicitud_usuario`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -403,7 +415,7 @@ ALTER TABLE `registro_diario`
 -- AUTO_INCREMENT de la tabla `salon`
 --
 ALTER TABLE `salon`
-  MODIFY `id_salon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_salon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
@@ -415,7 +427,13 @@ ALTER TABLE `solicitud`
 -- AUTO_INCREMENT de la tabla `solicitud_usuario`
 --
 ALTER TABLE `solicitud_usuario`
-  MODIFY `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud_usuario_extranjero`
+--
+ALTER TABLE `solicitud_usuario_extranjero`
+  MODIFY `id_solicitud_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
