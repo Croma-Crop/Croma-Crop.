@@ -46,6 +46,7 @@
             <li class="tarjeta-producto">
                 <p class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></p>
                 <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
+                <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
                 <button type="button" class="boton-desplegar" data-indice="<?= $indice ?>">Mostrar mas</button>
             </li>
         <?php endforeach; ?>
