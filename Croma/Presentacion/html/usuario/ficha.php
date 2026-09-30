@@ -28,7 +28,7 @@
                 <label for="profesor">Profesor</label>
                     <select id="profesor" name="documento_profesor" required>
                         <option value="">--- Seleccionar profesor ---</option>
-                        <?php foreach ($profesores as $profesor): ?>
+                        <?php foreach ($todos as $profesor): ?>
                             <option value="<?= htmlspecialchars($profesor['documento']) ?>" <?= $profesor['documento'] === $usuario['documento'] ? 'selected' : '' ?>><?= htmlspecialchars($profesor['nombre'] . ' ' . $profesor['apellido']) ?></option>
                         <?php endforeach; ?>
                     </select>
