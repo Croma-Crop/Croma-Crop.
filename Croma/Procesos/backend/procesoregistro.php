@@ -3,6 +3,9 @@
 require_once __DIR__ . "/sanitizar.php";
 require_once '../../Datos/Clases/ClassSolicitudUsuario.php';
 require_once '../../Datos/Clases/ClassUsuario.php';
+require_once '../../Datos/Clases/ClassUsuarioextranjero.php';
+require_once '../../Datos/Clases/ClassSolicitudUsuarioextranjero.php';
+
 require_once '../../Datos/DataBase/ConexionMYSQL/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $motivo = limpiarTexto($_POST['motivo'] ?? '');
     $contrasenaIngresada = $_POST['contrasena'] ?? '';
     $contrasenaRepetida = $_POST['contrasena_repetida'] ?? '';
+    $tipo = limpiarOpcion($_GET['tipo'] ?? '', ["extranjero"]);
+
 
     $mensajeError = "";
 
@@ -59,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $contrasena = password_hash($contrasenaIngresada, PASSWORD_DEFAULT);
-
+    if($tipo === "extranjero"){
+    $solicitud = new SolicitudUsuarioextranjero($conexion, null, $documento, $nombre, $apellido, $contrasena, $rolPedido, $motivo, "Pendiente");
+    }else{
     $solicitud = new SolicitudUsuario(
         $conexion,
         null,
@@ -71,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $motivo,
         "Pendiente"
     );
+    }
 
     $ok = $solicitud->guardar();
 

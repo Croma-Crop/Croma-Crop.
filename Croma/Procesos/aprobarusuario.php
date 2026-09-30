@@ -6,6 +6,8 @@ require_once __DIR__ . "/backend/sanitizar.php";
 
 require_once '../Datos/Clases/ClassSolicitudUsuario.php';
 require_once '../Datos/Clases/ClassUsuario.php';
+require_once '../Datos/Clases/ClassSolicitudUsuarioextranjero.php';
+require_once '../Datos/Clases/ClassUsuarioextranjero.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -17,13 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = limpiarEntero($_POST['id_solicitud_usuario'] ?? '');
     $accion = limpiarOpcion($_POST['accion'] ?? '', ["aprobar", "rechazar"]);
     $motivoRechazo = limpiarTexto($_POST['motivo_rechazo'] ?? '');
+    $tipo = limpiarOpcion($_GET['tipo'] ?? '', ["extranjero"]);
 
     if ($id === "" || $accion === "") {
         header('Location: ../Presentacion/html/admin/index_admin.php?mensaje=' . urlencode("Faltan datos para resolver la solicitud") . '&tipo=error');
         exit;
     }
 
-    $solicitud = new SolicitudUsuario($conexion, $id, "", "", "", "", "solicitante", "");
+    if ($tipo === "extranjero") {
+        $solicitud = new SolicitudUsuarioextranjero($conexion, $id, "", "", "", "", "solicitante", "");
+    } else {
+        $solicitud = new SolicitudUsuario($conexion, $id, "", "", "", "", "solicitante", "");
+    }
     $datos = $solicitud->buscarporid($id);
 
     if (!$datos) {
@@ -55,12 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if (Usuario::existe($conexion, $datos['documento'])) {
+    if (Usuario::existe($conexion, $datos['documento']) || usuarioextranjero::existe($conexion, $datos['documento'])) {
         header('Location: ../Presentacion/html/admin/index_admin.php?mensaje=' . urlencode("Ese documento ya tiene un usuario") . '&tipo=error');
         exit;
     }
 
-    $usuarioNuevo = Usuario::crear($conexion, $datos['rol_pedido'], $datos['documento'], $datos['nombre'], $datos['apellido'], $datos['contrasena']);
+    if ($tipo === "extranjero") {
+        $usuarioNuevo = usuarioextranjero::crear($conexion, $datos['rol_pedido'], $datos['documento'], $datos['nombre'], $datos['apellido'], $datos['contrasena']);
+    } else {
+        $usuarioNuevo = Usuario::crear($conexion, $datos['rol_pedido'], $datos['documento'], $datos['nombre'], $datos['apellido'], $datos['contrasena']);
+    }
 
     if (!$usuarioNuevo) {
         header('Location: ../Presentacion/html/admin/index_admin.php?mensaje=' . urlencode("El rol de la solicitud no es valido") . '&tipo=error');

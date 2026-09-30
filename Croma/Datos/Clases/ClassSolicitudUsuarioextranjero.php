@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../DataBase/ErroresBD.php";
 require_once __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
 
-class SolicitudUsuario {
+class SolicitudUsuarioextranjero {
     public mysqli $conexion;
     public ?int $id_solicitud_usuario;
     public string $documento;
@@ -38,7 +38,7 @@ class SolicitudUsuario {
 
     public function guardar(): bool {
         try {
-            $sql = "INSERT INTO solicitud_usuario (documento, nombre, apellido, contrasena, rol_pedido, motivo, estado, fecha)
+            $sql = "INSERT INTO solicitud_usuario_extranjero (documento, nombre, apellido, contrasena, rol_pedido, motivo, estado, fecha)
                     VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
             $stmt = $this->conexion->prepare($sql);
 
@@ -51,14 +51,14 @@ class SolicitudUsuario {
             return $stmt->execute();
 
         } catch (mysqli_sql_exception $e) {
-            return registrarErrorBD($e, "SolicitudUsuario");
+            return registrarErrorBD($e, "SolicitudUsuarioextranjero");
         }
     }
 
     public static function mostrarPendientes($conexion) {
         $estadoPendiente = "Pendiente";
         $sql = "SELECT id_solicitud_usuario, documento, nombre, apellido, rol_pedido, motivo, estado, fecha
-                FROM solicitud_usuario
+                FROM solicitud_usuario_extranjero
                 WHERE estado = ?
                 ORDER BY fecha ASC";
         $stmt = $conexion->prepare($sql);
@@ -72,24 +72,24 @@ class SolicitudUsuario {
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-public static function mostrarResueltas($conexion) {
-    $sql = "SELECT solicitud_usuario.id_solicitud_usuario, solicitud_usuario.documento, solicitud_usuario.nombre,
-                   solicitud_usuario.apellido, solicitud_usuario.rol_pedido, solicitud_usuario.estado,
-                   solicitud_usuario.fecha, solicitud_usuario.motivo_rechazo,
-                   COALESCE(usuario.nombre, usuarioextranjero.nombre) AS nombre_administrador,
-                   COALESCE(usuario.apellido, usuarioextranjero.apellido) AS apellido_administrador
-            FROM solicitud_usuario
-            LEFT JOIN usuario ON solicitud_usuario.cedula_administrador = usuario.documento
-            LEFT JOIN usuarioextranjero ON solicitud_usuario.cedula_administrador = usuarioextranjero.documento
-            WHERE solicitud_usuario.estado <> 'Pendiente'
-            ORDER BY solicitud_usuario.fecha DESC";
-    $resultado = $conexion->query($sql);
-    return $resultado->fetch_all(MYSQLI_ASSOC);
-}
+    public static function mostrarResueltas($conexion) {
+        $sql = "SELECT solicitud_usuario_extranjero.id_solicitud_usuario, solicitud_usuario_extranjero.documento, solicitud_usuario_extranjero.nombre,
+                       solicitud_usuario_extranjero.apellido, solicitud_usuario_extranjero.rol_pedido, solicitud_usuario_extranjero.estado,
+                       solicitud_usuario_extranjero.fecha, solicitud_usuario_extranjero.motivo_rechazo,
+                       COALESCE(usuario.nombre, usuarioextranjero.nombre) AS nombre_administrador,
+                       COALESCE(usuario.apellido, usuarioextranjero.apellido) AS apellido_administrador
+                FROM solicitud_usuario_extranjero
+                LEFT JOIN usuario ON solicitud_usuario_extranjero.cedula_administrador = usuario.documento
+                LEFT JOIN usuarioextranjero ON solicitud_usuario_extranjero.cedula_administrador = usuarioextranjero.documento
+                WHERE solicitud_usuario_extranjero.estado <> 'Pendiente'
+                ORDER BY solicitud_usuario_extranjero.fecha DESC";
+        $resultado = $conexion->query($sql);
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
 
     public static function existePendiente($conexion, $documento) {
         $estadoPendiente = "Pendiente";
-        $sql = "SELECT id_solicitud_usuario FROM solicitud_usuario WHERE documento = ? AND estado = ?";
+        $sql = "SELECT id_solicitud_usuario FROM solicitud_usuario_extranjero WHERE documento = ? AND estado = ?";
         $stmt = $conexion->prepare($sql);
 
         if (!$stmt) {
@@ -108,7 +108,7 @@ public static function mostrarResueltas($conexion) {
 
     public function buscarporid($id_solicitud_usuario) {
         $sql = "SELECT id_solicitud_usuario, documento, nombre, apellido, contrasena, rol_pedido, motivo, estado
-                FROM solicitud_usuario
+                FROM solicitud_usuario_extranjero
                 WHERE id_solicitud_usuario = ?";
         $stmt = $this->conexion->prepare($sql);
 
@@ -129,7 +129,7 @@ public static function mostrarResueltas($conexion) {
 
     public function resolver($id_solicitud_usuario, $nuevoEstado, $cedulaAdministrador, $motivoRechazo): bool {
         try {
-            $sql = "UPDATE solicitud_usuario
+            $sql = "UPDATE solicitud_usuario_extranjero
                     SET estado = ?, cedula_administrador = ?, motivo_rechazo = ?
                     WHERE id_solicitud_usuario = ? AND estado = 'Pendiente'";
             $stmt = $this->conexion->prepare($sql);
@@ -147,7 +147,7 @@ public static function mostrarResueltas($conexion) {
             return $stmt->affected_rows > 0;
 
         } catch (mysqli_sql_exception $e) {
-            return registrarErrorBD($e, "SolicitudUsuario");
+            return registrarErrorBD($e, "SolicitudUsuarioextranjero");
         }
     }
 }

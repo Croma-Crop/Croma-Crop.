@@ -2,6 +2,7 @@ const img = document.querySelector("#logo");
 const cedula = document.getElementById("cedula");
 const extranjero = document.querySelector("#extranjero");
 const formularioRegistro = document.querySelector("#formularioRegistro");
+const actionRegistro = formularioRegistro.getAttribute("action");
 const password = document.querySelector("#password");
 const password2 = document.querySelector("#password2");
 const seguridad = document.querySelector("#seguridad");
@@ -16,6 +17,7 @@ cedula.addEventListener("input", () => {
 
 extranjero.addEventListener("click", function (e) {
     e.preventDefault();
+    formularioRegistro.action = actionRegistro + "?tipo=extranjero";
 
     const contenedor = document.getElementById("campo-documento");
     contenedor.innerHTML = `
@@ -32,6 +34,7 @@ extranjero.addEventListener("click", function (e) {
     `;
     document.getElementById("btnCedula").addEventListener("click", function (e) {
         e.preventDefault();
+        formularioRegistro.action = actionRegistro;
         const contenedor = document.getElementById("campo-documento");
         contenedor.innerHTML = `
             <label for="cedula">Cedula</label>

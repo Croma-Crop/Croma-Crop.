@@ -43,10 +43,10 @@
             <section class="seccionTablaEmpleados">
                 <header class="cajaEncabezado">
                     <h2>Solicitudes de registro pendientes</h2>
-                    <span class="contador-pendientes"><?= count($solicitudesPendientes) ?></span>
+                    <span class="contador-pendientes"><?= count($todosPendientes) ?></span>
                 </header>
 
-                <?php if (empty($solicitudesPendientes)): ?>
+                <?php if (empty($todosPendientes)): ?>
                     <p class="ayuda-panel">No hay solicitudes pendientes.</p>
                 <?php else: ?>
                     <div class="tabla-envoltorio">
@@ -64,7 +64,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($solicitudesPendientes as $pendiente): ?>
+                            <?php foreach ($todosPendientes as $pendiente): ?>
                                 <tr>
                                     <td class="celda-numerica"><?= htmlspecialchars($pendiente['documento']) ?></td>
                                     <td><?= htmlspecialchars($pendiente['nombre']) ?></td>
@@ -73,12 +73,12 @@
                                     <td><?= htmlspecialchars($pendiente['motivo']) ?></td>
                                     <td><?= htmlspecialchars($pendiente['fecha']) ?></td>
                                     <td class="celda-acciones">
-                                        <form method="post" action="../../../Procesos/aprobarusuario.php" style="display:inline">
+                                        <form method="post" action="../../../Procesos/aprobarusuario.php<?= ($pendiente['tipo'] ?? '') === 'extranjero' ? '?tipo=extranjero' : '' ?>" style="display:inline">
                                             <input type="hidden" name="id_solicitud_usuario" value="<?= htmlspecialchars($pendiente['id_solicitud_usuario']) ?>">
                                             <input type="hidden" name="accion" value="aprobar">
                                             <button class="btnOperacion" type="submit">Aprobar</button>
                                         </form>
-                                        <button type="button" class="btnEliminarEmpleado boton-rechazar" data-id="<?= htmlspecialchars($pendiente['id_solicitud_usuario']) ?>" data-nombre="<?= htmlspecialchars($pendiente['nombre'] . ' ' . $pendiente['apellido']) ?>">Rechazar</button>
+                                        <button type="button" class="btnEliminarEmpleado boton-rechazar" data-id="<?= htmlspecialchars($pendiente['id_solicitud_usuario']) ?>" data-nombre="<?= htmlspecialchars($pendiente['nombre'] . ' ' . $pendiente['apellido']) ?>" data-tipo="<?= ($pendiente['tipo'] ?? '') === 'extranjero' ? 'extranjero' : '' ?>">Rechazar</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -88,7 +88,7 @@
                 <?php endif; ?>
             </section>
 
-            <?php if (!empty($solicitudesResueltas)): ?>
+            <?php if (!empty($todosResueltas)): ?>
             <section class="seccionTablaEmpleados">
                 <header class="cajaEncabezado">
                     <h2>Solicitudes ya resueltas</h2>
@@ -107,7 +107,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($solicitudesResueltas as $resuelta): ?>
+                        <?php foreach ($todosResueltas as $resuelta): ?>
                             <tr>
                                 <td class="celda-numerica"><?= htmlspecialchars($resuelta['documento']) ?></td>
                                 <td><?= htmlspecialchars($resuelta['nombre'] . ' ' . $resuelta['apellido']) ?></td>
