@@ -64,7 +64,7 @@
             <article id="seccion-formulario">
                  <h3 class="titulo-seccion"><?= $editando ? "Modificar Salón" : "Ingresar Nuevo Salón" ?></h3>
                 <form id="formulario-salon" method="post" action="../../Procesos/backend/procesosalones.php">
-                    <input name="nombre" type="text" id="nombreSalon" placeholder="Código del salón (Ej: L3)"
+                    <input name="nombre" type="text" maxlength="30" id="nombreSalon" placeholder="Código del salón (Ej: L3)"
                         value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>" required>
 
                     <select id="tipo" name="tipo" required>

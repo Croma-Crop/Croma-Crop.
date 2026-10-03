@@ -51,7 +51,7 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
         <h3>Incidencias</h3>
 
         <label for="fecha">Fecha</label>
-        <input id="fecha_inicio" type="date" name="fecha" value="<?= htmlspecialchars($fechaElegida) ?>">
+        <input id="fecha_inicio" type="date" name="fecha" value="<?= htmlspecialchars($fechaElegida !== '' ? $fechaElegida : date('Y-m-d')) ?>" required>
 
         <label for="salon">Salon:</label>
         <select id="salon" name="salon" required onchange="this.form.action='tickets.php'; this.form.submit();">
