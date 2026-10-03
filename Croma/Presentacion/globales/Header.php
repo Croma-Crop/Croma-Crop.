@@ -35,4 +35,4 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
 </div>
 
 <script src="<?php echo $BASE_URL ?>/Presentacion/js/idioma.js"></script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>

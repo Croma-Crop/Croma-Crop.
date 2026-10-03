@@ -1,7 +1,6 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
---
 -- Servidor: 127.0.0.1
 -- Tiempo de generación: 30-09-2026 a las 19:37:11
 -- Versión del servidor: 10.4.32-MariaDB
@@ -10,7 +9,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -107,11 +105,11 @@ CREATE TABLE `inventario` (
 --
 
 INSERT INTO `inventario` (`numero_serie`, `nombre`, `marca`, `modelo`, `estado`, `numero_intervenciones`, `id_salon`, `cedula_administrador`) VALUES
-('123', 'asd', 'FacuCorp', 'sad', 'en_reparacion', 2, 5, NULL),
-('123123213', 'assa', 'assa', 'sdsd', 'en_reparacion', 0, 2, NULL),
-('1245', 'CUI', 'FacuCorp', 'assa', 'de_baja', 0, 5, NULL),
-('343', 'a', 'as', 'assa', 'en_reparacion', 0, 10, NULL),
-('555555', 'asdasd', 'FacuCorp', 'sad', 'de_baja', 0, 11, NULL);
+('123', 'Computadora de escritorio', 'HP', 'ProDesk 400 G7', 'en_reparacion', 2, 5, NULL),
+('123123213', 'Proyector', 'Epson', 'PowerLite E20', 'en_reparacion', 0, 2, NULL),
+('1245', 'Monitor', 'Samsung', 'S24R350', 'de_baja', 0, 5, NULL),
+('343', 'Televisor', 'LG', '43UR7800', 'en_reparacion', 0, 10, NULL),
+('555555', 'Impresora', 'Brother', 'HL-1212W', 'de_baja', 0, 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,18 +151,18 @@ CREATE TABLE `salon` (
 --
 
 INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
-(2, 'asdasdasd', 'taller'),
-(5, 'tierrasanta', 'taller'),
-(7, 'LKÑL', ''),
-(8, '+1+2{2]}', ''),
-(9, '1', ''),
-(10, 'assa', 'taller'),
-(11, 'l8', 'taller'),
-(12, 'l', 'laboratorio'),
-(13, 'a', 'laboratorio'),
-(14, 'LAB12', 'laboratorio'),
-(15, 'Lab 4', 'laboratorio'),
-(16, 'kasdjkjdaskldjaskdhasdnnwudqushuuqwdsaljsadljasuiw', 'laboratorio');
+(2, 'T1', 'taller'),
+(5, 'T2', 'taller'),
+(7, 'A1', 'aula'),
+(8, 'A2', 'aula'),
+(9, 'A3', 'aula'),
+(10, 'T3', 'taller'),
+(11, 'T4', 'taller'),
+(12, 'L1', 'laboratorio'),
+(13, 'L2', 'laboratorio'),
+(14, 'L3', 'laboratorio'),
+(15, 'L4', 'laboratorio'),
+(16, 'L5', 'laboratorio');
 
 -- --------------------------------------------------------
 

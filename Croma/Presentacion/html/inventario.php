@@ -86,9 +86,9 @@
                 <h3 class="titulo-seccion">Modificar equipo</h3>
                 <input type="hidden" name="esEdicion" value="1">
                 <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
-                <input name="nombre" type="text" placeholder="Nombre del articulo" required value="<?= htmlspecialchars($equipo['nombre']) ?>">
-                <input name="marca" type="text" placeholder="Marca del articulo" required value="<?= htmlspecialchars($equipo['marca']) ?>">
-                <input name="modelo" type="text" placeholder="Modelo" required value="<?= htmlspecialchars($equipo['modelo']) ?>">
+                <input name="nombre" type="text" maxlength="30" placeholder="Nombre del articulo" required value="<?= htmlspecialchars($equipo['nombre']) ?>">
+                <input name="marca" type="text" maxlength="30" placeholder="Marca del articulo" required value="<?= htmlspecialchars($equipo['marca']) ?>">
+                <input name="modelo" type="text" maxlength="30" placeholder="Modelo" required value="<?= htmlspecialchars($equipo['modelo']) ?>">
                 <select name="estado" required>
                     <option value="operativo" <?= $equipo['estado'] === 'operativo' ? 'selected' : '' ?>>Operativo</option>
                     <option value="en_reparacion" <?= $equipo['estado'] === 'en_reparacion' ? 'selected' : '' ?>>En reparación</option>
@@ -119,10 +119,10 @@
             <article id="seccion-formulario">
                 <h3 class="titulo-seccion"><?= $editando ? "Modificar Equipo" : "Ingresar Nuevo Equipo" ?></h3>
                 <form id="formulario-producto" method="post" action="../../Procesos/backend/procesoinventario.php">
-                    <input name="nombre" type="text" id="nombre" placeholder="Nombre del artículo" required value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>">
-                    <input name="marca" type="text" id="marca" placeholder="Marca del articulo" required value="<?= $editando ? htmlspecialchars($editando['marca']) : '' ?>">
-                    <input name="numero_serie" type="text" class="numSerie" placeholder="Numero de Serie" required value="<?= $editando ? htmlspecialchars($editando['numero_serie']) : '' ?>" <?= $editando ? 'readonly' : '' ?>>
-                    <input name="modelo" type="text" class="numSerie" placeholder="Modelo" required value="<?= $editando ? htmlspecialchars($editando['modelo']) : '' ?>">
+                    <input name="nombre" type="text" maxlength="30" id="nombre" placeholder="Nombre del artículo" required value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>">
+                    <input name="marca" type="text" maxlength="30" id="marca" placeholder="Marca del articulo" required value="<?= $editando ? htmlspecialchars($editando['marca']) : '' ?>">
+                    <input name="numero_serie" type="text" maxlength="30" class="numSerie" placeholder="Numero de Serie" required value="<?= $editando ? htmlspecialchars($editando['numero_serie']) : '' ?>" <?= $editando ? 'readonly' : '' ?>>
+                    <input name="modelo" type="text" maxlength="30" class="numSerie" placeholder="Modelo" required value="<?= $editando ? htmlspecialchars($editando['modelo']) : '' ?>">
                     <select name="estado" id="estado" required>
                         <option value="">--- Seleccionar estado ---</option>
                         <option value="operativo" <?= ($editando && $editando['estado'] === 'operativo') ? 'selected' : '' ?>>Operativo</option>

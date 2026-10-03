@@ -59,5 +59,28 @@ document.querySelector("#solforms").addEventListener("submit", function (e) {
     if (tipoSol.value === "Reserva de Salon" && horaFinSol.value <= horaInicioSol.value) {
         e.preventDefault();
         alert("La hora de finalización tiene que ser posterior a la de inicio.");
+    } else {
+        sessionStorage.setItem("formEnviado", "solicitud");
     }
 });
+
+document.querySelector("#incforms").addEventListener("submit", function () {
+    sessionStorage.setItem("formEnviado", "incidencia");
+});
+
+const mensaje = document.querySelector(".mensaje");
+const formEnviado = sessionStorage.getItem("formEnviado");
+
+if (mensaje !== null && formEnviado === "incidencia") {
+    document.querySelector("#newsletter").classList.add("mostrar");
+    document.querySelector(".contenedor").classList.remove("mostrar");
+    document.querySelector("#incforms h3").after(mensaje);
+} else if (mensaje !== null && formEnviado === "solicitud") {
+    document.querySelector("#newsletter").classList.add("mostrar");
+    document.querySelector(".contenedorSol").classList.remove("mostrar");
+    document.querySelector("#solforms h3").after(mensaje);
+} else if (mensaje !== null) {
+    mensaje.remove();
+}
+
+sessionStorage.removeItem("formEnviado");
