@@ -143,7 +143,7 @@ INSERT INTO `registro_diario` (`id_registro`, `fecha`, `hora_entrada`, `hora_sal
 CREATE TABLE `salon` (
   `id_salon` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `tipo` enum('laboratorio','taller','aula','oficina') NOT NULL
+  `tipo` enum('laboratorio','taller') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -153,9 +153,6 @@ CREATE TABLE `salon` (
 INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
 (2, 'T1', 'taller'),
 (5, 'T2', 'taller'),
-(7, 'A1', 'aula'),
-(8, 'A2', 'aula'),
-(9, 'A3', 'aula'),
 (10, 'T3', 'taller'),
 (11, 'T4', 'taller'),
 (12, 'L1', 'laboratorio'),
