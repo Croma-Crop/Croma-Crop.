@@ -41,6 +41,7 @@ foreach ($incidencias as $incidencia) {
         'id'              => $incidencia['id_incidencia'],
         'tipo'            => $incidencia['tipo'],
         'fecha'           => $incidencia['fecha'],
+        'fecha_limite'    => $incidencia['fecha_limite'],
         'turno'           => $incidencia['turno'],
         'prioridad'       => $incidencia['prioridad'],
         'descripcion'     => $incidencia['descripcion'],

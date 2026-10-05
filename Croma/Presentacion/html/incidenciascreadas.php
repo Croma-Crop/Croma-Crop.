@@ -43,6 +43,9 @@
 
             <?php if ($ticket['clase'] === 'Incidencia'): ?>
                 <p>Fecha: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                <?php if($ticket['fecha_limite'] !== null):  ?>
+                <p>Fecha de finalizacion: <?= htmlspecialchars($ticket['fecha_limite']) ?></p>
+                <?php endif;?>
                 <p>Turno: <?= htmlspecialchars($ticket['turno']) ?></p>
                 <p>Equipo: <?= htmlspecialchars($ticket['equipoNombre']) ?></p>
                 <p>Marca: <?= htmlspecialchars($ticket['equipoMarca']) ?></p>

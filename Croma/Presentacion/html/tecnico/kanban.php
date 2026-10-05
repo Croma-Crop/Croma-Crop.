@@ -129,6 +129,16 @@
                                                     <?php endforeach; ?>
                                                 </select>
                                             </label>
+                                            <?php if($ticket['clase'] === "Incidencia"): ?>
+                                            <label class="campo-kanban">Fecha limite
+                                            <form method="post" action="../../../Procesos/backend/guardarFechaLimite.php">
+
+                                            <input type="hidden" name="id_incidencia" value="<?= htmlspecialchars($ticket['id']) ?>">
+                                            <input type="date" name="fecha" onchange="this.form.submit()">
+                                            </form>
+                                            </label>
+                                            <?php endif;?>
+                                            
                                         <?php endif; ?>
                                     </div>
                                 </li>

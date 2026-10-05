@@ -88,6 +88,24 @@ public function cambiarEstado(string $nuevoEstado): bool {
         return false;
     }
 }
+public function asignarFechaLimite(string $fecha_limite): bool {
+    try {
+        $sql = "UPDATE incidencia SET fecha_limite = ? WHERE id_incidencia = ?";
+        $stmt = $this->conexion->prepare($sql);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $this->fecha_limite = $fecha_limite;
+        $stmt->bind_param("si", $this->fecha_limite, $this->id_incidencia);
+
+        return $stmt->execute();
+
+    } catch (mysqli_sql_exception $e) {
+        return registrarErrorBD($e, "Incidencia");
+    }
+}
 
 public function cambiarPrioridad(string $nuevaPrioridad): bool {
     try {
