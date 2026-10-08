@@ -59,6 +59,11 @@ $BASE_URL = substr($scriptPath, 0, $posicion);
                     <p>Registro de ficha diaria</p>
                     <a href="ficha.php">Registrar Ficha</a>
                 </article>
+                <article class="tarjeta-modulo">
+                    <h4>Historial</h4>
+                    <p>Fichas diarias que registraste, ordenadas por mes.</p>
+                    <a href="historial.php">Ver historial</a>
+                </article>
             </section>
 
         </div>

@@ -9,14 +9,15 @@ $modulos = [
     "tickets"        => ["etiqueta" => "Tickets", "ruta" => $BASE_URL . "/Presentacion/html/tickets.php"],
     "incidenciascreadas"    => ["etiqueta" => "Tickets Creados", "ruta" => $BASE_URL . "/Presentacion/html/incidenciascreadas.php"],
     "ficha"          => ["etiqueta" => "Ficha", "ruta" => $BASE_URL . "/Presentacion/html/usuario/ficha.php"],
+    "historial"      => ["etiqueta" => "Historial", "ruta" => $BASE_URL . "/Presentacion/html/usuario/historial.php"],
     "administrador"  => ["etiqueta" => "Administrador", "ruta" => $BASE_URL ."/Presentacion/html/admin/administrador.php"],
     "kanban" => ["etiqueta" => "Tablero Kanban", "ruta" => $BASE_URL ."/Presentacion/html/tecnico/kanban.php"]
 ];
 
 $permisos = [
-    "administrador"       => ["index_admin", "inventario", "salones", "tickets", "incidenciascreadas", "ficha", "administrador", "kanban"],
+    "administrador"       => ["index_admin", "inventario", "salones", "tickets", "incidenciascreadas", "ficha", "historial", "administrador", "kanban"],
     "tecnico"     => ["index_tecnico", "inventario", "salones", "tickets", "incidenciascreadas", "kanban"],
-    "solicitante" => ["index_user", "tickets", "incidenciascreadas", "ficha"]
+    "solicitante" => ["index_user", "tickets", "incidenciascreadas", "ficha", "historial"]
 ];
 
 $acciones = [
