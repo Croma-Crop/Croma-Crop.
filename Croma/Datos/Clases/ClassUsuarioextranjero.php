@@ -71,6 +71,13 @@ public String $rol;
         return $stmtProfesores->get_result()->fetch_all(MYSQLI_ASSOC);
 
     }
+    public function buscarpordocumento($documento){
+    $sql = "SELECT nombre, documento FROM usuario WHERE documento = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $documento);
+    return $stmt->execute();
+ }
+
 
     public static function mostrar($conexion){
     $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuarioextranjero");

@@ -103,6 +103,13 @@ return $salones;
 
     return $texto;
  }
+public function buscaridficha($id_salon){
+    $sql = "SELECT nombre FROM salon WHERE id_salon = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("i", $id_salon);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
  public function buscarporid($id_salon){
     try{
     $sql = "SELECT tipo, nombre, id_salon FROM salon WHERE id_salon = ? ";

@@ -7,7 +7,7 @@ public string $fecha;
 public string $hora_entrada;
 public string $hora_salida;
 public string $cedula_solicitante;
-public int $id_salon;
+public string $id_salon;
 
 public function __construct(
         mysqli $conexion,
@@ -16,7 +16,7 @@ public function __construct(
         string $hora_entrada,
         string $hora_salida,
         string $cedula_solicitante,
-        int $id_salon
+        string $id_salon
        
         
     ) {
@@ -54,6 +54,22 @@ public function __construct(
         return false;
     }
 }
+    public static function mostrar($conexion){
+        $sql = $conexion->query("SELECT fecha, hora_entrada, hora_salida, cedula_solicitante, id_salon FROM registro_diario");
+        return $sql->fetch_all(MYSQLI_ASSOC);
+    }
+    public static function mostrarficha($conexion){
+        $sql = $conexion->query("SELECT cedula_solicitante, id_salon FROM registro_diario");
+        return $sql->fetch_all(MYSQLI_ASSOC);
+    }
+    public function mostrarporusuario($cedula_solicitante){
+        $sql = "SELECT fecha, hora_entrada, hora_salida, cedula_solicitante, id_salon FROM registro_diario WHERE cedula_solicitante = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("s", $cedula_solicitante);
+        $stmt->execute();
+        $resultado = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $resultado;
+    }
 
 
 }

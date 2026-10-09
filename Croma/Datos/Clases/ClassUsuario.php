@@ -82,6 +82,12 @@ public String $rol;
 }
 return $usuarios;
  }
+ public function buscarpordocumento($documento){
+    $sql = "SELECT nombre, documento FROM usuario WHERE documento = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $documento);
+    return $stmt->execute();
+ }
 
   public function borrar($documento){
      $sql = "DELETE FROM usuario WHERE documento = ?";
