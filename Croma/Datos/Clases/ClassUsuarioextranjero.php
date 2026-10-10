@@ -67,7 +67,7 @@ public string $estado;
     }
     public static function mostrarsolicitantes($conexion){
         $rolProfesor = "solicitante";
-        $stmtProfesores = $conexion->prepare("SELECT documento, nombre, apellido FROM usuarioextranjero WHERE rol = ?");
+        $stmtProfesores = $conexion->prepare("SELECT documento, nombre, apellido FROM usuarioextranjero WHERE rol = ? AND estado = 'aprobado'");
         $stmtProfesores->bind_param("s", $rolProfesor);
         $stmtProfesores->execute();
         return $stmtProfesores->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -107,6 +107,11 @@ public string $estado;
     return $sql->fetch_all(MYSQLI_ASSOC);
 
  }
+ public static function mostrar($conexion){
+    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuarioextranjero WHERE estado = 'aprobado'");
+    return $sql->fetch_all(MYSQLI_ASSOC);
+
+ }
     public function aprobar($documento){
     $sql = "UPDATE usuarioextranjero SET estado = 'aprobado' WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);
@@ -117,6 +122,12 @@ public string $estado;
 
   public function baja($documento){
      $sql = "UPDATE usuarioextranjero SET estado = 'inactivo' WHERE documento = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $documento);
+    return $stmt->execute();
+ }
+ public function rechazar($documento){
+     $sql = "UPDATE usuarioextranjero SET estado = 'rechazado' WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);
     $stmt->bind_param("s", $documento);
     return $stmt->execute();

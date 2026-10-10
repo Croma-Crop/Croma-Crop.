@@ -64,7 +64,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($todosPendientes as $pendiente): ?>
+                            <?php foreach ($todosPendientes as $pendiente): 
+                                global $pendiente;
+                                ?>
                                 
                                 <tr>
                                     <td class="celda-numerica"><?= htmlspecialchars($pendiente['documento']) ?></td>
@@ -81,7 +83,8 @@
                                         <button type="button" class="btnEliminarEmpleado boton-rechazar" data-id="<?= htmlspecialchars($pendiente['documento']) ?>" data-nombre="<?= htmlspecialchars($pendiente['nombre'] . ' ' . $pendiente['apellido']) ?>" data-tipo="<?= ($pendiente['tipo'] ?? '') === 'extranjero' ? 'extranjero' : '' ?>">Rechazar</button>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php 
+                        endforeach; ?>
                         </tbody>
                     </table>
                     </div>
@@ -170,11 +173,11 @@
             <fieldset>
                 <legend>Rechazar solicitud</legend>
                 <p id="nombreRechazado"></p>
-                <input type="hidden" name="id_solicitud_usuario" id="idRechazo">
+                <input type="hidden" name="documento" id="idRechazo" value=<?= $pendiente['documento']?>>
                 <input type="hidden" name="accion" value="rechazar">
                 <div class="cajaEntradaDeDatos">
-                    <label for="motivo_rechazo">Motivo del rechazo</label>
-                    <input type="text" id="motivo_rechazo" name="motivo_rechazo" placeholder="Ej: no figura como docente del instituto" required>
+                    <p for="motivo_rechazo">¿Esta seguro de rechazar esta solicitud?</p>
+                    
                 </div>
                 <button type="submit">Rechazar solicitud</button>
                 <button type="button" id="cancelarRechazo">Cancelar</button>
