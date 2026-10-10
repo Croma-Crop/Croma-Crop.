@@ -50,7 +50,7 @@ session_start();
                 </section>
 
                 <div id="campo-boton">
-                    <button id="extranjero">Si sos extranjero clickea aca</button>
+                <a id="extranjero" href="registro.php?tipo=extranjero">Si sos extranjero clickea aca</a>                
                 </div>
 
                 <label for="nombre">Nombre</label>
@@ -67,8 +67,6 @@ session_start();
                     <option value="administrador">Administrador</option>
                 </select>
 
-                <label for="motivo">¿Para qué necesitás el usuario?</label>
-                <input type="text" id="motivo" name="motivo" placeholder="Ej: soy docente de 3ro" required>
 
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="contrasena" placeholder="Al menos 8 caracteres" minlength="8" required>

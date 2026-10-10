@@ -58,27 +58,27 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Rol pedido</th>
-                                <th>Motivo</th>
-                                <th>Fecha</th>
+                                <th>Estado</th>
+                            
                                 <th class="celda-acciones">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($todosPendientes as $pendiente): ?>
+                                
                                 <tr>
                                     <td class="celda-numerica"><?= htmlspecialchars($pendiente['documento']) ?></td>
                                     <td><?= htmlspecialchars($pendiente['nombre']) ?></td>
                                     <td><?= htmlspecialchars($pendiente['apellido']) ?></td>
-                                    <td><?= htmlspecialchars($pendiente['rol_pedido']) ?></td>
-                                    <td><?= htmlspecialchars($pendiente['motivo']) ?></td>
-                                    <td><?= htmlspecialchars($pendiente['fecha']) ?></td>
+                                    <td><?= htmlspecialchars($pendiente['rol']) ?></td>
+                                    <td><?= htmlspecialchars($pendiente['estado'])?></td>
                                     <td class="celda-acciones">
                                         <form method="post" action="../../../Procesos/aprobarusuario.php<?= ($pendiente['tipo'] ?? '') === 'extranjero' ? '?tipo=extranjero' : '' ?>" style="display:inline">
-                                            <input type="hidden" name="id_solicitud_usuario" value="<?= htmlspecialchars($pendiente['id_solicitud_usuario']) ?>">
+                                            <input type="hidden" name="documento" value="<?= htmlspecialchars($pendiente['documento']) ?>">
                                             <input type="hidden" name="accion" value="aprobar">
                                             <button class="btnOperacion" type="submit">Aprobar</button>
                                         </form>
-                                        <button type="button" class="btnEliminarEmpleado boton-rechazar" data-id="<?= htmlspecialchars($pendiente['id_solicitud_usuario']) ?>" data-nombre="<?= htmlspecialchars($pendiente['nombre'] . ' ' . $pendiente['apellido']) ?>" data-tipo="<?= ($pendiente['tipo'] ?? '') === 'extranjero' ? 'extranjero' : '' ?>">Rechazar</button>
+                                        <button type="button" class="btnEliminarEmpleado boton-rechazar" data-id="<?= htmlspecialchars($pendiente['documento']) ?>" data-nombre="<?= htmlspecialchars($pendiente['nombre'] . ' ' . $pendiente['apellido']) ?>" data-tipo="<?= ($pendiente['tipo'] ?? '') === 'extranjero' ? 'extranjero' : '' ?>">Rechazar</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -88,33 +88,72 @@
                 <?php endif; ?>
             </section>
 
-            <?php if (!empty($todosResueltas)): ?>
+            <?php if (!empty($todosInactivas)): ?>
             <section class="seccionTablaEmpleados">
                 <header class="cajaEncabezado">
-                    <h2>Solicitudes ya resueltas</h2>
+                    <h2>Cuentas de baja</h2>
                 </header>
                 <div class="tabla-envoltorio">
                 <table class="tabla-datos">
-                    <caption class="subtitulo">Solicitudes de registro ya resueltas</caption>
+                    <caption class="subtitulo">Cuentas de baja</caption>
                     <thead>
                         <tr>
                             <th>Documento</th>
                             <th>Nombre</th>
                             <th>Rol pedido</th>
-                            <th>Estado</th>
-                            <th>Resuelta por</th>
-                            <th>Motivo del rechazo</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($todosResueltas as $resuelta): ?>
+                        <?php foreach ($todosInactivas as $inactiva): ?>
                             <tr>
-                                <td class="celda-numerica"><?= htmlspecialchars($resuelta['documento']) ?></td>
-                                <td><?= htmlspecialchars($resuelta['nombre'] . ' ' . $resuelta['apellido']) ?></td>
-                                <td><?= htmlspecialchars($resuelta['rol_pedido']) ?></td>
-                                <td><span class="estado-chip" data-estado="<?= htmlspecialchars($resuelta['estado']) ?>"><?= htmlspecialchars($resuelta['estado']) ?></span></td>
-                                <td><?= htmlspecialchars($resuelta['nombre_administrador'] ? $resuelta['nombre_administrador'] . ' ' . $resuelta['apellido_administrador'] : '-') ?></td>
-                                <td><?= htmlspecialchars($resuelta['motivo_rechazo'] ?? '-') ?></td>
+                                <td class="celda-numerica"><?= htmlspecialchars($inactiva['documento']) ?></td>
+                                <td><?= htmlspecialchars($inactiva['nombre'] . ' ' . $inactiva['apellido']) ?></td>
+                                <td><?= htmlspecialchars($inactiva['rol']) ?></td>
+                                <td><form method="post" action="../../../Procesos/aprobarusuario.php<?= ($inactiva['tipo'] ?? '') === 'extranjero' ? '?tipo=extranjero' : '' ?>" style="display:inline">
+                                        <input type="hidden" name="documento" value="<?= htmlspecialchars($inactiva['documento']) ?>">
+                                        <input type="hidden" name="accion" value="aprobar">
+                                        <button class="btnOperacion" type="submit">Dar alta</button>
+                                    </form>
+                                </td>
+                    
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </div>
+            </section>
+            <?php endif; ?>
+
+            <?php if (!empty($todosRechazados)): ?>
+            <section class="seccionTablaEmpleados">
+                <header class="cajaEncabezado">
+                    <h2>Solicitudes de cuenta rechazadas</h2>
+                </header>
+                <div class="tabla-envoltorio">
+                <table class="tabla-datos">
+                    <caption class="subtitulo">Solicitudes de cuenta rechazadas</caption>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($todosRechazados as $rechazado): ?>
+                            <tr>
+                                <td class="celda-numerica"><?= htmlspecialchars($rechazado['documento']) ?></td>
+                                <td><?= htmlspecialchars($rechazado['nombre'] . ' ' . $rechazado['apellido']) ?></td>
+                                <td><?= htmlspecialchars($rechazado['rol']) ?></td>
+                                <td><form method="post" action="../../../Procesos/rechazarusuario.php<?= ($rechazado['tipo'] ?? '') === 'extranjero' ? '?tipo=extranjero' : '' ?>" style="display:inline">
+                                        <input type="hidden" name="documento" value="<?= htmlspecialchars($rechazado['documento']) ?>">
+                                        <input type="hidden" name="accion" value="borrar">
+                                        <button class="btnOperacion" type="submit">Eliminar definitivamente</button>
+                                    </form>
+                                </td>
+                    
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -127,7 +166,7 @@
     </main>
 
     <dialog id="dialogRechazo" class="dialogGestionarEmpleado seccionFormulario">
-        <form method="post" action="../../../Procesos/aprobarusuario.php">
+        <form method="post" action="../../../Procesos/rechazarusuario.php">
             <fieldset>
                 <legend>Rechazar solicitud</legend>
                 <p id="nombreRechazado"></p>

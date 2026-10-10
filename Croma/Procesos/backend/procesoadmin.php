@@ -52,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contrasena = password_hash($contrasenaIngresada, PASSWORD_DEFAULT);
 
     if ($tipo === "extranjero") {
-     $usuario = Usuarioextranjero::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena);
+     $usuario = Usuarioextranjero::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena, "aprobado");
     } else {
-        $usuario = Usuario::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena);
+        $usuario = Usuario::crear($conexion, $rol, $documento, $nombre, $apellido, $contrasena, "aprobado");
     }
 
     $ok = $usuario->crearusuario();

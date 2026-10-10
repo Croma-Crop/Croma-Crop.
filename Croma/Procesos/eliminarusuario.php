@@ -20,21 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $miDocumento = $_SESSION['usuarioActivo']['documento'] ?? '';
 
     if ($documento === $miDocumento) {
-        header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("No podes eliminar tu propio usuario") . '&tipo=error');
+        header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("No podes dar de baja tu propio usuario") . '&tipo=error');
         exit;
     }
 
     if (usuarioextranjero::existe($conexion, $documento)) {
-        $usuario = new usuarioextranjero($conexion, $documento, "", "", "");
+        $usuario = new usuarioextranjero($conexion, $documento, "", "", "", "",'inactivo');
     } else {
-        $usuario = new Usuario($conexion, $documento, "", "", "");
+        $usuario = new Usuario($conexion, $documento, "", "", "", "", 'inactivo');
     }
-        $ok = $usuario->borrar($documento);
+        $ok = $usuario->baja($documento);
 
     if ($ok) {
-        header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("Usuario borrado correctamente") . '&tipo=exito');
+        header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("Usuario dado de baja correctamente") . '&tipo=exito');
     } else {
-        header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("El usuario no fue borrado correctamente") . '&tipo=error');
+        header('Location: ../Presentacion/html/admin/administrador.php?mensaje=' . urlencode("El usuario no fue dado de baja correctamente") . '&tipo=error');
     }
     exit;
 }

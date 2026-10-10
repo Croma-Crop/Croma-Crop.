@@ -11,8 +11,8 @@ $usuario = Usuario::mostrarsolicitantes($conexion);
 $usuarioextranjero = Usuarioextranjero::mostrarsolicitantes($conexion);
 $usuarios = array_merge($usuario, $usuarioextranjero);
 $salonficha = new Salon($conexion, "", "", "");
-$usuariodoc = new Usuario($conexion, "", "", "", "", "");
-$usuarioextranjerodoc = new Usuarioextranjero($conexion, "", "", "", "", "");
+$usuariodoc = new Usuario($conexion, "", "", "", "", "", "");
+$usuarioextranjerodoc = new Usuarioextranjero($conexion, "", "", "", "", "", "");
 $rolSesion = $_SESSION['rol'];
 $usuarioSesion = $_SESSION['usuarioActivo']["documento"];   
 

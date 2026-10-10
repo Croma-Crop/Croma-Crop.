@@ -62,7 +62,7 @@
                     <td class='celda-acciones'>
                     <form method='post' action='../../../Procesos/eliminarusuario.php' style='display:inline'>
                     <input type='hidden' name='documento' value='" . $documentoEmpleado . "'>
-                    <button class='btnEliminarEmpleado' type='submit' onclick=\"return confirm('¿Seguro que quiere eliminar este empleado?')\">Eliminar</button>
+                    <button class='btnEliminarEmpleado' type='submit' onclick=\"return confirm('¿Seguro que quiere dar de baja este empleado?')\">Baja</button>
                     </form>
                     </td>
                     </tr>

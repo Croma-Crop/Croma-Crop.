@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($tipo === "extranjero") {
-        $usuario = new usuarioextranjero($conexion, $documento, "", "", "");
+        $usuario = new Usuarioextranjero($conexion, $documento, "", "", "","", "", "");
     } else {
-        $usuario = new Usuario($conexion, $documento, "", "", "");
+        $usuario = new Usuario($conexion, $documento, "", "", "", "", "");
     }
 
     $filaUsuario = $usuario->iniciarsesion($documento);

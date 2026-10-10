@@ -10,13 +10,15 @@ public String $nombre;
 public String $apellido;
 public string $contrasena;
 public String $rol;
+public string $estado;
 
-    public function __construct(mysqli $conexion, String $documento, string $nombre, string $apellido, string $contrasena, ?string $rol = null) {
+    public function __construct(mysqli $conexion, String $documento, string $nombre, string $apellido, string $contrasena, ?string $rol = null, string $estado) {
         $this->documento = $documento;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->contrasena = $contrasena;
         $this->rol = $rol ?? $this->rolPorDefecto();
+        $this->estado = $estado;
         $this->conexion = $conexion;
     }
 
@@ -24,10 +26,10 @@ public String $rol;
         return "tecnico";
     }
 
-    public static function crear(mysqli $conexion, string $rol, string $documento, string $nombre, string $apellido, string $contrasena): ?Usuario {
+    public static function crear(mysqli $conexion, string $rol, string $documento, string $nombre, string $apellido, string $contrasena, string $estado): ?Usuario {
 
         if ($rol === "administrador" || $rol === "tecnico" || $rol === "solicitante") {
-            return new Usuario($conexion, $documento, $nombre, $apellido, $contrasena, $rol);
+            return new Usuario($conexion, $documento, $nombre, $apellido, $contrasena, $rol, "aprobado");
         }
 
         return null;
@@ -38,7 +40,7 @@ public String $rol;
     }
     public function crearusuario(): bool {
         try {
-        $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol, estado) VALUES (?, ?, ?, ?, ?, 'pendiente')";
         $stmt = $this->conexion->prepare($sql);
 
          if (!$stmt) {
@@ -71,17 +73,40 @@ public String $rol;
 
     }
 
-    public static function mostrar($conexion){
-    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario");
-    $usuarios = [];
-    while ($fila = $sql->fetch_assoc()) {
-    $usuarios[] = $fila;
-    
-    
+    public static function mostraractivos($conexion){
+    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario WHERE estado = 'aprobado'");
+    return $sql->fetch_all(MYSQLI_ASSOC);
 
-}
-return $usuarios;
  }
+    public function borrar($documento){
+    $sql = "DELETE FROM usuario WHERE documento = ? AND estado = 'rechazado'";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $documento);
+    return $stmt->execute();
+}
+ public static function mostrarinactivos($conexion){
+    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario WHERE estado = 'inactivo'");
+    return $sql->fetch_all(MYSQLI_ASSOC);
+
+ }
+ public static function mostrarrechazados($conexion){
+    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario WHERE estado = 'rechazado'");
+    return $sql->fetch_all(MYSQLI_ASSOC);
+
+ }
+  public function aprobar($documento){
+    $sql = "UPDATE usuario SET estado = 'aprobado' WHERE documento = ?";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("s", $documento);
+    return $stmt->execute();
+    }
+
+    public static function mostrarpendientes($conexion){
+    $sql = $conexion->query("SELECT documento, nombre, apellido, rol, estado FROM usuario WHERE estado = 'pendiente'");
+    $filas = $sql->fetch_all(MYSQLI_ASSOC);
+    return $filas;
+    }
+
  public function buscarpordocumento($documento){
     $sql = "SELECT nombre, documento FROM usuario WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);
@@ -89,12 +114,15 @@ return $usuarios;
     return $stmt->execute();
  }
 
-  public function borrar($documento){
-     $sql = "DELETE FROM usuario WHERE documento = ?";
+  
+
+  public function baja($documento){
+     $sql = "UPDATE usuario SET estado = 'inactivo' WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);
     $stmt->bind_param("s", $documento);
     return $stmt->execute();
  }
+
  public static function existe($conexion, $documento){
     $sql = "SELECT documento FROM usuario WHERE documento = ?";
     $stmt = $conexion->prepare($sql);
