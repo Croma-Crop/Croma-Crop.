@@ -28,7 +28,6 @@ php_errors.log
 
 *.sql
 *.sql.gz
-!Croma/Datos/DataBase/srgsi.sql
 
 *.zip
 *.rar
