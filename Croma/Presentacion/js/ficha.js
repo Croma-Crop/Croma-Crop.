@@ -33,7 +33,7 @@ function iniciarPagina() {
         if (!salon) {
             tablaEquipos.classList.add("oculto");
             avisoEquipos.classList.remove("oculto");
-            avisoEquipos.textContent = "Seleccioná un salón para ver sus equipos.";
+            avisoEquipos.textContent = traducir("Seleccione un salón para ver sus equipos.");
             return;
         }
 
@@ -42,7 +42,7 @@ function iniciarPagina() {
         if (filas.length === 0) {
             tablaEquipos.classList.add("oculto");
             avisoEquipos.classList.remove("oculto");
-            avisoEquipos.textContent = "Este salón no tiene equipos registrados.";
+            avisoEquipos.textContent = traducir("Este salón no tiene equipos registrados.");
             return;
         }
 
@@ -56,7 +56,7 @@ function iniciarPagina() {
 
     function abrirDialogIncidencia(fila) {
         filaEnEdicion = fila;
-        equipoSeleccionado.textContent = "Equipo: " + fila.dataset.nombre + " (Serie: " + fila.dataset.serie + ")";
+        equipoSeleccionado.textContent = traducir("Equipo:") + " " + fila.dataset.nombre + " (" + traducir("Serie:") + " " + fila.dataset.serie + ")";
         tipoIncidencia.value = "";
         descripcionIncidencia.value = "";
         dialogIncidencia.showModal();
@@ -108,7 +108,7 @@ function iniciarPagina() {
         e.preventDefault();
 
         if (!tipoIncidencia.value) {
-            alert("Seleccione el tipo de incidencia.");
+            alert(traducir("Seleccione el tipo de incidencia."));
             return;
         }
 
@@ -127,17 +127,17 @@ function iniciarPagina() {
     fichaForm.addEventListener("submit", function (e) {
         if (!selectProfesor.value) {
             e.preventDefault();
-            alert("Seleccione un profesor.");
+            alert(traducir("Seleccione un profesor."));
             return;
         }
         if (!selectSalon.value) {
             e.preventDefault();
-            alert("Seleccione un salón.");
+            alert(traducir("Seleccione un salón."));
             return;
         }
         if (!document.querySelector('input[name="turno"]:checked')) {
             e.preventDefault();
-            alert("Seleccione un turno.");
+            alert(traducir("Seleccione un turno."));
             return;
         }
         

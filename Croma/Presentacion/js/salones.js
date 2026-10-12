@@ -6,7 +6,7 @@ const inputIdSalon = document.querySelector("#formulario-salon input[name='id_sa
 const botonCancelarSalon = document.querySelector("#cancelarSalon");
 
 function volverANuevoSalon() {
-    tituloFormulario.textContent = "Ingresar Nuevo Salón";
+    tituloFormulario.textContent = traducir("Ingresar nuevo salón");
     inptNombreSalon.value = "";
     selectTipoSalon.value = "";
     inputIdSalon.value = "";
@@ -14,7 +14,7 @@ function volverANuevoSalon() {
 }
 
 function pasarAModificarSalon(id, nombre, tipo) {
-    tituloFormulario.textContent = "Modificar Salón";
+    tituloFormulario.textContent = traducir("Modificar salón");
     inptNombreSalon.value = nombre;
     selectTipoSalon.value = tipo;
     inputIdSalon.value = id;

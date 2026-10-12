@@ -18,7 +18,7 @@
     <main>
         <section id="seccion-tablero">
             <h3 class="titulo-seccion">Asignación y seguimiento de tickets</h3>
-            <p class="ayuda-tablero">Abrí una tarjeta con "Ver más" para tomar la tarea y clasificar su gravedad. Para cambiar el estado, arrastrá la tarjeta a otra columna o usá el selector de la tarjeta.</p>
+            <p class="ayuda-tablero">Abra una tarjeta con 'Ver más' para tomar la tarea y clasificar su gravedad. Para cambiar el estado, arrastre la tarjeta a otra columna o use el selector de la tarjeta.</p>
 
             <?php if (isset($_GET["mensaje"])): ?>
                 <div id="mensaje-kanban" class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>"><?= htmlspecialchars($_GET["mensaje"]) ?></div>
@@ -63,30 +63,30 @@
 
                                     <p class="tarjeta-nombre"><?= htmlspecialchars($ticket['nombreProf']) ?></p>
                                     <p class="tarjeta-tipo"><?= htmlspecialchars($ticket['tipo']) ?></p>
-                                    <p class="tarjeta-asignado">Técnico: <?= htmlspecialchars($ticket['nombreTecnico']) ?></p>
+                                    <p class="tarjeta-asignado"><span>Técnico:</span> <?= htmlspecialchars($ticket['nombreTecnico']) ?></p>
 
                                     <button type="button" class="boton-detalle">Ver más</button>
 
                                     <div class="detalle-ticket">
                                         <?php if ($ticket['clase'] === 'Incidencia'): ?>
-                                            <p>Fecha inicio: <?= htmlspecialchars($ticket['fecha']) ?></p>
-                                            <p>Equipo: <?= htmlspecialchars($ticket['equipoNombre']) ?></p>
-                                            <p>Marca: <?= htmlspecialchars($ticket['equipoMarca']) ?></p>
-                                            <p>Modelo: <?= htmlspecialchars($ticket['equipoModelo']) ?></p>
-                                            <p>Serie: <?= htmlspecialchars($ticket['numero_serie'] ?? '-') ?></p>
-                                            <p>Turno: <?= htmlspecialchars($ticket['turno']) ?></p>
+                                            <p><span>Fecha de inicio:</span> <?= htmlspecialchars($ticket['fecha']) ?></p>
+                                            <p><span>Equipo:</span> <?= htmlspecialchars($ticket['equipoNombre']) ?></p>
+                                            <p><span>Marca:</span> <?= htmlspecialchars($ticket['equipoMarca']) ?></p>
+                                            <p><span>Modelo:</span> <?= htmlspecialchars($ticket['equipoModelo']) ?></p>
+                                            <p><span>Serie:</span> <?= htmlspecialchars($ticket['numero_serie'] ?? '-') ?></p>
+                                            <p><span>Turno:</span> <?= htmlspecialchars($ticket['turno']) ?></p>
                                         <?php endif; ?>
 
                                         <?php if ($ticket['clase'] === 'Solicitud'): ?>
-                                            <p>Solicitante: <?= htmlspecialchars($ticket['nombreProf']) ?></p>
+                                            <p><span>Solicitante:</span> <?= htmlspecialchars($ticket['nombreProf']) ?></p>
                                             <?php if ($ticket['nombre_software'] !== null && $ticket['nombre_software'] !== ''): ?>
-                                                <p>Software pedido: <?= htmlspecialchars($ticket['nombre_software']) ?></p>
+                                                <p><span>Software pedido:</span> <?= htmlspecialchars($ticket['nombre_software']) ?></p>
                                             <?php endif; ?>
                                             <?php if ($ticket['fecha'] !== null && $ticket['fecha'] !== ''): ?>
-                                                <p>Fecha de uso: <?= htmlspecialchars($ticket['fecha']) ?></p>
+                                                <p><span>Fecha de uso:</span> <?= htmlspecialchars($ticket['fecha']) ?></p>
                                             <?php endif; ?>
                                             <?php if ($ticket['hora_inicio'] !== null && $ticket['hora_inicio'] !== ''): ?>
-                                                <p>Horario: <?= htmlspecialchars($ticket['hora_inicio']) ?> a <?= htmlspecialchars($ticket['hora_fin']) ?></p>
+                                                <p><span>Horario:</span> <?= htmlspecialchars($ticket['hora_inicio']) ?> - <?= htmlspecialchars($ticket['hora_fin']) ?></p>
                                             <?php endif; ?>
                                         <?php endif; ?>
 
@@ -98,7 +98,7 @@
                                             <?php endif; ?>
 
                                             <?php if ($puedeAsignarTecnico): ?>
-                                                <label class="campo-kanban">Técnico asignado
+                                                <label class="campo-kanban"><span>Técnico asignado</span>
                                                     <select class="select-tecnico">
                                                         <option value="">Sin asignar</option>
                                                         <?php foreach ($tecnicos as $tecnico): ?>
@@ -113,7 +113,7 @@
                                             <?php endif; ?>
 
                                             <?php if ($ticket['clase'] === 'Incidencia'): ?>
-                                                <label class="campo-kanban">Gravedad
+                                                <label class="campo-kanban"><span>Gravedad</span>
                                                     <select class="select-gravedad">
                                                         <?php foreach (["Sin asignar", "Baja", "Media", "Alta"] as $prioridad): ?>
                                                             <option value="<?= $prioridad ?>" <?= $prioridad === $ticket['prioridad'] ? 'selected' : '' ?>><?= $prioridad ?></option>
@@ -122,7 +122,7 @@
                                                 </label>
                                             <?php endif; ?>
 
-                                            <label class="campo-kanban">Estado
+                                            <label class="campo-kanban"><span>Estado</span>
                                                 <select class="select-estado">
                                                     <?php foreach (["Pendiente", "En proceso", "Resuelto"] as $estado): ?>
                                                         <option value="<?= $estado ?>" <?= $estado === $ticket['estado'] ? 'selected' : '' ?>><?= $estado ?></option>
@@ -130,7 +130,7 @@
                                                 </select>
                                             </label>
                                             <?php if($ticket['clase'] === "Incidencia"): ?>
-                                            <label class="campo-kanban">Fecha limite
+                                            <label class="campo-kanban"><span>Fecha límite</span>
                                             <form method="post" action="../../../Procesos/backend/guardarFechaLimite.php">
 
                                             <input type="hidden" name="id_incidencia" value="<?= htmlspecialchars($ticket['id']) ?>">

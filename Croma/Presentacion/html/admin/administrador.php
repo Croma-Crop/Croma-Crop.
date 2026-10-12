@@ -26,7 +26,7 @@
          <section class="seccionTablaEmpleados">
             <header class="cajaEncabezado">
                 <h2>Datos de empleados</h2>
-                <button type="button" class="btnOperacion" id="btnAltaEmpleado">Alta Empleado</button>
+                <button type="button" class="btnOperacion" id="btnAltaEmpleado">Alta de empleado</button>
             </header>
             
             <div class="tabla-envoltorio">
@@ -80,7 +80,7 @@
         </section>
                <dialog id="dialog" class="dialogGestionarEmpleado seccionFormulario">
             <button class="btnCerrarGestionarEmpleado" id="btnCerrarGestionarEmpleado" type="button">
-                <img src="../../img/x.svg" alt="Cerrar Menú" class="iconoMenu">
+                <img src="../../img/x.svg" alt="Cerrar menú" class="iconoMenu">
             </button>
             <form action="../../../Procesos/backend/procesoadmin.php" method="post" id="formularioGestionarEmpleado">
                 <fieldset id="fieldset">

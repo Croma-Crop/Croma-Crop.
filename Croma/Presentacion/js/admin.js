@@ -21,11 +21,12 @@ btnExtranjeroAdmin.addEventListener("click", function () {
         <div class="cajaEntradaDeDatos">
             <label for="pasaporte">Pasaporte</label>
             <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingrese el pasaporte" pattern="[A-Za-z][0-9]{7}"
-            title="Una letra seguida de 7 números, ej: A1234567" autocomplete="off" required>
+            title="Una letra seguida de 7 números, ej.: A1234567" autocomplete="off" required>
         </div>
     `;
     btnExtranjeroAdmin.disabled = true;
     campoBtnAdmin.innerHTML = `<button type="button" id="btnCedulaAdmin">Empleado uruguayo</button>`;
+    traducirPagina();
     document.getElementById("btnCedulaAdmin").addEventListener("click", function () {
         formEmpleado.action = actionEmpleado;
         contenedorDocAdmin.innerHTML = `
@@ -40,5 +41,6 @@ btnExtranjeroAdmin.addEventListener("click", function () {
         campoBtnAdmin.innerHTML = "";
         campoBtnAdmin.appendChild(btnExtranjeroAdmin);
         btnExtranjeroAdmin.disabled = false;
+        traducirPagina();
     });
 });

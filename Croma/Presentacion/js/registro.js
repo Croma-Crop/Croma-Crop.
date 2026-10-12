@@ -22,28 +22,30 @@ extranjero.addEventListener("click", function (e) {
     const contenedor = document.getElementById("campo-documento");
     contenedor.innerHTML = `
         <label for="pasaporte">Pasaporte</label>
-        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingresá tu pasaporte" pattern="[A-Za-z][0-9]{7}"
-         title="Una letra seguida de 7 números, ej: A1234567" maxlength="8" required>
+        <input type="text" id="pasaporte" name="pasaporte" placeholder="Ingrese su pasaporte" pattern="[A-Za-z][0-9]{7}"
+         title="Una letra seguida de 7 números, ej.: A1234567" maxlength="8" required>
         <p id="mensaje" class="mensaje-error"></p>
     `;
 
     extranjero.disabled = true;
     const campoboton = document.querySelector("#campo-boton");
     campoboton.innerHTML = `
-    <button id="btnCedula">Si sos uruguayo clickea aca</button>
+    <button id="btnCedula">Si es uruguayo, haga clic aquí</button>
     `;
+    traducirPagina();
     document.getElementById("btnCedula").addEventListener("click", function (e) {
         e.preventDefault();
         formularioRegistro.action = actionRegistro;
         const contenedor = document.getElementById("campo-documento");
         contenedor.innerHTML = `
-            <label for="cedula">Cedula</label>
-            <input type="text" id="cedula" name="documento" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}"
+            <label for="cedula">Cédula</label>
+            <input type="text" id="cedula" name="documento" placeholder="Ingrese su cédula" pattern="[1-9][0-9]{7}"
           title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric" maxlength="8" required>
             <p id="mensaje" class="mensaje-error"></p>
         `;
         campoboton.innerHTML = "";
         campoboton.appendChild(extranjero);
+        traducirPagina();
         extranjero.disabled = false;
     });
 });
@@ -51,6 +53,6 @@ extranjero.addEventListener("click", function (e) {
 formularioRegistro.addEventListener("submit", function (e) {
     if (password.value !== password2.value) {
         e.preventDefault();
-        seguridad.textContent = "Las dos contraseñas no coinciden.";
+        seguridad.textContent = traducir("Las dos contraseñas no coinciden.");
     }
 });

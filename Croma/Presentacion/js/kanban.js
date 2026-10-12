@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         boton.addEventListener("click", function () {
             const detalle = boton.nextElementSibling;
             detalle.classList.toggle("mostrar");
-            boton.textContent = detalle.classList.contains("mostrar") ? "Ver menos" : "Ver más";
+            boton.textContent = detalle.classList.contains("mostrar") ? traducir("Ver menos") : traducir("Ver más");
         });
     });
 
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         select.addEventListener("change", function () {
             const tarjeta = select.closest(".tarjeta-kanban");
             const chip = tarjeta.querySelector(".gravedad-chip");
-            chip.textContent = select.value;
+            chip.textContent = traducir(select.value);
             chip.dataset.gravedad = select.value;
             enviarAccion(tarjeta.dataset.id, tarjeta.dataset.clase, "prioridad", select.value);
         });

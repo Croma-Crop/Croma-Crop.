@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGRSI - Inicio Técnico | Croma Corp</title>
+    <title>SGRSI - Inicio técnico | Croma Corp</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/inicio.css">
@@ -24,12 +24,7 @@
 
             <section class="bienvenida">
                 <h2>Panel del técnico</h2>
-                <p>
-                    Desde acá gestionás el soporte técnico del instituto. En el tablero tomás las tareas
-                    registradas por los docentes, les determinás la gravedad y las vas moviendo de estado
-                    hasta resolverlas. El listado de incidencias queda como consulta, para que el docente
-                    pueda ver en qué anda su incidencia.
-                </p>
+                <p>Desde aquí gestiona el soporte técnico del instituto. En el tablero toma las tareas registradas por los docentes, determina su gravedad y las cambia de estado hasta resolverlas. El listado de incidencias queda como consulta, para que el docente pueda ver el avance de su incidencia.</p>
             </section>
 
             <h3 class="titulo-modulos">Resumen de trabajo</h3>
@@ -68,7 +63,7 @@
 
                 <article class="tarjeta-modulo">
                     <h4>Tablero Kanban</h4>
-                    <p>Tomá las tareas, determinales la gravedad y movelas entre pendiente, en proceso y resuelto.</p>
+                    <p>Tome las tareas, determine su gravedad y muévalas entre pendiente, en proceso y resuelto.</p>
                     <a href="../../html/tecnico/kanban.php">Abrir tablero</a>
                 </article>
 

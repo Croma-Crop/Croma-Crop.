@@ -16,7 +16,7 @@
 <body data-modulo="tickets">
 
     <header>
-        <h1 id="titulo">Incidencias y Solicitudes</h1>
+        <h1 id="titulo">Incidencias y solicitudes</h1>
 
              <?php include '../globales/Header.php'?>
 
@@ -37,7 +37,7 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
     <main>
         <section id="newsletter" class="<?= $salonElegido !== '' ? 'mostrar' : '' ?>">
             <form id="formularioNewsletter">
-                <p id="paragraph"><strong>¿Que quiere registrar?</strong></p>
+                <p id="paragraph"><strong>¿Qué quiere registrar?</strong></p>
 
                 <div id="campo-documento">
                     <button type="button" id="incidencia">Incidencia</button>
@@ -53,7 +53,7 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
         <label for="fecha">Fecha</label>
         <input id="fecha_inicio" type="date" name="fecha" value="<?= htmlspecialchars($fechaElegida !== '' ? $fechaElegida : date('Y-m-d')) ?>" required>
 
-        <label for="salon">Salon:</label>
+        <label for="salon">Salón:</label>
         <select id="salon" name="salon" required onchange="this.form.action='tickets.php'; this.form.submit();">
             <option value="">--- Seleccionar salón ---</option>
             <?php foreach ($salones as $salon): ?>
@@ -87,17 +87,17 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
 
         <p>Tipo de incidencia</p>
         <select id="tipo" name="tipo" required>
-            <option value="">---Seleccionar---</option>
+            <option value="">--- Seleccionar ---</option>
             <option value="Computadora" <?= $tipoElegido === 'Computadora' ? 'selected' : '' ?>>Computadora</option>
             <option value="Televisor" <?= $tipoElegido === 'Televisor' ? 'selected' : '' ?>>Televisor</option>
-            <option value="Periferico" <?= $tipoElegido === 'Periferico' ? 'selected' : '' ?>>Periferico</option>
+            <option value="Periferico" <?= $tipoElegido === 'Periferico' ? 'selected' : '' ?>>Periférico</option>
             <option value="Otro" <?= $tipoElegido === 'Otro' ? 'selected' : '' ?>>Otro</option>
         </select>
 
-        <p>¿Cual es la incidencia?</p>
+        <p>¿Cuál es la incidencia?</p>
         <input id="descripcioninc" name="descripcion" value="<?= htmlspecialchars($descripcionEscrita) ?>">
 
-        <button id="enviarinc" type="submit">Enviar Incidencia</button>
+        <button id="enviarinc" type="submit">Enviar incidencia</button>
         <button type="button" id="volverInc">Volver</button>
     </form>
 
@@ -105,11 +105,11 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
             <section class="contenedorSol mostrar">
         <form id="solforms" method="post" action="../../Procesos/backend/procesosolicitud.php">
             <h3>Solicitudes</h3>
-            <label for="tipoSol">¿Tipo de solicitud?</label>
+            <label for="tipoSol">Tipo de solicitud:</label>
             <select id="tipoSol" name="tipo" required>
-                <option value="">---Seleccionar---</option>
-                <option value="Instalacion de Software">Instalacion de Software</option>
-                <option value="Reserva de Salon">Reserva de Salon</option>
+                <option value="">--- Seleccionar ---</option>
+                <option value="Instalacion de Software">Instalación de software</option>
+                <option value="Reserva de Salon">Reserva de salón</option>
             </select>
             <label for="salonSol">Salón:</label>
             <select id="salonSol" name="id_salon" required>
@@ -121,7 +121,7 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
 
             <div id="camposSoftware" class="campos-solicitud oculto">
                 <label for="nombreSoftware">Nombre del software:</label>
-                <input type="text" id="nombreSoftware" name="nombre_software" placeholder="Ej: AutoCAD" maxlength="100">
+                <input type="text" id="nombreSoftware" name="nombre_software" placeholder="Ej.: AutoCAD" maxlength="100">
 
                 <label for="documentoSol">Documento de identidad:</label>
                 <input type="text" id="documentoSol" name="documento_identidad" value="<?= htmlspecialchars($usuario['documento']) ?>" readonly>
@@ -138,9 +138,9 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
                 <input type="time" id="horaFinSol" name="hora_fin">
             </div>
 
-            <label for="descripcionSol">Motivo de la Solicitud:</label>
+            <label for="descripcionSol">Motivo de la solicitud:</label>
             <input type="text" id="descripcionSol" name="descripcion" required>
-            <button id="enviarSol" type="submit">Enviar Solicitud</button>
+            <button id="enviarSol" type="submit">Enviar solicitud</button>
             <button type="button" id="volverSol">Volver</button>
         </form>
         </section>

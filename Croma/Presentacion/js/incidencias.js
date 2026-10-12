@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mensaje = document.createElement("li");
             mensaje.id = "sin-resultados-filtro";
             mensaje.className = "sin-resultados";
-            mensaje.textContent = "No se encontraron tickets con ese criterio.";
+            mensaje.textContent = traducir("No se encontraron tickets con ese criterio.");
             listado.appendChild(mensaje);
         }
 

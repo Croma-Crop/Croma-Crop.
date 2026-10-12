@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/registro.css">
-    <title>Iniciar Sesión</title>
+    <title>Iniciar sesión</title>
     <script src="js/login.js" defer></script>
 
 </head>
@@ -23,12 +23,10 @@ session_start();
         </a>
 
         <div class="acciones-header">
-            <button class="btn-idioma notranslate" type="button" id="btn-idioma" translate="no">EN</button>
-            <div id="google_translate_element"></div>
+            <button class="btn-idioma" type="button" id="btn-idioma">EN</button>
         </div>
 
         <script src="js/idioma.js"></script>
-        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
 </header>    
@@ -43,23 +41,23 @@ session_start();
                 <?php endif; ?>
             
                 <section id="campo-documento">
-                    <label for="cedula">Cedula</label>
-                    <input type="text" id="cedula" name="documento" placeholder="Ingresá tu cedula" pattern="[1-9][0-9]{7}" title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric" maxlength="8" required>
+                    <label for="cedula">Cédula</label>
+                    <input type="text" id="cedula" name="documento" placeholder="Ingrese su cédula" pattern="[1-9][0-9]{7}" title="Ingrese exactamente 8 dígitos sin puntos ni guiones" inputmode="numeric" maxlength="8" required>
                     <p id="mensaje" class="mensaje-error"></p>
                 </section>
                 
 
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" name="contrasena" placeholder="Ingresá una contraseña" required>
+                <input type="password" id="password" name="contrasena" placeholder="Ingrese su contraseña" required>
                 <p id="seguridad" class="mensaje-error"></p>
 
-                <button type="submit" id="crear">Iniciar Sesion</button>
+                <button type="submit" id="crear">Iniciar sesión</button>
                 <div id="campo-boton">
-                <button id="extranjero" type="submit">Si sos extranjero clickea aca</button>
+                <button id="extranjero" type="submit">Si es extranjero, haga clic aquí</button>
                 </div>
 
                 <p id="enlace-registro">
-                    ¿No tenés usuario? <a href="html/registro.php">Solicitá uno</a>
+                    <span>¿No tiene usuario?</span> <a href="html/registro.php">Solicite uno</a>
                 </p>
             </form>
 

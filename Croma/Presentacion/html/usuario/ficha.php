@@ -22,7 +22,7 @@
     <main>
         <section id="contenido">
             <section id="seccion-formulario">
-                <h3 class="titulo-seccion">Ficha Docente</h3>
+                <h3 class="titulo-seccion">Ficha docente</h3>
                 <form id="fichaForm" method="post" action="../../../Procesos/backend/procesoficha.php">
                 <div class="campo">    
                 <label for="profesor">Profesor</label>
@@ -40,12 +40,12 @@
 
                     <div class="campo-fila">
                         <div class="campo">
-                            <label for="hora_entrada">Hora entrada</label>
+                            <label for="hora_entrada">Hora de entrada</label>
                             <input type="time" id="hora_entrada" name="hora_entrada" required>
                         </div>
 
                         <div class="campo">
-                            <label for="hora_salida">Hora salida</label>
+                            <label for="hora_salida">Hora de salida</label>
                             <input type="time" id="hora_salida" name="hora_salida" required>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         </div>
                     </fieldset>
 
-                    <button type="submit" id="enviarFicha">Enviar Ficha</button>
+                    <button type="submit" id="enviarFicha">Enviar ficha</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>
                     <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
@@ -87,7 +87,7 @@
 
             <section id="seccion-equipos">
                 <h3 class="titulo-seccion">Equipos del salón</h3>
-                <p id="avisoEquipos">Seleccioná un salón para ver sus equipos.</p>
+                <p id="avisoEquipos">Seleccione un salón para ver sus equipos.</p>
                 <table id="tablaEquipos" class="oculto">
                     <thead>
                         <tr>
@@ -122,7 +122,7 @@
                 <option value="">--- Seleccionar ---</option>
                 <option value="Computadora">Computadora</option>
                 <option value="Televisor">Televisor</option>
-                <option value="Periferico">Periferico</option>
+                <option value="Periferico">Periférico</option>
                 <option value="Otro">Otro</option>
             </select>
 

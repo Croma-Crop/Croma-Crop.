@@ -13,14 +13,14 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
     <span class="marca-texto">Croma Corp</span>
 </a>
 
-<nav class="nav-principal" aria-label="Navegacion principal">
+<nav class="nav-principal" aria-label="Navegación principal">
     <ul class="nav-lista">
         <?php echo construirNav($rolSesion, $moduloactual); ?>
     </ul>
 </nav>
 
 <div class="dropdown nav-movil">
-    <button class="btn-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Abrir menu de navegacion">
+    <button class="btn-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Abrir menú de navegación">
         <img src="<?php echo $BASE_URL ?>/Presentacion/img/menu.png" alt="" id="burguer">
     </button>
     <ul class="dropdown-menu">
@@ -29,10 +29,8 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
 </div>
 
 <div class="acciones-header">
-    <button class="btn-idioma notranslate" type="button" id="btn-idioma" translate="no">EN</button>
-    <div id="google_translate_element"></div>
+    <button class="btn-idioma" type="button" id="btn-idioma">EN</button>
     <?php echo construirChip($usuario); ?>
 </div>
 
 <script src="<?php echo $BASE_URL ?>/Presentacion/js/idioma.js"></script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>

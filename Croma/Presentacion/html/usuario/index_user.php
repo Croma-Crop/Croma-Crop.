@@ -33,11 +33,7 @@ $BASE_URL = substr($scriptPath, 0, $posicion);
 
             <section class="bienvenida">
                 <h2>Sistema de Gestión de Recursos y Soporte de Informática</h2>
-                <p>
-                    Bienvenido al SGRSI de Croma Corp. Esta plataforma permite registrar y controlar
-                    el inventario de equipos, registrar incidencias técnicas mediante tickets y
-                    gestionar las solicitudes de servicio del instituto.
-                </p>
+                <p>Bienvenido al SGRSI de Croma Corp. Esta plataforma permite registrar y controlar el inventario de equipos, registrar incidencias técnicas mediante tickets y gestionar las solicitudes de servicio del instituto.</p>
             </section>
 
             <h3 class="titulo-modulos">Módulos del sistema</h3>
@@ -57,7 +53,7 @@ $BASE_URL = substr($scriptPath, 0, $posicion);
                 <article class="tarjeta-modulo">
                     <h4>Ficha</h4>
                     <p>Registro de ficha diaria</p>
-                    <a href="ficha.php">Registrar Ficha</a>
+                    <a href="ficha.php">Registrar ficha</a>
                 </article>
                 <article class="tarjeta-modulo">
                     <h4>Historial</h4>

@@ -28,10 +28,7 @@
 
             <section class="bienvenida">
                 <h2>Panel del administrador</h2>
-                <p>
-                    Desde acá administrás el sistema: el alta y baja de empleados, el inventario de
-                    equipos y los salones del instituto. Usá el menú para entrar a cada módulo.
-                </p>
+                <p>Desde aquí administra el sistema: el alta y baja de empleados, el inventario de equipos y los salones del instituto. Use el menú para entrar a cada módulo.</p>
             </section>
 
             <?php if (isset($_GET["mensaje"])): ?>
@@ -135,7 +132,7 @@
                 <input type="hidden" name="accion" value="rechazar">
                 <div class="cajaEntradaDeDatos">
                     <label for="motivo_rechazo">Motivo del rechazo</label>
-                    <input type="text" id="motivo_rechazo" name="motivo_rechazo" placeholder="Ej: no figura como docente del instituto" required>
+                    <input type="text" id="motivo_rechazo" name="motivo_rechazo" placeholder="Ej.: no figura como docente del instituto" required>
                 </div>
                 <button type="submit">Rechazar solicitud</button>
                 <button type="button" id="cancelarRechazo">Cancelar</button>

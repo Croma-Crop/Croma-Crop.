@@ -1,42 +1,62 @@
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'es',
-        includedLanguages: 'en,es',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
+var traducciones = {};
 
 function idiomaActual() {
-    var partes = document.cookie.split(";");
-    var i = 0;
-    while (i < partes.length) {
-        var cookie = partes[i];
-        while (cookie.charAt(0) === " ") {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf("googtrans=") === 0 && cookie.indexOf("/en") !== -1) {
-            return "en";
-        }
-        i = i + 1;
+    if (localStorage.getItem("idioma") === "en") {
+        return "en";
     }
     return "es";
 }
 
-function guardarIdioma(idioma) {
-    if (idioma === "en") {
-        document.cookie = "googtrans=/es/en;path=/";
-    } else {
-        document.cookie = "googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-}
-
 function cambiarIdioma() {
     if (idiomaActual() === "en") {
-        guardarIdioma("es");
+        localStorage.setItem("idioma", "es");
     } else {
-        guardarIdioma("en");
+        localStorage.setItem("idioma", "en");
     }
     window.location.reload();
+}
+
+function traducir(texto) {
+    if (traducciones[texto] !== undefined) {
+        return traducciones[texto];
+    }
+    return texto;
+}
+
+function traducirPagina() {
+    var elementos = document.querySelectorAll("body *");
+    var i = 0;
+    while (i < elementos.length) {
+        var elemento = elementos[i];
+        if (elemento.children.length === 0) {
+            var texto = elemento.textContent.trim();
+            if (traducciones[texto] !== undefined) {
+                elemento.textContent = traducciones[texto];
+            }
+        }
+        if (elemento.placeholder) {
+            elemento.placeholder = traducir(elemento.placeholder);
+        }
+        if (elemento.title) {
+            elemento.title = traducir(elemento.title);
+        }
+        i = i + 1;
+    }
+    document.title = traducir(document.title);
+}
+
+function pedirTraducciones() {
+    var ruta = window.location.pathname;
+    var base = ruta.substring(0, ruta.indexOf("/Presentacion/"));
+
+    fetch(base + "/Procesos/api/traducciones.php")
+        .then(function (respuesta) {
+            return respuesta.json();
+        })
+        .then(function (datos) {
+            traducciones = datos;
+            traducirPagina();
+        });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -46,10 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (idiomaActual() === "en") {
         boton.textContent = "ES";
-        boton.setAttribute("aria-label", "Ver la pagina en espanol");
+        boton.setAttribute("aria-label", "Ver la página en español");
+        pedirTraducciones();
     } else {
         boton.textContent = "EN";
-        boton.setAttribute("aria-label", "Ver la pagina en ingles");
+        boton.setAttribute("aria-label", "Ver la página en inglés");
     }
     boton.addEventListener("click", cambiarIdioma);
 });

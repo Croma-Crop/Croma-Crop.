@@ -64,7 +64,7 @@
             <article id="seccion-formulario">
                  <h3 class="titulo-seccion"><?= $editando ? "Modificar Salón" : "Ingresar Nuevo Salón" ?></h3>
                 <form id="formulario-salon" method="post" action="../../Procesos/backend/procesosalones.php">
-                    <input name="nombre" type="text" maxlength="30" id="nombreSalon" placeholder="Código del salón (Ej: L3)"
+                    <input name="nombre" type="text" maxlength="30" id="nombreSalon" placeholder="Código del salón (ej.: L3)"
                         value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>" required>
 
                     <select id="tipo" name="tipo" required>
@@ -75,7 +75,7 @@
 
                     <input type="hidden" name="id_salon" value="<?= $editando ? htmlspecialchars($editando['id_salon']) : '' ?>">
 
-                    <button id="submit" type="submit">Guardar Salón</button>
+                    <button id="submit" type="submit">Guardar salón</button>
                     <button type="button" id="cancelarSalon" <?= $editando ? '' : 'hidden' ?>>Cancelar</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>

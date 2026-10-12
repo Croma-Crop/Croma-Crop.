@@ -78,7 +78,7 @@ function construirChip($usuario){
     $enlaceAdmin = "";
 
     if ($usuario["rol"] === "administrador" && isset($modulos["administrador"])) {
-        $enlaceAdmin = "<li><a class='dropdown-item' href='" . $modulos["administrador"]["ruta"] . "'>" . "Panel de administracion" . "</a></li>";
+        $enlaceAdmin = "<li><a class='dropdown-item' href='" . $modulos["administrador"]["ruta"] . "'>" . "Panel de administración" . "</a></li>";
     }
 
     $chip = "

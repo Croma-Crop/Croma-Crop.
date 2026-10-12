@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inventario</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/inventario.css">
@@ -45,9 +45,9 @@
         <?php foreach ($equipos as $indice => $equipo): ?>
             <li class="tarjeta-producto">
                 <p class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></p>
-                <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
-                <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
-                <button type="button" class="boton-desplegar" data-indice="<?= $indice ?>">Mostrar mas</button>
+                <p class="tarjeta-marca"><span>Marca:</span> <?= htmlspecialchars($equipo['marca']) ?></p>
+                <p class="tarjeta-salon"><span>Salón:</span> <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
+                <button type="button" class="boton-desplegar" data-indice="<?= $indice ?>">Mostrar más</button>
             </li>
         <?php endforeach; ?>
         </ul>
@@ -56,12 +56,12 @@
         <dialog class="dialogo-equipo" id="dialogo-equipo-<?= $indice ?>">
             <div class="dialogo-detalle">
                 <h3 class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></h3>
-                <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
-                <p class="tarjeta-serie">Serie: <?= htmlspecialchars($equipo['numero_serie']) ?></p>
-                <p class="tarjeta-modelo">Modelo: <?= htmlspecialchars($equipo['modelo']) ?></p>
-                <p class="tarjeta-estado">Estado: <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
-                <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
-                <p class="tarjeta-intervenciones">Intervenciones: <?= htmlspecialchars($equipo['numero_intervenciones']) ?></p>
+                <p class="tarjeta-marca"><span>Marca:</span> <?= htmlspecialchars($equipo['marca']) ?></p>
+                <p class="tarjeta-serie"><span>Serie:</span> <?= htmlspecialchars($equipo['numero_serie']) ?></p>
+                <p class="tarjeta-modelo"><span>Modelo:</span> <?= htmlspecialchars($equipo['modelo']) ?></p>
+                <p class="tarjeta-estado"><span>Estado:</span> <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
+                <p class="tarjeta-salon"><span>Salón:</span> <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
+                <p class="tarjeta-intervenciones"><span>Intervenciones:</span> <?= htmlspecialchars($equipo['numero_intervenciones']) ?></p>
                 <div class="tarjeta-acciones">
                     <a class="boton-historial" href="?historial=<?= urlencode($equipo['numero_serie']) ?>">Ver historial</a>
                     <button type="button" class="boton-modificar boton-abrir-edicion" data-indice="<?= $indice ?>">Modificar</button>
@@ -86,8 +86,8 @@
                 <h3 class="titulo-seccion">Modificar equipo</h3>
                 <input type="hidden" name="esEdicion" value="1">
                 <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
-                <input name="nombre" type="text" maxlength="30" placeholder="Nombre del articulo" required value="<?= htmlspecialchars($equipo['nombre']) ?>">
-                <input name="marca" type="text" maxlength="30" placeholder="Marca del articulo" required value="<?= htmlspecialchars($equipo['marca']) ?>">
+                <input name="nombre" type="text" maxlength="30" placeholder="Nombre del artículo" required value="<?= htmlspecialchars($equipo['nombre']) ?>">
+                <input name="marca" type="text" maxlength="30" placeholder="Marca del artículo" required value="<?= htmlspecialchars($equipo['marca']) ?>">
                 <input name="modelo" type="text" maxlength="30" placeholder="Modelo" required value="<?= htmlspecialchars($equipo['modelo']) ?>">
                 <select name="estado" required>
                     <option value="operativo" <?= $equipo['estado'] === 'operativo' ? 'selected' : '' ?>>Operativo</option>
@@ -120,8 +120,8 @@
                 <h3 class="titulo-seccion"><?= $editando ? "Modificar Equipo" : "Ingresar Nuevo Equipo" ?></h3>
                 <form id="formulario-producto" method="post" action="../../Procesos/backend/procesoinventario.php">
                     <input name="nombre" type="text" maxlength="30" id="nombre" placeholder="Nombre del artículo" required value="<?= $editando ? htmlspecialchars($editando['nombre']) : '' ?>">
-                    <input name="marca" type="text" maxlength="30" id="marca" placeholder="Marca del articulo" required value="<?= $editando ? htmlspecialchars($editando['marca']) : '' ?>">
-                    <input name="numero_serie" type="text" maxlength="30" class="numSerie" placeholder="Numero de Serie" required value="<?= $editando ? htmlspecialchars($editando['numero_serie']) : '' ?>" <?= $editando ? 'readonly' : '' ?>>
+                    <input name="marca" type="text" maxlength="30" id="marca" placeholder="Marca del artículo" required value="<?= $editando ? htmlspecialchars($editando['marca']) : '' ?>">
+                    <input name="numero_serie" type="text" maxlength="30" class="numSerie" placeholder="Número de serie" required value="<?= $editando ? htmlspecialchars($editando['numero_serie']) : '' ?>" <?= $editando ? 'readonly' : '' ?>>
                     <input name="modelo" type="text" maxlength="30" class="numSerie" placeholder="Modelo" required value="<?= $editando ? htmlspecialchars($editando['modelo']) : '' ?>">
                     <select name="estado" id="estado" required>
                         <option value="">--- Seleccionar estado ---</option>
@@ -137,7 +137,7 @@
                         <option value="<?= htmlspecialchars($salon['id_salon']) ?>" <?= ($editando && $editando['id_salon'] == $salon['id_salon']) ? 'selected' : '' ?>><?= htmlspecialchars($salon['nombre']) ?></option>  
                         <?php endforeach; ?>
                     </select>
-                    <button id="submit" type="submit">Guardar Artículo</button>
+                    <button id="submit" type="submit">Guardar artículo</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>
                 <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">
@@ -149,7 +149,7 @@
 
                     <dialog id="dialogHistorial" <?= $numeroSerieHistorial ? 'open' : '' ?>>
                     <button id="cerrarHistorial" type="button" onclick="document.getElementById('dialogHistorial').close()">Cerrar</button>
-                    <h3 id="tituloHistorial">Historial de intervenciones — Serie: <?= htmlspecialchars($numeroSerieHistorial ?? '') ?></h3>
+                    <h3 id="tituloHistorial"><span>Historial de intervenciones — Serie:</span> <?= htmlspecialchars($numeroSerieHistorial ?? '') ?></h3>
 
                     <ul id="listaHistorial">
                         <?php if (empty($historial)): ?>
@@ -158,8 +158,8 @@
                             <?php foreach ($historial as $h): ?>
                                 <li class="item-historial">
                                     <p><strong><?= htmlspecialchars($h['fecha']) ?></strong> — <?= htmlspecialchars($h['descripcion']) ?></p>
-                                    <p>Técnico: <?= htmlspecialchars($h['nombre'] ? $h['nombre'] . ' ' . $h['apellido'] : ($h['tecnico'] ?? '-')) ?></p>
-                                    <p>Solución: <?= htmlspecialchars($h['solucion'] ?? 'Pendiente') ?></p>
+                                    <p><span>Técnico:</span> <?= htmlspecialchars($h['nombre'] ? $h['nombre'] . ' ' . $h['apellido'] : ($h['tecnico'] ?? '-')) ?></p>
+                                    <p><span>Solución:</span> <?= htmlspecialchars($h['solucion'] ?? 'Pendiente') ?></p>
                                 </li>
                             <?php endforeach; ?>
                         <?php endif; ?>
