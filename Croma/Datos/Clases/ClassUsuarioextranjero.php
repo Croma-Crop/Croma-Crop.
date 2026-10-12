@@ -172,7 +172,7 @@ public string $estado;
  }
 
  public function iniciarsesion($documento){
-    $sql = "SELECT documento, nombre, apellido, contrasena, rol, estado FROM usuarioextranjero WHERE documento = ? AND estado = 'activo'";
+    $sql = "SELECT documento, nombre, apellido, contrasena, rol, estado FROM usuarioextranjero WHERE documento = ? AND estado = 'aprobado' ";
     $stmt = $this->conexion->prepare($sql);
     $stmt->bind_param( "s", $documento);
     $stmt->execute();

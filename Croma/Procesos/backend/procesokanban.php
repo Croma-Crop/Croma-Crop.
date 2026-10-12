@@ -5,6 +5,7 @@ require_once __DIR__ . "/sanitizar.php";
 require_once "../../Datos/Clases/ClassIncidencia.php";
 require_once "../../Datos/Clases/ClassSolicitud.php";
 require_once "../../Datos/Clases/ClassUsuario.php";
+require_once "../../Datos/Clases/ClassUsuarioextranjero.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -58,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($tecnicoActual === false) {
             $mensajeError = "El ticket no existe";
-        } elseif ($valor !== "" && !Usuario::esTecnico($conexion, $valor)) {
+        } elseif ($valor !== "" && !Usuario::esTecnico($conexion, $valor) && !Usuarioextranjero::esTecnico($conexion, $valor)) { 
             $mensajeError = "Solo se puede asignar el ticket a un usuario tecnico";
         } elseif (!puedeHacer("asignarTecnico", $_SESSION["rol"])) {
 

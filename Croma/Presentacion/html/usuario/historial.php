@@ -15,7 +15,7 @@
         <?php include '../../globales/Header.php';
 
             require '../../../Procesos/mostrarhistorial.php';
-        $documentoElegido = $rolSesion === "administrador" ? ($_GET['documento'] ?? '') : $usuario['documento'];        ?>
+        $documentoElegido = $rolSesion === "administrador" ? ($_GET['documento'] ?? '') : $usuarioSesion;        ?>
     </header>
     <?php
     $nombresMeses = ["01" => "Enero", "02" => "Febrero", "03" => "Marzo", "04" => "Abril", "05" => "Mayo", "06" => "Junio", "07" => "Julio", "08" => "Agosto", "09" => "Septiembre", "10" => "Octubre", "11" => "Noviembre", "12" => "Diciembre"];
@@ -37,12 +37,12 @@
                     </form>
                 <?php endif; ?>
 
-                <?php if (!empty($fichas)): ?>
+                <?php if (!empty($resultado)): ?>
                     <div class="control">
                         <label for="mes">Mes</label>
                        <select id="mes">
                         <?php $mesesVistos = []; ?>
-                        <?php foreach ($fichas as $ficha): ?>
+                        <?php foreach ($resultado as $ficha): ?>
                             <?php $mes = substr($ficha['fecha'], 0, 7); ?>
                             <?php if (!in_array($mes, $mesesVistos)): ?>
                                 <?php $mesesVistos[] = $mes; ?>
@@ -59,7 +59,7 @@
 
             <?php if ($rolSesion === "administrador" && $documentoElegido === ""): ?>
                 <p class="aviso">Elegí un usuario para ver su historial.</p>
-            <?php elseif (empty($fichas)): ?>
+            <?php elseif (empty($resultado)): ?>
                 <p class="aviso">Todavía no hay fichas registradas.</p>
             <?php else: ?>
                 <div class="tabla-envoltorio">

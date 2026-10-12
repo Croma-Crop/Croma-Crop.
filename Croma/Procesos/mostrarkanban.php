@@ -3,12 +3,13 @@
 require_once __DIR__ . '/../Datos/Clases/ClassIncidencia.php';
 require_once __DIR__ . '/../Datos/Clases/ClassSolicitud.php';
 require_once __DIR__ . '/../Datos/Clases/ClassUsuario.php';
+require_once __DIR__ . '/../Datos/Clases/ClassUsuarioextranjero.php';
 require_once __DIR__ . '/../Datos/Clases/ClassInventario.php';
 require_once __DIR__ . '/../Datos/DataBase/ConexionMYSQL/conexion.php';
 
 $incidencias = Incidencia::mostrar($conexion);
 $solicitudes = Solicitud::mostrar($conexion);
-$usuarios = Usuario::mostrar($conexion);
+$usuarios = array_merge(Usuario::mostrar($conexion), Usuarioextranjero::mostrar($conexion));
 $equiposRegistrados = Inventario::mostrarTodos($conexion);
 
 $nombresPorDocumento = [];

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2026 a las 03:45:03
+-- Tiempo de generación: 12-10-2026 a las 22:18:18
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,9 +58,9 @@ CREATE TABLE `incidencia` (
 --
 
 INSERT INTO `incidencia` (`id_incidencia`, `fecha`, `fecha_limite`, `turno`, `estado`, `tipo`, `descripcion`, `prioridad`, `cedula_solicitante`, `cedula_tecnico`, `id_registro_origen`, `numero_serie`) VALUES
-(3, '2026-08-22', '2026-11-06', 'nocturno', 'En proceso', 'Televisor', 'wachin', 'Alta', '33333333', '22222222', NULL, '123'),
-(4, '2026-08-23', NULL, 'vespertino', 'Resuelto', 'Periferico', 'se rompio mal ahi mano', 'Media', '33333333', '22222222', NULL, '123'),
-(5, '2026-09-28', NULL, 'matutino', 'Pendiente', 'Computadora', 'assasa', 'Sin asignar', '66666666', NULL, NULL, '123');
+(16, '2026-10-11', NULL, 'matutino', 'En proceso', 'Computadora', 'UOJOJOJOY NOOOO MI MILANESA', 'Sin asignar', '66666666', 'A2222222', NULL, '131231231231233'),
+(17, '2026-10-11', NULL, 'matutino', 'Pendiente', 'Computadora', 'Carlos se hizo el que sabia de programar y rompio el kernel', 'Alta', '66666666', NULL, NULL, '131231231231233'),
+(20, '2026-10-12', NULL, 'matutino', 'Resuelto', 'Computadora', 'UDWFHQOFHQWOFQWFQ', 'Sin asignar', 'A2222222', NULL, NULL, '60S3X54');
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,8 @@ CREATE TABLE `intervencion` (
 
 INSERT INTO `intervencion` (`id_intervencion`, `numero_serie`, `fecha`, `descripcion`, `tecnico`, `solucion`) VALUES
 (1, '123', '2026-08-13', 'wachin', NULL, NULL),
-(2, '123', '2026-09-01', 'wachin2', NULL, NULL);
+(2, '123', '2026-09-01', 'wachin2', NULL, NULL),
+(3, '60S3X54', '2026-10-12', 'Incidencia #20 (Computadora): UDWFHQOFHQWOFQWFQ', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,11 +108,17 @@ CREATE TABLE `inventario` (
 --
 
 INSERT INTO `inventario` (`numero_serie`, `nombre`, `marca`, `modelo`, `estado`, `numero_intervenciones`, `id_salon`, `cedula_administrador`) VALUES
-('123', 'Computadora de escritorio', 'HP', 'ProDesk 400 G7', 'en_reparacion', 2, 5, NULL),
-('123123213', 'Proyector', 'Epson', 'PowerLite E20', 'en_reparacion', 0, 2, NULL),
-('1245', 'Monitor', 'Samsung', 'S24R350', 'de_baja', 0, 5, NULL),
-('343', 'Televisor', 'LG', '43UR7800', 'en_reparacion', 0, 10, NULL),
-('555555', 'Impresora', 'Brother', 'HL-1212W', 'de_baja', 0, 11, NULL);
+('123', 'PC 1', 'HP', 'ProDesk 400 G7', 'en_reparacion', 0, 5, NULL),
+('123123213', 'PC 2', 'Raspberry PI', 'Raspberry', 'en_reparacion', 0, 2, NULL),
+('12FYU53', 'PC 8', 'Xiaomi', 'Sokolov', 'en_reparacion', 0, 16, NULL),
+('12ythjrty5hr5', 'PC 4', 'Acme', 'RX2074', 'operativo', 0, 12, NULL),
+('131231231231233', 'Perry', 'Acme', 'PEneano', 'operativo', 0, 2, NULL),
+('138U75H', 'PC 5', 'Lenovo', 'Raspberry', 'operativo', 0, 15, NULL),
+('19UR80', 'PC 3', 'Croma', 'MOS17', 'de_baja', 0, 12, NULL),
+('343', 'PC 1', 'LG', '43UR790', 'operativo', 0, 10, NULL),
+('60S3X54', 'PC 10', 'Mac', 'incubus', 'operativo', 1, 15, NULL),
+('87UI90', 'PC 6', 'Panavox', 'Abaddon', 'operativo', 0, 10, NULL),
+('9R12B18', 'PC 7', 'Raspberry PI', 'Ipecac', 'operativo', 0, 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,7 +143,9 @@ INSERT INTO `registro_diario` (`id_registro`, `fecha`, `hora_entrada`, `hora_sal
 (1, '2026-08-06', '21:40:00', '00:42:00', '56357055', 14),
 (2, '2026-08-20', '00:42:00', '22:40:00', '56357055', 5),
 (3, '2026-10-11', '13:13:00', '13:23:00', '33333333', 2),
-(4, '2026-10-03', '01:27:00', '04:30:00', '10101010', 13);
+(4, '2026-10-03', '01:27:00', '04:30:00', '10101010', 13),
+(5, '2026-10-09', '02:28:00', '04:28:00', '33333333', 10),
+(6, '2026-10-13', '19:16:00', '21:18:00', 'A3333333', 10);
 
 -- --------------------------------------------------------
 
@@ -155,15 +164,15 @@ CREATE TABLE `salon` (
 --
 
 INSERT INTO `salon` (`id_salon`, `nombre`, `tipo`) VALUES
-(2, 'T1', 'taller'),
-(5, 'T2', 'taller'),
-(10, 'T3', 'taller'),
-(11, 'T4', 'taller'),
-(12, 'L1', 'laboratorio'),
-(13, 'L2', 'laboratorio'),
-(14, 'L3', 'laboratorio'),
-(15, 'L4', 'laboratorio'),
-(16, 'L5', 'laboratorio');
+(2, 'Taller 1', 'taller'),
+(5, 'Taller 2', 'taller'),
+(10, 'Taller 3', 'taller'),
+(11, 'Taller 4', 'taller'),
+(12, 'Laboratorio 1', 'laboratorio'),
+(13, 'Laboratorio 2', 'laboratorio'),
+(14, 'Laboratorio 3', 'laboratorio'),
+(15, 'Laboratorio 4', 'laboratorio'),
+(16, 'Laboratorio 5', 'laboratorio');
 
 -- --------------------------------------------------------
 
@@ -190,7 +199,7 @@ CREATE TABLE `solicitud` (
 --
 
 INSERT INTO `solicitud` (`id_solicitud`, `tipo`, `nombre_software`, `descripcion`, `fecha`, `hora_inicio`, `hora_fin`, `estado`, `cedula_solicitante`, `cedula_tecnico`, `id_salon`) VALUES
-(4, 'Instalacion de Software', 'AutoCAD', 'Se necesita para la materia de dibujo tecnico', NULL, NULL, NULL, 'Pendiente', '66666666', NULL, 5);
+(7, 'Instalacion de Software', 'tux', 'Che le pueden poner, no se, Arch o fedora?', NULL, NULL, NULL, 'Resuelto', '66666666', '22222222', 2);
 
 -- --------------------------------------------------------
 
@@ -212,18 +221,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`, `estado`) VALUES
-('10101010', 'wachin', 'putito', '$2y$10$kned0SrJQxZ7K0j.OObwquVEMlYIXPV4cQyIxa.orH5Cia80jgy4i', 'solicitante', 'aprobado'),
-('12312313', 'asdasd', 'asdasd', '$2y$10$w8vlbg6FW1E.5LSJD26wPuv/hZMijDQdyDdU41QkPLeidSg53Uyoq', 'tecnico', 'aprobado'),
-('12312322', 'as', 'ElEnseñador', '$2y$10$IRg3eBMbriJZlq/ey5kdfe/ZPjBd.ns7ByxD10sj675IVjlThx476', 'tecnico', 'pendiente'),
-('22222222', 'as', 'ffffffffffffffffffffffffff', '$2y$10$n6RwiFPOxLL5O4fBVH3Or.cCL0E29lp7ViUUzHdKdcwWgemvXKTeG', 'tecnico', 'aprobado'),
-('23232323', 'asasaasas', 'asassa', '$2y$10$I64sUpp.YmJpc/q4ogn4pugKLAjvVKJa2yXDZZQbm/QNstSV28UrS', 'tecnico', 'aprobado'),
-('32801287', 'asduhadhuidaihuasdhuis', 'oñashuashuilad', '$2y$10$HDka4wufQS77K90xwxRJ.OA7LMM1/7DGazYwdQiuncNx3TfeUIDLu', 'solicitante', 'aprobado'),
-('33333333', 'asd', 'fffffffffffffffffffffffffffffffffffffff', '$2y$10$GMCVFN7HoZBUTQ67nRYHWOPrbyEXDpwwuk1ZR2P2q5Wbpe4Ys37he', 'solicitante', 'aprobado'),
-('44444444', 'asdasd', 'fa', '$2y$10$22v8A13FThdgC8DdAdF48eT4dRP7X8jmUeqOEymr27vUAXnc8Ohlm', 'solicitante', 'aprobado'),
-('44444445', 'asdasd', 'asd', '$2y$10$42mAottiCA3Ffdsmv4B9MOVNdYn80aKMRHYCD6Bs9N1WyveVnxU8y', 'tecnico', 'aprobado'),
-('56357055', 'Juan', 'ElPROFE', '$2y$10$oBB4QN2HIOO.ptHn4d9A9OMu1wQChPN1DW014Cxg4/OPMFJ.ip/V2', 'solicitante', 'aprobado'),
-('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador', 'aprobado'),
-('67676767', 'asasas', 'asdasdasd', '$2y$10$jEeziqlhBSRqWPkrf.0dMOb0txtyONdZ0.rxED6VejxavtQQk5mpa', 'administrador', 'aprobado');
+('11111111', 'Admin', 'Prueba', '$2y$10$vFPWp40ou9JX8PZgPn.pUOKIBc3hS9u.5paetrhp9uIaNNBzyqtmG', 'administrador', 'aprobado'),
+('22222222', 'Tecnico', 'Prueba', '$2y$10$cgAqA4wcamW3Os9TIz0O0uO4YlZPHb0GGXFvk232QAdMh9rXuLZbO', 'tecnico', 'aprobado'),
+('33333333', 'Solicitante', 'Prueba', '$2y$10$YJHfrv.tuRD8/rpcCNZRBuOUL90za4Wdcnq6aQnV.EwMMssJUlCKe', 'solicitante', 'aprobado'),
+('66666666', 'a', 'Profesor', '$2y$10$egHmOTuLrlVAalI0KMeUw./ueo.bdjbsCm4N1fpyNJfHvklACj6GO', 'administrador', 'aprobado');
 
 -- --------------------------------------------------------
 
@@ -245,13 +246,9 @@ CREATE TABLE `usuarioextranjero` (
 --
 
 INSERT INTO `usuarioextranjero` (`documento`, `nombre`, `apellido`, `contrasena`, `rol`, `estado`) VALUES
-('A1111111', 'estoesun', 'ejemplo', '$2y$10$vQkxOIVwr6bhLVfP66ndQ.x84u0zLkKgnNN3qFTVbQ9LTsheDajzi', 'solicitante', 'aprobado'),
-('A3333333', 'as', 'asdad', '$2y$10$3JaF4.Kw.9eywu2nOG6qFOj7pbGKSKlix.T3AUsYq16p3p8HXyCuy', 'tecnico', 'aprobado'),
-('a8888888', 'asdasd', 'asdasd', '$2y$10$1xlCI2zFLPTZBKvxvhBkGutUzoTyEWIfhS8M7QWGqEoxt9p9dJcAi', 'tecnico', 'aprobado'),
-('A1010101', 'jjjjj', 'asdasd', '$2y$10$SMDVZUxZLYKP/N0pK7FuBe6FKMJKs5Q471aUlAyxjioFoM9YnTfHa', 'tecnico', 'aprobado'),
-('A3232323', 'asdasd', 'asdas', '$2y$10$oDRfR1YtXGkFfTkLlVTS2.Qb7XZqnQDMgY7xxSeRb4cTpIf.jClvS', 'administrador', 'aprobado'),
-('A7878787', 'asdasd', 'ElEnseñador', '$2y$10$x9SSzrjYgspQDlstKARuy.c/P5qE6GCvpHMH6bDxNl5BbXYsqDhBW', 'administrador', 'aprobado'),
-('P6666666', 'sivesesto', 'medebesunalfajor', '$2y$10$WnBm7mtGNZ2swviz5nD0Qu0ZpY/zUwz5n4FqZLtziXwOmr8P7buXG', 'administrador', 'pendiente');
+('A1111111', 'Admin', 'Extranjero', '$2y$10$xJck2Dp4s7hozHzIqSxWx.JF6X5AmCTSVuIkeHJSIDC1LWccfdXwK', 'administrador', 'aprobado'),
+('A2222222', 'Tecnico', 'Extranjero', '$2y$10$C8SzIfy6IR7QlLPpJLBYau/mQ59.qhH9K0a7Cg9ISK9TOFbBGBPo.', 'tecnico', 'aprobado'),
+('A3333333', 'Solicitante', 'Extranjero', '$2y$10$z3ZS4nnP84V0EkHOYlXy/uxIszcyXU3gRHJvV7qlb3NGSwI7GOyyq', 'solicitante', 'aprobado');
 
 --
 -- Índices para tablas volcadas
@@ -320,6 +317,12 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`documento`);
 
 --
+-- Indices de la tabla `usuarioextranjero`
+--
+ALTER TABLE `usuarioextranjero`
+  ADD PRIMARY KEY (`documento`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -327,19 +330,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
-  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `intervencion`
 --
 ALTER TABLE `intervencion`
-  MODIFY `id_intervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_intervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_diario`
 --
 ALTER TABLE `registro_diario`
-  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `salon`
@@ -351,7 +354,7 @@ ALTER TABLE `salon`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -361,17 +364,14 @@ ALTER TABLE `solicitud`
 -- Filtros para la tabla `gestiona`
 --
 ALTER TABLE `gestiona`
-  ADD CONSTRAINT `fk_gestiona_inventario` FOREIGN KEY (`numero_serie`) REFERENCES `inventario` (`numero_serie`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_gestiona_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_gestiona_inventario` FOREIGN KEY (`numero_serie`) REFERENCES `inventario` (`numero_serie`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
   ADD CONSTRAINT `fk_incidencia_inventario` FOREIGN KEY (`numero_serie`) REFERENCES `inventario` (`numero_serie`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_incidencia_registro` FOREIGN KEY (`id_registro_origen`) REFERENCES `registro_diario` (`id_registro`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_incidencia_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_incidencia_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_incidencia_registro` FOREIGN KEY (`id_registro_origen`) REFERENCES `registro_diario` (`id_registro`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `intervencion`
@@ -383,23 +383,19 @@ ALTER TABLE `intervencion`
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  ADD CONSTRAINT `fk_inventario_administrador` FOREIGN KEY (`cedula_administrador`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_inventario_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `registro_diario`
 --
 ALTER TABLE `registro_diario`
-  ADD CONSTRAINT `fk_registro_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_registro_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_registro_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  ADD CONSTRAINT `fk_solicitud_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_solicitud_solicitante` FOREIGN KEY (`cedula_solicitante`) REFERENCES `usuario` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_solicitud_tecnico` FOREIGN KEY (`cedula_tecnico`) REFERENCES `usuario` (`documento`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_solicitud_espacio` FOREIGN KEY (`id_salon`) REFERENCES `salon` (`id_salon`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

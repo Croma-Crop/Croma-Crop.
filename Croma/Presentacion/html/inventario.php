@@ -45,8 +45,8 @@
         <?php foreach ($equipos as $indice => $equipo): ?>
             <li class="tarjeta-producto">
                 <p class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></p>
-                <p class="tarjeta-marca">Marca: <?= htmlspecialchars($equipo['marca']) ?></p>
                 <p class="tarjeta-salon">Salon: <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
+                <p class="tarjeta-estado">Estado: <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
                 <button type="button" class="boton-desplegar" data-indice="<?= $indice ?>">Mostrar mas</button>
             </li>
         <?php endforeach; ?>
@@ -168,13 +168,6 @@
                     <?php if ($numeroSerieHistorial): ?>
                         <form method="post" action="../../Procesos/registrarintervencion.php">
                             <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($numeroSerieHistorial) ?>">
-                            <label for="fecha">Fecha</label>
-                            <input type="date" name="fecha" id="fecha">
-                            <label for="descripcion">Error encontrado</label>
-                            <input type="text" name="descripcion" id="descripcion" required>
-                            <label for="solucion">Solución aplicada</label>
-                            <input type="text" name="solucion" id="solucion">
-                            <button type="submit">Registrar intervención</button>
                         </form>
                     <?php endif; ?>
                 </dialog>

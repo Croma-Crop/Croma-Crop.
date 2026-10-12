@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../DataBase/ErroresBD.php";
 require_once __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
+require_once __DIR__ . '/ClassIntervencion.php';
 
 class Incidencia {
     public mysqli $conexion;
@@ -73,6 +74,21 @@ class Incidencia {
 }
 public function cambiarEstado(string $nuevoEstado): bool {
     try {
+        $sqlActual = "SELECT estado, tipo, descripcion, cedula_tecnico, numero_serie FROM incidencia WHERE id_incidencia = ?";
+        $stmtActual = $this->conexion->prepare($sqlActual);
+
+        if (!$stmtActual) {
+            return false;
+        }
+
+        $stmtActual->bind_param("i", $this->id_incidencia);
+        $stmtActual->execute();
+        $actual = $stmtActual->get_result()->fetch_assoc();
+
+        if (!$actual || $actual['estado'] === 'Resuelto') {
+            return false;
+        }
+
         $sql = "UPDATE incidencia SET estado = ? WHERE id_incidencia = ?";
         $stmt = $this->conexion->prepare($sql);
 
@@ -81,8 +97,15 @@ public function cambiarEstado(string $nuevoEstado): bool {
         }
 
         $stmt->bind_param("si", $nuevoEstado, $this->id_incidencia);
+        $estadoActual = $stmt->execute();
 
-        return $stmt->execute();
+        if ($estadoActual && $nuevoEstado === 'Resuelto' && $actual['numero_serie'] !== null) {
+            $descripcion = "Incidencia #" . $this->id_incidencia . " (" . $actual['tipo'] . "): " . $actual['descripcion'];
+            $intervencion = new Intervencion($this->conexion, $actual['numero_serie'], date('Y-m-d'), $descripcion, $actual['cedula_tecnico'], null);
+            $intervencion->registrar();
+        }
+
+        return $estadoActual;
 
     } catch (mysqli_sql_exception $e) {
         return false;
