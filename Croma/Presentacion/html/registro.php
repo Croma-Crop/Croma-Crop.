@@ -48,7 +48,7 @@ session_start();
                 </section>
 
                 <div id="campo-boton">
-                    <button id="extranjero">Si es extranjero, haga clic aquí</button>
+                <a id="extranjero" href="registro.php?tipo=extranjero">Si sos extranjero clickea aca</a>                
                 </div>
 
                 <label for="nombre">Nombre</label>

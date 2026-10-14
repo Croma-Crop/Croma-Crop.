@@ -1,11 +1,8 @@
 <?php
 
 require_once __DIR__ . "/sanitizar.php";
-require_once '../../Datos/Clases/ClassSolicitudUsuario.php';
 require_once '../../Datos/Clases/ClassUsuario.php';
 require_once '../../Datos/Clases/ClassUsuarioextranjero.php';
-require_once '../../Datos/Clases/ClassSolicitudUsuarioextranjero.php';
-
 require_once '../../Datos/DataBase/ConexionMYSQL/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = limpiarTextoCorto($_POST['nombre'] ?? '', 50);
     $apellido = limpiarTextoCorto($_POST['apellido'] ?? '', 50);
     $rolPedido = limpiarOpcion($_POST['rol_pedido'] ?? '', ["solicitante", "tecnico", "administrador"]);
-    $motivo = limpiarTexto($_POST['motivo'] ?? '');
     $contrasenaIngresada = $_POST['contrasena'] ?? '';
     $contrasenaRepetida = $_POST['contrasena_repetida'] ?? '';
     $tipo = limpiarOpcion($_GET['tipo'] ?? '', ["extranjero"]);
@@ -38,10 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensajeError = "Tenes que elegir el rol que te corresponde";
     }
 
-    if ($mensajeError === "" && $motivo === "") {
-        $mensajeError = "Tenes que escribir el motivo de la solicitud";
-    }
-
     if ($mensajeError === "" && strlen($contrasenaIngresada) < 8) {
         $mensajeError = "La contraseña tiene que tener al menos 8 caracteres";
     }
@@ -54,9 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensajeError = "Ese documento ya tiene un usuario en el sistema";
     }
 
-    if ($mensajeError === "" && SolicitudUsuario::existePendiente($conexion, $documento)) {
-        $mensajeError = "Ya hay una solicitud pendiente con ese documento";
-    }
 
     if ($mensajeError !== "") {
         header("Location: ../../Presentacion/html/registro.php?tipo=error&mensaje=" . urlencode($mensajeError));
@@ -65,22 +54,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $contrasena = password_hash($contrasenaIngresada, PASSWORD_DEFAULT);
     if($tipo === "extranjero"){
-    $solicitud = new SolicitudUsuarioextranjero($conexion, null, $documento, $nombre, $apellido, $contrasena, $rolPedido, $motivo, "Pendiente");
+    $solicitud = new Usuarioextranjero($conexion, $documento, $nombre, $apellido, $contrasena, $rolPedido, "pendiente");
     }else{
-    $solicitud = new SolicitudUsuario(
+    $solicitud = new Usuario(
         $conexion,
-        null,
         $documento,
         $nombre,
         $apellido,
         $contrasena,
         $rolPedido,
-        $motivo,
-        "Pendiente"
+        "pendiente"
     );
     }
 
-    $ok = $solicitud->guardar();
+    $ok = $solicitud->crearusuario();
 
     if ($ok) {
         header("Location: ../../Presentacion/html/registro.php?tipo=exito&mensaje=" . urlencode("Solicitud enviada, un administrador la va a revisar"));
