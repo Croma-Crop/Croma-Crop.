@@ -65,6 +65,8 @@ session_start();
                     <option value="administrador">Administrador</option>
                 </select>
 
+                <label for="motivo">¿Para qué necesita el usuario?</label>
+                <input type="text" id="motivo" name="motivo" placeholder="Ej.: soy docente de 3ro" required>
 
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="contrasena" placeholder="Al menos 8 caracteres" minlength="8" required>
