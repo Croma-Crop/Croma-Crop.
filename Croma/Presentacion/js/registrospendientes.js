@@ -8,8 +8,7 @@ const actionRechazo = formRechazo.getAttribute("action");
 document.querySelectorAll(".boton-rechazar").forEach(function (boton) {
     boton.addEventListener("click", function () {
         idRechazo.value = boton.dataset.id;
-        nombreRechazado.textContent = traducir("Solicitud de") + " " + boton.dataset.nombre;
-        motivoRechazo.value = "";
+        nombreRechazado.textContent = "Solicitud de " + boton.dataset.nombre;
 
         if (boton.dataset.tipo === "extranjero") {
             formRechazo.action = actionRechazo + "?tipo=extranjero";
