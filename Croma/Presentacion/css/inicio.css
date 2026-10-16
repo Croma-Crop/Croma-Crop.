@@ -48,11 +48,6 @@
     padding: var(--esp-4) var(--esp-5);
     text-align: left;
     box-shadow: var(--sombra);
-    transition: box-shadow var(--transicion);
-}
-
-.tarjeta-resumen:hover {
-    box-shadow: var(--sombra-elevada);
 }
 
 .tarjeta-resumen .numero {
@@ -70,41 +65,87 @@
     margin-top: var(--esp-1);
 }
 
-.modulos {
+.acciones-principales {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1em;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
-.tarjeta-modulo {
-    background-color: white;
+.boton-grande {
+    display: block;
+    padding: 24px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--navy-700);
+    background-color: var(--superficie);
+    border: 2px solid var(--navy-700);
+    border-radius: var(--radio);
+}
+
+.boton-grande:hover {
+    background-color: var(--lienzo);
+}
+
+.boton-grande-principal {
+    color: var(--crema);
+    background-color: var(--navy-700);
+}
+
+.boton-grande-principal:hover {
+    background-color: var(--navy-600);
+}
+
+.accesos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.acceso {
+    display: block;
+    background-color: var(--superficie);
     border: 1px solid var(--borde);
     border-radius: var(--radio);
     padding: 20px;
+    cursor: pointer;
 }
 
-.tarjeta-modulo h4 {
+.acceso:hover {
+    background-color: var(--lienzo);
+    border-color: var(--navy-700);
+}
+
+.acceso h4 {
     font-size: 16px;
     color: var(--navy-700);
     font-weight: bold;
     margin-bottom: 8px;
 }
 
-.tarjeta-modulo p {
+.acceso h4::after {
+    content: " →";
+}
+
+.acceso p {
     font-size: 14px;
-    color: var(--texto);
+    color: var(--texto-tenue);
     line-height: 1.5;
-    margin-bottom: 12px;
 }
 
-.tarjeta-modulo a {
-    color: var(--navy-700);
-    font-weight: bold;
-    font-size: 14px;
+.aviso-inicio {
+    padding: 24px;
+    text-align: center;
+    border: 1px dashed var(--borde);
+    border-radius: var(--radio);
+    background-color: var(--superficie);
+    color: var(--texto-tenue);
+    margin-bottom: 24px;
 }
 
-.tarjeta-modulo a:hover {
-    text-decoration: underline;
+.tabla-envoltorio {
+    margin-bottom: 24px;
 }
 
 @media (min-width: 1024px) {
@@ -134,7 +175,7 @@
         font-size: 30px;
     }
 
-    .modulos{
+    .accesos, .acciones-principales{
         grid-template-columns: 1fr 1fr;
         gap: var(--esp-4);
     }
@@ -150,7 +191,7 @@
         gap: var(--esp-3);
     }
 
-    .modulos{
+    .accesos, .acciones-principales{
         grid-template-columns: 1fr 1fr;
         gap: var(--esp-3);
     }
@@ -182,7 +223,7 @@
         font-size: var(--texto-xl);
     }
 
-    .modulos{
+    .accesos, .acciones-principales{
         grid-template-columns: 1fr;
     }
 }
