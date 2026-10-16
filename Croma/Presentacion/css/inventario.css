@@ -96,8 +96,7 @@
 
 #cerrarHistorial {
     float: right;
-    background-color: var(--peligro);
-    color: var(--crema);
+    padding: 9px 16px;
 }
 
 #listaHistorial {
@@ -164,18 +163,6 @@ button
     
 }
 
-button, #submit {
-    background-color: var(--navy-700);
-    color: var(--crema);
-    border: none;
-    cursor: pointer;
-    transition: var(--transicion);
-    font-weight: bold;
-}
-#submit:hover{
-    background-color: var(--navy-600);
-    box-shadow: var(--sombra-elevada);
-}
 
 ul {
     list-style: none;
@@ -216,10 +203,6 @@ ul {
 
 .boton-desplegar {
     margin-top: auto;
-    background-color: var(--navy-700);
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
 .dialogo-equipo {
@@ -259,28 +242,11 @@ ul {
 .boton-borrar {
     display: block;
     width: 100%;
-    padding: 9px 0;
-    font-weight: bold;
-    border: 1px solid var(--peligro);
-    border-radius: var(--radio);
-    cursor: pointer;
-    transition: var(--transicion);
-    background-color: var(--superficie);
-    color: var(--peligro);
-}
-
-.boton-borrar:hover {
-    background-color: var(--peligro-claro);
-    box-shadow: var(--sombra-elevada);
 }
 
 .boton-cerrar-equipo {
     margin-top: 16px;
     width: 100%;
-    background-color: var(--texto-tenue);
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
 .tarjeta-acciones {
@@ -395,19 +361,9 @@ ul {
 }
 
 .ayuda-listado a {
-    color: var(--info-texto);
+    color: #1b5b83;
 }
 
 #cancelarSalon {
     margin-top: var(--esp-2);
-    padding: 10px;
-    border: 1px solid var(--navy-700);
-    border-radius: var(--radio);
-    background-color: var(--superficie);
-    color: var(--navy-700);
-}
-
-#cancelarSalon:hover {
-    background-color: var(--lienzo);
-    box-shadow: var(--sombra-elevada);
 }

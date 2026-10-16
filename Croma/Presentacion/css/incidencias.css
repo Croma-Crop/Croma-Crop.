@@ -49,20 +49,18 @@
 }
 
 .filtro-clase {
-    padding: 7px var(--esp-3);
-    font-size: var(--texto-sm);
+    padding: 9px 18px;
+    font-size: 14px;
     font-weight: 600;
-    border: 1px solid var(--borde);
+    border: 1px solid var(--navy-700);
     border-radius: var(--radio);
     cursor: pointer;
     background-color: var(--superficie);
-    color: var(--texto-tenue);
-    transition: color var(--transicion), border-color var(--transicion), background-color var(--transicion);
+    color: var(--navy-700);
 }
 
 .filtro-clase:hover {
-    color: var(--navy-700);
-    border-color: var(--navy-700);
+    background-color: var(--lienzo);
 }
 
 .filtro-clase.activo {
@@ -105,11 +103,10 @@
     font-size: var(--texto-xs);
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
 }
 
 .tarjeta-incidencia {
-    background-color: var(--peligro-claro);
+    background-color: #f5e0dd;
     color: var(--peligro);
 }
 

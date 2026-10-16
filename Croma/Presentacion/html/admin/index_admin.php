@@ -176,8 +176,8 @@
                     <p for="motivo_rechazo">¿Esta seguro de rechazar esta solicitud?</p>
                     
                 </div>
-                <button type="submit">Rechazar solicitud</button>
-                <button type="button" id="cancelarRechazo">Cancelar</button>
+                <button type="submit" class="boton-eliminar">Rechazar solicitud</button>
+                <button type="button" id="cancelarRechazo" class="boton-cancelar-edicion">Cancelar</button>
             </fieldset>
         </form>
     </dialog>

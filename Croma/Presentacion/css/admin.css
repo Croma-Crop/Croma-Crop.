@@ -194,39 +194,8 @@ dialog.dialogGestionarEmpleado::backdrop {
 
 .seccionFormulario fieldset > button[type="submit"] {
     margin-top: 10px;
-    padding: 10px;
-    background-color: var(--navy-700);
-    color: var(--crema);
-    border: none;
-    border-radius: var(--radio);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
     width: 80%;
     align-self: center;
-    transition: var(--transicion);
-}
-
-.seccionFormulario fieldset > button[type="submit"]:hover {
-    background-color: var(--navy-600);
-    box-shadow: var(--sombra-elevada);
-}
-
-.btnEliminarEmpleado {
-    background-color: var(--peligro);
-    color: white;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transicion);
-}
-
-.btnEliminarEmpleado:hover {
-    background-color: var(--peligro);
-    box-shadow: var(--sombra-elevada);
 }
 
 #fieldset {
@@ -246,14 +215,12 @@ dialog.dialogGestionarEmpleado::backdrop {
     cursor: pointer;
     color: var(--texto);
     font-weight: 500;
-    letter-spacing: 0px;
     transition: var(--transicion);
 }
 #btnExtranjeroAdmin:hover,
 #btnCedulaAdmin:hover {
     border-bottom: 2px solid var(--navy-700);
     color: var(--navy-700);
-    letter-spacing: 0.5px;
 }
 
 .seccionTablaEmpleados {
@@ -281,7 +248,6 @@ dialog.dialogGestionarEmpleado::backdrop {
     font-size: var(--texto-lg);
     color: var(--navy-700);
     font-weight: 600;
-    letter-spacing: -0.01em;
 }
 
 .seccionTablaEmpleados .tabla-envoltorio {
@@ -353,8 +319,8 @@ dialog.dialogGestionarEmpleado::backdrop {
     min-width: 28px;
     padding: 3px 10px;
     border-radius: var(--radio);
-    background-color: var(--alerta-claro);
-    color: var(--alerta-texto);
+    background-color: #fceee1;
+    color: #8a4b12;
     font-size: var(--texto-base);
     font-weight: 600;
     text-align: center;

@@ -3,11 +3,7 @@
     --navy-600: #3d4460;
     --crema: #f0f0db;
     --peligro: #c0392b;
-    --peligro-claro: #f5e0dd;
     --exito: #27ae60;
-    --exito-claro: #ddf1e5;
-    --alerta-claro: #fceee1;
-    --info-claro: #ddebf5;
     --superficie: #ffffff;
     --lienzo: #e8ecef;
     --lienzo-alt: #f5f5f5;
@@ -20,10 +16,6 @@
     --sombra-elevada: 0 2px 3px rgba(48, 54, 79, 0.18);
     --transicion: 0.15s ease;
     --fila: 40px;
-    --alerta-texto: #8a4b12;
-    --info-texto: #1b5b83;
-    --exito-texto: #1a7a44;
-    --peligro-hover: #a93226;
     --marcador: #8a8a8a;
     --texto-xs: 12px;
     --texto-sm: 13px;
@@ -94,27 +86,27 @@
 
 .estado-chip[data-estado="Pendiente"],
 .estado-chip[data-estado="pendiente"] {
-    background-color: var(--alerta-claro);
-    color: var(--alerta-texto);
+    background-color: #fceee1;
+    color: #8a4b12;
 }
 
 .estado-chip[data-estado="En proceso"],
 .estado-chip[data-estado="en_proceso"],
 .estado-chip[data-estado="en_reparacion"] {
-    background-color: var(--info-claro);
-    color: var(--info-texto);
+    background-color: #ddebf5;
+    color: #1b5b83;
 }
 
 .estado-chip[data-estado="Resuelto"],
 .estado-chip[data-estado="resuelto"],
 .estado-chip[data-estado="operativo"],
 .estado-chip[data-estado="Aprobada"] {
-    background-color: var(--exito-claro);
-    color: var(--exito-texto);
+    background-color: #ddf1e5;
+    color: #1a7a44;
 }
 
 .estado-chip[data-estado="Rechazada"] {
-    background-color: var(--peligro-claro);
+    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
@@ -130,28 +122,28 @@
 }
 
 .gravedad-chip[data-gravedad="Alta"] {
-    background-color: var(--peligro-claro);
+    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
 .gravedad-chip[data-gravedad="Media"] {
-    background-color: var(--alerta-claro);
-    color: var(--alerta-texto);
+    background-color: #fceee1;
+    color: #8a4b12;
 }
 
 .gravedad-chip[data-gravedad="Baja"] {
-    background-color: var(--exito-claro);
-    color: var(--exito-texto);
+    background-color: #ddf1e5;
+    color: #1a7a44;
 }
 
 .etiqueta-incidencia {
-    background-color: var(--peligro-claro);
+    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
 .etiqueta-solicitud {
-    background-color: var(--info-claro);
-    color: var(--info-texto);
+    background-color: #ddebf5;
+    color: #1b5b83;
 }
 
 * {
@@ -507,7 +499,8 @@ body button[type="submit"]:hover {
 
 body .boton-modificar,
 body .boton-historial,
-body .boton-cerrar-equipo {
+body .boton-cerrar-equipo,
+body .boton-cancelar-edicion {
     background-color: var(--superficie);
     color: var(--navy-700);
     border: 1px solid var(--navy-700);
@@ -538,7 +531,7 @@ body .boton-eliminar {
 }
 
 body .boton-eliminar:hover {
-    background-color: var(--peligro-hover);
+    background-color: #a93226;
 }
 
 body .tarjeta-producto {
@@ -607,7 +600,7 @@ body .btnEliminarEmpleado {
 }
 
 body .btnEliminarEmpleado:hover {
-    background-color: var(--peligro-hover);
+    background-color: #a93226;
 }
 
 body .tabla-datos caption {
@@ -702,13 +695,13 @@ a:hover {
 }
 
 .mensaje-exito {
-    background-color: var(--exito-claro);
+    background-color: #ddf1e5;
     border-color: var(--exito);
-    color: var(--exito-texto);
+    color: #1a7a44;
 }
 
 .mensaje-error {
-    background-color: var(--peligro-claro);
+    background-color: #f5e0dd;
     border-color: var(--peligro);
     color: var(--peligro);
 }
@@ -722,7 +715,7 @@ body button.btnEliminarEmpleado {
 
 body button.boton-eliminar:hover,
 body button.btnEliminarEmpleado:hover {
-    background-color: var(--peligro-hover);
+    background-color: #a93226;
 }
 
 body a.boton-modificar,
