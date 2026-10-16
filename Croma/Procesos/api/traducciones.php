@@ -396,7 +396,27 @@ $traducciones = [
     "Tenes que ingresar tu nombre" => "You have to enter your name",
     "Tenes que ingresar una contraseña" => "You have to enter a password",
     "Tenes que seleccionar un estado valido" => "You have to select a valid status",
-    "Tenes que seleccionar un tipo de salon" => "You have to select a room type"
+    "Tenes que seleccionar un tipo de salon" => "You have to select a room type",
+
+    "Bienvenido" => "Welcome",
+    "¿Qué desea hacer hoy?" => "What would you like to do today?",
+    "Reportar un problema" => "Report a problem",
+    "Registrar ficha de hoy" => "Register today's daily log",
+    "Mis tickets" => "My tickets",
+    "Todavía no registró ningún ticket." => "You have not registered any tickets yet.",
+    "Otros accesos" => "Other links",
+    "Clase" => "Class",
+    "Tipo" => "Type",
+    "Listado de las incidencias y solicitudes del instituto." => "List of the institute's incidents and requests.",
+    "Las fichas diarias que registró, ordenadas por mes." => "The daily logs you registered, sorted by month.",
+    "Mis tareas" => "My tasks",
+    "No tiene tareas asignadas." => "You have no assigned tasks.",
+    "Accesos" => "Links",
+    "Desde aquí gestiona el soporte técnico del instituto. En el tablero toma las tareas, determina su gravedad y las cambia de estado hasta resolverlas." => "From here you manage the institute's technical support. On the board you take the tasks, set their severity and change their status until they are resolved.",
+    "Tome las tareas y muévalas entre pendiente, en proceso y resuelto." => "Take the tasks and move them between pending, in progress and resolved.",
+    "Listado de consulta con la gravedad, el estado y el técnico de cada ticket." => "Reference list with the severity, status and technician of each ticket.",
+    "Control de los equipos y de su historial de intervenciones." => "Control of the equipment and its intervention history.",
+    "Registro de una nueva incidencia o de una solicitud de servicio." => "Registration of a new incident or service request."
 ];
 
 echo json_encode($traducciones);
