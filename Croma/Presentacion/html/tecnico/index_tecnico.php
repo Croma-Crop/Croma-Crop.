@@ -32,7 +32,7 @@
             $enProceso = $enProceso + 1;
         }
         if ($incidencia['cedula_tecnico'] === $miDocumento && $incidencia['estado'] !== 'Resuelto') {
-            $misTareas[] = ['clase' => 'Incidencia', 'tipo' => $incidencia['tipo'], 'prioridad' => $incidencia['prioridad'], 'fecha_limite' => $incidencia['fecha_limite'], 'estado' => $incidencia['estado']];
+            $misTareas[] = ['clase' => 'Incidencia', 'tipo' => $incidencia['tipo'], 'estado' => $incidencia['estado']];
         }
     }
 
@@ -44,7 +44,7 @@
             $enProceso = $enProceso + 1;
         }
         if ($solicitud['cedula_tecnico'] === $miDocumento && $solicitud['estado'] !== 'Resuelto') {
-            $misTareas[] = ['clase' => 'Solicitud', 'tipo' => $solicitud['tipo'], 'prioridad' => null, 'fecha_limite' => null, 'estado' => $solicitud['estado']];
+            $misTareas[] = ['clase' => 'Solicitud', 'tipo' => $solicitud['tipo'], 'estado' => $solicitud['estado']];
         }
     }
     ?>
@@ -89,8 +89,6 @@
                             <tr>
                                 <th>Clase</th>
                                 <th>Tipo</th>
-                                <th>Gravedad</th>
-                                <th>Fecha límite</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
@@ -99,20 +97,6 @@
                                 <tr>
                                     <td><?= htmlspecialchars($tarea['clase']) ?></td>
                                     <td><?= htmlspecialchars($tarea['tipo']) ?></td>
-                                    <td>
-                                        <?php if ($tarea['prioridad'] === null): ?>
-                                            -
-                                        <?php else: ?>
-                                            <span class="gravedad-chip" data-gravedad="<?= htmlspecialchars($tarea['prioridad']) ?>"><?= htmlspecialchars($tarea['prioridad']) ?></span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($tarea['fecha_limite'] === null): ?>
-                                            -
-                                        <?php else: ?>
-                                            <?= date('d/m/Y', strtotime($tarea['fecha_limite'])) ?>
-                                        <?php endif; ?>
-                                    </td>
                                     <td><span class="estado-chip" data-estado="<?= htmlspecialchars($tarea['estado']) ?>"><?= htmlspecialchars($tarea['estado']) ?></span></td>
                                 </tr>
                             <?php endforeach; ?>
