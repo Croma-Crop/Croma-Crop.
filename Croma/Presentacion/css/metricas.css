@@ -1,0 +1,63 @@
+.metricas {
+    width: 90%;
+    max-width: 1000px;
+    margin: 3em auto;
+}
+
+.panel-metrica {
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.panel-metrica .subtitulo {
+    margin-bottom: 16px;
+}
+
+.panel-metrica .titulo-seccion {
+    margin-bottom: 4px;
+}
+
+.encabezado-metrica {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contador-vencidas {
+    background-color: var(--peligro-claro);
+    color: var(--peligro);
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: var(--radio);
+    margin-bottom: 4px;
+}
+
+.contenedor-grafico {
+    height: 360px;
+}
+
+.aviso {
+    padding: 24px;
+    text-align: center;
+    border: 1px dashed var(--borde);
+    border-radius: var(--radio);
+    color: var(--texto-tenue);
+}
+
+@media (max-width: 576px) {
+    .metricas {
+        width: 95%;
+        margin: 16px auto;
+    }
+
+    .panel-metrica {
+        padding: 16px;
+    }
+
+    .contenedor-grafico {
+        height: 300px;
+    }
+}

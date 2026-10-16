@@ -7,6 +7,17 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require __DIR__ . '/../../Procesos/backend/sesion.php';
 
+$grupos = [
+    "Soporte técnico" => ["tickets", "incidenciascreadas", "kanban", "metricas"],
+    "Registro diario" => ["ficha", "historial"],
+    "Equipamiento" => ["inventario", "salones"],
+    "Administración" => ["administrador"]
+];
+
+$esInicio = false;
+if ($moduloactual === "index_admin" || $moduloactual === "index_tecnico" || $moduloactual === "index_user") {
+    $esInicio = true;
+}
 ?>
 <a class="marca" href="<?php echo $InicioPorRol[$rolSesion]; ?>">
     <img src="<?php echo $BASE_URL ?>/Presentacion/img/removebg-preview.png" alt="Logo Croma Corp" id="logo">
@@ -14,19 +25,36 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
 </a>
 
 <nav class="nav-principal" aria-label="Navegación principal">
-    <ul class="nav-lista">
-        <?php echo construirNav($rolSesion, $moduloactual); ?>
-    </ul>
-</nav>
+    <a class="nav-enlace nav-inicio<?php if ($esInicio) { echo ' nav-activo'; } ?>" href="<?php echo $InicioPorRol[$rolSesion]; ?>">Inicio</a>
+    <button class="nav-enlace btn-modulos<?php if (!$esInicio) { echo ' nav-activo'; } ?>" type="button" id="btn-modulos">Módulos</button>
 
-<div class="dropdown nav-movil">
-    <button class="btn-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Abrir menú de navegación">
-        <img src="<?php echo $BASE_URL ?>/Presentacion/img/menu.png" alt="" id="burguer">
-    </button>
-    <ul class="dropdown-menu">
-        <?php echo construirMenu($rolSesion); ?>
-    </ul>
-</div>
+    <div class="menu-modulos" id="menu-modulos">
+        <?php foreach ($grupos as $titulo => $claves): ?>
+            <?php
+            $tieneModulos = false;
+            foreach ($claves as $clave) {
+                if (tienePermiso($rolSesion, $clave)) {
+                    $tieneModulos = true;
+                }
+            }
+            ?>
+            <?php if ($tieneModulos): ?>
+                <section class="menu-grupo">
+                    <h2 class="menu-titulo"><?php echo $titulo; ?></h2>
+                    <ul class="menu-lista">
+                        <?php foreach ($claves as $clave): ?>
+                            <?php if (tienePermiso($rolSesion, $clave)): ?>
+                                <li>
+                                    <a class="menu-enlace<?php if ($moduloactual === $clave) { echo ' menu-activo'; } ?>" href="<?php echo $modulos[$clave]['ruta']; ?>"><?php echo $modulos[$clave]['etiqueta']; ?></a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                </section>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</nav>
 
 <div class="acciones-header">
     <button class="btn-idioma" type="button" id="btn-idioma">EN</button>
@@ -34,3 +62,4 @@ require __DIR__ . '/../../Procesos/backend/sesion.php';
 </div>
 
 <script src="<?php echo $BASE_URL ?>/Presentacion/js/idioma.js"></script>
+<script src="<?php echo $BASE_URL ?>/Presentacion/js/menu.js"></script>
