@@ -40,7 +40,7 @@ public string $estado;
     }
     public function crearusuario(): bool {
         try {
-        $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol, estado) VALUES (?, ?, ?, ?, ?, 'pendiente')";
+        $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol, estado) VALUES (?, ?, ?, ?, ?, 'aprobado')";
         $stmt = $this->conexion->prepare($sql);
 
          if (!$stmt) {
