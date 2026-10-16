@@ -76,8 +76,6 @@
 .gravedad-chip,
 .etiqueta-clase {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: var(--radio);
     font-size: 12px;
     font-weight: 600;
     line-height: 1.4;
@@ -86,14 +84,12 @@
 
 .estado-chip[data-estado="Pendiente"],
 .estado-chip[data-estado="pendiente"] {
-    background-color: #fceee1;
     color: #8a4b12;
 }
 
 .estado-chip[data-estado="En proceso"],
 .estado-chip[data-estado="en_proceso"],
 .estado-chip[data-estado="en_reparacion"] {
-    background-color: #ddebf5;
     color: #1b5b83;
 }
 
@@ -101,48 +97,39 @@
 .estado-chip[data-estado="resuelto"],
 .estado-chip[data-estado="operativo"],
 .estado-chip[data-estado="Aprobada"] {
-    background-color: #ddf1e5;
     color: #1a7a44;
 }
 
 .estado-chip[data-estado="Rechazada"] {
-    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
 .estado-chip[data-estado="de_baja"],
 .estado-chip[data-estado="prestado"] {
-    background-color: var(--lienzo);
     color: var(--texto-tenue);
 }
 
 .gravedad-chip {
-    background-color: var(--lienzo);
     color: var(--texto-tenue);
 }
 
 .gravedad-chip[data-gravedad="Alta"] {
-    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
 .gravedad-chip[data-gravedad="Media"] {
-    background-color: #fceee1;
     color: #8a4b12;
 }
 
 .gravedad-chip[data-gravedad="Baja"] {
-    background-color: #ddf1e5;
     color: #1a7a44;
 }
 
 .etiqueta-incidencia {
-    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
 .etiqueta-solicitud {
-    background-color: #ddebf5;
     color: #1b5b83;
 }
 

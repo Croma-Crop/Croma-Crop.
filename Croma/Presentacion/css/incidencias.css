@@ -98,20 +98,16 @@
 .tarjeta-clase {
     display: inline-block;
     align-self: flex-start;
-    padding: 2px var(--esp-2);
-    border-radius: var(--radio);
     font-size: var(--texto-xs);
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .tarjeta-incidencia {
-    background-color: #f5e0dd;
     color: var(--peligro);
 }
 
 .tarjeta-solicitud {
-    background-color: var(--lienzo);
     color: var(--navy-700);
 }
 

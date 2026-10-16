@@ -211,15 +211,18 @@
     color: var(--texto-tenue);
 }
 
-.campo-kanban select {
+.campo-kanban select,
+.campo-kanban input[type="date"] {
     display: block;
     width: 100%;
     margin-top: 4px;
-    padding: 5px 6px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-weight: normal;
     border: 1px solid var(--borde);
     border-radius: var(--radio);
+    background-color: var(--superficie);
     cursor: pointer;
-    font-weight: bold;
 }
 
 .sin-tarjetas {
