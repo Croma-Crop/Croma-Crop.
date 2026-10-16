@@ -11,12 +11,13 @@ $modulos = [
     "ficha"          => ["etiqueta" => "Ficha", "ruta" => $BASE_URL . "/Presentacion/html/usuario/ficha.php"],
     "historial"      => ["etiqueta" => "Historial", "ruta" => $BASE_URL . "/Presentacion/html/usuario/historial.php"],
     "administrador"  => ["etiqueta" => "Administrador", "ruta" => $BASE_URL ."/Presentacion/html/admin/administrador.php"],
-    "kanban" => ["etiqueta" => "Tablero Kanban", "ruta" => $BASE_URL ."/Presentacion/html/tecnico/kanban.php"]
+    "kanban" => ["etiqueta" => "Tablero Kanban", "ruta" => $BASE_URL ."/Presentacion/html/tecnico/kanban.php"],
+    "metricas" => ["etiqueta" => "Métricas", "ruta" => $BASE_URL ."/Presentacion/html/metricas.php"]
 ];
 
 $permisos = [
-    "administrador"       => ["index_admin", "inventario", "salones", "tickets", "incidenciascreadas", "ficha", "historial", "administrador", "kanban"],
-    "tecnico"     => ["index_tecnico", "inventario", "salones", "tickets", "incidenciascreadas", "kanban"],
+    "administrador"       => ["index_admin", "inventario", "salones", "tickets", "incidenciascreadas", "ficha", "historial", "administrador", "kanban", "metricas"],
+    "tecnico"     => ["index_tecnico", "inventario", "salones", "tickets", "incidenciascreadas", "kanban", "metricas"],
     "solicitante" => ["index_user", "tickets", "incidenciascreadas", "ficha", "historial"]
 ];
 
