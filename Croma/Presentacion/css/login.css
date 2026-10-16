@@ -24,7 +24,6 @@
 #newsletter h1 {
     font-size: var(--texto-lg);
     font-weight: 600;
-    letter-spacing: -0.01em;
     color: var(--navy-700);
     margin-bottom: var(--esp-2);
 }
@@ -90,7 +89,6 @@ form input[id="password"] {
     cursor: pointer;
     color: var(--texto);
     font-weight: 500;
-    letter-spacing: 0px;
     transition: var(--transicion);
 }
 #btnCedula:hover,

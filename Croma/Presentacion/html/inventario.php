@@ -76,7 +76,7 @@
                     <?php if (puedeHacer("eliminarEquipos", $_SESSION["rol"])): ?>
                         <form method="post" action="../../Procesos/eliminarinventario.php">
                             <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
-                            <button class="boton-borrar" type="submit" onclick="return confirm('¿Seguro que quiere borrar este equipo del inventario?')">Eliminar</button>
+                            <button class="boton-eliminar boton-borrar" type="submit" onclick="return confirm('¿Seguro que quiere borrar este equipo del inventario?')">Eliminar</button>
                         </form>
                     <?php endif; ?>
                 </div>
@@ -148,7 +148,7 @@
         </section>
 
                     <dialog id="dialogHistorial" <?= $numeroSerieHistorial ? 'open' : '' ?>>
-                    <button id="cerrarHistorial" type="button" onclick="document.getElementById('dialogHistorial').close()">Cerrar</button>
+                    <button id="cerrarHistorial" class="boton-historial" type="button" onclick="document.getElementById('dialogHistorial').close()">Cerrar</button>
                     <h3 id="tituloHistorial"><span>Historial de intervenciones — Serie:</span> <?= htmlspecialchars($numeroSerieHistorial ?? '') ?></h3>
 
                     <ul id="listaHistorial">

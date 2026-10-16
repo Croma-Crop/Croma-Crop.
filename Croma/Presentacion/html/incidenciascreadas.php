@@ -73,7 +73,7 @@
                 <form method="post" action="../../Procesos/eliminarticket.php" style="display:inline">
                     <input type="hidden" name="clase" value="<?= htmlspecialchars($ticket['clase']) ?>">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($ticket['id']) ?>">
-                    <button type="submit" onclick="return confirm(traducir('¿Seguro que quiere eliminar este ticket?'))">Eliminar</button>
+                    <button type="submit" class="boton-eliminar" onclick="return confirm(traducir('¿Seguro que quiere eliminar este ticket?'))">Eliminar</button>
                 </form>
             <?php endif; ?>
         </li>

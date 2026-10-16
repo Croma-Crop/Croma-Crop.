@@ -166,8 +166,8 @@ select:hover {
 }
 
 .fila-cargada td {
-    background-color: var(--exito-claro);
-    color: var(--exito-texto);
+    background-color: #ddf1e5;
+    color: #1a7a44;
 }
 
 .oculto {

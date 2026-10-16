@@ -16,7 +16,6 @@
     font-size: var(--texto-xl);
     color: var(--navy-700);
     font-weight: 600;
-    letter-spacing: -0.01em;
     margin-bottom: var(--esp-2);
 }
 
@@ -124,10 +123,6 @@
     margin-bottom: 8px;
 }
 
-.acceso h4::after {
-    content: " →";
-}
-
 .acceso p {
     font-size: 14px;
     color: var(--texto-tenue);
@@ -137,7 +132,7 @@
 .aviso-inicio {
     padding: 24px;
     text-align: center;
-    border: 1px dashed var(--borde);
+    border: 1px solid var(--borde);
     border-radius: var(--radio);
     background-color: var(--superficie);
     color: var(--texto-tenue);

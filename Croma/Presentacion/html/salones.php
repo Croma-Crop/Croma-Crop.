@@ -76,7 +76,7 @@
                     <input type="hidden" name="id_salon" value="<?= $editando ? htmlspecialchars($editando['id_salon']) : '' ?>">
 
                     <button id="submit" type="submit">Guardar salón</button>
-                    <button type="button" id="cancelarSalon" <?= $editando ? '' : 'hidden' ?>>Cancelar</button>
+                    <button type="button" id="cancelarSalon" class="boton-cancelar-edicion" <?= $editando ? '' : 'hidden' ?>>Cancelar</button>
                 </form>
                 <?php if (isset($_GET["mensaje"])): ?>
              <div class="mensaje mensaje-<?= ($_GET["tipo"] ?? "") === "exito" ? "exito" : "error" ?>">

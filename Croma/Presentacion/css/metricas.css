@@ -27,7 +27,7 @@
 }
 
 .contador-vencidas {
-    background-color: var(--peligro-claro);
+    background-color: #f5e0dd;
     color: var(--peligro);
     font-weight: bold;
     padding: 2px 10px;

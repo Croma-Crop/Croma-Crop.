@@ -24,7 +24,7 @@
 }
 
 .aviso-registro a {
-    color: var(--info-texto);
+    color: #1b5b83;
 }
 
 #enlace-registro {
@@ -34,5 +34,5 @@
 }
 
 #enlace-registro a {
-    color: var(--info-texto);
+    color: #1b5b83;
 }
