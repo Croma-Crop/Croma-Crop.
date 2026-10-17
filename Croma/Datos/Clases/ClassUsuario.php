@@ -64,6 +64,18 @@ public string $estado;
 
 
     }
+    public static function buscarNombre($conexion, $documento){
+    $sql = "SELECT nombre, apellido FROM usuario WHERE documento = ?";
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $stmt->bind_param("s", $documento);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
     public static function mostrarsolicitantes($conexion){
         $rolProfesor = "solicitante";
         $stmtProfesores = $conexion->prepare("SELECT documento, nombre, apellido FROM usuario WHERE rol = ? AND estado = 'aprobado'");

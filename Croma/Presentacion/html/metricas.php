@@ -13,13 +13,13 @@
         <h1 id="titulo">Métricas</h1>
         <?php include '../globales/Header.php'; ?>
     </header>
-    <?php require '../globales/ejemplometricas.php'; ?>
+    <?php include_once '../../Procesos/mostrarmetricas.php'; ?>
     <?php
     $nombresEquipos = [];
     $totalesEquipos = [];
     foreach ($equiposFallas as $equipo) {
-        $nombresEquipos[] = $equipo['nombre'] . ' (' . $equipo['salon'] . ')';
-        $totalesEquipos[] = $equipo['total'];
+        $nombresEquipos[] = $equipo['nombre'] . ' (' . $equipo['nombre_salon'] . ')';
+        $totalesEquipos[] = $equipo['numero_intervenciones'];
     }
     ?>
     <main>
