@@ -107,11 +107,7 @@ public string $estado;
     return $sql->fetch_all(MYSQLI_ASSOC);
 
  }
- public static function mostrar($conexion){
-    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuarioextranjero WHERE estado = 'aprobado'");
-    return $sql->fetch_all(MYSQLI_ASSOC);
-
- }
+ 
     public function aprobar($documento){
     $sql = "UPDATE usuarioextranjero SET estado = 'aprobado' WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);

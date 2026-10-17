@@ -40,7 +40,7 @@ public string $estado;
     }
     public function crearusuario(): bool {
         try {
-        $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol, estado) VALUES (?, ?, ?, ?, ?, 'pendiente')";
+        $sql = "INSERT INTO usuario (documento, nombre, apellido, contrasena, rol, estado) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->conexion->prepare($sql);
 
          if (!$stmt) {
@@ -49,7 +49,7 @@ public string $estado;
 
 
 
-        $stmt->bind_param("sssss", $this->documento, $this->nombre, $this->apellido, $this->contrasena, $this->rol);
+        $stmt->bind_param("ssssss", $this->documento, $this->nombre, $this->apellido, $this->contrasena, $this->rol, $this->estado);
  if (!$stmt->execute()) {
             return false;
         }
@@ -78,11 +78,7 @@ public string $estado;
     return $sql->fetch_all(MYSQLI_ASSOC);
 
  }
- public static function mostrar($conexion){
-    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuario WHERE estado = 'aprobado'");
-    return $sql->fetch_all(MYSQLI_ASSOC);
 
- }
     public function borrar($documento){
     $sql = "DELETE FROM usuario WHERE documento = ? AND estado = 'rechazado'";
     $stmt = $this->conexion->prepare($sql);

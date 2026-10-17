@@ -289,5 +289,8 @@ $traducciones = [
     "solicitante" => "Requester"
 ];
 
-echo json_encode($traducciones);
-?>
+echo json_encode([
+    "status"  => "success",
+    "message" => "Traducciones cargadas",
+    "data"    => $traducciones
+]);?>

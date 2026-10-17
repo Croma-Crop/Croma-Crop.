@@ -10,8 +10,8 @@ require_once __DIR__ . '/../../Datos/DataBase/ConexionMYSQL/conexion.php';
 
 $incidencias = Incidencia::mostrar($conexion);
 $solicitudes = Solicitud::mostrar($conexion);
-$usuario = Usuario::mostrar($conexion);
-$usuarioextranjero = Usuarioextranjero::mostrar($conexion);
+$usuario = Usuario::mostraractivos($conexion);
+$usuarioextranjero = Usuarioextranjero::mostraractivos($conexion);
 $equiposRegistrados = Inventario::mostrarTodos($conexion);
 $usuarios = array_merge($usuario, $usuarioextranjero);
 
