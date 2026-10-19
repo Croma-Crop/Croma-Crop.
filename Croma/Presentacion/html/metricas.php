@@ -64,7 +64,6 @@
                             <tbody>
                                 <?php foreach ($vencidas as $vencida): ?>
                                     <tr>
-                                        <td>#<?= $vencida['id_incidencia'] ?> <?= htmlspecialchars($vencida['tipo']) ?></td>
                                         <td><?= htmlspecialchars($vencida['equipo'] ?? '-') ?></td>
                                         <td><?= htmlspecialchars($vencida['salon'] ?? '-') ?></td>
                                         <td><span class="gravedad-chip" data-gravedad="<?= htmlspecialchars($vencida['prioridad']) ?>"><?= htmlspecialchars($vencida['prioridad']) ?></span></td>
