@@ -20,7 +20,7 @@
 
     foreach ($incidencias as $incidencia) {
         if ($incidencia['cedula_solicitante'] === $miDocumento && count($misTickets) < 5) {
-            $misTickets[] = ['clase' => 'Incidencia', 'tipo' => $incidencia['tipo'], 'estado' => $incidencia['estado']];
+            $misTickets[] = ['clase' => 'Incidencia', 'tipo' => '-', 'estado' => $incidencia['estado']];
         }
     }
 

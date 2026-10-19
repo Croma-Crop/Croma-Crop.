@@ -26,12 +26,16 @@
                 <form id="fichaForm" method="post" action="../../../Procesos/backend/procesoficha.php">
                 <div class="campo">    
                 <label for="profesor">Profesor</label>
+                    <?php if ($_SESSION['rol'] === 'solicitante'): ?>
+                        <input type="text" id="profesor" value="<?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?>" disabled>
+                    <?php else: ?>
                     <select id="profesor" name="documento_profesor" required>
                         <option value="">--- Seleccionar profesor ---</option>
                         <?php foreach ($todos as $profesor): ?>
                             <option value="<?= htmlspecialchars($profesor['documento']) ?>" <?= $profesor['documento'] === $usuario['documento'] ? 'selected' : '' ?>><?= htmlspecialchars($profesor['nombre'] . ' ' . $profesor['apellido']) ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php endif; ?>
                     </div>
                     <div class="campo">
                         <label for="fecha_inicio">Fecha</label>

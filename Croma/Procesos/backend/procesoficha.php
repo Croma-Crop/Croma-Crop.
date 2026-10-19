@@ -14,7 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $horaEntrada = limpiarHora($_POST['hora_entrada'] ?? '');
     $horaSalida = limpiarHora($_POST['hora_salida'] ?? '');
     $id_salon = limpiarEntero($_POST['id_salon'] ?? '');
-    $documentoProfesor = limpiarDocumento($_POST['documento_profesor'] ?? '');
+    if ($_SESSION['rol'] === 'solicitante') {
+        $documentoProfesor = $_SESSION['usuarioActivo']['documento'];
+    } else {
+        $documentoProfesor = limpiarDocumento($_POST['documento_profesor'] ?? '');
+    }
     $turno = limpiarOpcion($_POST['turno'] ?? '', ["Matutino", "Vespertino", "Nocturno"]);
     $incidencias = $_POST['incidencias'] ?? [];
 
