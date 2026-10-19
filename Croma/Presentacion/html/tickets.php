@@ -85,15 +85,7 @@ $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
             <label for="nocturno">Nocturno</label>
         </section>
 
-        <p>Tipo de incidencia</p>
-        <select id="tipo" name="tipo" required>
-            <option value="">--- Seleccionar ---</option>
-            <option value="Computadora" <?= $tipoElegido === 'Computadora' ? 'selected' : '' ?>>Computadora</option>
-            <option value="Televisor" <?= $tipoElegido === 'Televisor' ? 'selected' : '' ?>>Televisor</option>
-            <option value="Periferico" <?= $tipoElegido === 'Periferico' ? 'selected' : '' ?>>Periférico</option>
-            <option value="Otro" <?= $tipoElegido === 'Otro' ? 'selected' : '' ?>>Otro</option>
-        </select>
-
+       
         <p>¿Cuál es la incidencia?</p>
         <input id="descripcioninc" name="descripcion" value="<?= htmlspecialchars($descripcionEscrita) ?>">
 
