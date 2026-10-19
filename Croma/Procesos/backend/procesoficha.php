@@ -70,17 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $serieLimpia = limpiarSerie($serie);
-            $tipoLimpio = limpiarOpcion($datos['tipo'] ?? '', ["Computadora", "Televisor", "Periferico", "Otro"]);
             $descripcionLimpia = limpiarTexto($datos['descripcion'] ?? '');
 
-            if ($serieLimpia === '' || $tipoLimpio === '') {
+            if ($serieLimpia === '') {
                 continue;
             }
 
             $escalada = Incidencia::escalarPorRepeticion($conexion, $serieLimpia, $descripcionLimpia);
 
             $incidencia = new Incidencia($conexion, null, $fecha, $descripcionLimpia, $escalada['gravedad'], $turnoGuardado, null, null, "Pendiente", $serieLimpia);
-            $incidencia->guardar($tipoLimpio, $documentoProfesor);
+            $incidencia->guardar($documentoProfesor);
         }
 
         header("Location: ../../Presentacion/html/usuario/ficha.php?mensaje=" . urlencode("Ficha registrada correctamente") . "&tipo=exito");

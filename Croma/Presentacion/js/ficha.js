@@ -19,7 +19,6 @@ function iniciarPagina() {
     const dialogIncidencia = document.getElementById("dialogIncidencia");
     const formIncidenciaEquipo = document.getElementById("formIncidenciaEquipo");
     const equipoSeleccionado = document.getElementById("equipoSeleccionado");
-    const tipoIncidencia = document.getElementById("tipoIncidencia");
     const descripcionIncidencia = document.getElementById("descripcionIncidencia");
     const cancelarIncidenciaEquipo = document.getElementById("cancelarIncidenciaEquipo");
 
@@ -57,18 +56,16 @@ function iniciarPagina() {
     function abrirDialogIncidencia(fila) {
         filaEnEdicion = fila;
         equipoSeleccionado.textContent = traducir("Equipo:") + " " + fila.dataset.nombre + " (" + traducir("Serie:") + " " + fila.dataset.serie + ")";
-        tipoIncidencia.value = "";
         descripcionIncidencia.value = "";
         dialogIncidencia.showModal();
     }
 
-    function agregarIncidenciaAlFormulario(fila, tipo, descripcion) {
+    function agregarIncidenciaAlFormulario(fila, descripcion) {
         quitarIncidenciaDelFormulario(fila);
 
         const serie = fila.dataset.serie;
         [
             ["incidencias[" + serie + "][numero_serie]", serie],
-            ["incidencias[" + serie + "][tipo]", tipo],
             ["incidencias[" + serie + "][descripcion]", descripcion]
         ].forEach(function ([nombre, valor]) {
             const input = document.createElement("input");
@@ -107,12 +104,9 @@ function iniciarPagina() {
     formIncidenciaEquipo.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        if (!tipoIncidencia.value) {
-            alert(traducir("Seleccione el tipo de incidencia."));
-            return;
-        }
+     
 
-        agregarIncidenciaAlFormulario(filaEnEdicion, tipoIncidencia.value, descripcionIncidencia.value);
+        agregarIncidenciaAlFormulario(filaEnEdicion, descripcionIncidencia.value);
         filaEnEdicion.classList.add("fila-cargada");
         dialogIncidencia.close();
         filaEnEdicion = null;

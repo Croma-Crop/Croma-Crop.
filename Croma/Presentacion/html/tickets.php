@@ -26,7 +26,6 @@
 require_once '../../Procesos/backend/sanitizar.php';
 
 $turnoElegido = limpiarOpcion($_POST['turno'] ?? '', ["matutino", "vespertino", "nocturno"]);
-$tipoElegido = limpiarOpcion($_POST['tipo'] ?? '', ["Computadora", "Televisor", "Periferico", "Otro"]);
 $fechaElegida = limpiarFecha($_POST['fecha'] ?? '');
 $descripcionEscrita = limpiarTexto($_POST['descripcion'] ?? '');
 ?>

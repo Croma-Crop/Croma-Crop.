@@ -44,7 +44,6 @@ CREATE TABLE `incidencia` (
   `fecha_limite` date DEFAULT NULL,
   `turno` enum('matutino','vespertino','nocturno') DEFAULT NULL,
   `estado` enum('Pendiente','En proceso','Resuelto') NOT NULL DEFAULT 'Pendiente',
-  `tipo` varchar(50) NOT NULL,
   `descripcion` text NOT NULL,
   `prioridad` enum('Sin asignar','Baja','Media','Alta') NOT NULL DEFAULT 'Sin asignar',
   `cedula_solicitante` varchar(12) NOT NULL,

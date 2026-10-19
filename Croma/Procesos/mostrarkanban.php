@@ -44,7 +44,6 @@ foreach ($incidencias as $incidencia) {
     $tickets[] = [
         'clase'           => 'Incidencia',
         'id'              => $incidencia['id_incidencia'],
-        'tipo'            => $incidencia['tipo'],
         'fecha'           => $incidencia['fecha'],
         'fecha_limite'    => $incidencia['fecha_limite'],
         'turno'           => $incidencia['turno'],
