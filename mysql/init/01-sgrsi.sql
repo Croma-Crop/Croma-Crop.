@@ -1,9 +1,3 @@
--- ============================================================
--- Inicializacion de la base sgrsi para el contenedor MySQL
--- Este archivo lo corre automaticamente la imagen oficial de
--- MySQL/MariaDB la PRIMERA vez que arranca (carpeta initdb.d),
--- cuando el volumen de datos esta vacio.
--- ============================================================
 
 CREATE DATABASE IF NOT EXISTS `sgrsi`
   DEFAULT CHARACTER SET utf8mb4
