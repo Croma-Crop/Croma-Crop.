@@ -9,12 +9,10 @@
   <link rel="stylesheet" href="../../css/inicio.css">
   <link rel="stylesheet" href="../../css/admin.css">
     <script src="../../js/registrospendientes.js" defer></script>
- 
+
 
 </head>
 <body data-modulo="index_admin">
-    
-   
     <header>
        <h1 id="titulo">Inicio</h1>
 

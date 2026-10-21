@@ -1,6 +1,4 @@
-
 <?php
-
 require_once __DIR__ . "/../DataBase/ErroresBD.php";
 require_once __DIR__ . '/../DataBase/ConexionMYSQL/conexion.php';
 
