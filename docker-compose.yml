@@ -1,0 +1,44 @@
+# ============================================================
+# SGRSI - Croma Corp  |  Version dockerizada (sin replica)
+# Tres servicios: web (PHP+Apache) + db (MariaDB) + phpMyAdmin
+# ============================================================
+name: sgrsi
+
+services:
+
+  # ---------- Servidor web: la app PHP (lo que antes era XAMPP) ----------
+  web:
+    build:
+      context: .                   # el contexto es la raiz del proyecto
+      dockerfile: web/Dockerfile   # ...pero el Dockerfile vive en web/
+    container_name: sgrsi_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy # el web arranca recien cuando la base responde
+    ports:
+      - "82:80"                    # navegador -> http://localhost:82
+    networks:
+      - red_sgrsi
+
+  # ---------- Base de datos: MariaDB 10.4 (igual que el dump original) ----------
+  db:
+    image: mariadb:10.4
+    container_name: sgrsi_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: cromaroot2026   # misma clave que usa conexion.php
+      MYSQL_DATABASE: sgrsi                # crea la base vacia en el primer arranque
+    volumes:
+      - datos_sgrsi:/var/lib/mysql         # los datos persisten aunque se borre el contenedor
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro  # corre el .sql la 1ra vez
+    networks:
+      - red_sgrsi
+
+# ---------- Red privada compartida por los tres servicios ----------
+networks:
+  red_sgrsi:
+
+# ---------- Volumen con nombre: aqui viven los datos de la base ----------
+volumes:
+  datos_sgrsi:
