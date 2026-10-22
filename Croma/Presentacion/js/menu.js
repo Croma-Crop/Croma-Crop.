@@ -1,5 +1,5 @@
-var botonModulos = document.getElementById("btn-modulos");
-var menuModulos = document.getElementById("menu-modulos");
+const botonModulos = document.getElementById("btn-modulos");
+const menuModulos = document.getElementById("menu-modulos");
 
 botonModulos.addEventListener("click", function () {
     botonModulos.classList.toggle("abierto");

@@ -84,8 +84,8 @@
 
     <?php include '../globales/Footer.html' ?>
     <script>
-        var nombresEquipos = <?= json_encode($nombresEquipos) ?>;
-        var totalesEquipos = <?= json_encode($totalesEquipos) ?>;
+        const nombresEquipos = <?= json_encode($nombresEquipos) ?>;
+        const totalesEquipos = <?= json_encode($totalesEquipos) ?>;
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
     <script src="../js/metricas.js"></script>
