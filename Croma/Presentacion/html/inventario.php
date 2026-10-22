@@ -69,14 +69,14 @@
                     <?php if (puedeHacer("darDeBajaEquipos", $_SESSION["rol"]) && $equipo['estado'] !== 'de_baja'): ?>
                         <form method="post" action="../../Procesos/bajainventario.php">
                             <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
-                            <button class="boton-eliminar" type="submit" onclick="return confirm('¿Seguro que quiere dar de baja este equipo?')">Dar de baja</button>
+                            <button class="boton-eliminar" type="submit" data-confirmar="¿Seguro que quiere dar de baja este equipo?">Dar de baja</button>
                         </form>
                     <?php endif; ?>
 
                     <?php if (puedeHacer("eliminarEquipos", $_SESSION["rol"])): ?>
                         <form method="post" action="../../Procesos/eliminarinventario.php">
                             <input type="hidden" name="numero_serie" value="<?= htmlspecialchars($equipo['numero_serie']) ?>">
-                            <button class="boton-eliminar boton-borrar" type="submit" onclick="return confirm('¿Seguro que quiere borrar este equipo del inventario?')">Eliminar</button>
+                            <button class="boton-eliminar boton-borrar" type="submit" data-confirmar="¿Seguro que quiere borrar este equipo del inventario?">Eliminar</button>
                         </form>
                     <?php endif; ?>
                 </div>

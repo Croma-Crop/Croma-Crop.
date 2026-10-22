@@ -121,17 +121,17 @@ function iniciarPagina() {
     fichaForm.addEventListener("submit", function (e) {
         if (!selectProfesor.value) {
             e.preventDefault();
-            alert(traducir("Seleccione un profesor."));
+            mostrarAviso("Seleccione un profesor.");
             return;
         }
         if (!selectSalon.value) {
             e.preventDefault();
-            alert(traducir("Seleccione un salón."));
+            mostrarAviso("Seleccione un salón.");
             return;
         }
         if (!document.querySelector('input[name="turno"]:checked')) {
             e.preventDefault();
-            alert(traducir("Seleccione un turno."));
+            mostrarAviso("Seleccione un turno.");
             return;
         }
         

@@ -558,6 +558,30 @@ body .dialogo-equipo {
     box-shadow: var(--sombra-elevada);
 }
 
+#dialogConfirmar,
+#dialogAviso {
+    margin: auto;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: var(--esp-5);
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: var(--sombra-elevada);
+}
+
+#dialogConfirmar::backdrop,
+#dialogAviso::backdrop {
+    background-color: rgba(48, 54, 79, 0.45);
+}
+
+#dialogConfirmar .dialog-acciones,
+#dialogAviso .dialog-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--esp-2);
+    margin-top: var(--esp-4);
+}
+
 body .btnOperacion {
     background-color: var(--navy-700);
     color: var(--crema);

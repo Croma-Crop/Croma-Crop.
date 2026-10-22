@@ -44,16 +44,17 @@ const mensaje = document.querySelector("#mensaje");
     }
 
     if (btn.classList.contains("boton-eliminar")) {
-      if (!confirm(traducir("¿Seguro que quieres eliminar el salón?"))) return;
       const id = btn.dataset.id;
-      apiBorrar(id)
-        .then(function () {
-          quitarTarjeta(id);
-          mostrarMensaje(traducir("Salón eliminado"), "exito");
-        })
-        .catch(function (err) {
-          mostrarMensaje(err.message, "error");
-        });
+      confirmarAccion("¿Seguro que quieres eliminar el salón?", function () {
+        apiBorrar(id)
+          .then(function () {
+            quitarTarjeta(id);
+            mostrarMensaje(traducir("Salón eliminado"), "exito");
+          })
+          .catch(function (err) {
+            mostrarMensaje(err.message, "error");
+          });
+      });
     }
   });
 

@@ -332,6 +332,13 @@ dialog.dialogGestionarEmpleado::backdrop {
     margin-left: var(--esp-2);
 }
 
+body .celda-acciones .btnOperacion,
+body .celda-acciones .boton-rechazar {
+    width: 110px;
+    padding: 9px var(--esp-4);
+    font-size: var(--texto-base);
+}
+
 #nombreRechazado {
     font-size: var(--texto-sm);
     color: var(--texto-tenue);

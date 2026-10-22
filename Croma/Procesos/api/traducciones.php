@@ -308,6 +308,7 @@ $traducciones = [
     "No se pudo rechazar correctamente" => "Could not reject",
     "Usuario borrado correctamente" => "User deleted successfully",
     "No se pudo borrar correctamente" => "Could not delete",
+    "Desactivar" => "Deactivate",
     "Usuario dado de baja correctamente" => "User deactivated successfully",
     "El usuario no fue dado de baja correctamente" => "The user could not be deactivated",
     "No podes dar de baja tu propio usuario" => "You cannot deactivate your own user",

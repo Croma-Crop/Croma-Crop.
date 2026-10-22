@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2026 a las 20:17:39
+-- Tiempo de generación: 22-10-2026 a las 01:05:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -45,11 +45,10 @@ CREATE TABLE `incidencia` (
 --
 
 INSERT INTO `incidencia` (`id_incidencia`, `fecha`, `fecha_limite`, `turno`, `estado`, `descripcion`, `prioridad`, `cedula_solicitante`, `cedula_tecnico`, `numero_serie`) VALUES
-(16, '2026-10-11', NULL, 'matutino', 'En proceso', 'UOJOJOJOY NOOOO MI MILANESA', 'Sin asignar', '66666666', 'A2222222', '1332784'),
-(17, '2026-10-11', NULL, 'matutino', 'Pendiente', 'Carlos se hizo el que sabia de programar y rompio el kernel', 'Alta', '66666666', NULL, '1332784'),
-(20, '2026-10-12', NULL, 'matutino', 'Resuelto', 'UDWFHQOFHQWOFQWFQ', 'Sin asignar', 'A2222222', NULL, '60S3X54'),
-(21, '2026-10-19', NULL, 'matutino', 'Pendiente', 'Alguien puso la compu en arabe', 'Sin asignar', '33333333', NULL, '9R12B18'),
-(22, '2026-10-21', NULL, 'matutino', 'Pendiente', 'Exploto el cable de alimentacion', 'Sin asignar', '33333333', NULL, '9R12B18');
+(21, '2026-10-19', NULL, 'matutino', 'En proceso', 'Alguien puso la compu en arabe', 'Baja', '33333333', '22222222', '9R12B18'),
+(22, '2026-10-21', NULL, 'matutino', 'Resuelto', 'Exploto el cable de alimentacion', 'Baja', '33333333', '22222222', '9R12B18'),
+(23, '2026-10-20', NULL, 'matutino', 'Pendiente', 'El monitor se apaga solo', 'Media', '22222222', '22222222', '123123213'),
+(24, '2026-10-21', NULL, 'matutino', 'Pendiente', 'No se, la encontre rota', 'Sin asignar', '11111111', NULL, '138U75H');
 
 -- --------------------------------------------------------
 
@@ -73,7 +72,8 @@ CREATE TABLE `intervencion` (
 INSERT INTO `intervencion` (`id_intervencion`, `numero_serie`, `fecha`, `descripcion`, `tecnico`, `solucion`) VALUES
 (1, '123', '2026-08-13', 'wachin', NULL, NULL),
 (2, '123', '2026-09-01', 'wachin2', NULL, NULL),
-(3, '60S3X54', '2026-10-12', 'Incidencia #20 (Computadora): UDWFHQOFHQWOFQWFQ', NULL, NULL);
+(3, '60S3X54', '2026-10-12', 'Incidencia #20 (Computadora): UDWFHQOFHQWOFQWFQ', NULL, NULL),
+(4, '9R12B18', '2026-10-20', 'Incidencia #22Exploto el cable de alimentacion', '22222222', NULL);
 
 -- --------------------------------------------------------
 
@@ -97,17 +97,17 @@ CREATE TABLE `inventario` (
 --
 
 INSERT INTO `inventario` (`numero_serie`, `nombre`, `marca`, `modelo`, `estado`, `numero_intervenciones`, `id_salon`, `cedula_administrador`) VALUES
-('123', 'PC 1', 'HP', 'ProDesk 400 G7', 'en_reparacion', 0, 5, NULL),
-('123123213', 'PC 2', 'Raspberry PI', 'Raspberry', 'en_reparacion', 0, 2, NULL),
-('12FYU53', 'PC 8', 'Xiaomi', 'Sokolov', 'en_reparacion', 0, 16, NULL),
+('123', 'PC 1', 'HP', 'ProDesk 400 G7', 'operativo', 0, 5, NULL),
+('123123213', 'PC 2', 'Raspberry PI', 'Raspberry', 'operativo', 0, 2, NULL),
+('12FYU53', 'PC 8', 'Xiaomi', 'Sokolov', 'operativo', 0, 16, NULL),
 ('1332784', 'PC 8', 'Acme', 'Hp250', 'operativo', 0, 2, NULL),
 ('138U75H', 'PC 5', 'Lenovo', 'Raspberry', 'operativo', 0, 15, NULL),
 ('19UR80', 'PC 3', 'Croma', 'MOS17', 'de_baja', 0, 12, NULL),
 ('43UR790', 'PC 1', 'LG', 'Meconium', 'operativo', 0, 10, NULL),
 ('60S3X54', 'PC 10', 'Mac', 'incubus', 'operativo', 1, 15, NULL),
 ('87UI90', 'PC 6', 'Panavox', 'Abaddon', 'operativo', 0, 10, NULL),
-('9R12B18', 'PC 7', 'Raspberry PI', 'Ipecac', 'operativo', 0, 11, NULL),
-('RX2074C', 'PC 4', 'Acme', 'GBD8', 'operativo', 0, 12, NULL);
+('9R12B18', 'PC 7', 'Raspberry PI', 'Ipecac', 'prestado', 1, 11, NULL),
+('RX2074C', 'PC 4', 'Acme', 'GBD8', 'en_reparacion', 0, 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -189,7 +189,6 @@ CREATE TABLE `solicitud` (
 --
 
 INSERT INTO `solicitud` (`id_solicitud`, `tipo`, `nombre_software`, `descripcion`, `fecha`, `hora_inicio`, `hora_fin`, `estado`, `cedula_solicitante`, `cedula_tecnico`, `id_salon`) VALUES
-(7, 'Instalacion de Software', 'tux', 'Che le pueden poner, no se, Arch o fedora?', NULL, NULL, NULL, 'Resuelto', '66666666', '22222222', 2),
 (8, 'Instalacion de Software', 'HM Linux', 'Me gustaria tener un equipo con este sistema', NULL, NULL, NULL, 'Pendiente', '33333333', NULL, 2),
 (9, 'Reserva de Salon', NULL, 'Tienen prueba de sociología', '2026-10-23', '07:00:00', '08:30:00', 'Pendiente', '33333333', NULL, 5);
 
@@ -313,13 +312,13 @@ ALTER TABLE `usuarioextranjero`
 -- AUTO_INCREMENT de la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
-  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `intervencion`
 --
 ALTER TABLE `intervencion`
-  MODIFY `id_intervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_intervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_diario`

@@ -61,5 +61,20 @@ if ($moduloactual === "index_admin" || $moduloactual === "index_tecnico" || $mod
     <?php echo construirChip($usuario); ?>
 </div>
 
+<dialog id="dialogConfirmar">
+    <p id="mensajeConfirmar"></p>
+    <div class="dialog-acciones">
+        <button type="button" class="btnOperacion" id="aceptarConfirmar">Aceptar</button>
+        <button type="button" class="boton-cancelar-edicion" id="cancelarConfirmar">Cancelar</button>
+    </div>
+</dialog>
+
+<dialog id="dialogAviso">
+    <p id="mensajeAviso"></p>
+    <div class="dialog-acciones">
+        <button type="button" class="btnOperacion" id="cerrarAviso">Entendido</button>
+    </div>
+</dialog>
+
 <script src="<?php echo $BASE_URL ?>/Presentacion/js/idioma.js"></script>
 <script src="<?php echo $BASE_URL ?>/Presentacion/js/menu.js"></script>

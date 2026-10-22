@@ -58,7 +58,7 @@ mostrarCamposDeSolicitud();
 document.querySelector("#solforms").addEventListener("submit", function (e) {
     if (tipoSol.value === "Reserva de Salon" && horaFinSol.value <= horaInicioSol.value) {
         e.preventDefault();
-        alert(traducir("La hora de finalización tiene que ser posterior a la de inicio."));
+        mostrarAviso("La hora de finalización tiene que ser posterior a la de inicio.");
     } else {
         sessionStorage.setItem("formEnviado", "solicitud");
     }

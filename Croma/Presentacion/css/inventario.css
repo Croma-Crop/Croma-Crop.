@@ -17,7 +17,6 @@
 }
 .tarjeta-producto:hover{
     box-shadow: var(--sombra-elevada);
-    font-size: 16px;
 }
 
 .tarjeta-precio {

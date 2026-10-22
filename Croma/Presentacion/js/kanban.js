@@ -19,6 +19,24 @@ document.addEventListener("DOMContentLoaded", function () {
         formAccion.submit();
     }
 
+    function cambiarEstado(tarjeta, estado) {
+        if (tarjeta.dataset.estado === "Resuelto" && estado !== "Resuelto") {
+            tarjeta.querySelector(".select-estado").value = "Resuelto";
+            mostrarAviso("Una incidencia resuelta no se puede mover a otra columna.");
+            return;
+        }
+
+        if (estado === "Resuelto" && tarjeta.dataset.estado !== "Resuelto") {
+            tarjeta.querySelector(".select-estado").value = tarjeta.dataset.estado;
+            confirmarAccion("¿Seguro que quiere pasar la incidencia a resuelto?", function () {
+                enviarAccion(tarjeta.dataset.id, tarjeta.dataset.clase, "estado", estado);
+            });
+            return;
+        }
+
+        enviarAccion(tarjeta.dataset.id, tarjeta.dataset.clase, "estado", estado);
+    }
+
     function normalizar(texto) {
         return (texto || "").toString().toLowerCase();
     }
@@ -80,8 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll(".select-estado").forEach(function (select) {
         select.addEventListener("change", function () {
-            const tarjeta = select.closest(".tarjeta-kanban");
-            enviarAccion(tarjeta.dataset.id, tarjeta.dataset.clase, "estado", select.value);
+            cambiarEstado(select.closest(".tarjeta-kanban"), select.value);
         });
     });
 
@@ -107,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             columna.classList.remove("columna-activa");
             if (tarjetaArrastrada) {
-                enviarAccion(tarjetaArrastrada.dataset.id, tarjetaArrastrada.dataset.clase, "estado", columna.dataset.estado);
+                cambiarEstado(tarjetaArrastrada, columna.dataset.estado);
             }
         });
     });
