@@ -1,4 +1,4 @@
-var graficoEquipos = document.getElementById("grafico-equipos");
+const graficoEquipos = document.getElementById("grafico-equipos");
 
 if (graficoEquipos !== null) {
     new Chart(graficoEquipos, {

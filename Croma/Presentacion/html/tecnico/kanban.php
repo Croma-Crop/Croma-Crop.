@@ -62,7 +62,6 @@
                                     </div>
 
                                     <p class="tarjeta-nombre"><?= htmlspecialchars($ticket['nombreProf']) ?></p>
-                                    <p class="tarjeta-tipo"><?= htmlspecialchars($ticket['tipo']) ?></p>
                                     <p class="tarjeta-asignado"><span>Técnico:</span> <?= htmlspecialchars($ticket['nombreTecnico']) ?></p>
 
                                     <button type="button" class="boton-detalle">Ver más</button>

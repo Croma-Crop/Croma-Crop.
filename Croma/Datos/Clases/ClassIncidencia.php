@@ -41,24 +41,24 @@ class Incidencia {
     }
 
     public static function mostrar($conexion) {
-        $sql = "SELECT id_incidencia, fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico, numero_serie
+        $sql = "SELECT id_incidencia, fecha, fecha_limite, turno, estado, descripcion, prioridad, cedula_solicitante, cedula_tecnico, numero_serie
                 FROM incidencia
                 ORDER BY fecha DESC";
         $resultado = $conexion->query($sql);
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function guardar($tipo, $cedulaSolicitante) {
+    public function guardar($cedulaSolicitante) {
         try {
-            $sql = "INSERT INTO incidencia (fecha, fecha_limite, turno, estado, tipo, descripcion, prioridad, cedula_solicitante, cedula_tecnico, numero_serie)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO incidencia (fecha, fecha_limite, turno, estado, descripcion, prioridad, cedula_solicitante, cedula_tecnico, numero_serie)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->conexion->prepare($sql);
 
             if (!$stmt) {
                 return false;
             }
 
-            $stmt->bind_param("ssssssssss", $this->fecha, $this->fecha_limite, $this->turno, $this->estado, $tipo, $this->descripcion, $this->prioridad, $cedulaSolicitante, $this->tecnico, $this->numero_serie);
+            $stmt->bind_param("sssssssss", $this->fecha, $this->fecha_limite, $this->turno, $this->estado, $this->descripcion, $this->prioridad, $cedulaSolicitante, $this->tecnico, $this->numero_serie);
 
             return $stmt->execute();
 
@@ -74,7 +74,7 @@ class Incidencia {
 }
 public function cambiarEstado(string $nuevoEstado): bool {
     try {
-        $sqlActual = "SELECT estado, tipo, descripcion, cedula_tecnico, numero_serie FROM incidencia WHERE id_incidencia = ?";
+        $sqlActual = "SELECT estado, descripcion, cedula_tecnico, numero_serie FROM incidencia WHERE id_incidencia = ?";
         $stmtActual = $this->conexion->prepare($sqlActual);
 
         if (!$stmtActual) {
@@ -100,7 +100,7 @@ public function cambiarEstado(string $nuevoEstado): bool {
         $estadoActual = $stmt->execute();
 
         if ($estadoActual && $nuevoEstado === 'Resuelto' && $actual['numero_serie'] !== null) {
-            $descripcion = "Incidencia #" . $this->id_incidencia . " (" . $actual['tipo'] . "): " . $actual['descripcion'];
+            $descripcion = "Incidencia #" . $this->id_incidencia . $actual['descripcion'];
             $intervencion = new Intervencion($this->conexion, $actual['numero_serie'], date('Y-m-d'), $descripcion, $actual['cedula_tecnico'], null);
             $intervencion->registrar();
         }

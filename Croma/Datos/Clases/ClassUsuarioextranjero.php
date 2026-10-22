@@ -65,6 +65,18 @@ public string $estado;
 
 
     }
+    public static function buscarNombre($conexion, $documento){
+    $sql = "SELECT nombre, apellido FROM usuarioextranjero WHERE documento = ?";
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $stmt->bind_param("s", $documento);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
     public static function mostrarsolicitantes($conexion){
         $rolProfesor = "solicitante";
         $stmtProfesores = $conexion->prepare("SELECT documento, nombre, apellido FROM usuarioextranjero WHERE rol = ? AND estado = 'aprobado'");
@@ -107,11 +119,7 @@ public string $estado;
     return $sql->fetch_all(MYSQLI_ASSOC);
 
  }
- public static function mostrar($conexion){
-    $sql = $conexion->query("SELECT documento, nombre, apellido, rol FROM usuarioextranjero WHERE estado = 'aprobado'");
-    return $sql->fetch_all(MYSQLI_ASSOC);
-
- }
+ 
     public function aprobar($documento){
     $sql = "UPDATE usuarioextranjero SET estado = 'aprobado' WHERE documento = ?";
     $stmt = $this->conexion->prepare($sql);

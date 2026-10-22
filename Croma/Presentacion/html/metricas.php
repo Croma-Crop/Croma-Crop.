@@ -13,13 +13,13 @@
         <h1 id="titulo">Métricas</h1>
         <?php include '../globales/Header.php'; ?>
     </header>
-    <?php require '../globales/ejemplometricas.php'; ?>
+    <?php include_once '../../Procesos/mostrarmetricas.php'; ?>
     <?php
     $nombresEquipos = [];
     $totalesEquipos = [];
     foreach ($equiposFallas as $equipo) {
-        $nombresEquipos[] = $equipo['nombre'] . ' (' . $equipo['salon'] . ')';
-        $totalesEquipos[] = $equipo['total'];
+        $nombresEquipos[] = $equipo['nombre'] . ' (' . $equipo['nombre_salon'] . ')';
+        $totalesEquipos[] = $equipo['numero_intervenciones'];
     }
     ?>
     <main>
@@ -64,7 +64,6 @@
                             <tbody>
                                 <?php foreach ($vencidas as $vencida): ?>
                                     <tr>
-                                        <td>#<?= $vencida['id_incidencia'] ?> <?= htmlspecialchars($vencida['tipo']) ?></td>
                                         <td><?= htmlspecialchars($vencida['equipo'] ?? '-') ?></td>
                                         <td><?= htmlspecialchars($vencida['salon'] ?? '-') ?></td>
                                         <td><span class="gravedad-chip" data-gravedad="<?= htmlspecialchars($vencida['prioridad']) ?>"><?= htmlspecialchars($vencida['prioridad']) ?></span></td>

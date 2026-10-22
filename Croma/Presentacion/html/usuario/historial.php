@@ -52,9 +52,6 @@
                     </select>
                     </div>
                 <?php endif; ?>
-                <?php if(!$resultado){
-                    echo "esto es un error muy erroso el cual santi tiene que decorar para que no sea un error errado sino un error todo poderoso y bien correcto a y el solicitante que elegiste no tiene fichas dud";
-                }  ?>
             </div>
 
             <?php if ($rolSesion === "administrador" && $documentoElegido === ""): ?>

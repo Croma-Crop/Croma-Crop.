@@ -68,6 +68,16 @@ public ?int $numero_intervenciones;
     
 
 }
+public function salonElegido($id_salon){
+    $sql = $this->conexion->prepare("SELECT numero_serie, nombre FROM inventario WHERE id_salon = ? AND estado <> 'de_baja'");
+    $sql->bind_param("i", $id_salon);
+    $sql->execute();
+    return $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+public static function mostrarMetrica($conexion){
+    $sql = $conexion->query("SELECT nombre, id_salon, numero_intervenciones FROM inventario WHERE estado <> 'de_baja' AND numero_intervenciones > 0 ORDER BY numero_intervenciones DESC LIMIT 10");
+    return $sql->fetch_all(MYSQLI_ASSOC);
+}
 
  public static function mostrarTodos($conexion){
     $sql = $conexion->query("SELECT numero_serie, nombre, marca, modelo, estado FROM inventario");

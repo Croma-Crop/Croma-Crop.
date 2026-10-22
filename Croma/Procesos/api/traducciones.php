@@ -419,5 +419,8 @@ $traducciones = [
     "Registro de una nueva incidencia o de una solicitud de servicio." => "Registration of a new incident or service request."
 ];
 
-echo json_encode($traducciones);
-?>
+echo json_encode([
+    "status"  => "success",
+    "message" => "Traducciones cargadas",
+    "data"    => $traducciones
+]);?>

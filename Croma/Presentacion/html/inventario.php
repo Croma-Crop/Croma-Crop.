@@ -45,8 +45,8 @@
         <?php foreach ($equipos as $indice => $equipo): ?>
             <li class="tarjeta-producto">
                 <p class="tarjeta-nombre"><?= htmlspecialchars($equipo['nombre']) ?></p>
-<p class="tarjeta-estado"><span>Estado:</span> <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
                 <p class="tarjeta-salon"><span>Salón:</span> <?= htmlspecialchars($equipo['nombre_salon'] ?? 'Sin asignar') ?></p>
+                <p class="tarjeta-estado"><span>Estado:</span> <span class="estado-chip" data-estado="<?= htmlspecialchars($equipo['estado']) ?>"><?= htmlspecialchars(str_replace("_", " ", $equipo['estado'])) ?></span></p>
                 <button type="button" class="boton-desplegar" data-indice="<?= $indice ?>">Mostrar más</button>
             </li>
         <?php endforeach; ?>

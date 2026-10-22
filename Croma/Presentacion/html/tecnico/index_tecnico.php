@@ -32,7 +32,7 @@
             $enProceso = $enProceso + 1;
         }
         if ($incidencia['cedula_tecnico'] === $miDocumento && $incidencia['estado'] !== 'Resuelto') {
-            $misTareas[] = ['clase' => 'Incidencia', 'tipo' => $incidencia['tipo'], 'estado' => $incidencia['estado']];
+            $misTareas[] = ['clase' => 'Incidencia', 'tipo' => '-', 'estado' => $incidencia['estado']];
         }
     }
 

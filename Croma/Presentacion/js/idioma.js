@@ -1,4 +1,4 @@
-var traducciones = {};
+let traducciones = {};
 
 function idiomaActual() {
     if (localStorage.getItem("idioma") === "en") {
@@ -24,12 +24,12 @@ function traducir(texto) {
 }
 
 function traducirPagina() {
-    var elementos = document.querySelectorAll("body *");
-    var i = 0;
+    let elementos = document.querySelectorAll("body *");
+    let i = 0;
     while (i < elementos.length) {
-        var elemento = elementos[i];
+        let elemento = elementos[i];
         if (elemento.children.length === 0) {
-            var texto = elemento.textContent.trim();
+            let texto = elemento.textContent.trim();
             if (traducciones[texto] !== undefined) {
                 elemento.textContent = traducciones[texto];
             }
@@ -46,21 +46,27 @@ function traducirPagina() {
 }
 
 function pedirTraducciones() {
-    var ruta = window.location.pathname;
-    var base = ruta.substring(0, ruta.indexOf("/Presentacion/"));
+    let ruta = window.location.pathname;
+    let base = ruta.substring(0, ruta.indexOf("/Presentacion/"));
 
     fetch(base + "/Procesos/api/traducciones.php")
         .then(function (respuesta) {
             return respuesta.json();
         })
-        .then(function (datos) {
-            traducciones = datos;
+        .then(function (cuerpo) {
+            if (cuerpo.status !== "success") {
+                throw new Error(cuerpo.message);
+            }
+            traducciones = cuerpo.data;
             traducirPagina();
+        })
+        .catch(function (err) {
+            console.error("No se pudieron cargar las traducciones:", err.message);
         });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    var boton = document.getElementById("btn-idioma");
+    let boton = document.getElementById("btn-idioma");
     if (boton === null) {
         return;
     }

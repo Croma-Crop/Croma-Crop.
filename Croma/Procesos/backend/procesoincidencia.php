@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $salon = limpiarEntero($_POST['salon'] ?? '');
     $serie = limpiarSerie($_POST['serie'] ?? '');
     $turno = limpiarOpcion($_POST['turno'] ?? '', ["matutino", "vespertino", "nocturno"]);
-    $tipo = limpiarOpcion($_POST['tipo'] ?? '', ["Computadora", "Televisor", "Periferico", "Otro"]);
     $descripcion = limpiarTexto($_POST['descripcion'] ?? '');
 
     if ($fecha === '') {
@@ -31,9 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensajeError = "Seleccione un equipo del salón.";
     }
 
-    if ($mensajeError === "" && $tipo === '') {
-        $mensajeError = "Seleccione el tipo de incidencia.";
-    }
 
     if ($mensajeError === "" && $turno === '') {
         $mensajeError = "Seleccione un turno.";
@@ -68,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $incidencia = new Incidencia(
         $conexion, null, $fecha, $descripcion, $gravedad, $turno, null, null, "Pendiente", $serie);
 
-    $ok = $incidencia->guardar($tipo, $cedulaSolicitante);
+    $ok = $incidencia->guardar($cedulaSolicitante);
 
     if ($ok && $repetidas > 0) {
         $aviso = "Este equipo ya tenía " . $repetidas . " incidencia(s) igual(es) sin resolver, la gravedad subió a " . $gravedad;

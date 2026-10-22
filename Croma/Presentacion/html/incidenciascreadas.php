@@ -37,7 +37,6 @@
             <?php foreach ($tickets as $ticket): ?>
         <li class="tarjeta-ticket" data-clase="<?= htmlspecialchars($ticket['clase']) ?>">
             <p class="tarjeta-clase tarjeta-<?= strtolower($ticket['clase']) ?>"><?= htmlspecialchars($ticket['clase']) ?></p>
-            <p class="tarjeta-tipo"><span>Tipo:</span> <?= htmlspecialchars($ticket['tipo']) ?></p>
             <p class="tarjeta-nombre"><span>Registrado por:</span> <?= htmlspecialchars($ticket['nombreProf']) ?></p>
             <p class="tarjeta-asignado"><span>Técnico:</span> <?= htmlspecialchars($ticket['nombreTecnico']) ?></p>
 
